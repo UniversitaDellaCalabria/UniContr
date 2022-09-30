@@ -45,8 +45,10 @@ class LoginListener
         $attributesName = [
             'eduPersonEntitlement' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.7',
             'cn' => 'urn:oid:2.5.4.3',                            
-            'displayName' => 'urn:oid:2.16.840.1.113730.3.1.241',
-            'codiceFiscale' => 'urn:oid:1.3.6.1.4.1.4203.666.11.11.1.0',
+            //'displayName' => 'urn:oid:2.16.840.1.113730.3.1.241',
+            'displayName' => 'urn:oid:2.5.4.3',
+            //'codiceFiscale' => 'urn:oid:1.3.6.1.4.1.4203.666.11.11.1.0',
+            'codiceFiscale' => 'codice_fiscale',
             'eduPersonOrgDN' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.3',
             'pid' => 'urn:oid:2.5.4.10',
             'uid' => 'urn:oid:0.9.2342.19200300.100.1.1',
@@ -56,9 +58,12 @@ class LoginListener
             'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
             'realm' => 'urn:oid:2.5.4.100',
             'eduPersonUniqueId' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.13',
-            'email' => 'urn:oid:0.9.2342.19200300.100.1.3',
-            'matricola' => 'urn:oid:1.3.6.1.4.1.27280.1.20',    
-            'ruolo' => 'urn:oid:1.3.6.1.4.1.27280.1.13'        
+            // 'email' => 'urn:oid:0.9.2342.19200300.100.1.3',
+            'email' => 'urn:oid:1.2.840.113549.1.9.1.1',
+            //'matricola' => 'urn:oid:1.3.6.1.4.1.27280.1.20',    
+            'matricola' => 'matricola_dipendente',    
+            //'ruolo' => 'urn:oid:1.3.6.1.4.1.27280.1.13',
+            'ruolo' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.9'        
         ];
 
         $user = $event->getSaml2User();
@@ -66,7 +71,11 @@ class LoginListener
         $user->parseAttributes($attributesName);
         
         $userData = new \App\User;    
-        try{ 
+        try{
+            Log::info('dati');
+            Log::info('email [' . $user->email[0] . ']');
+            Log::info('displayName [' . $user->displayName[0] . ']');
+            Log::info('ruolo [' . $user->ruolo[0] . ']');    
             $userData->id = $user->getUserId();
             $userData->attributes = $user->getAttributes();
             $userData->name = $user->displayName[0];

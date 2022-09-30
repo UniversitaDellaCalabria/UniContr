@@ -19,7 +19,7 @@ return [
     /**
      * URL target per l'applicazione client
      */
-    'client_url' => env('CLIENT_URL', 'http://localhost:4200/'),   
+    'client_url' => env('CLIENT_URL', 'https://unicontr.unical.it/'),   
 
     //Configurazioni per dati di seed
 

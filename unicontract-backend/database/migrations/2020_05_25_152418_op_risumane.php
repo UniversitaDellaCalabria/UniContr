@@ -19,7 +19,7 @@ class OpRisumane extends Migration
         $role = Role::where('name','op_risumane')->first();
         if ($role==null){
             $role = Role::create(['name' => 'op_risumane']);
-            $this->insertOffice(['005145'], 'op_risumane');
+            $this->insertOffice(['170005'], 'op_risumane');
         }
     }
 

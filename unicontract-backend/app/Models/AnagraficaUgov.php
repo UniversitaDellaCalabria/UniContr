@@ -9,7 +9,7 @@ use App\Models\InsegnamUgov;
 class AnagraficaUgov extends Model
 {
     protected $connection = 'oracle';    
-    protected $table = 'ANAGRAFICA';
+    protected $table = 'SIARU_UNICAL_PROD.ANAGRAFICA';
     public $primaryKey = 'ID_AB';
 
     protected $casts = [

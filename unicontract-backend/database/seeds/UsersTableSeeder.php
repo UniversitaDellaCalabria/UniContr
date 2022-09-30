@@ -12,16 +12,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::where('email', 'enrico.oliva@uniurb.it')->first();   
+        $user = User::where('email', 'francesco.filicetti@unical.it')->first();   
         if ($user==null) {     
             $user = User::firstOrCreate( [
-                'email' => 'enrico.oliva@uniurb.it' ,
-                'password' => Hash::make( 'testadm1n' ) ,
-                'name' => 'Enrico Oliva' ,
-                'v_ie_ru_personale_id_ab'=> 39842,  
+                'email' => 'francesco.filicetti@unical.it' ,
+                'password' => Hash::make( 'test' ) ,
+                'name' => 'Francesco Filicetti' ,
+                'v_ie_ru_personale_id_ab'=> 030076,  
                 'cf' => '1111111111111111',
-                'nome' => 'Enrico',
-                'cognome' => 'Oliva'
+                'nome' => 'Francesco',
+                'cognome' => 'Filicetti'
             ] );        
         }
         if (!$user->hasRole('super-admin')){
