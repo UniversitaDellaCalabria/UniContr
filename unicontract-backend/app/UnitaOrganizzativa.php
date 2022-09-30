@@ -12,26 +12,26 @@ use App\Service\RoleService;
 
 class UnitaOrganizzativa extends Model
 {
-    protected $connection = 'oracle';    
+    protected $connection = 'oracle';
 
-    public $table = 'VISTA_ORG_ATTIVA';
+    public $table = 'SIARU_UNICAL_PROD.VISTA_ORG_ATTIVA';
     public $primaryKey = 'ID_AB';
 
-    protected $dates = [        
-        'data_fin'        
+    protected $dates = [
+        'data_fin'
     ];
 
     protected $casts = [
         'data_fin' => 'datetime:d-m-Y',
     ];
-      
+
      public function dipartimento()
      {
-        return $this->belongsTo(Dipartimento::class,'id_ab','dip_id');        
+        return $this->belongsTo(Dipartimento::class,'id_ab','dip_id');
      }
 
      public function isUnitaAdmin(){
-        
+
         if (in_array($this->uo, config('unidem.unitaAdmin')))
             return true;
 
@@ -45,15 +45,15 @@ class UnitaOrganizzativa extends Model
      //restituisce tutto il personale afferente ad una unità organizzativa (foglia)
      public function organico()
      {
-         return $this->hasMany(Organico::class, 'id_ab_uo',  'id_ab');         
+         return $this->hasMany(Organico::class, 'id_ab_uo',  'id_ab');
      }
 
      //con email
      public function personale()
      {
-         return $this->hasMany(Personale::class, 'aff_org',  'uo');         
+         return $this->hasMany(Personale::class, 'aff_org',  'uo');
      }
- 
+
      /**
       * isPlesso ritorna true se l'unità organizzativa corrente è un plesso
       *
@@ -62,7 +62,7 @@ class UnitaOrganizzativa extends Model
      public function isPlesso(){
         return $this->tipo == 'PLD';
      }
-     
+
      /**
       * isDipartimento ritorna true se l'unità organizzativa corrente è un dipartimento
       *
@@ -71,9 +71,9 @@ class UnitaOrganizzativa extends Model
      public function isDipartimento(){
         return $this->tipo == 'DIP';
      }
-         
+
     /**
-     * restituisce un array dei dipartimenti 
+     * restituisce un array dei dipartimenti
      * che afferiscono all'unità organizzativa corrente.
      *
      * @return Array
@@ -91,8 +91,8 @@ class UnitaOrganizzativa extends Model
             //Plesso Scientifico (DiSPeA-DiSB)
             if ($this->id_ab == 32718){
                 return ['004919','005019'];
-            }     
-            //... aggiungere ulteriori associazioni      
+            }
+            //... aggiungere ulteriori associazioni
         }
     }
 

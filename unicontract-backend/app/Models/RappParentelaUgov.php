@@ -7,6 +7,6 @@ use App\Models\AnagraficaUgov;
 
 class RappParentelaUgov extends Model
 {
-    protected $connection = 'oracle';    
-    protected $table = 'FAM_ANAGRAFICA';
+    protected $connection = 'oracle';
+    protected $table = 'SIARU_UNICAL_PROD.FAM_ANAGRAFICA';
 }

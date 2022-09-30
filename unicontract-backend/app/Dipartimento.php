@@ -16,9 +16,9 @@ class Dipartimento extends Model
      *
      * @var string
      */
-    protected $connection = 'oracle';    
+    protected $connection = 'oracle';
 
-    public $table = 'V_IE_AC_DIPARTIMENTI';
+    public $table = 'SIAXM_UNICAL_PROD.V_IE_AC_DIPARTIMENTI';
     public $primaryKey = 'CD_DIP';
 
     /**
@@ -32,9 +32,9 @@ class Dipartimento extends Model
         return $query->where('DT_FINE_VAL', '>=',  Carbon::now())->select('cd_dip','nome_breve','dip_id','cd_miur','id_ab');
     }
 
-    
+
     /**
-     * restituisce tutto il personale afferente ad un dipartimento  
+     * restituisce tutto il personale afferente ad un dipartimento
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
@@ -42,7 +42,7 @@ class Dipartimento extends Model
     {
         return $this->hasManyThrough(Personale::class, UnitaOrganizzativa::class, 'id_ab', 'aff_org','dip_id','uo');
     }
-   
+
     /**
      * personale associato al dipartimento filtrato per tipo ruolo Ruolo::DOCENTITYPE (docenti)
      *
@@ -52,7 +52,7 @@ class Dipartimento extends Model
     {
         return $this->personale()->whereHas('ruolo', function($ruolo){
             $ruolo->whereIn('tipo_ruolo', Ruolo::DOCENTITYPE);
-        });        
+        });
     }
 
     public function organico()
@@ -62,7 +62,7 @@ class Dipartimento extends Model
 
     public function direttoreDipartimento()
     {
-        return $this->organico()->valido()->respArea();        
+        return $this->organico()->valido()->respArea();
     }
 
 }

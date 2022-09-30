@@ -56,17 +56,17 @@ class A2ModalitaPagamentoController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         if (!Auth::user()->hasPermissionTo('compila precontrattuale')) {
             abort(403, trans('global.utente_non_autorizzato'));
-        } 
+        }
 
         $datiPagamento = [];
         $message = '';
-        $success = true;                
-        $postData = $request->except('id', '_method');             
-        $datiPagamento = $this->repo->store($postData);      
-        return compact('datiPagamento', 'message', 'success'); 
+        $success = true;
+        $postData = $request->except('id', '_method');
+        $datiPagamento = $this->repo->store($postData);
+        return compact('datiPagamento', 'message', 'success');
     }
 
     /**
@@ -80,35 +80,35 @@ class A2ModalitaPagamentoController extends Controller
 
         $dati = [];
         $message = '';
-        
-            $dati = AnagraficaUgov::leftJoin('PAGAMENTI', function($join) {
-                $join->on('PAGAMENTI.MATRICOLA', '=', 'ANAGRAFICA.MATRICOLA');              
+
+            $dati = AnagraficaUgov::leftJoin('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA', function($join) {
+                $join->on('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.MATRICOLA', '=', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.MATRICOLA');
             })
             ->leftJoin('BANCHE', function($join) {
-                $join->on('PAGAMENTI.ABI', '=', 'BANCHE.ABI');
+                $join->on('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.ABI', '=', 'BANCHE.ABI');
             })
-            ->where('ANAGRAFICA.ID_AB', $id_ab)
-            ->orderBy('PAGAMENTI.DATA_IN', 'DESC')
-            ->first(['PAGAMENTI.*', 'ANAGRAFICA.NOME', 'ANAGRAFICA.COGNOME', 'BANCHE.DESCR']);
+            ->where('SIARU_UNICAL_PROD.VD_ANAGRAFICA.ID_AB', $id_ab)
+            ->orderBy('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.DATA_IN', 'DESC')
+            ->first(['SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.*', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.NOME', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.COGNOME', 'BANCHE.DESCR']);
             //cercare l'ultima precontrattuale inserita stato = 0 o stato = 1 docente_id
-            
-            //come determinare che non abbia compilato altri contratti dell'anno accademico corrente? 
+
+            //come determinare che non abbia compilato altri contratti dell'anno accademico corrente?
             $copy = A2ModalitaPagamento::whereHas('precontrattuale', function ($query) use($id_ab) {
                 $query->where('docente_id',$id_ab)->where('stato','<',2);
-            })->orderBy('id','desc')->first();            
+            })->orderBy('id','desc')->first();
 
-            if ($copy){                
-                $insegn = Insegnamenti::where('id', $insegn_id)->first(); 
+            if ($copy){
+                $insegn = Insegnamenti::where('id', $insegn_id)->first();
                 if ($insegn && $copy->precontrattuale->insegnamento && $insegn->aa != $copy->precontrattuale->insegnamento->aa && $dati){
                     //se il valore trovato non è dell'anno corrente utilizzare la lettura da ugov
                     $copy=null;
                 }
             }
-            
-            $dati['copy'] = $copy;          
+
+            $dati['copy'] = $copy;
 
             $success = true;
-       
+
         return compact('dati', 'message', 'success');
     }
 
@@ -116,7 +116,7 @@ class A2ModalitaPagamentoController extends Controller
     {
         $dati = [];
         $message = '';
-       
+
             $dati = A2ModalitaPagamento::leftJoin('precontr', function($join) {
                 $join->on('precontr.a2_mod_pagamento_id', '=', 'a2_mod_pagamento.id');
             })
@@ -145,17 +145,17 @@ class A2ModalitaPagamentoController extends Controller
                                                         'p2_natura_rapporto.flag_dipend_pubbl_amm',
                                                         'p2_natura_rapporto.flag_titolare_pensione',
                                                         'p2_natura_rapporto.natura_rapporto']);
-            
-            $pre = Precontrattuale::with(['validazioni'])->where('a2_mod_pagamento_id', $id)->first();   
+
+            $pre = Precontrattuale::with(['validazioni'])->where('a2_mod_pagamento_id', $id)->first();
             if ($pre){
                 $dati['validazioni'] = $pre->validazioni;
             }else{
                 $dati['validazioni'] = [];
-            }                                                     
-            
-              
+            }
+
+
             $success = true;
-       
+
         return compact('dati', 'message', 'success');
     }
 
@@ -179,10 +179,10 @@ class A2ModalitaPagamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         if (!Auth::user()->hasPermissionTo('compila precontrattuale')) {
             abort(403, trans('global.utente_non_autorizzato'));
-        } 
+        }
 
         $data = [];
         $message = '';
@@ -191,19 +191,19 @@ class A2ModalitaPagamentoController extends Controller
             $data = [];
             $message = trans('global.aggiornamento_non_consentito');
             $success = false;
-            return compact('data', 'message', 'success');   
-        }    
-        
-        $pagamento = A2ModalitaPagamento::findOrFail($id);          
-        $original = $pagamento->getOriginal();  
+            return compact('data', 'message', 'success');
+        }
+
+        $pagamento = A2ModalitaPagamento::findOrFail($id);
+        $original = $pagamento->getOriginal();
         $postData = $request->except('id', '_method');
         $success = $pagamento->update($postData);
 
         $toTrace =null;
-        if (!$pagamento->wasRecentlyCreated) {                     
+        if (!$pagamento->wasRecentlyCreated) {
             $toTrace = array_only($pagamento->getChanges(),Audit::$toTrace);
             foreach ($toTrace  as $key => $value) {
-                //dati da memorizzare ... 
+                //dati da memorizzare ...
                 //e notificare ...
                 if (in_array($key,Audit::$toTrace)){
                     $audit = new Audit();
@@ -214,31 +214,31 @@ class A2ModalitaPagamentoController extends Controller
                     Log::info('Variazione ['. $key .']');
 
                     $mgs = 'da '. $audit->old_value.' a '.$audit->new_value = $value;
-                    
-                }  
+
+                }
 
             }
-            
-          
+
+
         }
 
         $precontr  =  $pagamento->precontrattuale()->first();
         $precontr->storyprocess()->save(
-            PrecontrattualeService::createStoryProcess('Modello A.2: Modifica dati modello modalità di pagamento', 
+            PrecontrattualeService::createStoryProcess('Modello A.2: Modifica dati modello modalità di pagamento',
             $precontr->insegn_id)
         );
 
-        if (count($toTrace)>0){                        
+        if (count($toTrace)>0){
 
             $precontr->storyprocess()->save(
-                PrecontrattualeService::createStoryProcess('Modello A.2: Variazione codice IBAN', 
+                PrecontrattualeService::createStoryProcess('Modello A.2: Variazione codice IBAN',
                 $precontr->insegn_id)
-            );  
-        }         
+            );
+        }
 
 
         $data = $pagamento;
-        
+
         return compact('data', 'message', 'success');
     }
 

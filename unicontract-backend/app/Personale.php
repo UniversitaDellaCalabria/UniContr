@@ -11,11 +11,11 @@ use App\MappingUfficio;
 use Illuminate\Support\Facades\Cache;
 
 class Personale extends Model
-{    
+{
 
-    protected $connection = 'oracle';    
+    protected $connection = 'oracle';
 
-    public $table = 'V_IE_RU_PERSONALE';
+    public $table = 'SIAXM_UNICAL_PROD.V_IE_RU_PERSONALE';
     public $primaryKey = 'ID_AB';
 
     public $selectcolumns = array('nome','cognome', 'matricola', 'aff_org', 'email','cd_ruolo'. 'id_ab','cod_fis');
@@ -33,7 +33,7 @@ class Personale extends Model
     {
         parent::boot();
         static::addGlobalScope('Fetch', function ($builder) {
-            $builder->select(['nome','cognome', 'matricola', 'aff_org', 'email','cd_ruolo', 'V_IE_RU_PERSONALE.id_ab as id_ab','cod_fis']);
+            $builder->select(['nome','cognome', 'matricola', 'aff_org', 'email','cd_ruolo', 'SIAXM_UNICAL_PROD.V_IE_RU_PERSONALE.id_ab as id_ab','cod_fis']);
         });
     }
 
@@ -52,29 +52,29 @@ class Personale extends Model
     public function unita()
     {
         return $this->belongsTo(UnitaOrganizzativa::class,'aff_org','uo');
-    }    
+    }
 
     public function mappingufficio()
     {
         return $this->belongsTo(MappingUfficio::class,'aff_org','unitaorganizzativa_uo');
-    } 
+    }
 
 
     public function scopeFindByIdAB($query, $id_ab)
-    {        
+    {
         return $query->where('id_ab',$id_ab)->first();
     }
 
-    
+
     /**
      * scopeFindByEmail restituisce una persona cercandola dalla sua email
      *
      * @param  mixed $query
      * @param  mixed $email
-     * @return Personale 
+     * @return Personale
      */
     public function scopeFindByEmail($query, $email)
-    {        
+    {
         return $query->where('email',$email)->first();
     }
 
@@ -87,9 +87,9 @@ class Personale extends Model
     {
         return $this->ruolo->isPta();
     }
-    
+
     public function scopeFindByAfferenzaOrganizzativa($query, $uo)
-    {        
+    {
         return $query->where('aff_org',$uo);
     }
 }
