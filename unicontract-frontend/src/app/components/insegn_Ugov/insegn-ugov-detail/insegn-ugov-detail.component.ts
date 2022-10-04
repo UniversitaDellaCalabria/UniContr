@@ -65,7 +65,7 @@ export class InsegnUgovDetailComponent extends BaseComponent {
               private insegnamentoService: InsegnamentoService,
               private precontrattualeService: PrecontrattualeService,
               private docenteService: DocenteService,
-              private ruoloDocenteService: RuoloDocenteService,            
+              private ruoloDocenteService: RuoloDocenteService,
               messageService: MessageService,
               private tools: InsegnamTools) { super(messageService); }
 
@@ -103,15 +103,15 @@ export class InsegnUgovDetailComponent extends BaseComponent {
   checkEmail(email: string, e_mail: string, e_mail_privata: string) {
     let value = false;
     if (email !== null) {
-      if (email.toLowerCase().includes('@uniurb.it')) {
+      if (email.toLowerCase().includes('@unical.it')) {
         value = true;
       }
     } else if (e_mail !== null) {
-      if (e_mail.toLowerCase().includes('@uniurb.it')) {
+      if (e_mail.toLowerCase().includes('@unical.it')) {
         value = true;
       }
     } else if (e_mail_privata !== null) {
-      if (e_mail_privata.toLowerCase().includes('@uniurb.it')) {
+      if (e_mail_privata.toLowerCase().includes('@unical.it')) {
         value = true;
       }
     } else {
@@ -164,11 +164,11 @@ export class InsegnUgovDetailComponent extends BaseComponent {
           this.messageService.info('Insegnamento ' + pre.insegnamento.coper_id + ' inserito con successo');
           this.router.navigate(['home/detail-insegn', response.data.insegnamento.id]);
         } else {
-          this.messageService.error(response.message);         
+          this.messageService.error(response.message);
         }
       }
     );
   }
 
- 
+
 }
