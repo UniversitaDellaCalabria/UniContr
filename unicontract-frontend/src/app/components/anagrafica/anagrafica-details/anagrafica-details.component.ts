@@ -31,7 +31,7 @@ export const tipotitoli: string[] = [
   'A1',
   'A2',
   'DA',
-  'S', 
+  'S',
   'DS',
   'DU',
   'DR',
@@ -41,13 +41,13 @@ export const tipotitoli: string[] = [
   'MS',
   'LM',
   'LS',
-  'L', 
+  'L',
   'LA',
   'M1',
   'M2',
   'SS', //SI SM SL SB SC SD
   'PQ',
-  'P', 
+  'P',
   'SP'
 ];
 
@@ -63,8 +63,8 @@ export class AnagraficaDetailsComponent extends BaseComponent {
   title1 = '';
   title2 = 'DOCUMENTAZIONE ALLEGATA';
 
- 
- 
+
+
 
   originalValue: any; // solo in stato nuovo
   resp: Anagrafica;
@@ -273,8 +273,8 @@ export class AnagraficaDetailsComponent extends BaseComponent {
             {
               key: 'provincia_residenza',
               type: 'select',
-              className: 'col-md-3',              
-              templateOptions: {                              
+              className: 'col-md-3',
+              templateOptions: {
                 maxLength: 2,
                 options: of(province.map(prov => { return { value: prov.sigla, label: prov.sigla + " " + prov.nome } })),
                 required: true,
@@ -364,7 +364,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
             {
               key: 'provincia_fiscale',
               type: 'select',
-              className: 'col-md-3',              
+              className: 'col-md-3',
               templateOptions: {
                 options: of(province.map(prov => { return { value: prov.sigla, label: prov.sigla + " " + prov.nome } })),
                 attributes: {
@@ -382,7 +382,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
               key: 'cap_fiscale',
               type: 'input',
               className: 'col-md-3',
-              templateOptions: {                
+              templateOptions: {
                 attributes: {
                   autocomplete: 'fiscale',
                 },
@@ -539,7 +539,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
             {
               key: 'telefono_abitazione', // 'tel_res',
               type: 'input',
-              className: 'col-md-6',             
+              className: 'col-md-6',
               templateOptions: {
                 attributes: {
                   autocomplete: 'abitazione',
@@ -596,7 +596,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
               },
               expressionProperties: {
                 'templateOptions.readonly': (model: any, formState: any, field: FormlyFieldConfig) => {
-                  return (model.email !== '*@uniurb.it');
+                  return (model.email !== '*@unical.it');
                 },
               }
             },
@@ -626,13 +626,13 @@ export class AnagraficaDetailsComponent extends BaseComponent {
           fieldGroup: [
             {
               key: 'flag_lavoratrici_madri',
-              type: 'checkbox',             
+              type: 'checkbox',
               className: 'col-auto',
-              defaultValue: false,             
-              
+              defaultValue: false,
+
               templateOptions: {
                 indeterminate: false,
-                required: true,                
+                required: true,
                 translate: true,
                 label: 'a1_label24'
               },
@@ -640,7 +640,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
                 flag_true: {
                   expression: ctrl => ctrl.value ? true : false,
                }
-               
+
               },
             },
           ]
@@ -649,7 +649,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
           template: '<span class="form-text">La documentazione e la normativa vigente sono dispobili presso <a href="https://www.uniurb.it/ateneo/utilita/salute-e-sicurezza/informazione-ai-lavoratori" target="_blank">https://www.uniurb.it/ateneo/utilita/salute-e-sicurezza/informazione-ai-lavoratori </a></span>',
           className: 'pb-1'
         }
-       
+
       ],
       hideExpression: (model: any, formState: any) => {
         if (!(model.sesso === 'F')) {
@@ -759,14 +759,14 @@ export class AnagraficaDetailsComponent extends BaseComponent {
                     key: 'filevalue',
                     type: 'input',
                     templateOptions: {
-                      type: 'hidden'        
+                      type: 'hidden'
                     },
                   },
                   {
                     key: 'id',
                     type: 'input',
                     templateOptions: {
-                      type: 'hidden'        
+                      type: 'hidden'
                     },
                   },
                 ],
@@ -777,7 +777,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
       ]
     }
 
-       
+
   ];
 
   constructor(private route: ActivatedRoute,
@@ -907,13 +907,13 @@ export class AnagraficaDetailsComponent extends BaseComponent {
         this.isLoading = false;
         if (response['success']) {
           const lastid = response['datiAnagrafica']['id'];
-          this.messageService.info('Quadro A.1: Dati anagrafici importati con successo');          
+          this.messageService.info('Quadro A.1: Dati anagrafici importati con successo');
           this.router.navigate(['home/anagrafica/local', lastid]);
           // this.storyProcess('Modello A.1: Importazione dati anagrafici del collaboratore');
         } else {
           this.messageService.error(response['message']);
         }
-        
+
       }
     );
   }
@@ -927,7 +927,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
           this.messageService.info('Quadro A.1: Dati anagrafici aggiornati con successo');
         } else {
           this.messageService.error(response['message']);
-        }    
+        }
         this.router.navigate(['home/anagrafica/local', idA1]);
       }
     );

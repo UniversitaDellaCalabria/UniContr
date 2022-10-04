@@ -86,13 +86,13 @@ export class InsegnUgovDetailComponent extends BaseComponent {
 
   email(email: string, e_mail: string, e_mail_privata: string) {
     let value = '';
-    if (email === '%@uniurb.it%') {
+    if (email === '%@unical.it%') {
       value = email;
-    } else if (e_mail === '%@uniurb.it%') {
+    } else if (e_mail === '%@unical.it%') {
       value = e_mail;
-    } else if (email !== '%@uniurb.it%') {
+    } else if (email !== '%@unical.it%') {
       value = email;
-    } else if (e_mail !== '%@uniurb.it%') {
+    } else if (e_mail !== '%@unical.it%') {
       value = e_mail;
     } else if (e_mail_privata !== '') {
       value = e_mail_privata;
