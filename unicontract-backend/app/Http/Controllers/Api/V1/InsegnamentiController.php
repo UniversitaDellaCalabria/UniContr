@@ -24,7 +24,7 @@ class InsegnamentiController extends Controller
 {
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -33,7 +33,7 @@ class InsegnamentiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {      
+    {
         $queryBuilder = Insegnamenti::leftJoin('precontr', function($join) {
             $join->on('precontr.insegn_id', '=', 'p1_insegnamento.id');
         })
@@ -67,24 +67,24 @@ class InsegnamentiController extends Controller
     public function store(Request $request)
     {
         $exist = true;
-        $count = 0;        
+        $count = 0;
         $ins = Insegnamenti::where('coper_id', $request->input('coper_id'))->get();
         $count = $ins->count();
 
-        if($count === 0) {            
+        if($count === 0) {
             $data = [];
             $message = '';
-           
+
                 $insegn = new Insegnamenti();
                 $postData = $request->except('id', '_method');
                 $insegn->fill($postData);
                 $success = $insegn->save();
                 $data = $insegn;
-           
-            return compact('data', 'message', 'success');                  
+
+            return compact('data', 'message', 'success');
         } else {
             return compact('exist');
-        }        
+        }
     }
 
     /**
@@ -96,7 +96,7 @@ class InsegnamentiController extends Controller
     public function show($id) {
         $datiInsegnamento = [];
         $message = '';
-        
+
             $queryBuilder = Insegnamenti::leftJoin('precontr', function($join) {
                 $join->on('precontr.insegn_id', '=', 'p1_insegnamento.id');
             })
@@ -110,7 +110,7 @@ class InsegnamentiController extends Controller
                 $join->on('users.v_ie_ru_personale_id_ab', '=', 'precontr.docente_id');
             })
             ->where('p1_insegnamento.id', $id);
-            
+
             $datiInsegnamento = $queryBuilder->first(['users.id AS userid',
                                                       'users.nome',
                                                       'users.cognome',
@@ -124,10 +124,10 @@ class InsegnamentiController extends Controller
                                                       'a1_anagrafica.provincia_fiscale',
                                                       'precontr.*']);
 
-            $pre = Precontrattuale::with(['sendemailsrcp'])->where('insegn_id', $id)->first();                                                       
+            $pre = Precontrattuale::with(['sendemailsrcp'])->where('insegn_id', $id)->first();
             $datiInsegnamento['sendemailsrcp'] = $pre->sendemailsrcp;
 
-            $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $id)->first();                                                        
+            $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $id)->first();
             $datiInsegnamento['validazioni'] = $pre->validazioni;
             $success = true;
 
@@ -137,15 +137,15 @@ class InsegnamentiController extends Controller
                         return InsegnamUgovController::contatoreInsegnamenti($datiInsegnamento['coper_id']);
                     });
                 } catch (\Exception $e) {
-                    Log::error($e);                           
+                    Log::error($e);
                     $handler = new Handler(Container::getInstance());
                     $handler->report($e);
                     $success = false;
                     $message = "Errore lettura contatore insegnamenti";
                 }
             }
-          
-       
+
+
         return compact('datiInsegnamento', 'message', 'success');
     }
 
@@ -173,44 +173,44 @@ class InsegnamentiController extends Controller
             $data = [];
             $message = trans('global.aggiornamento_non_consentito');
             $success = false;
-            return compact('data', 'message', 'success');   
-        } 
+            return compact('data', 'message', 'success');
+        }
 
 
         $datiInsegnamento = [];
         $message = '';
-      
+
             $datiInsegnamento = Insegnamenti::findOrFail($id);
             $success = true;
-       
+
         return compact('datiInsegnamento', 'message', 'success');
     }
 
     //deprecato per updateInsegnamentoFromUgov
     public function refreshUgovData(Request $request, $coper_id) {
         $datiUgov = [];
-        $message = '';        
-        $datiUgov = InsegnamUgov::where('COPER_ID', $coper_id)            
-            ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto', 
-                    'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des', 'numero', 'data']);        
+        $message = '';
+        $datiUgov = InsegnamUgov::where('COPER_ID', $coper_id)
+            ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
+                    'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des', 'numero', 'data']);
 
 
-            $success = true;        
+            $success = true;
         return compact('datiUgov', 'message', 'success');
     }
 
     //deprecato
     public function updateP1(Request $request, $insegn_id)
     {
-    
+
         $data = [];
         $message = '';
-       
-            $insegn = Insegnamenti::where('id', $insegn_id); 
+
+            $insegn = Insegnamenti::where('id', $insegn_id);
             $postData = $request->except('id', '_method');
             $success = $insegn->update($postData);
             $data = $insegn;
-       
+
         return compact('data', 'message', 'success');
     }
 
@@ -228,56 +228,56 @@ class InsegnamentiController extends Controller
     public function getName($id){
         $datiDocente = [];
         $message = '';
-       
+
             $datiDocente = User::findOrFail($id);
             $success = true;
-      
+
         return compact('datiDocente', 'message', 'success');
     }
 
 
-    public function query(Request $request){ 
-        $parameters = $request->json()->all();        
+    public function query(Request $request){
+        $parameters = $request->json()->all();
         $parameters['includes'] = 'precontr';
         $findparam = new \App\FindParameter($parameters);
 
         $queryBuilder = new QueryBuilder(new Insegnamenti, $request, $findparam);
-                
-        return $queryBuilder->build()->paginate();            
+
+        return $queryBuilder->build()->paginate();
     }
 
-    public function sendFirstEmail($id){        
+    public function sendFirstEmail($id){
 
         if (!Auth::user()->hasPermissionTo('sending firstemail')) {
             abort(403, trans('global.utente_non_autorizzato'));
-        }        
+        }
 
-        $pre = Precontrattuale::with(['user'])->where('insegn_id',$id)->first();     
+        $pre = Precontrattuale::with(['user'])->where('insegn_id',$id)->first();
         if ($pre->isAnnullata()){
             $data = [];
             $message = trans('global.invio_non_consentito');
             $success = false;
-            return compact('data', 'message', 'success');   
+            return compact('data', 'message', 'success');
         }
 
 
-        if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email),'@uniurb.it')){
-            $email = $pre->user->anagraficaugov()->first()->e_mail;                 
-            if ($email && Str::contains(strtolower($email),'@uniurb.it')){
-                //aggiornare email utente 
+        if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email),'@unical.it')){
+            $email = $pre->user->anagraficaugov()->first()->e_mail;
+            if ($email && Str::contains(strtolower($email),'@unical.it')){
+                //aggiornare email utente
                 $pre->user->email = $email;
-                $pre->user->save();                
+                $pre->user->save();
             }else{
                 $data = null;
                 $message = 'A '.$pre->user->nameTutorString().' non è associata una email istituzionale';
-                $success = false;  
+                $success = false;
                 return compact('data', 'message', 'success');
-            }            
-        }            
-        
+            }
+        }
+
         $data = EmailService::sendEmailByType($id,"RCP");
         $message = 'Email inviata con successo';
-        $success = true;            
+        $success = true;
 
         return compact('data', 'message', 'success');
     }

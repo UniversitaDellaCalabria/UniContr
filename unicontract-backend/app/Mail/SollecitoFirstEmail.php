@@ -36,12 +36,12 @@ class SollecitoFirstEmail extends Mailable
      * @return $this
      */
     public function build()
-    {        
-        return $this->subject("[sollecito] Compilazione modulistica precontrattuale docenza UniUrb")     
+    {
+        return $this->subject("[sollecito] Compilazione modulistica precontrattuale docenza UniCal")
         ->markdown('emails.sollecitofirstmail')->with([
-            'pre' => $this->pre,     
-            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),      
-        ]);    
-      
+            'pre' => $this->pre,
+            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),
+        ]);
+
     }
 }

@@ -36,12 +36,12 @@ class ValidateEmail extends Mailable
      * @return $this
      */
     public function build()
-    {        
-        return $this->subject("Visione e accettazione contratto di docenza UniUrb")     
+    {
+        return $this->subject("Visione e accettazione contratto di docenza UniCal")
         ->markdown('emails.validateemail')->with([
-            'pre' => $this->pre,     
-            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),      
-        ]);    
-        
+            'pre' => $this->pre,
+            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),
+        ]);
+
     }
 }

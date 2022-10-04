@@ -40,11 +40,11 @@ class LoginListener
     public function handle(Saml2LoginEvent $event)
     {
         $messageId = $event->getSaml2Auth()->getLastMessageId();
-        Log::info('messageId [' . $messageId . ']');   
+        Log::info('messageId [' . $messageId . ']');
 
         $attributesName = [
             'eduPersonEntitlement' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.7',
-            'cn' => 'urn:oid:2.5.4.3',                            
+            'cn' => 'urn:oid:2.5.4.3',
             //'displayName' => 'urn:oid:2.16.840.1.113730.3.1.241',
             'displayName' => 'urn:oid:2.5.4.3',
             //'codiceFiscale' => 'urn:oid:1.3.6.1.4.1.4203.666.11.11.1.0',
@@ -60,73 +60,73 @@ class LoginListener
             'eduPersonUniqueId' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.13',
             // 'email' => 'urn:oid:0.9.2342.19200300.100.1.3',
             'email' => 'urn:oid:1.2.840.113549.1.9.1.1',
-            //'matricola' => 'urn:oid:1.3.6.1.4.1.27280.1.20',    
-            'matricola' => 'matricola_dipendente',    
+            //'matricola' => 'urn:oid:1.3.6.1.4.1.27280.1.20',
+            'matricola' => 'matricola_dipendente',
             //'ruolo' => 'urn:oid:1.3.6.1.4.1.27280.1.13',
-            'ruolo' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.9'        
+            'ruolo' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.9'
         ];
 
         $user = $event->getSaml2User();
-        Log::info('user [' . $user->getUserId() . ']');   
+        Log::info('user [' . $user->getUserId() . ']');
         $user->parseAttributes($attributesName);
-        
-        $userData = new \App\User;    
+
+        $userData = new \App\User;
         try{
             Log::info('dati');
             Log::info('email [' . $user->email[0] . ']');
             Log::info('displayName [' . $user->displayName[0] . ']');
-            Log::info('ruolo [' . $user->ruolo[0] . ']');    
+            Log::info('ruolo [' . $user->ruolo[0] . ']');
             $userData->id = $user->getUserId();
             $userData->attributes = $user->getAttributes();
             $userData->name = $user->displayName[0];
             $userData->email = $user->email[0];
-            Log::info('email [' . $userData->email . ']');   
-            $userData->ruolo = $user->ruolo[0];            
-            Log::info('ruolo [' . $userData->ruolo . ']');   
+            Log::info('email [' . $userData->email . ']');
+            $userData->ruolo = $user->ruolo[0];
+            Log::info('ruolo [' . $userData->ruolo . ']');
             $userData->eduPersonScopedAffiliation = $user->eduPersonScopedAffiliation;
             $userData->password =Hash::make($user->codiceFiscale[0]);
             $userData->assertion = $user->getRawSamlAssertion();
             $userData->cf = $user->codiceFiscale[0];
-        }catch(Exception $e){            
-            Log::info('Errore metadati utente passati dall\'idp');                     
+        }catch(Exception $e){
+            Log::info('Errore metadati utente passati dall\'idp');
             $handler = new Handler(Container::getInstance());
             $handler->report($e);
-            Log::info('Utente non autorizzato: '.$userData->email.' '.$userData->ruolo);            
+            Log::info('Utente non autorizzato: '.$userData->email.' '.$userData->ruolo);
             abort(401,  trans('global.utente_non_autorizzato'));
         }
 
         //check if email already exists and fetch user
         $laravelUser = \App\User::where('email', $userData['email'])->first();
-        Log::info('laravel user [' . $laravelUser . ']');                     
-        //ulteriore verifica attraverso il codice fiscale 
+        Log::info('laravel user [' . $laravelUser . ']');
+        //ulteriore verifica attraverso il codice fiscale
         if ($laravelUser===null){
             $laravelUser = \App\User::where('cf', $userData['cf'])->first();
             if ($laravelUser !== null ){
-                //aggiornare email 
-                if (Str::contains(strtolower($userData['email']),'@uniurb.it')){   
+                //aggiornare email
+                if (Str::contains(strtolower($userData['email']),'@unical.it')){
                     $laravelUser->email = $userData['email'];
-                    $laravelUser->save();  
-                    Log::info('Aggiornata email laravel user [' . $laravelUser->name . ']'); 
-                } 
+                    $laravelUser->save();
+                    Log::info('Aggiornata email laravel user [' . $laravelUser->name . ']');
+                }
             }
         }
-                        
+
         try{
             //if email doesn't exist, create new user
             if($laravelUser === null)
-            {		
-                Log::info('inserisci utente [' . $userData->name . ' '. $userData->email . ' '.$user->codiceFiscale[0].' ]');                
-                $laravelUser = new \App\User;                             
+            {
+                Log::info('inserisci utente [' . $userData->name . ' '. $userData->email . ' '.$user->codiceFiscale[0].' ]');
+                $laravelUser = new \App\User;
                 $laravelUser->name = $userData['name'];
                 $laravelUser->email = $userData['email'];
-                $laravelUser->password = Hash::make($user->codiceFiscale[0]);          
-                //Per ulteriore controllo memorizza anche il codice fiscale       
+                $laravelUser->password = Hash::make($user->codiceFiscale[0]);
+                //Per ulteriore controllo memorizza anche il codice fiscale
                 $laravelUser->cf = $user->codiceFiscale[0];
 
-                Log::info('istanza utente [' . $laravelUser->name . ' '. $laravelUser->email . ' ]');        
+                Log::info('istanza utente [' . $laravelUser->name . ' '. $laravelUser->email . ' ]');
                 //va determinato il ruolo da assegnare 1) leggerlo da file id configurazione, 2) ruolo di default
                 $service = new LoginService();
-                Log::info('istanza service');        
+                Log::info('istanza service');
                 $data = null;
                 if ($userData['ruolo'] && Ruolo::isRuoloDocente($userData['ruolo'])){
                     $data = $service->findDocenteData($userData->email);
@@ -134,18 +134,18 @@ class LoginListener
                     $data = $service->findUserRoleAndData($userData->email);
                 }
 
-                Log::info('ruoli [' . implode(';',$data['ruoli']) . ']');     
+                Log::info('ruoli [' . implode(';',$data['ruoli']) . ']');
 
-                if ($data){            
+                if ($data){
                     $laravelUser->v_ie_ru_personale_id_ab = $data['id_ab'];
-                    $laravelUser->save();                       
-                    $laravelUser->assignRole($data['ruoli']);                                  
+                    $laravelUser->save();
+                    $laravelUser->assignRole($data['ruoli']);
                 }
-            
+
             }
-                 
+
         } catch (\Exception $e) {
-            Log::info('Errore nuovo utente non creato');                            
+            Log::info('Errore nuovo utente non creato');
             $handler = new Handler(Container::getInstance());
             $handler->report($e);
 
@@ -156,8 +156,8 @@ class LoginListener
         // Here we save the received nameId and sessionIndex needed later for the LogoutRequest
         session()->put('nameId', $user->getNameId());
         session()->put('sessionIndex', $user->getSessionIndex());
-        
-        Log::info('login [' . $laravelUser->name . ']');  
+
+        Log::info('login [' . $laravelUser->name . ']');
         Auth::login($laravelUser);
-    }   
+    }
 }

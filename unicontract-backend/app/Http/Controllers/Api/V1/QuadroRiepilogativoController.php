@@ -59,30 +59,30 @@ class QuadroRiepilogativoController extends Controller
                  'a1_anagrafica.sesso',
                  'table_validation.*'
                  ]);
- 
 
-            $pre = Pre::with(['attachments','user.attachments','anagrafica.audit','a2modalitapagamento.audit'])->where('insegn_id', $id)->first();            
-            $datiGenerali['attachments'] = $pre->attachments ?: [];                        
-            $datiGenerali['userattachments'] = $pre->user ? ($pre->user->attachments ?: []) : [];            
+
+            $pre = Pre::with(['attachments','user.attachments','anagrafica.audit','a2modalitapagamento.audit'])->where('insegn_id', $id)->first();
+            $datiGenerali['attachments'] = $pre->attachments ?: [];
+            $datiGenerali['userattachments'] = $pre->user ? ($pre->user->attachments ?: []) : [];
             if ($pre->a2modalitapagamento){
                     $datiGenerali['a2modalitapagamentoaudit'] = $pre->a2modalitapagamento->audit()->whereIn('id',
                     $pre->a2modalitapagamento->audit()->selectRaw('max(`id`)')->groupBy('field_name')->get()
-                )->get();                                 
+                )->get();
             }else{
                 $datiGenerali['a2modalitapagamentoaudit']= [];
             }
-            
+
             if ($pre->anagrafica){
                 $datiGenerali['anangraficaaudit'] = $pre->anagrafica->audit()->whereIn('id',
                     $pre->anagrafica->audit()->selectRaw('max(`id`)')->groupBy('field_name')->get()
-                )->get();                                 
+                )->get();
             }else{
                 $datiGenerali['anangraficaaudit']= [];
             }
             $datiGenerali['richiesta'] = $pre->sendemails()->with(['user'])->where('codifica','INFO')->orderBy('id','desc')->first();
-            
+
             $success = true;
-      
+
         return compact('datiGenerali', 'message', 'success');
     }
 
@@ -152,33 +152,33 @@ class QuadroRiepilogativoController extends Controller
         //
     }
 
-    public function sendInfoEmail(Request $request){        
+    public function sendInfoEmail(Request $request){
 
         if (!Auth::user()->hasPermissionTo('sending infoemail')) {
             abort(403, trans('global.utente_non_autorizzato'));
-        }        
+        }
 
-        $pre = Pre::with(['user'])->where('insegn_id',$request->insegn_id)->first();     
-       
-        if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email),'@uniurb.it')){
-            $email = $pre->user->anagraficaugov()->first()->e_mail;                 
-            if ($email && Str::contains(strtolower($email),'@uniurb.it')){
-                //aggiornare email utente 
+        $pre = Pre::with(['user'])->where('insegn_id',$request->insegn_id)->first();
+
+        if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email),'@unical.it')){
+            $email = $pre->user->anagraficaugov()->first()->e_mail;
+            if ($email && Str::contains(strtolower($email),'@unical.it')){
+                //aggiornare email utente
                 $pre->user->email = $email;
-                $pre->user->save();                
+                $pre->user->save();
             }else{
                 $data = null;
                 $message = 'A '.$pre->user->nameTutorString().' non è associata una email istituzionale';
-                $success = false;  
+                $success = false;
                 return compact('data', 'message', 'success');
-            }            
-        }            
-        
+            }
+        }
+
         $data = EmailService::sendEmailInfo($request->insegn_id, $request->entity);
         $data->load('user');
         $data->model = null;
         $message = 'Email inviata con successo';
-        $success = true;            
+        $success = true;
 
         return compact('data', 'message', 'success');
     }
@@ -186,7 +186,7 @@ class QuadroRiepilogativoController extends Controller
     public function getIddg($coper_id) {
         $datiCont = [];
         $message = '';
-       
+
             // $datiCont = ContrUgov::leftJoin('V_IE_DG02_R_DG', function($join) {
             //     $join->on('V_IE_DG02_R_DG.ID_DG_1', '=', 'V_IE_DG11_X_CONTR.ID_DG');
             // })
@@ -198,7 +198,7 @@ class QuadroRiepilogativoController extends Controller
             $datiCont = ContrUgov::with(['compensi','rate','compensi.ordinativi'])->where('id_siadi', $coper_id)->first(['id_x_contr','id_dg','id_siadi','num_rate','fl_gratuito','costo_totale']);
 
             $success = true;
-       
+
         return compact('datiCont', 'message', 'success');
     }
 }

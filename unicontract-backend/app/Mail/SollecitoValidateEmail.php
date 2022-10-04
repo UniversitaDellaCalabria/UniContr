@@ -36,12 +36,12 @@ class SollecitoValidateEmail extends Mailable
      * @return $this
      */
     public function build()
-    {        
-        return $this->subject("[sollecito] Visione e accettazione contratto docenza UniUrb")     
+    {
+        return $this->subject("[sollecito] Visione e accettazione contratto docenza UniCal")
         ->markdown('emails.sollecitovalidateemail')->with([
-            'pre' => $this->pre,     
-            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),      
-        ]);    
-        
+            'pre' => $this->pre,
+            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),
+        ]);
+
     }
 }

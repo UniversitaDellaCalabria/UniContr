@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply-unicontr@uniurb.it'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply-unicontr@unical.it'),
         'name' => env('MAIL_FROM_NAME', 'UniContr'),
     ],
 

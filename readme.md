@@ -3,24 +3,24 @@ UniContr è una applicazione web per la proceduralizzazione e dematerializzazion
 
 ## Funzionalità Applicative
 
-- 🔥 Gestione delle precontrattuali: inserimento, modifica e validazione 
+- 🔥 Gestione delle precontrattuali: inserimento, modifica e validazione
 - 🔥 Storico precontrattuali
-- 🔥 Dashboard uffici 
+- 🔥 Dashboard uffici
 - 🔥 Generazione contratto
-- 🔥 Nofiche uffici e docenti 
+- 🔥 Nofiche uffici e docenti
     - Richiesta Compilazione Modulistica Precontrattuale
     - Avvenuta compilazione modulistica precontrattuale
     - Richiesta modifica/integrazioni modulistica precontrattuale
-    - Visione e accettazione contratto di docenza UniUrb
-    - Avvenuta accettazione contratto di insegnamento 
+    - Visione e accettazione contratto di docenza UniCal
+    - Avvenuta accettazione contratto di insegnamento
     - Report mensile per dipartimento con elenco contratti di docenza non ancora stipulati
     - Solleciti di Visione e accettazione contratto docenza UniUrb e Compilazione Modulistica Precontrattuale
 
-## Struttura precontrattuale 
+## Struttura precontrattuale
 
-- ⚡️ Dati relativi all'insegnamento e posizione del collaboratore 
+- ⚡️ Dati relativi all'insegnamento e posizione del collaboratore
       - Modello P.1 Dati relativi all'insegnamento (importati da Ugov didattica)
-      - Modello P.2 Posizione del collaboratore e natura del rapporto 
+      - Modello P.2 Posizione del collaboratore e natura del rapporto
 - ⚡️ Dati anagrafici e di posizione
     - Modelli A
         - A.1 - Dati anagrafici del collaboratore
@@ -33,7 +33,7 @@ UniContr è una applicazione web per la proceduralizzazione e dematerializzazion
         - B.5 - Dichiarazione in merito allo stato di pensionamento
         - B.6 - Trattamento dati e Informativa sulla privacy
 - ⚡️ Dati tributari, fiscali e previdenziali
-    - Modello C Prestazione Professionale 
+    - Modello C Prestazione Professionale
     - Modelli D Prestazione d’opera in qualità di Collaborazione di Natura Autonoma
         - D.1 - Dichiarazione ai fini previdenziali
         - D.2 - Dichiarazione ai fini assicurativi INAIL
@@ -41,7 +41,7 @@ UniContr è una applicazione web per la proceduralizzazione e dematerializzazion
         - D.4 - Dichiarazione ai fini fiscali
         - D.5 - Dichiarazione ai fini fiscali per i residenti all'estero
         - D.6 - Richiesta detrazioni fiscali per familiari a carico
-    - Modello E Prestazione di Lavoro Autonomo Occasionale 
+    - Modello E Prestazione di Lavoro Autonomo Occasionale
 
 
 ## Caratteristiche sistema
@@ -50,27 +50,27 @@ UniContr è una applicazione web per la proceduralizzazione e dematerializzazion
 - ⚡️ Supporto per il SSO con Shibbolet
 - ⚡️ Integrazione per la lettura dati da Ugov
     - lettura afferenza organizzativa
-- ⚡️ Integrazione con Titulus 
+- ⚡️ Integrazione con Titulus
 - 📝 Sistema multi utente e multi ruolo
 - 📝 Generazione di pdf basato su [wkhtmltopdf](https://github.com/barryvdh/laravel-snappy)
-- 😍 Tema Boostrap 
-- 💪 Costruito su 
-    - [Laravel](https://laravel.com/) 
+- 😍 Tema Boostrap
+- 💪 Costruito su
+    - [Laravel](https://laravel.com/)
     - [Angular](https://angular.io/)
     - [Dynamic forms in Angular](https://formly.dev/)
 - [Schermate UniContr](UniContr.pdf)
 
 ## Creazione di una applicazione
 
-1) Fare un fork del repository 
+1) Fare un fork del repository
 
-2) Eseguire il clone del progetto 
+2) Eseguire il clone del progetto
 
 ## Configurazione UniContr-backend
 
 1) Entrare nella cartella `cd .\unicontr-backend\`
 
-2) Creare un file di configurazione .env (copiare, rinominare e modificare il file .env.exmaple inserendo il nome dell'applicazione, 
+2) Creare un file di configurazione .env (copiare, rinominare e modificare il file .env.exmaple inserendo il nome dell'applicazione,
 il database di riferimento ...)
 
 3) Eseguire `composer install` per l'istallazione dei package
@@ -82,14 +82,14 @@ il database di riferimento ...)
     sudo cp sp.crt vendor/onelogin/php-saml/certs/
 ```
 
-4) Eseguire `php artisan migrate:fresh --seed` 
+4) Eseguire `php artisan migrate:fresh --seed`
 
 ## Configurazione UniContr-frontend
 
 1) Entrare nella cartella `cd .\unicontr-frontend\`
 
 2) Eseguire `npm install`
-   
+
 ## Configurazione UniContr-mockipd
 
 1) Entrare nella cartella cd `cd .\unicontr-mock-idp\`
@@ -103,12 +103,12 @@ il database di riferimento ...)
 
 1) Aprire tre terminal
 
-2) Lancio dei servizi di backend 
+2) Lancio dei servizi di backend
 
-```   
+```
     cd .\unicontr-backen\
     php artisan serve --port 80
-``` 
+```
 
 3) Lancio del frontend
 
@@ -120,9 +120,9 @@ il database di riferimento ...)
 4) Lancio del mock idp
 
 ```
-    cd .\unicontr-mock-idp\  
+    cd .\unicontr-mock-idp\
     node start.js
-``` 
+```
 
 Aprire il broswer all'indirizzo  `http://localhost:4200/`
 
@@ -137,5 +137,5 @@ Aprire il broswer all'indirizzo  `http://localhost:4200/`
 
 
 
-Happy coding! 
+Happy coding!
 

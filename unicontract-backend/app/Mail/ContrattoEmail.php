@@ -38,10 +38,10 @@ class ContrattoEmail extends Mailable
      * @return $this
      */
     public function build()
-    {        
-        return $this->subject("Contratto di insegnamento UniUrb")             
+    {
+        return $this->subject("Contratto di insegnamento UniCal")
             ->markdown('emails.contrattomail')->with([
-                'pre' => $this->pre,                 
+                'pre' => $this->pre,
             ])
             ->attachData($this->document, $this->documentName, [
                 'mime' => 'application/pdf',
