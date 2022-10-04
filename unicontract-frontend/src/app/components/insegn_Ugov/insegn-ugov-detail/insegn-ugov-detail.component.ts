@@ -102,20 +102,13 @@ export class InsegnUgovDetailComponent extends BaseComponent {
 
   checkEmail(email: string, e_mail: string, e_mail_privata: string) {
     let value = false;
-    if (email !== null) {
-      if (email.toLowerCase().includes('@unical.it')) {
+    if (email !== null && email.toLowerCase().includes('@unical.it')) {
+        value = true;
+    } else if (e_mail !== null && e_mail.toLowerCase().includes('@unical.it')) {
+        value = true;
+    } else if (e_mail_privata !== null && e_mail_privata.toLowerCase().includes('@unical.it')) {
         value = true;
       }
-    } else if (e_mail !== null) {
-      if (e_mail.toLowerCase().includes('@unical.it')) {
-        value = true;
-      }
-    } else if (e_mail_privata !== null) {
-      if (e_mail_privata.toLowerCase().includes('@unical.it')) {
-        value = true;
-      }
-    } else {
-      value = false;
     }
     return value;
   }
