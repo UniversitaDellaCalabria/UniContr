@@ -108,7 +108,6 @@ export class InsegnUgovDetailComponent extends BaseComponent {
         value = true;
     } else if (e_mail_privata !== null && e_mail_privata.toLowerCase().includes('@unical.it')) {
         value = true;
-      }
     }
     return value;
   }
