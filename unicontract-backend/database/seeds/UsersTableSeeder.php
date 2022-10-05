@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make( 'testrossi' ) ,
                 'name' => 'Giuseppe Rossi' ,
                 'v_ie_ru_personale_id_ab'=> 010373,
-                'cf' => '2222222222222222222',
+                'cf' => '1111111111111112',
                 'nome' => 'Giuseppe',
                 'cognome' => 'Rossi'
             ] );
