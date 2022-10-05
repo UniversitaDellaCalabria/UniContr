@@ -24,9 +24,9 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
       key: 'precontr.id',
       type: 'number',
       templateOptions: {
-        label: 'Codice',        
+        label: 'Codice',
       }
-    },    
+    },
     {
       key: 'insegnamento.aa',
       type: 'select',
@@ -67,6 +67,8 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
           { key: '005579', value: this.translateService.instant('005579_discui') },
           { key: '004939', value: this.translateService.instant('004939_distum') },
           { key: '004424', value: this.translateService.instant('004424_desp') }
+          // unical
+          { key: '002014', value: this.translateService.instant('002014_dibest') }
         ]
       }
     },
@@ -174,13 +176,13 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
       { field: "insegnamento.tipo_contratto", operator: "In", value: ['ALTQG','ALTQC','ALTQU'], type: "" },
     ],
     'DIDATTICAUFFICIALE': [
-      { field: "insegnamento.tipo_contratto", operator: "In", value: ['CONTC', 'CONTU'], type: "" },    
+      { field: "insegnamento.tipo_contratto", operator: "In", value: ['CONTC', 'CONTU'], type: "" },
     ],
     'DIDATTICAINTEGRATIVA': [
       { field: "insegnamento.tipo_contratto", operator: "In", value: ['INTC','INTU','INTXU','INTXC'], type: "" },
     ],
     'SUPPORTO': [
-      { field: "insegnamento.tipo_contratto", operator: "In", value: ['SUPPU','SUPPC'], type: "" },    
+      { field: "insegnamento.tipo_contratto", operator: "In", value: ['SUPPU','SUPPC'], type: "" },
     ],
   };
 
@@ -189,13 +191,13 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
       { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['ALTQG','ALTQC','ALTQU'], type: "" },
     ],
     'DIDATTICAUFFICIALE': [
-      { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['CONTC', 'CONTU'], type: "" },    
+      { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['CONTC', 'CONTU'], type: "" },
     ],
     'DIDATTICAINTEGRATIVA': [
       { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['INTC','INTU','INTXU','INTXC'], type: "" },
     ],
     'SUPPORTO': [
-      { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['SUPPU','SUPPC'], type: "" },    
+      { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['SUPPU','SUPPC'], type: "" },
     ],
   };
 
@@ -207,32 +209,32 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
     'compilata': [
       { field: "validazioni.flag_submit", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_upd", operator: "=", value: 0, type: "" },
-      { field: "stato", operator: "=", value: 0, type: "" }      
+      { field: "stato", operator: "=", value: 0, type: "" }
     ],
     'validazione1': [
       { field: "validazioni.flag_submit", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_upd", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_amm", operator: "=", value: 0, type: "" },
-      { field: "stato", operator: "=", value: 0, type: "" }      
+      { field: "stato", operator: "=", value: 0, type: "" }
     ],
     'validazione2': [
       { field: "validazioni.flag_submit", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_upd", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_amm", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_accept", operator: "=", value: 0, type: "" },
-      { field: "stato", operator: "=", value: 0, type: "" }      
+      { field: "stato", operator: "=", value: 0, type: "" }
     ],
     'accettata': [
       { field: "validazioni.flag_submit", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_upd", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_amm", operator: "=", value: 1, type: "" },
       { field: "validazioni.flag_accept", operator: "=", value: 1, type: "" },
-      { field: "stato", operator: "=", value: 0, type: "" }      
+      { field: "stato", operator: "=", value: 0, type: "" }
     ],
     'firmata': [
-      { field: "stato", operator: "=", value: 1, type: "" },      
+      { field: "stato", operator: "=", value: 1, type: "" },
     ],
-    'annullata': [      
+    'annullata': [
       { field: "stato", operator: ">", value: 1, type: "" }
     ],
 
@@ -243,21 +245,21 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
       { field: "validazioni.flag_submit", operator: "!=", value: 0, type: "" },
     ],
     'compilata': [
-      { field: "validazioni.flag_submit", operator: "!=", value: 1, type: "" },      
+      { field: "validazioni.flag_submit", operator: "!=", value: 1, type: "" },
     ],
-    'validazione1': [      
-      { field: "validazioni.flag_upd", operator: "!=", value: 1, type: "" },      
+    'validazione1': [
+      { field: "validazioni.flag_upd", operator: "!=", value: 1, type: "" },
     ],
-    'validazione2': [      
-      { field: "validazioni.flag_amm", operator: "!=", value: 1, type: "" },      
+    'validazione2': [
+      { field: "validazioni.flag_amm", operator: "!=", value: 1, type: "" },
     ],
-    'accettata': [      
-      { field: "validazioni.flag_accept", operator: "!=", value: 1, type: "" },      
+    'accettata': [
+      { field: "validazioni.flag_accept", operator: "!=", value: 1, type: "" },
     ],
     'firmata': [
-      { field: "stato", operator: "!=", value: 1, type: "" },      
+      { field: "stato", operator: "!=", value: 1, type: "" },
     ],
-    'annullata': [      
+    'annullata': [
       { field: "stato", operator: "<", value: 2, type: "" }
     ],
   };
@@ -266,7 +268,7 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
   protected getRules(model) {
     if (model.rules) {
       let rules = JSON.parse(JSON.stringify(model.rules)) as (Array<any>);
-      let ruleState = rules.find(x => x.field == 'currentState'); 
+      let ruleState = rules.find(x => x.field == 'currentState');
       while (ruleState) {
         if (ruleState) {
           rules.splice(rules.indexOf(ruleState), 1);
@@ -277,9 +279,9 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
           }
         }
         ruleState = rules.find(x => x.field == 'currentState');
-      }     
-     
-      let ruleTipoContratto = rules.find(x => x.field == 'insegnamento_tipo_contratto');      
+      }
+
+      let ruleTipoContratto = rules.find(x => x.field == 'insegnamento_tipo_contratto');
       while (ruleTipoContratto) {
         if (ruleTipoContratto) {
           rules.splice(rules.indexOf(ruleTipoContratto), 1);
@@ -289,7 +291,7 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
             rules  = rules.concat(this.keyValueInverseRulesTipoContratto[ruleTipoContratto.value]);
           }
         }
-        ruleTipoContratto = rules.find(x => x.field == 'insegnamento_tipo_contratto'); 
+        ruleTipoContratto = rules.find(x => x.field == 'insegnamento_tipo_contratto');
       }
 
       return rules;
@@ -310,7 +312,7 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
     this.prefix = 'precontr';
 
     this.initRule();
-    
+
     if (this.rules == null){
       const year = annoAccademicoCorrente();
       this.rules = [{field: "insegnamento.aa", operator: "=", value: year}];
@@ -330,7 +332,7 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
       page.size = result.per_page;
     }
 
-    this.resultMetadata = [       
+    this.resultMetadata = [
     {
       key: 'data',
       type: 'datatablelookup',
@@ -399,9 +401,9 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
           saveAs(blob, file.filename);
         }
       },
-        e => { 
+        e => {
           this.isLoading = false;
-          console.log(e); 
+          console.log(e);
         }
       );
     }

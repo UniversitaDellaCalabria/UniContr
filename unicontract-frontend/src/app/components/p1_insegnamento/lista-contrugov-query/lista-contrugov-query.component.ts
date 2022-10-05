@@ -17,7 +17,7 @@ import { annoAccademicoCorrente } from 'src/app/shared/dynamic-form/utils';
 })
 export class ListaContrugovQueryComponent extends BaseResearchComponent {
   enabledExport = false;
-  translate: MyTranslatePipe; 
+  translate: MyTranslatePipe;
 
   fieldsRow: FormlyFieldConfig[] = [
     {
@@ -39,10 +39,10 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
         options: [
           {key: 'compensidaemettere', value: 'Compensi da emettere'}, //tutti
           {key: 'ordinatividaemettere', value: 'Ordinativi da emettere'}, //tutti
-          {key: 'compensioordinativiemettere', value: 'Compensi o ordinativi da emettere'}     
+          {key: 'compensioordinativiemettere', value: 'Compensi o ordinativi da emettere'}
         ]
       }
-    },   
+    },
 
     {
       key: 'insegnamento.insegnamento',
@@ -66,6 +66,8 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
           { key: '005579', value: this.translateService.instant('005579_discui') },
           { key: '004939', value: this.translateService.instant('004939_distum') },
           { key: '004424', value: this.translateService.instant('004424_desp') }
+          // unical
+          { key: '002014', value: this.translateService.instant('002014_dibest') }
         ]
       }
     },
@@ -128,7 +130,7 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
         column: { cellTemplate: 'valuecolumn'}
       }
     },
-  
+
   ];
 
   keyValueRules: { [key: string]: any[]} = {
@@ -137,29 +139,29 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
     ],
     'ordinatividaemettere' :[
       { field: "compensi.ordinativi", operator: "doesntHave", value: "", type: "selectrelation" },
-    ],        
+    ],
     'compensioordinativiemettere': [
-      { field: "relazioniratecompensoordinativo", operator: "doesntHave", value: "num_rate", type: "selectrelation" },     
+      { field: "relazioniratecompensoordinativo", operator: "doesntHave", value: "num_rate", type: "selectrelation" },
     ]
   };
 
   keyValueInverseRules: { [key: string]: any[]} = {
     'compensidaemettere' : [
       { field: "relazioniratecompenso", operator: "has", value: "num_rate", type: "selectrelation" },
-    ],    
+    ],
     'ordinatividaemettere': [
       { field: "compensi.ordinativi", operator: "has", value: "", type: "selectrelation" },
     ],
     'compensioordinativiemettere': [
-      { field: "relazioniratecompensoordinativo", operator: "has", value: "num_rate", type: "selectrelation" },     
-    ]    
+      { field: "relazioniratecompensoordinativo", operator: "has", value: "num_rate", type: "selectrelation" },
+    ]
   };
 
 
   protected getRules(model) {
     if (model.rules) {
       let rulestmp = JSON.parse(JSON.stringify(model.rules)) as (Array<any>);
-      const ruleState = rulestmp.filter(x => x.field == 'currentState');      
+      const ruleState = rulestmp.filter(x => x.field == 'currentState');
       if (ruleState) {
         ruleState.forEach(element => {
           rulestmp.splice(rulestmp.indexOf(element), 1);
@@ -169,7 +171,7 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
             rulestmp  = rulestmp.concat(this.keyValueInverseRules[element.value]);
           }
         });
-       
+
       }
       return rulestmp;
     }
@@ -233,12 +235,12 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
           { name: 'Data inizio', prop: 'precontr.insegnamento.data_ini_contr', width: 100, maxWidth: 150, type: 'date' },
           { name: 'Data fine', prop: 'precontr.insegnamento.data_fine_contr', width: 100, maxWidth: 150, type: 'date' },
           { name: 'Dipartimento', prop: 'precontr.insegnamento.dip_cod', cellTemplate: this.tooltipCellTemplate, width: 100, maxWidth: 100 }, //"27605"
-          { name: 'Anno', prop: 'datibase.anno_rif', width: 70, maxWidth: 70 },                    
+          { name: 'Anno', prop: 'datibase.anno_rif', width: 70, maxWidth: 70 },
           { name: 'Descrizione', prop: 'datibase.ds_dg', width: 450 },
           { name: 'Stato contabile', prop: 'datibase.stato_dg', pipe: this.translate, width: 80, maxWidth: 80 },
-          { name: 'Num. rate', prop: 'num_rate', pipe: this.translate, width: 80, maxWidth: 80 },          
+          { name: 'Num. rate', prop: 'num_rate', pipe: this.translate, width: 80, maxWidth: 80 },
           { name: 'Compensi', prop: 'statocompensi', minWidth: 100, maxWidth: 150  },
-          { name: 'Ordinativi', prop: 'statoordinativi', minWidth: 150 },        
+          { name: 'Ordinativi', prop: 'statoordinativi', minWidth: 150 },
         ]
       },
       fieldArray: {
@@ -254,12 +256,12 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
 
   onDblclickRow(event) {
     this.setStorageResult();
-    // , {relativeTo: this.route}       
+    // , {relativeTo: this.route}
     if (event.type === 'dblclick') {
       if (event.row.precontr && event.row.precontr.insegn_id) {
         // caso particolare mantenuto per compatibilità
         this.router.navigate([this.routeAbsolutePath, event.row.precontr.insegn_id]);
-      } 
+      }
     }
   }
 

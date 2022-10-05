@@ -97,7 +97,8 @@ class UnitaOrganizzativa extends Model
     }
 
     public static function allDipartimenti(){
-        return ['004424','004939','004419','004940','004919','005019'];
+        return ['004424','004939','004419','004940','004919','005019',
+                '002014'];
     }
 
 }

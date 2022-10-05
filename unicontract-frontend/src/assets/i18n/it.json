@@ -1,4 +1,4 @@
-{   
+{
     "precontr_apri": "Apri precontrattuale",
     "precontr_download": "Scarica contratto firmato",
 
@@ -25,7 +25,7 @@
     "00_int15": "Tipologia",
     "00_int16": "Periodo",
     "00_int17": "Ruolo docente",
-    
+
     "obligatory": "Campo obbligatorio",
     "end1" : "Compilazione terminata con successo.",
     "end2" : "Premendo il tasto TERMINA la modulistica sarà inoltrata agli uffici competenti per l'opportuno controllo e validazione.",
@@ -107,13 +107,13 @@
     "summary_txt3_contratto" : "Contratto",
     "summary_txt4" : "Contratto alla firma",
     "summary_txt4_firmato" : "Contratto firmato",
-    "summary_txt5" : "In attesa di verifica . . . ",    
+    "summary_txt5" : "In attesa di verifica . . . ",
 
     "summary_id_cop": "ID Copertura didattica",
     "summary_id_dg": "ID DG Contratto",
     "summary_num_rate": "Numero rate",
     "summary_stato": "Stato contabile",
-    
+
     "B": "Bozza",
     "C": "Completo",
     "A": "Annullato",
@@ -149,7 +149,7 @@
 
     "story_title" : "Stati di avanzamento",
     "email_title" : "Notifiche intercorse",
-    
+
     "C_coniugato" : "Coniugat{{s}}",
     "D_divorziato" : "Divorziat{{s}}",
     "L_libero" : "Liber{{s}} da impedimenti coniugali",
@@ -171,8 +171,8 @@
     "p1_title1" : "Dati relativi all'insegnamento",
     "p1_title2" : "Tipo di contratto",
     "p1_title3" : "Altri dati",
-    "P1_RICHIESTA_EMAIL_FIRST": "Richiesta di compilazione precontrattuale inviata in data",   
-    "P1_RICHIESTA_EMAIL": "ulteriore invio effettuato in data",   
+    "P1_RICHIESTA_EMAIL_FIRST": "Richiesta di compilazione precontrattuale inviata in data",
+    "P1_RICHIESTA_EMAIL": "ulteriore invio effettuato in data",
 
     "p2_title1" : "Posizione del collaboratore",
     "p2_title2" : "Natura del rapporto",
@@ -191,7 +191,7 @@
     "p3_PRPR" :"Per possessori di Partita IVA utilizzabile ai fini del contratto",
     "p3_PLAO" : "Artt. 2222 e ss. del Codice Civile",
     "p3_PTG" : "Solo contratti di Alta Qualificazione o contratti per i quali è intervenuta espressa rinuncia al compenso",
-    "p3_ALD" : "Per dipendenti dell'Ateneo PTA e CEL",   
+    "p3_ALD" : "Per dipendenti dell'Ateneo PTA e CEL",
 
     "a1_docum" : "Documentazione allegata",
     "a1_cv" : "Curriculum Vitae",
@@ -259,7 +259,7 @@
     "a1_note" : "N.B. Indicare solo se diverso dall'indirizzo di residenza",
     "a1_label24": "di aver preso visione e preso atto dell'informativa sulle lavoratrici madri e della documentazione da inviare al Magnifico Rettore in caso di gravidanza ai sensi della normativa vigente",
 
-    
+
     "a2_title1" : "Scelta della modalità di pagamento",
     "a2_title2" : "Dati relativi al C/C",
     "a2_check1" : "Ritiro del corrispettivo presso qualsiasi agenzia UBI Banca",
@@ -279,7 +279,7 @@
     "a2_conto1" : "Conto Corrente Bancario",
     "a2_conto2" : "Conto Banco Posta",
     "a2_note" : "N.B. Il c/c deve essere intestato o cointestato al dichiarante",
-       
+
     "b1_txt1" : "Si dichiara che, in relazione all’incarico conferito, nulla osta alla stipulazione del contratto di diritto privato di natura",
     "b1_txt2" : "in quanto non sussistono situazioni, anche potenziali, di conflitto di interesse ai sensi della normativa vigente.",
     "b1_txt3" : "A tal fine si dichiara di:",
@@ -287,7 +287,7 @@
     "b1_txt5" : "possedere una quota significativa di partecipazione finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università degli Studi di Urbino Carlo Bo",
     "b1_txt6" : "avere rapporti esterni di lavoro con enti di formazione e di ricerca potenzialmente concorrenti con l’Università degli Studi di Urbino Carlo Bo",
     "b1_txt7" : "svolgere attività che contrastano realmente o potenzialmente con l’interesse, non solo economico, dell’Università degli Studi di Urbino Carlo Bo",
-   
+
     "b1_txt8" : "Ai sensi dell’art. 15, comma 1, lettera c, del D.Lgs. 33/2013 e s.m.i., si dichiara inoltre di:",
     "b1_txt9" : "rivestire cariche in enti di diritto privato regolati o finanziati dalla Pubblica Amministrazione",
     "b1_txt10" : "svolgere incarichi in enti di diritto privato regolati o finanziati dalla Pubblica Amministrazione",
@@ -313,7 +313,7 @@
     "b2_txt10" : "d) iscritti a corsi di dottorato di ricerca, ad esclusione di attività di didattica integrativa.",
     "b2_txt11" : "2. Fermo restando l’integrale assolvimento dei propri compiti, i titolari di contratto possono svolgere altri incarichi, purchè non comportino un conflitto di interessi con l’attività didattica svolta e non arrechino, comunque, pregiudizio alcuno all’Ateneo.",
     "b2_nota" : "N.B. La mancata spunta del campo superiore non consente di completare la procedura di compilazione della modulistica. Pertanto, per poter proseguire, tale campo è obbligatorio.",
-    
+
     "b3_txt0" : "Si dichiara di:",
     "b3_txt1" : "Si dichiara di essere attualmente iscritti presso l'Università degli Studi di",
     "b3_txt1b" : "essere attualmente iscritti presso l'Università degli Studi di",
@@ -325,7 +325,7 @@
     "b3_txt5" : "Si dichiara di essere attualmente titolari di una borsa di studio presso l'Università degli Studi di",
     "b3_txt5b" : "attualmente titolari di una borsa di studio presso l'Università degli Studi di",
     "b3_txt6" : "dal giorno",
-    "b3_txt7" : "al giorno",    
+    "b3_txt7" : "al giorno",
     "b3_txt8" : "Dipartimento di",
     "b3_txt9" : "ai sensi della legge",
 
@@ -362,7 +362,7 @@
     "b4_txt28" : "N.B. L’incarico di docenza non necessita dell’autorizzazione da parte della Pubblica Amministrazione di appartenenza ai sensi dell’art. 53 del D.Lgs. 165/2001, come modificato dall’art. 2, comma 13-quinquies, lettera b del D.Lgs. 101/2013, convertito con modificazioni dalla Legge 125/2013.",
     "b4_download_autorizzazione" : "Autorizzazione della Pubblica Amministrazione di appartenenza",
     "b4_int_pa" : "Dati relativi alla Pubblica Amministrazione",
- 
+
     "b5_txt1" : "Si dichiara, in qualità di pensionat{{s}}  di vecchiaia / anzianità, di non trovarsi nella situazione di incompatibilità prevista dall'art. 25 della Legge 724/1994 e, in particolare, di:",
     "b5_txt2" : "essere attualmente pensionat{{s}}, ma non in qualità di dipendente di una Pubblica Amministrazione di cui all’art. 1, comma 2 del D.Lgs. 29/1993",
     "b5_txt3" : "essere cessat{{s}} dal servizio presso una Pubblica Amministrazione avendo raggiunto il requisito previsto per il pensionamento di vecchiaia dai rispettivi ordinamenti previdenziali",
@@ -498,7 +498,7 @@
     "d4_nota1" : "Nota bene:",
     "d4_nota2" : "Si precisa che il reddito complessivo sarà preso in considerazione solo in fase di conguaglio fiscale",
     "d4_nota3" : "- l'aliquota IRPEF del 23% riguarda i contribuenti con un reddito compreso tra € 0,00 e € 15.000,00",
-    "d4_nota4" : "- l'aliquota IRPEF del 27% riguarda i contribuenti con un reddito compreso tra € 15.000,01 e € 28.000,00",    
+    "d4_nota4" : "- l'aliquota IRPEF del 27% riguarda i contribuenti con un reddito compreso tra € 15.000,01 e € 28.000,00",
     "d4_nota5" : "- l'aliquota IRPEF del 38% riguarda i contribuenti con un reddito compreso tra € 28.000,01 e € 55.000,00",
     "d4_nota4_2022" : "- l'aliquota IRPEF del 25% riguarda i contribuenti con un reddito compreso tra € 15.000,01 e € 28.000,00",
     "d4_nota5_2022" : "- l'aliquota IRPEF del 35% riguarda i contribuenti con un reddito compreso tra € 28.000,01 e € 50.000,00",
@@ -577,15 +577,15 @@
     "CONF_INC" : "Rinnovo contratto",
 
     "27605" : "DISB",
-    "4504" : "DESP",  
+    "4504" : "DESP",
     "4499" : "DiGiur",
     "26121" : "DISTUM",
     "26080" : "DiSPeA",
     "26124" : "DISCUI",
     "49025" : "DISCUI",
-  
+
     "27605_tooltip" : "Dipartimento di Scienze Biomolecolari (DISB)",
-    "4504_tooltip" : "Dipartimento di Economia, Società, Politica (DESP)", 
+    "4504_tooltip" : "Dipartimento di Economia, Società, Politica (DESP)",
     "4499_tooltip" : "Dipartimento di Giurisprudenza (DiGiur)",
     "26121_tooltip" : "Dipartimento di Studi Umanistici (DISTUM)",
     "26080_tooltip" : "Dipartimento di Scienze Pure e Applicate (DiSPeA)",
@@ -600,6 +600,8 @@
     "004919" : "DiSPeA",
     "005479" : "DISCUI",
     "005579" : "DISCUI",
+    // unical
+    "002014" : "DiBEST",
 
     "005019_tooltip" :	"Dipartimento di Scienze Biomolecolari (DISB)",
     "004919_tooltip" :	"Dipartimento di Scienze Pure e Applicate (DiSPeA)",
@@ -608,6 +610,8 @@
     "005579_tooltip" :   "Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI)",
     "004939_tooltip" :	"Dipartimento di Studi Umanistici (DISTUM)",
     "004424_tooltip" :	"Dipartimento di Economia, Società, Politica (DESP)",
+    // unical
+    "002014_tooltip" :	"Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)",
 
     "005019_disb" :	"Dipartimento di Scienze Biomolecolari (DISB)",
     "004919_dispea" :	"Dipartimento di Scienze Pure e Applicate (DiSPeA)",
@@ -616,6 +620,8 @@
     "005579_discui" :   "Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI)",
     "004939_distum" :	"Dipartimento di Studi Umanistici (DISTUM)",
     "004424_desp" :	"Dipartimento di Economia, Società, Politica (DESP)",
+    // unical
+    "002014_dibest" :	"Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)",
 
     "dip_afferenza" : "Dipartiment{{s}}",
 
@@ -623,7 +629,7 @@
     "cassa101" : "101 INPS Fondo Pensioni Lavoratori Dipendenti",
     "cassa102" : "102 INPS Artigiani",
     "cassa103" : "103 INPS Commercianti",
-    "cassa104" : "104 INPS Coltivatori diretti, mezzadri e coloni", 
+    "cassa104" : "104 INPS Coltivatori diretti, mezzadri e coloni",
     "cassa105" : "105 INPS Versamenti volontari",
     "cassa106" : "106 INPS Versamenti figurativi (CIG, ecc . . .)",
     "cassa107" : "107 INPS Fondi speciali",
@@ -654,10 +660,10 @@
     "cassa601" : "601 IPOST Lavoratori Poste Italiane S.p.A.",
 
     "PRPR" : "Prestazione professionale",
-    "COCOCO" : "Collaborazione di natura autonoma", 
+    "COCOCO" : "Collaborazione di natura autonoma",
     "PLAO" : "Prestazione di lavoro autonomo occasionale",
     "PTG" : "Prestazione a titolo gratuito",
-    "ALD" : "Assimilato a lavoro dipendente",    
+    "ALD" : "Assimilato a lavoro dipendente",
 
     "TITOLO" : {
         "BP" : "Borsa di studio post-dottorato",
@@ -678,7 +684,7 @@
         "LA" : "Laurea (vecchio ordinamento)",
         "M1" : "Master di I livello",
         "M2" : "Master di II livello",
-        "SS" : "Scuola di specializzazione", 
+        "SS" : "Scuola di specializzazione",
         "PQ" : "Scuola professionale quinquennale",
         "P" : "Scuola professionale triennale",
         "SP" : "Specializzazione post-laurea"
@@ -695,7 +701,7 @@
     "INTXC" : "Contratto di Didattica Integrativa",
     "SUPPU" : "Contratto di Supporto alla Didattica",
     "SUPPC" : "Contratto di Supporto alla Didattica",
-    
+
 
     "data_variazione_residenza" : "Data variazione residenza",
     "comune_fiscale" : "Comune fiscale",
@@ -708,5 +714,5 @@
     "dichiaro_RF01": "essere professionista rientrante nel regime fiscale ordinario",
     "dichiaro_RF02": "essere professionista rientrante nel regime fiscale contribuenti minimi (art.1, commi 96-117, legge n. 244/2007)",
     "dichiaro_RF19": "essere professionista rientrante nel regime fiscale forfettario (art.1, commi 54-89, legge n. 190/2014)"
-        
+
 }

@@ -48,7 +48,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
   translate: MyTranslatePipe;
   datePipe = new DatePipe('it-IT');
 
-  fieldsRow: FormlyFieldConfig[] = [    
+  fieldsRow: FormlyFieldConfig[] = [
     {
       key: 'AA_OFF_ID',
       type: 'select',
@@ -107,7 +107,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       key: 'dip_cod',
       type: 'select',
       templateOptions: {
-        label: 'Dipartimento',        
+        label: 'Dipartimento',
         options: [
           { key: '005019', value: this.translateService.instant('005019_disb') },
           { key: '004919', value: this.translateService.instant('004919_dispea')},
@@ -116,7 +116,9 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
           { key: '005579', value: this.translateService.instant('005579_discui') },
           { key: '004939', value: this.translateService.instant('004939_distum') },
           { key: '004424', value: this.translateService.instant('004424_desp') }
-        ]      
+          // unical
+          { key: '002014', value: this.translateService.instant('002014_dibest') }
+        ]
       }
     },
     // {
@@ -153,7 +155,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
     this.prefix = 'insegn';
 
     this.initRule();
-    
+
     if (this.rules == null){
       const year = annoAccademicoCorrente();
       this.rules = [{field: "AA_OFF_ID", operator: "=", value: year, fixcondition: true},
@@ -172,8 +174,8 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       this.init = true;
       page.totalElements = result.total; // data.to;
       page.pageNumber = result.current_page - 1;
-      page.size = result.per_page;      
-    }    
+      page.size = result.per_page;
+    }
 
     this.resultMetadata = [ {
       key: 'data',
@@ -183,7 +185,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
         label: 'Seleziona insegnamento',
         columnMode: 'force',
         scrollbarH: true,
-        page: page,        
+        page: page,
         hidetoolbar: true,
         onDblclickRow: (event) => this.onDblclickRow(event),
         onSetPage: (pageInfo) => this.onSetPageWithInit(pageInfo),
@@ -191,7 +193,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
           { name: '#', prop: 'coper_id', wrapper: 'value', width: 80, maxWidth: 100 },
           { name: 'Dipartimento', prop: 'dip_cod', wrapper: 'value', cellTemplate: this.tooltipCellTemplate, width: 50, maxWidth: 120 },
           { name: 'Cognome', prop: 'cognome', pipe: new TitleCasePipe(), width: 100, maxWidth: 100 },
-          { name: 'Nome', prop: 'nome', pipe: new TitleCasePipe(), width: 100, maxWidth: 100 },          
+          { name: 'Nome', prop: 'nome', pipe: new TitleCasePipe(), width: 100, maxWidth: 100 },
           { name: 'Inizio', prop: 'data_ini_contratto',  wrapper: 'value', width: 80, maxWidth: 150, type: 'date'},
           { name: 'Fine', prop: 'data_fine_contratto', wrapper: 'value',  width: 80, maxWidth: 150, type: 'date'},
           { name: 'Insegnamento', prop: 'af_gen_des', wrapper: 'value', minWidth:400, width: 400},
@@ -207,7 +209,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
     if (result){
       this.setResult(result);
     }
-    
+
   }
 
   private groupHeaderTitle(group) {
