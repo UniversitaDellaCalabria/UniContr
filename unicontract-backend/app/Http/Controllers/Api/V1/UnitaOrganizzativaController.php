@@ -16,49 +16,49 @@ class UnitaOrganizzativaController extends Controller
     {
         return UnitaOrganizzativa::all();
     }
- 
+
     public function show($id)
-    {        
+    {
         return UnitaOrganizzativa::find($id);
     }
 
     public function getminimal($id)
-    {        
+    {
         return UnitaOrganizzativa::where('uo',$id)->first();
     }
 
     public function store(Request $request)
     {
-      
+
     }
 
     public function update(Request $request, $id)
     {
-      
+
     }
 
     public function delete(Request $request, $id)
     {
-        
+
     }
-    
+
     public function query(Request $request){
-         
+
         $parameters = $request->all();
         $parameters['order_by'] = 'id_ab,desc';
 
-        //convertire le date per il formato query 
-        $findparam =new \App\FindParameter($parameters);  
+        //convertire le date per il formato query
+        $findparam =new \App\FindParameter($parameters);
 
         foreach ($findparam->rules as $rule) {
             if ($rule->field == 'data_fin'){
-                $rule->value = Carbon::createFromFormat(config('unidem.date_format'), $rule->value)->format('Y-m-d');
+                $rule->value = Carbon::createFromFormat(config('unical.date_format'), $rule->value)->format('Y-m-d');
             }
         }
-        
+
         $queryBuilder = new QueryBuilder(new UnitaOrganizzativa, $request, $findparam);
-                
-        return $queryBuilder->build()->paginate();       
+
+        return $queryBuilder->build()->paginate();
 
     }
 

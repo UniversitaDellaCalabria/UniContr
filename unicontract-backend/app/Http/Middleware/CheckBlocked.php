@@ -15,13 +15,13 @@ class CheckBlocked
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check()) 
+        if (auth()->check())
         {
-            if (date(config('unidem.date_format')) <= auth()->user()->blocked_date) {  
-                abort(403, trans('global.utente_non_autorizzato'));   
-            }            
-        }      
-        return $next($request);   
-    } 
-    
+            if (date(config('unical.date_format')) <= auth()->user()->blocked_date) {
+                abort(403, trans('global.utente_non_autorizzato'));
+            }
+        }
+        return $next($request);
+    }
+
 }

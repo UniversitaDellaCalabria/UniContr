@@ -50,8 +50,8 @@ class Insegnamenti extends Model {
     ];
 
     protected $casts = [
-        'data_ini_contr' => 'datetime:d-m-Y',      
-        'data_fine_contr' => 'datetime:d-m-Y',        
+        'data_ini_contr' => 'datetime:d-m-Y',
+        'data_fine_contr' => 'datetime:d-m-Y',
     ];
 
     protected $appends = ['createdDate'];
@@ -64,7 +64,7 @@ class Insegnamenti extends Model {
     public function getDataIniContrAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }
@@ -87,7 +87,7 @@ class Insegnamenti extends Model {
     public function setDataIniContrAttribute($input)
     {
         if($input != '') {
-            $this->attributes['data_ini_contr'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['data_ini_contr'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['data_ini_contr'] = null;
         }
@@ -102,12 +102,12 @@ class Insegnamenti extends Model {
     public function getDataFineContrAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }
     }
-  
+
     //per data da ugov
     public function setDataFineContratto($input)
     {
@@ -125,15 +125,15 @@ class Insegnamenti extends Model {
     public function setDataFineContrAttribute($input)
     {
         if($input != '') {
-            $this->attributes['data_fine_contr'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['data_fine_contr'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['data_fine_contr'] = null;
         }
     }
-     
+
     public function getAnnoContribuzioneAttribute(){
         return Carbon::createFromFormat('Y-m-d', $this->attributes['data_fine_contr'])->year;
-    }    
+    }
 
     public function validazioni()
     {
@@ -149,7 +149,7 @@ class Insegnamenti extends Model {
     }
 
     public function setDataFromUgov(InsegnamUgov $insegnamentoUgov){
-        
+
         $this->compenso = $insegnamentoUgov->compenso;
         $this->data_delibera =$insegnamentoUgov->data;
         $this->cfu = $insegnamentoUgov->coper_peso;
@@ -185,15 +185,15 @@ class Insegnamenti extends Model {
         // <input type="hidden" name="motivo_atto" [(ngModel)]="item.motivo_atto_cod">
         // <input type="hidden" name="num_delibera" [(ngModel)]="item.numero">
         // <input type="hidden" name="data_delibera" [(ngModel)]="item.data">
-        // <input type="hidden" name="cod_insegnamento" [(ngModel)]="item.af_gen_cod">    
+        // <input type="hidden" name="cod_insegnamento" [(ngModel)]="item.af_gen_cod">
         // <input type="hidden" name="dip_cod" [(ngModel)]="item.dip_cod">
     }
 
 
     public function deliberaString() {
-        
+
         //$data_delibera = Carbon::createFromFormat(, $this->data_delibera)->format('Y-m-d');
-        
+
         //Direttore di dipartimento
         //Senato Accademico
         //Consiglio di Dipartimento
@@ -220,10 +220,10 @@ class Insegnamenti extends Model {
             $tipo_atto = $this->tipo_atto;
         }
 
-        return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dipartimento;          
+        return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dipartimento;
     }
 
-    public function contatore(){    
+    public function contatore(){
 
         //return InsegnamUgovController::contatoreInsegnamenti($this->coper_id);
 
@@ -236,7 +236,7 @@ class Insegnamenti extends Model {
     }
 
      // RESTITUISCE L'EPIGRAFE DEL RUOLO DOCENTE
-    public function ruoloToString($cd_ruolo){        
+    public function ruoloToString($cd_ruolo){
         if ($cd_ruolo == null){
             $cd_ruolo = $this->ruolo;
         }
@@ -268,14 +268,14 @@ class Insegnamenti extends Model {
         } else {
             $ruolo = "dipendente";
         }
-        return $ruolo;         
+        return $ruolo;
     }
 
-    public function settoreToString(){          
-              
-        if($this->cod_settore != 'NN') {         
+    public function settoreToString(){
+
+        if($this->cod_settore != 'NN') {
             if (Str::contains($this->cod_settore,';') && Str::contains($this->settore,';')){
-                //plurale 
+                //plurale
                 $cod = explode('; ', $this->cod_settore);
                 $sett = explode('; ', mb_strtolower($this->settore, 'UTF-8'));
 
@@ -283,12 +283,12 @@ class Insegnamenti extends Model {
                     return $arrays[0].' - '.ucfirst($arrays[1]);
                 }, $cod, $sett);
 
-                return ' (settori scientifico-disciplinari '.join(', ',$result).')';     
+                return ' (settori scientifico-disciplinari '.join(', ',$result).')';
             }
             return ' (settore scientifico-disciplinare '.$this->cod_settore." - ".ucfirst(mb_strtolower($this->settore, 'UTF-8')).')';
-        } 
+        }
         return  "";
-        
+
     }
 
     public function cfuToString(){
@@ -307,7 +307,7 @@ class Insegnamenti extends Model {
     {
         $input = $this->attributes['data_ini_contr'];
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format_contratto'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format_contratto'));
         }else{
             return '';
         }
@@ -317,7 +317,7 @@ class Insegnamenti extends Model {
     {
         $input = $this->attributes['data_fine_contr'];
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format_contratto'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format_contratto'));
         }else{
             return '';
         }
@@ -327,17 +327,17 @@ class Insegnamenti extends Model {
     {
         $input = $this->attributes['data_delibera'];
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format_contratto'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format_contratto'));
         }else{
             return '';
         }
     }
 
     public function modalitadiPagamento(){
-            
+
         // VERIFICA SE L'INSEGNAMENTO E' A CAVALLO TRA DUE ANNI
         $delta = substr($this->dataInizioPeriodo(), -4) - substr($this->dataFinePeriodo(), -4);
-        
+
         if($delta != 0) {
             return "due soluzioni, di cui la seconda al termine del contratto";
         } else {
@@ -347,10 +347,10 @@ class Insegnamenti extends Model {
     }
 
 
-    public function periodoToString() {            
-        $data_da = $this->dataInizioPeriodo();             
-        $data_a = $this->dataFinePeriodo();        
-        
+    public function periodoToString() {
+        $data_da = $this->dataInizioPeriodo();
+        $data_a = $this->dataFinePeriodo();
+
         return "dal ".$data_da." al ".$data_a;
     }
 
@@ -376,18 +376,18 @@ class Insegnamenti extends Model {
     function clean_string($text) {
         $text = str_replace("CONTRATTO INTEGRATIVO -", "", $text);
         $text = str_replace("CONTRATTO INTEGRATIVO DI ", "", $text);
-        $text = str_replace("CONTRATTO INTEGRATIVO", "", $text);    
+        $text = str_replace("CONTRATTO INTEGRATIVO", "", $text);
         $text = str_replace("CONTRATTO DI SUPPORTO ALLA DIDATTICA DI ", "", $text);
         $text = str_replace("CONTRATTO DI SUPPORTO ALLA DIDATTICA DEL ", "", $text);
         $text = str_replace("CONTRATTO DI SUPPORTO ALLA DIDATTICA PER ", "", $text);
         $text = str_replace("CONTRATTO DI SUPPORTO ALLA DIDATTICA ", "", $text);
-        $text = str_replace("SUPPORTO ALLA DIDATTICA DI ", "", $text);    
-        $text = str_replace("SUPPORTO ALLA DIDATTICA - ", "", $text);    
+        $text = str_replace("SUPPORTO ALLA DIDATTICA DI ", "", $text);
+        $text = str_replace("SUPPORTO ALLA DIDATTICA - ", "", $text);
         $text = str_replace("SUPPORTO ALLA DIDATTICA DEL ", "", $text);
         $text = str_replace("SUPPORTO ALLA DIDATTICA PER ", "", $text);
         $text = str_replace("SUPPORTO ALLA DIDATTICA ", "", $text);
         return $text;
-    }    
+    }
 
 
     public function giorniDeliberaAOggi(){
@@ -399,21 +399,21 @@ class Insegnamenti extends Model {
         }else{
             return '';
         }
- 
+
         //$days = $interval->format('%a');//now do whatever you like with $days
     }
 
     public function tipoContrattoToString() {
-        return UtilService::tipoContratto($this->tipo_contratto);          
+        return UtilService::tipoContratto($this->tipo_contratto);
     }
 
     public function tipoConferimentoToString() {
-        return UtilService::tipoConferimento($this->motivo_atto);        
+        return UtilService::tipoConferimento($this->motivo_atto);
     }
 
     public function getCreatedDateAttribute(){
         if (array_key_exists('createdDate', $this->attributes) && $this->attributes['createdDate']!=null){
-            return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['createdDate'])->setTimezone(config('unidem.timezone'))->format('Y-m-d H:i:s');
+            return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['createdDate'])->setTimezone(config('unical.timezone'))->format('Y-m-d H:i:s');
         }
         return null;
     }

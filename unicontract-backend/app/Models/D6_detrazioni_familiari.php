@@ -20,7 +20,7 @@ class D6_detrazioni_familiari extends Model
     ];
 
     public function precontrattuale()
-    {        
+    {
         return $this->hasOne(Precontrattuale::class,'d6_detraz_fam_carico_id','id');
     }
 
@@ -31,7 +31,7 @@ class D6_detrazioni_familiari extends Model
     public function setDalGiornoAttribute($input)
     {
         if($input != '') {
-            $this->attributes['dal_giorno'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['dal_giorno'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['dal_giorno'] = null;
         }
@@ -46,7 +46,7 @@ class D6_detrazioni_familiari extends Model
     public function getDalGiornoAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }

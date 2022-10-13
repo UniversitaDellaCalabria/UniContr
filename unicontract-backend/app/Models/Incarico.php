@@ -14,7 +14,7 @@ class Incarico extends Model
         'oggetto',
         'dal_giorno',
         'al_giorno',
-        'compenso',        
+        'compenso',
     ];
 
     protected $casts = [
@@ -29,7 +29,7 @@ class Incarico extends Model
     public function setDalGiornoAttribute($input)
     {
         if($input != '') {
-            $this->attributes['dal_giorno'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['dal_giorno'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['dal_giorno'] = null;
         }
@@ -44,7 +44,7 @@ class Incarico extends Model
     public function getDalGiornoAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }
@@ -57,7 +57,7 @@ class Incarico extends Model
     public function setAlGiornoAttribute($input)
     {
         if($input != '') {
-            $this->attributes['al_giorno'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['al_giorno'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['al_giorno'] = null;
         }
@@ -72,13 +72,13 @@ class Incarico extends Model
     public function getAlGiornoAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }
     }
 
-    
+
     public function incaricoString(){
         return "ENTE: ".$this->ente."\nTIPOLOGIA DELL'INCARICO: ".$this->carica."\nOGGETTO: ".
             $this->oggetto."\nDURATA: DAL ".$this->dal_giorno." AL ".$this->al_giorno."\nCOMPENSO LORDO ANNUO: euro ".$this->compenso;

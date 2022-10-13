@@ -13,7 +13,7 @@ class ReportSegreterieEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-  
+
     protected $dip;
 
     /**
@@ -34,13 +34,13 @@ class ReportSegreterieEmail extends Mailable
      * @return $this
      */
     public function build()
-    {       
-        return $this->subject("Elenco contratti di docenza ".$this->dip." non ancora stipulati")             
-            ->markdown('emails.reportsegreteriemail')->with([                 
-                'urlUniContr' => url(config('unidem.client_url').'/home/'),            
+    {
+        return $this->subject("Elenco contratti di docenza ".$this->dip." non ancora stipulati")
+            ->markdown('emails.reportsegreteriemail')->with([
+                'urlUniContr' => url(config('unical.client_url').'/home/'),
             ])
             ->attachData($this->document, $this->documentName, [
                 'mime' => 'application/pdf',
-            ]);  
+            ]);
     }
 }

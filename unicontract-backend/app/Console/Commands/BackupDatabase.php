@@ -41,7 +41,7 @@ class BackupDatabase extends Command
     {
         parent::__construct();
 
-        $filename = "backups/backup-" .  Carbon::now()->format(config('unidem.date_format')) . ".sql";
+        $filename = "backups/backup-" .  Carbon::now()->format(config('unical.date_format')) . ".sql";
         $this->process = new Process(sprintf(
             'mysqldump -u%s -p%s %s > %s',
             config('database.connections.mysql.username'),

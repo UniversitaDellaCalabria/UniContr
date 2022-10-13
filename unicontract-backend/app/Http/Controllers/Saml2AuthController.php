@@ -26,7 +26,7 @@ class Saml2AuthController extends Controller
     }
 
 
-   
+
     /**
      * Process an incoming saml2 assertion request.
      * Fires 'Saml2LoginEvent' event if a valid user is Found
@@ -47,29 +47,29 @@ class Saml2AuthController extends Controller
 
         event(new Saml2LoginEvent($user, $this->saml2Auth));
 
-        $luser = Auth::user();        
-                
+        $luser = Auth::user();
+
         //check blocked user
-        if (date(config('unidem.date_format')) <= auth()->user()->blocked_date) {  
-            abort(403, trans('global.utente_non_autorizzato'));          
-        }        
+        if (date(config('unical.date_format')) <= auth()->user()->blocked_date) {
+            abort(403, trans('global.utente_non_autorizzato'));
+        }
 
         $redirectUrl = $luser->getIntendedUrl();
-        //dall'idp        
+        //dall'idp
         $redirectUrlFromLogin = $user->getIntendedUrl();
 
         //i custom claim sono definiti nell'utente
         $token = JWTAuth::fromUser( $luser);
 
-        Log::info('redirectUrl [' . $redirectUrl . ']');       
-        Log::info('token [' . $token . ']');       
-        
+        Log::info('redirectUrl [' . $redirectUrl . ']');
+        Log::info('token [' . $token . ']');
+
         if ($redirectUrl !== null) {
-            return redirect($redirectUrl.'?token='.$token.($redirectUrlFromLogin ? ('&redirect='.$redirectUrlFromLogin) : '') )             
+            return redirect($redirectUrl.'?token='.$token.($redirectUrlFromLogin ? ('&redirect='.$redirectUrlFromLogin) : '') )
                 ->header('token', $token)
                 ->header('token_type', 'bearer')
                 ->header('expires_in', Auth::guard()->factory()->getTTL() * 60);
-            
+
         } else {
 
             return redirect(config('saml2_settings.loginRoute'));

@@ -30,7 +30,7 @@ class C_PrestazioneProfessionale extends Model
     ];
 
     public function precontrattuale()
-    {        
+    {
         return $this->hasOne(Precontrattuale::class,'c_prestaz_profess_id','id');
     }
 
@@ -41,7 +41,7 @@ class C_PrestazioneProfessionale extends Model
     public function setDataIscrizioneAlboAttribute($input)
     {
         if($input != '') {
-            $this->attributes['data_iscrizione_albo'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['data_iscrizione_albo'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['data_iscrizione_albo'] = null;
         }
@@ -56,7 +56,7 @@ class C_PrestazioneProfessionale extends Model
     public function getDataIscrizioneAlboAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }

@@ -18,8 +18,8 @@ class QueryBuilderForceInsensitive extends QueryBuilder
 
 
     protected function addWhereToWithQuery($where, $query)
-    {        
-  
+    {
+
         // For array values (whereIn, whereNotIn)
         if (isset($where->values)) {
             $value = $values;
@@ -30,12 +30,12 @@ class QueryBuilderForceInsensitive extends QueryBuilder
         /** @var mixed $key */
         if ($this->isExcludedParameter($where->field)) {
             return;
-        }            
-        
-        if ($where->type == 'date'){
-            $where->value = Carbon::createFromFormat(config('unidem.date_format'), $where->value)->format('Y-m-d');
         }
-        
+
+        if ($where->type == 'date'){
+            $where->value = Carbon::createFromFormat(config('unical.date_format'), $where->value)->format('Y-m-d');
+        }
+
         //TODO se la connessione Oracle va saltato
         //if (!$this->hasTableColumn($where->field)) {
         //    throw new UnknownColumnException("Unknown column '{$where->field}'");
@@ -52,7 +52,7 @@ class QueryBuilderForceInsensitive extends QueryBuilder
                 }
             }else{
                 $query->has($where->field);
-            }                                    
+            }
         }else if ($where->operator == 'doesntHave') {
             if ($where->value){
                 if (is_int($where->value)){
@@ -88,7 +88,7 @@ class QueryBuilderForceInsensitive extends QueryBuilder
 
 
     protected function addWhereToQuery($where)
-    {        
+    {
         //extract($where);
         // For array values (whereIn, whereNotIn)
         if (isset($where->values)) {
@@ -100,7 +100,7 @@ class QueryBuilderForceInsensitive extends QueryBuilder
         /** @var mixed $key */
         if ($this->isExcludedParameter($where->field)) {
             return;
-        }        
+        }
         if ($this->hasCustomFilter($where->field)) {
             /** @var string $type */
             return $this->applyCustomFilter($where->field, $where->operator,  $where->value,  $where->type);
@@ -110,7 +110,7 @@ class QueryBuilderForceInsensitive extends QueryBuilder
         //    throw new UnknownColumnException("Unknown column '{$where->field}'");
         // }
         if ($where->type == 'date'){
-            $where->value = Carbon::createFromFormat(config('unidem.date_format'), $where->value)->format('Y-m-d');;
+            $where->value = Carbon::createFromFormat(config('unical.date_format'), $where->value)->format('Y-m-d');;
         }
 
         /** @var string $type */
@@ -124,7 +124,7 @@ class QueryBuilderForceInsensitive extends QueryBuilder
                 }
             }else{
                 $this->query->has($where->field);
-            }                                    
+            }
         }else if ($where->operator == 'doesntHave') {
             if ($where->value){
                 if (is_int($where->value)){
@@ -134,7 +134,7 @@ class QueryBuilderForceInsensitive extends QueryBuilder
                 }
             }else{
                 $this->query->doesntHave($where->field);
-            }            
+            }
         }else if ($where->operator == 'In') {
             $this->query->whereIn($where->field, $where->value);
         }else if ( $where->operator == 'NotIn') {
@@ -143,8 +143,8 @@ class QueryBuilderForceInsensitive extends QueryBuilder
             if ($where->type == 'string'){
                 $this->query->whereRaw('upper('.$where->field.') like ?', '%'.strtoupper($where->value).'%');
             }else{
-                $this->query->where($where->field, 'like', '%'.$where->value.'%');                
-            }            
+                $this->query->where($where->field, 'like', '%'.$where->value.'%');
+            }
         } else {
             if ( $where->value == '[null]') {
                 if ( $where->operator == '=') {

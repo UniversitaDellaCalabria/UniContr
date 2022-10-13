@@ -7,7 +7,7 @@ use Carbon\Carbon;
 class Precontrattuale extends Model
 {
     protected $table = 'precontr';
-   
+
     /**
      * Get attribute from date format
      * @param $input
@@ -51,10 +51,10 @@ class Precontrattuale extends Model
 
     public function toLocalTimezone($input){
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unidem.timezone'))->format(config('unidem.datetime_format'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
         }else{
             return null;
         }
     }
-   
+
 }

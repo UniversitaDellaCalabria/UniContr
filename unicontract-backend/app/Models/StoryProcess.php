@@ -15,14 +15,14 @@ class StoryProcess extends Model
     ];
 
     protected $casts = [
-        'created_at' => 'date:d-m-Y',        
+        'created_at' => 'date:d-m-Y',
     ];
-  
+
     protected $appends = ['time'];
 
     public function getTimeAttribute()
-    {     
-        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->setTimezone(config('unidem.timezone'))->format('H:i');     
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->setTimezone(config('unical.timezone'))->format('H:i');
     }
 
 }

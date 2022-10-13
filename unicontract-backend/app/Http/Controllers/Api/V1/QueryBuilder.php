@@ -50,14 +50,14 @@ class QueryBuilder
 
     public $alias = [];
 
-    public function __construct() 
-    { 
-        $a = func_get_args(); 
-        $i = func_num_args(); 
-        if (method_exists($this,$f='__construct'.$i)) { 
-            call_user_func_array(array($this,$f),$a); 
-        } 
-    } 
+    public function __construct()
+    {
+        $a = func_get_args();
+        $i = func_num_args();
+        if (method_exists($this,$f='__construct'.$i)) {
+            call_user_func_array(array($this,$f),$a);
+        }
+    }
 
     public function __construct2(Model $model, Request $request)
     {
@@ -66,8 +66,8 @@ class QueryBuilder
         $this->limit = config('querybuilder.limit');
         $this->excludedParameters = array_merge($this->excludedParameters, config('querybuilder.excludedParameters'));
         $this->model = $model;
-        
-        $this->findParameter = new \App\FindParameter($request->json()->all());      
+
+        $this->findParameter = new \App\FindParameter($request->json()->all());
 
         $this->query = $this->model->newQuery();
     }
@@ -79,8 +79,8 @@ class QueryBuilder
         $this->limit = config('querybuilder.limit');
         $this->excludedParameters = array_merge($this->excludedParameters, config('querybuilder.excludedParameters'));
         $this->model = $model;
-        
-        $this->findParameter = $findParameter;      
+
+        $this->findParameter = $findParameter;
 
         $this->query = $this->model->newQuery();
     }
@@ -90,7 +90,7 @@ class QueryBuilder
     public function build()
     {
         $this->prepare();
-       
+
         if ($this->hasWheres()) {
             array_map([$this, 'addWhereToQuery'], $this->wheres);
         }
@@ -103,7 +103,7 @@ class QueryBuilder
         if ($this->hasOffset()) {
             $this->query->skip($this->offset);
         }
-        array_map([$this, 'addOrderByToQuery'], $this->orderBy);       
+        array_map([$this, 'addOrderByToQuery'], $this->orderBy);
         $this->query->with($this->includes);
         if ($this->hasWithWheres()) {
             array_walk($this->includes,[$this, 'addWhereHas']);
@@ -153,7 +153,7 @@ class QueryBuilder
     private function prepareConstant($parameter)
     {
 
-        //di tutte le costanti imposta i valori passati come parametro 
+        //di tutte le costanti imposta i valori passati come parametro
         // 'order_by',
         // 'group_by',
         // 'limit',
@@ -166,7 +166,7 @@ class QueryBuilder
             return;
         }
         $callback = [$this, $this->setterMethodName($parameter)];
-        $callbackParameter = $this->findParameter[$parameter];        
+        $callbackParameter = $this->findParameter[$parameter];
         call_user_func($callback, $callbackParameter);
     }
     private function setIncludes($includes)
@@ -213,15 +213,15 @@ class QueryBuilder
     {
         $index = array_search($key, $this->includes);
         //elimino  il contenuto se fosse già presente
-        unset($this->includes[$index]);        
+        unset($this->includes[$index]);
         $this->includes[$key] = $this->closureRelationColumns($columns, array_key_exists($key, $this->withwheres) ? $this->withwheres[$key] : []);
     }
     private function closureRelationColumns($columns, $wheres)
     {
-        return function ($q) use ($columns, $wheres) {           
+        return function ($q) use ($columns, $wheres) {
             if (count($wheres) > 0){
-                array_map(function($condition) use($q){ 
-                    $this->addWhereToWithQuery($condition, $q); 
+                array_map(function($condition) use($q){
+                    $this->addWhereToWithQuery($condition, $q);
                 }, $wheres);
             }
             $q->select($columns);
@@ -269,12 +269,12 @@ class QueryBuilder
     // {
     //     $index = array_search($key, $this->includes);
     //     //elimino  il contenuto se fosse già presente
-    //     unset($this->includes[$index]);        
+    //     unset($this->includes[$index]);
     //     $this->includes[$key] = $this->closureOrderByRelationColumns($columns, array_key_exists($key, $this->withOrderBy) ? $this->withOrderBy[$key] : []);
     // }
     // private function closureOrderByRelationColumns($columns, $order)
     // {
-    //     return function ($q) use ($columns, $order) {           
+    //     return function ($q) use ($columns, $order) {
     //         if ($order != null){
     //             $q->orderBy($order[0]['column'], $order[0]['direction']);
     //         }
@@ -301,41 +301,41 @@ class QueryBuilder
         }else{
             $this->wheres[] = $where;
         }
-    }    
+    }
 
     private function setAppends($appends)
     {
         $this->appends = explode(',', $appends);
     }
     private function addWhereHas($funct,$key){
-        
+
         if (is_callable($funct)){
             $this->query->whereHas($key,$funct);
-        }else{        
+        }else{
             $key = $funct;
             $wheres = array_key_exists($key, $this->withwheres) ? $this->withwheres[$key] : [];
             if (count($wheres) > 0){
-                $this->includes[$key] = function ($q) use ($wheres) {           
+                $this->includes[$key] = function ($q) use ($wheres) {
                         if (count($wheres) > 0){
-                            array_map(function($condition) use($q){ 
-                                $this->addWhereToWithQuery($condition, $q); 
+                            array_map(function($condition) use($q){
+                                $this->addWhereToWithQuery($condition, $q);
                             }, $wheres);
-                        }                              
+                        }
                     };
             }
             // array include risultante
             //0:"insegnamento"
             //1:"user"
             //insegnamento:Closure
-            //user:Closure 
+            //user:Closure
             //evitare la whereHas
             //$this->query->whereHas($key,$this->includes[$key]);
         }
-        
+
 
     }
     protected function addWhereToWithQuery($where, $query)
-    {        
+    {
         // For array values (whereIn, whereNotIn)
         if (isset($where->values)) {
             $value = $values;
@@ -346,12 +346,12 @@ class QueryBuilder
         /** @var mixed $key */
         if ($this->isExcludedParameter($where->field)) {
             return;
-        }            
-        
-        if ($where->type == 'date'){
-            $where->value = Carbon::createFromFormat(config('unidem.date_format'), $where->value)->format('Y-m-d');
         }
-        
+
+        if ($where->type == 'date'){
+            $where->value = Carbon::createFromFormat(config('unical.date_format'), $where->value)->format('Y-m-d');
+        }
+
         //TODO se la connessione Oracle va saltato
         //if (!$this->hasTableColumn($where->field)) {
         //    throw new UnknownColumnException("Unknown column '{$where->field}'");
@@ -381,7 +381,7 @@ class QueryBuilder
     }
 
     protected function addWhereToQuery($where)
-    {        
+    {
         // For array values (whereIn, whereNotIn)
         if (isset($where->values)) {
             $value = $values;
@@ -392,7 +392,7 @@ class QueryBuilder
         /** @var mixed $key */
         if ($this->isExcludedParameter($where->field)) {
             return;
-        }        
+        }
         if ($this->hasCustomFilter($where->field)) {
             /** @var string $type */
             return $this->applyCustomFilter($where->field, $where->operator,  $where->value,  $where->type);
@@ -402,7 +402,7 @@ class QueryBuilder
         //    throw new UnknownColumnException("Unknown column '{$where->field}'");
         // }
         if ($where->type == 'date'){
-            $where->value = Carbon::createFromFormat(config('unidem.date_format'), $where->value)->format('Y-m-d');
+            $where->value = Carbon::createFromFormat(config('unical.date_format'), $where->value)->format('Y-m-d');
         }
 
         /** @var string $type */
@@ -533,11 +533,11 @@ class QueryBuilder
         }
         $total = $query->getCountForPagination();
         $results = $total ? $this->query->forPage($page, $perPage)->get($columns) : new Collection;
-      
+
         return (new Paginator($results, $total, $perPage, $page, [
             'path' => BasePaginator::resolveCurrentPath(),
-            'pageName' => $pageName            
-        ])); 
+            'pageName' => $pageName
+        ]));
     }
 
     public function noPagination($columns = ['*']){
@@ -545,9 +545,9 @@ class QueryBuilder
             $query = $this->query->toBase();
         } else {
             $query = $this->query->getQuery();
-        }        
+        }
         $results =  $this->query->get($columns);
-        
+
         if ($results==null){
             $results = new Collection;
         }

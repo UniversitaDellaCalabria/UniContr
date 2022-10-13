@@ -36,7 +36,7 @@ class Attachment extends Model
      * @property string description
      * @property string preview_url
      * @property array  metadata
-     * 
+     *
      **/
 
     protected $table = 'attachments';
@@ -51,7 +51,7 @@ class Attachment extends Model
         'emission_date' => 'datetime:d-m-Y',
         'created_at' => 'datetime:d-m-Y H:m:s',
     ];
-    
+
     /**
      * Set attribute to date format
      * @param $input
@@ -59,7 +59,7 @@ class Attachment extends Model
     public function setEmissionDateAttribute($input)
     {
         if($input != '') {
-            $this->attributes['emission_date'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['emission_date'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['emission_date'] = null;
         }
@@ -74,7 +74,7 @@ class Attachment extends Model
     public function getEmissionDateAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }
@@ -85,7 +85,7 @@ class Attachment extends Model
 
     //static $attributes = ['uuid', 'url', 'filename', 'filetype', 'filesize', 'title', 'description', 'key', 'group'];
     //protected $prefix = rtrim(env('ATTACHMENTS_STORAGE_DIRECTORY_PREFIX', 'attachments'), '/');
-    
+
     /**
      * Shortcut method to bind an attachment to a model
      *
@@ -101,13 +101,13 @@ class Attachment extends Model
         $attachment = self::where('uuid', $uuid)->first();
         if ( ! $attachment) {
             return null;
-        }       
+        }
         $options = array_only($options, $attributes);
         $attachment->fill($options);
         return $attachment->model()->associate($model)->save() ? $attachment : null;
-    }  
+    }
 
- 
+
     public function createLink($nrecord, $controller = null)
     {
         $this->uuid = $nrecord;
@@ -139,7 +139,7 @@ class Attachment extends Model
      * @param string   $filename the resource filename
      * @param string   $disk     target storage disk
      * @param AttachmentType   $attachmenttype     target storage disk
-     * 
+     *
      * @return $this|null
      */
     public function loadStream($stream, $disk = null)
@@ -152,12 +152,12 @@ class Attachment extends Model
         }
         if ($stream === null) {
             return null;
-        }        
+        }
         $this->disk = $this->disk ?: ($disk ?: Storage::getDefaultDriver());
         $driver = Storage::disk($this->disk);
-        
+
         $this->filepath = $this->filepath ?: ($this->getStorageDirectory() . $this->getPartitionDirectory() . $this->getDiskName());
-        //$driver->putStream(, $stream);       
+        //$driver->putStream(, $stream);
         $driver->put(
             $this->filepath,
             base64_decode($stream)
@@ -176,7 +176,7 @@ class Attachment extends Model
      * @param string   $filename the resource filename
      * @param string   $disk     target storage disk
      * @param AttachmentType   $attachmenttype     target storage disk
-     * 
+     *
      * @return $this|null
      */
     public function fromStream($stream, $filename, $attachmenttype, $disk = null)
@@ -190,7 +190,7 @@ class Attachment extends Model
         $this->attachmenttype_codice = $attachmenttype->codice;
         $this->filename = $filename;
         $this->filepath = $this->filepath ?: ($this->getStorageDirectory() . $this->getPartitionDirectory() . $this->getDiskName());
-        //$driver->putStream(, $stream);       
+        //$driver->putStream(, $stream);
         $driver->put(
             $this->filepath,
             base64_decode($stream)
@@ -205,7 +205,7 @@ class Attachment extends Model
     /*
      * Model handling
      */
-    
+
     /**
      * Relationship: model
      *
@@ -223,7 +223,7 @@ class Attachment extends Model
     {
         return $this->belongsTo(AttachmentType::class, 'attachmenttype_codice', 'codice');
     }
-    
+
     public function scopeAttachmentType($query)
     {
         return $query->with('attachmenttype');
@@ -243,13 +243,13 @@ class Attachment extends Model
 
     /**
      * Generates a partition for the file.
-     * return model_type_model_id 
+     * return model_type_model_id
      *
      * @return mixed
      */
     protected function getPartitionDirectory()
     {
-        //la partizione è data dal codice dell'oggetto a cui è collegata        
+        //la partizione è data dal codice dell'oggetto a cui è collegata
         if (Str::contains($this->model_type,['Models'])){
             return str_replace('App\\Models\\','', $this->model_type) .'_'. $this->model_id . '/';
         }
@@ -269,10 +269,10 @@ class Attachment extends Model
         if (empty($attachment->uuid)) {
             $this->uuid = Uuid::uuid4()->toString();
         }
-        //il nome è dato dal codice del tipo   
+        //il nome è dato dal codice del tipo
         $codice = $this->attachmenttype_codice;
-        if ($this->attachmenttype)         
-            $codice = $this->attachmenttype->codice;          
+        if ($this->attachmenttype)
+            $codice = $this->attachmenttype->codice;
 
         $name = $codice.'_'.str_replace('.', '', $this->uuid);
         return $this->filepath = $ext !== null ? $name . '.' . $ext : $name;
@@ -299,7 +299,7 @@ class Attachment extends Model
      */
     public function getExtension()
     {
-        return FileHelper::extension($this->filename);        
+        return FileHelper::extension($this->filename);
     }
 
     /**
@@ -336,12 +336,12 @@ class Attachment extends Model
     protected static function boot()
     {
         parent::boot();
-        
+
         static::deleting(function ($attachment) {
             /** @var Attachment $attachment */
             $attachment->deleteFile();
-        });        
+        });
     }
-    
+
 
 }

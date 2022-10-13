@@ -11,7 +11,7 @@ return [
     'aggiornamento_non_consentito' => 'Aggiornamento non consentito',
     'invio_non_consentito' => 'Invio non consentito',
     'annullamento_non_consentito' => 'Annullamento non consentito modulistica in fase di revisione da altro ufficio',
-    
+
     'validazione_non_consentita' => 'Compilazione modulistica precontrattuale non completata',
 
     "C_coniugato" => "Coniugat:s",
@@ -31,7 +31,7 @@ return [
     "M_deceduto" => "Decedut:s",
     "E_tutelato" => "Tutelat:s",
     "Q_unitocivilmente" => "Unit:s civilmente",
-    
+
     "b3_txt0" => "Si dichiara di:",
     "b3_txt1" => "Si dichiara di essere attualmente iscritti presso l'Università degli Studi di",
     "b3_txt1b" => "essere attualmente iscritti presso l'Università degli Studi di",
@@ -43,7 +43,7 @@ return [
     "b3_txt5" => "Si dichiara di essere attualmente titolari di una borsa di studio presso l'Università degli Studi di",
     "b3_txt5b" => "attualmente titolari di una borsa di studio presso l'Università degli Studi di",
     "b3_txt6" => "dal giorno",
-    "b3_txt7" => "al giorno",    
+    "b3_txt7" => "al giorno",
     "b3_txt8" => "Dipartimento di",
     "b3_txt9" => "ai sensi della legge",
 
@@ -114,13 +114,13 @@ return [
     "e_txt7" =>"essere titolare di pensione diretta, anzianità, vecchiaia o invalidità.",
     "e_txt8" =>"essere soggetto all’applicazione dell’aliquota massima INPS.",
     "e_txt9" =>"aver superato il massimale contributivo di € 103.055,00 .",
-    "e_txt10" =>"essere in possesso di Partita IVA.",  
+    "e_txt10" =>"essere in possesso di Partita IVA.",
 
     "cassa002"=>"002 Pensionati di tutti gli Enti pensionistici obbligatori",
     "cassa101"=>"101 INPS Fondo Pensioni Lavoratori Dipendenti",
     "cassa102"=>"102 INPS Artigiani",
     "cassa103"=>"103 INPS Commercianti",
-    "cassa104"=>"104 INPS Coltivatori diretti, mezzadri e coloni", 
+    "cassa104"=>"104 INPS Coltivatori diretti, mezzadri e coloni",
     "cassa105"=>"105 INPS Versamenti volontari",
     "cassa106"=>"106 INPS Versamenti figurativi (CIG, ecc . . .)",
     "cassa107"=>"107 INPS Fondi speciali",
@@ -278,7 +278,7 @@ return [
     "d6_label7"=>"Rapporto di parentela",
     "d6_nome"=>"Nome",
     "d6_cognome"=>"Cognome",
- 
+
     "F1" => "Primo figlio",
     "F"=>"Altro figlio",
     "A"=>"Altro familiare",
@@ -301,26 +301,27 @@ return [
     "LA" => "Laurea (vecchio ordinamento)",
     "M1" => "Master di I livello",
     "M2" => "Master di II livello",
-    "SS" => "Scuola di specializzazione", 
+    "SS" => "Scuola di specializzazione",
     "PQ" => "Scuola professionale quinquennale",
     "P" => "Scuola professionale triennale",
     "SP" => "Specializzazione post-laurea",
 
-    "DISB" =>	"Dipartimento di Scienze Biomolecolari (DISB)",
-    "DISPEA" =>	"Dipartimento di Scienze Pure e Applicate (DiSPeA)",
-    "DIGIUR" =>	"Dipartimento di Giurisprudenza (DiGiur)",
-    "DISCUI" =>   "Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI)",
-    "DISTUM" =>	"Dipartimento di Studi Umanistici (DISTUM)",
-    "DESP" =>	"Dipartimento di Economia, Società, Politica (DESP)",
+    //"DISB" =>	"Dipartimento di Scienze Biomolecolari (DISB)",
+    //"DISPEA" =>	"Dipartimento di Scienze Pure e Applicate (DiSPeA)",
+    //"DIGIUR" =>	"Dipartimento di Giurisprudenza (DiGiur)",
+    //"DISCUI" =>   "Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI)",
+    //"DISTUM" =>	"Dipartimento di Studi Umanistici (DISTUM)",
+    //"DESP" =>	"Dipartimento di Economia, Società, Politica (DESP)",
+    "DIBEST" =>	"Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)",
 
     "27605"=> "DISB",
-    "4504"=> "DESP",  
+    "4504"=> "DESP",
     "4499"=> "DiGiur",
     "26121"=> "DISTUM",
     "26080"=> "DiSPeA",
     "26124"=> "DISCUI",
     "49025"=> "DISCUI",
-    
+
     "dichiaro_RF01"=> "essere professionista rientrante nel regime fiscale ordinario",
     "dichiaro_RF02"=> "essere professionista rientrante nel regime fiscale contribuenti minimi (art.1, commi 96-117, legge n. 244/2007)",
     "dichiaro_RF19"=> "essere professionista rientrante nel regime fiscale forfettario (art.1, commi 54-89, legge n. 190/2014)"

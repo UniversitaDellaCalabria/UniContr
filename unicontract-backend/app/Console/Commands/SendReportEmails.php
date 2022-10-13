@@ -53,53 +53,50 @@ class SendReportEmails extends Command
         return PrecontrattualePerGenerazione::with(['anagrafica','user','insegnamento','p2naturarapporto','validazioni'])
             ->whereHas('insegnamento', function ($query) use($dip) {
                 $query->where('dipartimento','like','%'.$dip.'%');
-            })->where('stato','=',0)->get();          
+            })->where('stato','=',0)->get();
     }
-    
+
     /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
-    {        
-        $dips = ['DISPEA','DISB','DIGIUR','DISCUI','DESP','DISTUM'];
+    {
+        //$dips = ['DISPEA','DISB','DIGIUR','DISCUI','DESP','DISTUM'];
+        $dips = ['DIBEST'];
         //$dips = ['DISTUM'];
-        Log::info('Esecuzione comando [ SendReportEmails ]');    
-      
+        Log::info('Esecuzione comando [ SendReportEmails ]');
+
             foreach ($dips as $dip) {
 
                 try {
-                    # code...                
-                    if ($dip == 'DIGIUR'){
-                        $pres = $this->getPrecontrs('GIURISPRUDENZA');              
-                    }else{
-                        $pres = $this->getPrecontrs($dip);     
-                    }                               
-                    
-                    //se esiste almeno una precontrattuale invio email alle segreterie 
+                    # code...
+                    $pres = $this->getPrecontrs($dip);
+
+                    //se esiste almeno una precontrattuale invio email alle segreterie
                     if ($pres->count()>0){
-                        $result = PrecontrattualeService::makePdfFromPresForReport($dip, $pres);                       
-                        $email = new ReportSegreterieEmail($dip,$result->output(),'ELENCO_CONTRATTI_DOCENZA_NON_ANCORA_STIPULATI_'.$dip.'.pdf');        
-                        
-                        if (App::environment(['local','preprod'])) {                        
-                            Mail::to(config('unidem.administrator_email'))->send($email);                           
+                        $result = PrecontrattualeService::makePdfFromPresForReport($dip, $pres);
+                        $email = new ReportSegreterieEmail($dip,$result->output(),'ELENCO_CONTRATTI_DOCENZA_NON_ANCORA_STIPULATI_'.$dip.'.pdf');
+
+                        if (App::environment(['local','preprod'])) {
+                            Mail::to(config('unical.administrator_email'))->send($email);
                         } else {
                             //['direttore.'.strtolower($dip).'@uniurb.it','segreteria.'.strtolower($dip).'@uniurb.it']
-                            Mail::to(config('unidem.'.strtolower($dip).'_report_segreterie'))                   
-                                ->bcc(config('unidem.administrator_email'))                            
-                                ->cc(config('unidem.cc_report_segreterie'))
+                            Mail::to(config('unical.'.strtolower($dip).'_report_segreterie'))
+                                ->bcc(config('unical.administrator_email'))
+                                ->cc(config('unical.cc_report_segreterie'))
                                 ->send($email);
-                        }          
+                        }
                     }
                 } catch (\Exception $e) {
                     $handler = new Handler(Container::getInstance());
                     $handler->report($e);
 
-                    Log::info('Errore SendReportEmails ['.$dip.']');                                             
-                    
+                    Log::info('Errore SendReportEmails ['.$dip.']');
+
                 }
             }
-      
+
     }
 }

@@ -25,7 +25,7 @@ use App\Mail\SollecitoValidateEmail;
 use App\Exceptions\Handler;
 use Illuminate\Container\Container;
 
-// php artisan sendsollecito:docenti 
+// php artisan sendsollecito:docenti
 class SendSollecitoEmails extends Command
 {
     /**
@@ -53,14 +53,14 @@ class SendSollecitoEmails extends Command
     }
 
 
-    //compilazione modulistica precontrattuale NON TERMINATA 
+    //compilazione modulistica precontrattuale NON TERMINATA
     public function getPrecontrsNonTerminate(){
         return PrecontrattualePerGenerazione::with(['anagrafica','user','insegnamento','p2naturarapporto','validazioni','sendemails'=> function ($query) {
                 $query->where('codifica','RCP');
             }])
             ->whereHas('validazioni', function ($query) {
                 $query->where('flag_submit','=',0);
-            })->where('stato','=',0)->get();          
+            })->where('stato','=',0)->get();
     }
 
     //compilazione modulistica precontrattuale da visionare
@@ -70,69 +70,69 @@ class SendSollecitoEmails extends Command
             }])
             ->whereHas('validazioni', function ($query) {
                 $query->where('flag_submit','=',1)->where('flag_upd','=',1)->where('flag_amm','=',1)->where('flag_accept','=',0);
-            })->where('stato','=',0)->get();          
+            })->where('stato','=',0)->get();
     }
 
-   
+
     /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
-    {        
-        Log::info('Esecuzione comando [ SendSollecitoEmails ]');    
-        
+    {
+        Log::info('Esecuzione comando [ SendSollecitoEmails ]');
+
             //giorno 10 di ogni mese, se sono passati almeno 10 giorni dall'invio della richiesta
-            $pres = $this->getPrecontrsNonTerminate();                                      
+            $pres = $this->getPrecontrsNonTerminate();
             foreach ($pres as $pre) {
                 try {
                     //invio richiesta di compilazione
                     $gg = $pre->giorniUltimaEmail();
-                    if ($gg<0){ 
+                    if ($gg<0){
                         //'insegnamento.data_delibera' a oggi
-                        $datetime1 =  $pre->insegnamento->created_at != null ?  
-                            $pre->insegnamento->created_at : Carbon::createFromFormat('Y-m-d',  $pre->insegnamento->data_delibera); 
+                        $datetime1 =  $pre->insegnamento->created_at != null ?
+                            $pre->insegnamento->created_at : Carbon::createFromFormat('Y-m-d',  $pre->insegnamento->data_delibera);
                         $datetime2 = Carbon::now();
                         $gg  = $datetime1->diffInDays($datetime2);
                     }
                     if ($gg>10){
                         //invio email di sollecito ai docenti
-                        $email = new SollecitoFirstEmail($pre);            
+                        $email = new SollecitoFirstEmail($pre);
                         EmailService::sendToDocente($email,$pre);
                     }
-                  
+
                 } catch (\Exception $e) {
                     $handler = new Handler(Container::getInstance());
-                    $handler->report($e);                             
-                    Log::info('Errore getPrecontrsNonTerminate SendSollecitoEmails '.$pre->user->name);                      
+                    $handler->report($e);
+                    Log::info('Errore getPrecontrsNonTerminate SendSollecitoEmails '.$pre->user->name);
                 }
-            }                
-        
+            }
+
             //giorno 10 di ogni mese, se sono passati almeno 10 giorni dall'invio della richiesta
-            $pres = $this->getPrecontrsDaVisionare();                          
+            $pres = $this->getPrecontrsDaVisionare();
             foreach ($pres as $pre) {
                 try {
                      //invio richiesta di presavisione
                     $gg = $pre->giorniUltimaEmail();
-                    if ($gg<0){ 
-                        $datetime1 = Carbon::createFromFormat(config('unidem.datetime_format'), $pre->validazioni->date_amm);  
+                    if ($gg<0){
+                        $datetime1 = Carbon::createFromFormat(config('unical.datetime_format'), $pre->validazioni->date_amm);
                         $datetime2 = Carbon::now();
                         $gg  = $datetime1->diffInDays($datetime2);
                     }
                     if ($gg>10){
                         //invio email di sollecito ai docenti
-                        $email = new SollecitoValidateEmail($pre);            
+                        $email = new SollecitoValidateEmail($pre);
                         EmailService::sendToDocente($email,$pre);
                     }
                 } catch (\Exception $e) {
                     $handler = new Handler(Container::getInstance());
                     $handler->report($e);
-                    Log::info('Errore getPrecontrsDaVisionare SendSollecitoEmails '.$pre->user->name);                              
+                    Log::info('Errore getPrecontrsDaVisionare SendSollecitoEmails '.$pre->user->name);
                 }
-            }                
-        
+            }
+
     }
-    
+
 
 }

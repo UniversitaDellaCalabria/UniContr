@@ -31,7 +31,7 @@ use Brexis\LaravelWorkflow\Traits\WorkflowTrait;
 use Illuminate\Support\Facades\Cache;
 
 class Precontrattuale extends Model {
-    
+
     use WorkflowTrait;
     /**
      * The table associated with the model.
@@ -68,7 +68,7 @@ class Precontrattuale extends Model {
     {
         parent::boot();
         static::addGlobalScope('total', function ($builder) {
-            $builder 
+            $builder
             ->join('users as user', 'precontr.docente_id', '=', 'user.v_ie_ru_personale_id_ab')
             ->select([
                 'user.nome',
@@ -121,94 +121,94 @@ class Precontrattuale extends Model {
     // In your example, if A has a b_id column, then A belongsTo B.
     // If B has an a_id column, then A hasOne or hasMany B depending on how many B should have.
     public function anagrafica()
-    {        
+    {
         return $this->belongsTo(Anagrafica::class,'a1_anagrafica_id','id');
     }
 
     public function user()
-    {              
+    {
         return $this->belongsTo(User::class,'docente_id','v_ie_ru_personale_id_ab');
-    }   
+    }
 
     public function b1conflittointeressi()
     {
-        return $this->belongsTo(B1ConflittoInteressi::class,'b1_confl_interessi_id','id');        
+        return $this->belongsTo(B1ConflittoInteressi::class,'b1_confl_interessi_id','id');
     }
 
     // per compatibilità
     public function conflittointeressi()
     {
-        return $this->belongsTo(B1ConflittoInteressi::class,'b1_confl_interessi_id','id');        
+        return $this->belongsTo(B1ConflittoInteressi::class,'b1_confl_interessi_id','id');
     }
 
     public function b2incompatibilita()
     {
-        return $this->belongsTo(B2Incompatibilita::class,'b2_incompatibilita_id','id');        
+        return $this->belongsTo(B2Incompatibilita::class,'b2_incompatibilita_id','id');
     }
 
     public function b3rapportoUniv()
     {
-        return $this->belongsTo(B3RapportiStudio::class,'b3_rapp_studio_univ_id','id');        
+        return $this->belongsTo(B3RapportiStudio::class,'b3_rapp_studio_univ_id','id');
     }
 
     public function b4rapportopa()
     {
-        return $this->belongsTo(B4RapportoPA::class,'b4_rapp_pubbl_amm_id','id');        
+        return $this->belongsTo(B4RapportoPA::class,'b4_rapp_pubbl_amm_id','id');
     }
-    
+
     public function b5statopensionamento()
     {
-        return $this->belongsTo(B5StatoPensionamento::class,'b5_stato_pensionam_id','id');        
+        return $this->belongsTo(B5StatoPensionamento::class,'b5_stato_pensionam_id','id');
     }
 
     public function b6informativa()
     {
-        return $this->belongsTo(B6Informativa::class,'b6_trattamento_dati_id','id');        
+        return $this->belongsTo(B6Informativa::class,'b6_trattamento_dati_id','id');
     }
 
     public function a2modalitapagamento()
     {
-        return $this->belongsTo(A2ModalitaPagamento::class,'a2_mod_pagamento_id','id');        
+        return $this->belongsTo(A2ModalitaPagamento::class,'a2_mod_pagamento_id','id');
     }
 
     public function cPrestazioneProfessionale()
     {
-        return $this->belongsTo(C_PrestazioneProfessionale::class,'c_prestaz_profess_id','id');   
+        return $this->belongsTo(C_PrestazioneProfessionale::class,'c_prestaz_profess_id','id');
     }
 
     public function d1inps()
     {
-        return $this->belongsTo(D1_Inps::class,'d1_inps_id','id');        
+        return $this->belongsTo(D1_Inps::class,'d1_inps_id','id');
     }
 
     public function d2inail()
     {
-        return $this->belongsTo(D2_Inail::class,'d2_inail_id','id');        
+        return $this->belongsTo(D2_Inail::class,'d2_inail_id','id');
     }
 
     public function d3tributari()
     {
-        return $this->belongsTo(D3_tributari::class,'d3_tributari_id','id');        
+        return $this->belongsTo(D3_tributari::class,'d3_tributari_id','id');
     }
 
     public function d4fiscali()
     {
-        return $this->belongsTo(D4_fiscali::class,'d4_fiscali_id','id');        
+        return $this->belongsTo(D4_fiscali::class,'d4_fiscali_id','id');
     }
-    
+
     public function d5fiscaliestero()
     {
-        return $this->belongsTo(D5_fiscali_estero::class,'d5_fiscali_resid_estero_id','id');        
-    }  
+        return $this->belongsTo(D5_fiscali_estero::class,'d5_fiscali_resid_estero_id','id');
+    }
 
     public function d6familiari()
     {
-        return $this->belongsTo(D6_detrazioni_familiari::class,'d6_detraz_fam_carico_id','id');        
+        return $this->belongsTo(D6_detrazioni_familiari::class,'d6_detraz_fam_carico_id','id');
     }
 
     public function eAutonomoOcasionale()
     {
-        return $this->belongsTo(E_AutonomoOccasionale::class,'e_autonomo_occasionale_id','id');        
+        return $this->belongsTo(E_AutonomoOccasionale::class,'e_autonomo_occasionale_id','id');
     }
 
     public function storyprocesscomp()
@@ -226,12 +226,12 @@ class Precontrattuale extends Model {
     // If B has an a_id column, then A hasOne or hasMany B depending on how many B should have.
     public function validazioni()
     {
-        return $this->hasOne(Validazioni::class,'insegn_id','insegn_id');        
+        return $this->hasOne(Validazioni::class,'insegn_id','insegn_id');
     }
 
     public function titulusref()
     {
-        return $this->hasOne(TitulusRef::class,'insegn_id','insegn_id');        
+        return $this->hasOne(TitulusRef::class,'insegn_id','insegn_id');
     }
 
 
@@ -249,7 +249,7 @@ class Precontrattuale extends Model {
     {
         return $this->morphMany(SendEmail::class, 'model')->where('codifica','RCP');
     }
-       
+
     public function attachments()
     {
         return $this->morphMany(Attachment::class, 'model')->AttachmentType();
@@ -262,7 +262,7 @@ class Precontrattuale extends Model {
     public function setDateAnnullamentoAttribute($input)
     {
         if($input != '') {
-            $this->attributes['date_annullamento'] = Carbon::createFromFormat(config('unidem.datetime_format'), $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_annullamento'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
         }else{
             $this->attributes['date_annullamento'] = null;
         }
@@ -277,7 +277,7 @@ class Precontrattuale extends Model {
     public function getDateAnnullamentoAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unidem.timezone'))->format(config('unidem.datetime_format'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
         }else{
             return null;
         }
@@ -285,28 +285,28 @@ class Precontrattuale extends Model {
 
 
     public function isAnnullata()
-    {        
+    {
         return $this->stato == 2 || $this->stato == 3;
     }
 
     public function isBlocked()
-    {        
+    {
         if ($this->stato == 1 || $this->isAnnullata()){
             return true;
         }else{
             return $this->validazioni->isBlocked();
-        }        
+        }
     }
 
     public function  isBlockedAmministrativa()
-    {        
+    {
         if ($this->stato == 1 || $this->isAnnullata()){
             return true;
         }else{
             return $this->validazioni->isBlockedAmministrativa();
-        }        
+        }
     }
-  
+
 
 
 
@@ -343,7 +343,7 @@ class Precontrattuale extends Model {
 
     public function toLocalTimezone($input){
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unidem.timezone'))->format(config('unidem.datetime_format'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
         }else{
             return null;
         }
@@ -373,7 +373,7 @@ class Precontrattuale extends Model {
             if ($this->validazioni->flag_submit && !$this->validazioni->flag_upd){
                 return "Compilata";
             }
-            if (!$this->validazioni->flag_submit){            
+            if (!$this->validazioni->flag_submit){
                 return "In fase di compilazione . . .";
             }
         }else{
@@ -404,14 +404,14 @@ class Precontrattuale extends Model {
     public function checkCompilazioneModelli(){
         if ($this->p2naturarapporto->natura_rapporto === 'PRPR') {
             if ($this->p2_natura_rapporto_id !== 0 &&
-                $this->checkModelliBase() &&                 
+                $this->checkModelliBase() &&
                 $this->b6_trattamento_dati_id !== 0 &&
                 $this->c_prestaz_profess_id !== 0) {
               return true;
             }
           } else if ($this->p2naturarapporto->natura_rapporto === 'COCOCO') {
             if ($this->p2_natura_rapporto_id !== 0 &&
-              $this->checkModelliBase() &&               
+              $this->checkModelliBase() &&
               $this->b6_trattamento_dati_id !== 0 &&
               $this->d1_inps_id !== 0 &&
               $this->d2_inail_id !== 0 &&
@@ -423,14 +423,14 @@ class Precontrattuale extends Model {
             }
           } else if ($this->p2naturarapporto->natura_rapporto === 'PLAO') {
             if ($this->p2_natura_rapporto_id !== 0 &&
-              $this->checkModelliBase() &&               
+              $this->checkModelliBase() &&
               $this->b6_trattamento_dati_id !== 0 &&
               $this->e_autonomo_occasionale_id !== 0) {
               return true;
             }
           } else if ($this->p2naturarapporto->natura_rapporto === 'PTG' || $this->p2naturarapporto->natura_rapporto === 'ALD') {
             if ($this->p2_natura_rapporto_id !== 0 &&
-              $this->checkModelliBase() &&               
+              $this->checkModelliBase() &&
               $this->b6_trattamento_dati_id !== 0) {
               return true;
             }
@@ -439,7 +439,6 @@ class Precontrattuale extends Model {
           }
     }
 
-}  
-      
+}
 
-    
+

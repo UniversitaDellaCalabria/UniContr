@@ -34,14 +34,14 @@ class InfoEmail extends Mailable
      * @return $this
      */
     public function build()
-    {        
-        return $this->from(Auth::user())  
-            ->cc(Auth::user())          
-            ->subject("Richiesta modifica/integrazioni modulistica precontrattuale")     
+    {
+        return $this->from(Auth::user())
+            ->cc(Auth::user())
+            ->subject("Richiesta modifica/integrazioni modulistica precontrattuale")
             ->markdown('emails.infoemail')->with([
-                'pre' => $this->pre,     
+                'pre' => $this->pre,
                 'entity' => $this->entity,
-                'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),      
+                'urlUniContr' => url(config('unical.client_url').'/home/summary/'.$this->pre->insegn_id),
         ]);
     }
 }

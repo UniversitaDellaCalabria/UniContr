@@ -271,8 +271,8 @@ class PrecontrattualeController extends Controller
 
             //verificare chi le dati inizio fine assegnamento siano
             if ($request->insegnamento['data_ini_contr'] && $request->insegnamento['data_fine_contr']){
-                $datetimeIni = Carbon::createFromFormat(config('unidem.date_format'), $request->insegnamento['data_ini_contr']);
-                $datetimeFine = Carbon::createFromFormat(config('unidem.date_format'), $request->insegnamento['data_fine_contr']);
+                $datetimeIni = Carbon::createFromFormat(config('unical.date_format'), $request->insegnamento['data_ini_contr']);
+                $datetimeFine = Carbon::createFromFormat(config('unical.date_format'), $request->insegnamento['data_fine_contr']);
 
                 if ($datetimeIni > $datetimeFine){
                     $message = 'Insegnamento non importabile: data di fine insegnamento antecedente alla data di inizio';
@@ -472,7 +472,7 @@ class PrecontrattualeController extends Controller
 
         $postData = $request->except('id', '_method');
         $valid->fill($postData['entity']);
-        $valid->date_upd = Carbon::now()->format(config('unidem.datetime_format'));
+        $valid->date_upd = Carbon::now()->format(config('unical.datetime_format'));
 
         //validata_amm
         $transitions = $valid->workflow_transitions();

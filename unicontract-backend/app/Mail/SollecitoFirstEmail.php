@@ -40,7 +40,7 @@ class SollecitoFirstEmail extends Mailable
         return $this->subject("[sollecito] Compilazione modulistica precontrattuale docenza UniCal")
         ->markdown('emails.sollecitofirstmail')->with([
             'pre' => $this->pre,
-            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),
+            'urlUniContr' => url(config('unical.client_url').'/home/summary/'.$this->pre->insegn_id),
         ]);
 
     }

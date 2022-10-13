@@ -36,12 +36,12 @@ class SubmitEmail extends Mailable
      * @return $this
      */
     public function build()
-    {        
-        return $this->subject("Avvenuta compilazione modulistica precontrattuale")     
+    {
+        return $this->subject("Avvenuta compilazione modulistica precontrattuale")
         ->markdown('emails.submitemail')->with([
-            'pre' => $this->pre,     
-            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),      
-        ]);    
-        
+            'pre' => $this->pre,
+            'urlUniContr' => url(config('unical.client_url').'/home/summary/'.$this->pre->insegn_id),
+        ]);
+
     }
 }

@@ -29,7 +29,7 @@ class FamiliariACarico extends Model
     public function setDataNascitaAttribute($input)
     {
         if($input != '') {
-            $this->attributes['data_nascita'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['data_nascita'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['data_nascita'] = null;
         }
@@ -44,7 +44,7 @@ class FamiliariACarico extends Model
     public function getDataNascitaAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }

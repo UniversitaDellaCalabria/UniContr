@@ -27,7 +27,7 @@ class D1_Inps extends Model
     ];
 
     public function precontrattuale()
-    {        
+    {
         return $this->hasOne(Precontrattuale::class,'d1_inps_id','id');
     }
 
@@ -38,7 +38,7 @@ class D1_Inps extends Model
     public function setDataPensioneAttribute($input)
     {
         if($input != '') {
-            $this->attributes['data_pensione'] = Carbon::createFromFormat(config('unidem.date_format'), $input)->format('Y-m-d');
+            $this->attributes['data_pensione'] = Carbon::createFromFormat(config('unical.date_format'), $input)->format('Y-m-d');
         }else{
             $this->attributes['data_pensione'] = null;
         }
@@ -53,7 +53,7 @@ class D1_Inps extends Model
     public function getDataPensioneAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unidem.date_format'));
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format'));
         }else{
             return '';
         }

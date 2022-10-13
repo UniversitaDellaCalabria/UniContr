@@ -42,7 +42,7 @@ class Validazioni extends Model
 
 
     public function precontrattuale()
-    {        
+    {
         //per compatibilità
         return $this->hasOne(Precontrattuale::class,'insegn_id','insegn_id');
     }
@@ -64,7 +64,7 @@ class Validazioni extends Model
     public function setDateSubmitAttribute($input)
     {
         if($input != '') {
-            $this->attributes['date_submit'] = Carbon::createFromFormat(config('unidem.datetime_format'), $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_submit'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
         }else{
             $this->attributes['date_submit'] = null;
         }
@@ -79,7 +79,7 @@ class Validazioni extends Model
     public function getDateSubmitAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unidem.timezone'))->format(config('unidem.datetime_format'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
         }else{
             return null;
         }
@@ -92,7 +92,7 @@ class Validazioni extends Model
     public function setDateUpdAttribute($input)
     {
         if($input != '') {
-            $this->attributes['date_upd'] = Carbon::createFromFormat(config('unidem.datetime_format'), $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_upd'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
         }else{
             $this->attributes['date_upd'] = null;
         }
@@ -107,7 +107,7 @@ class Validazioni extends Model
     public function getDateUpdAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unidem.timezone'))->format(config('unidem.datetime_format'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
         }else{
             return null;
         }
@@ -120,7 +120,7 @@ class Validazioni extends Model
     public function setDateAmmAttribute($input)
     {
         if($input != '') {
-            $this->attributes['date_amm'] = Carbon::createFromFormat(config('unidem.datetime_format'), $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_amm'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
         }else{
             $this->attributes['date_amm'] = null;
         }
@@ -135,7 +135,7 @@ class Validazioni extends Model
     public function getDateAmmAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unidem.timezone'))->format(config('unidem.datetime_format'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
         }else{
             return null;
         }
@@ -148,7 +148,7 @@ class Validazioni extends Model
     public function setDateMakeAttribute($input)
     {
         if($input != '') {
-            $this->attributes['date_make'] = Carbon::createFromFormat(config('unidem.datetime_format'), $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_make'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
         }else{
             $this->attributes['date_make'] = null;
         }
@@ -163,7 +163,7 @@ class Validazioni extends Model
     public function getDateMakeAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unidem.timezone'))->format(config('unidem.datetime_format'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
         }else{
             return null;
         }
@@ -176,7 +176,7 @@ class Validazioni extends Model
     public function setDateAcceptAttribute($input)
     {
         if($input != '') {
-            $this->attributes['date_accept'] = Carbon::createFromFormat(config('unidem.datetime_format'), $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_accept'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
         }else{
             $this->attributes['date_accept'] = null;
         }
@@ -191,7 +191,7 @@ class Validazioni extends Model
     public function getDateAcceptAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unidem.timezone'))->format(config('unidem.datetime_format'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
         }else{
             return null;
         }
@@ -212,6 +212,6 @@ class Validazioni extends Model
 
 
     public function dateSubmitToPrint(){
-       return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['date_submit'])->setTimezone(config('unidem.timezone'))->format('d/m/Y');
+       return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['date_submit'])->setTimezone(config('unical.timezone'))->format('d/m/Y');
     }
 }

@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <style type="text/css">
     html, body, p, ul, li, span, img {
-        margin: 0px;      
+        margin: 0px;
         padding: 0px;
     }
 
-    body {        
+    body {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 12pt;
-        line-height: 1.7;		                                  
+        line-height: 1.7;
         text-rendering: geometricPrecision;
-    } 
+    }
 
     h2, h3, h4 { line-height: 100% }
 
-    th { 
+    th {
        font-size: 10pt;
        text-rendering: geometricPrecision;
        padding-bottom:10px;
     }
 
     td {
-        padding-bottom:10px;    
+        padding-bottom:10px;
     }
 
-    tr { 
-        page-break-inside: avoid; 
+    tr {
+        page-break-inside: avoid;
     }
-    
+
     div.page {
         page-break-after: always;
         page-break-inside: avoid;
-    } 
+    }
 
     .normal {
         font-family:  Arial, Helvetica, sans-serif;
-        font-size: 9pt;		
+        font-size: 9pt;
         text-rendering: geometricPrecision;
         line-height: 1.7;
         text-align: justify
@@ -52,7 +52,7 @@
 @if ($grouped->count()>0)
 <hr>
 <h3>{{ __('global.'.$dip) }}</h3>
-Data del documento: {{ Carbon\Carbon::now()->format(config('unidem.date_format_contratto'))}}
+Data del documento: {{ Carbon\Carbon::now()->format(config('unical.date_format_contratto'))}}
 <hr>
 <h2 style="padding-top: 10px;">ELENCO CONTRATTI DI DOCENZA NON ANCORA STIPULATI</h2>
 @foreach($grouped as $pres)
@@ -60,7 +60,7 @@ Data del documento: {{ Carbon\Carbon::now()->format(config('unidem.date_format_c
 <!-- <div class="page"> -->
     <h3 style="padding-top: 10px;">A.A. {{$pres->first()->aa}}</h3>
     <table cellspacing="0" border="0" width="100%" style="padding-top: 10px;">
-        <thead>    
+        <thead>
             <tr>
                 <th style="width: 5%;">PROGR.</th>
                 <th style="width: 13%;text-align: left;">NOMINATIVO</th>
@@ -73,14 +73,14 @@ Data del documento: {{ Carbon\Carbon::now()->format(config('unidem.date_format_c
                 <th style="width: 9%; ">STATO</th>
             </tr>
         </thead>
-        <tbody>           
+        <tbody>
             @foreach($pres as $pre)
             <tr>
                 <td style="width: 5%; text-align: center;">{{$loop->iteration}}</td>
                 <td style="width: 13%">{{$pre->user->nameTutorString()}}</td>
                 <td style="width: 39%">{{$pre->insegnamentoDescr}}</td>
-                <td style="width: 7%; text-align: center;">{{$pre->aa}}</td>                
-                <td style="width: 7%; text-align: center;">{{$pre->insegnamento->dataInizioPeriodo()}}</td>                
+                <td style="width: 7%; text-align: center;">{{$pre->aa}}</td>
+                <td style="width: 7%; text-align: center;">{{$pre->insegnamento->dataInizioPeriodo()}}</td>
                 <td style="width: 7%; text-align: center;">{{$pre->insegnamento->dataFinePeriodo()}}</td>
                 <td style="width: 7%; text-align: center;">{{$pre->insegnamento->dataDelibera() ? $pre->insegnamento->dataDelibera() : "DATO MANCANTE"}}</td>
                 <td style="width: 6%; text-align: center;">{{ $pre->insegnamento->giorniDeliberaAOggi() }}</td>
@@ -88,7 +88,7 @@ Data del documento: {{ Carbon\Carbon::now()->format(config('unidem.date_format_c
             </tr>
             @endforeach
         </tbody>
-    </table>    
+    </table>
 <!-- </div> -->
 @endforeach
 

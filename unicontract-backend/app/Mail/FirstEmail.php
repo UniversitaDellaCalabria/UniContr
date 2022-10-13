@@ -36,11 +36,11 @@ class FirstEmail extends Mailable
      * @return $this
      */
     public function build()
-    {        
-        return $this->subject("Richiesta Compilazione Modulistica Precontrattuale")     
+    {
+        return $this->subject("Richiesta Compilazione Modulistica Precontrattuale")
         ->markdown('emails.firstmail')->with([
-            'pre' => $this->pre,     
-            'urlUniContr' => url(config('unidem.client_url').'/home/summary/'.$this->pre->insegn_id),      
-        ]);    
+            'pre' => $this->pre,
+            'urlUniContr' => url(config('unical.client_url').'/home/summary/'.$this->pre->insegn_id),
+        ]);
     }
 }

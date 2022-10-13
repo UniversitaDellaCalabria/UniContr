@@ -32,14 +32,14 @@ class UnitaOrganizzativa extends Model
 
      public function isUnitaAdmin(){
 
-        if (in_array($this->uo, config('unidem.unitaAdmin')))
+        if (in_array($this->uo, config('unical.unitaAdmin')))
             return true;
 
         return false;
      }
 
     public function scopeUfficiValidazione($query){
-         return $query->whereIn('uo', config('unidem.ufficiPerValidazione'));
+         return $query->whereIn('uo', config('unical.ufficiPerValidazione'));
     }
 
      //restituisce tutto il personale afferente ad una unità organizzativa (foglia)
@@ -81,23 +81,28 @@ class UnitaOrganizzativa extends Model
     public function dipartimenti(){
         if ($this->isPlesso()){
             //Plesso Economico - Umanistico (DESP-DISTUM)
-            if ($this->id_ab == 26618){
-                return ['004424','004939'];
-            }
+            // if ($this->id_ab == 26618){
+            //    return ['004424','004939'];
+            //}
             //Plesso Giuridico-Umanistico (DIGIUR-DISCUI)
-            if ($this->id_ab == 26616){
-                return ['004419','004940','005579'];
-            }
+            //if ($this->id_ab == 26616){
+            //    return ['004419','004940','005579'];
+            //}
             //Plesso Scientifico (DiSPeA-DiSB)
-            if ($this->id_ab == 32718){
-                return ['004919','005019'];
-            }
+            // if ($this->id_ab == 32718){
+            //     return ['004919','005019'];
+            // }
             //... aggiungere ulteriori associazioni
         }
     }
 
     public static function allDipartimenti(){
-        return ['004424','004939','004419','004940','004919','005019',
+        return [// '004424',
+                // '004939',
+                // '004419',
+                // '004940',
+                // '004919',
+                // '005019',
                 '002014'];
     }
 

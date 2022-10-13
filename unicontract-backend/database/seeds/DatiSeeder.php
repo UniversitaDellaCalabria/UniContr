@@ -55,14 +55,26 @@ class DatiSeeder extends Seeder
      */
     public function mappingruoli(){
 
-        $this->insertOffice(config('unidem.unitaSuperAdmin'), 'super-admin');
-        $this->insertOffice(config('unidem.unitaAdmin'), 'admin');
-        $this->insertOffice(config('unidem.ufficiPerValidazione'), 'op_approvazione');
+        $this->insertOffice(config('unical.unitaSuperAdmin'), 'super-admin');
+        $this->insertOffice(config('unical.unitaAdmin'), 'admin');
+        $this->insertOffice(config('unical.ufficiPerValidazione'), 'op_approvazione');
 
-        $this->insertOffice(['005144'], 'op_approvazione_amm');
-        $this->insertOffice(['005343'], 'op_approvazione_economica');
+        //$this->insertOffice(['005144'], 'op_approvazione_amm');
+        $this->insertOffice(['000896'], 'op_approvazione_amm');
+        //$this->insertOffice(['005343'], 'op_approvazione_economica');
+        $this->insertOffice(['000012'], 'op_approvazione_economica');
 
-        $this->insertOffice(['005019','004919','004940','004939','004424','004419','004960','004961','005199'], 'op_dipartimentale');
+        $this->insertOffice([// '005019',
+                             // '004919',
+                             // '004940',
+                             // '004939',
+                             // '004424',
+                             // '004419',
+                             // '004960',
+                             // '004961',
+                             // '005199',
+                             '002014'],
+                            'op_dipartimentale');
 
     }
 
@@ -74,107 +86,116 @@ class DatiSeeder extends Seeder
      */
     public function mappingtable(){
 
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '005199',
-            'descrizione_uo' => 'Plesso Scientifico (DiSPeA-DiSB)',
-            'strutturainterna_cod_uff' => 'SI000083',
-            'descrizione_uff' => 'Plesso Scientifico (DISPeA e DISB)',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '005199',
+        //     'descrizione_uo' => 'Plesso Scientifico (DiSPeA-DiSB)',
+        //     'strutturainterna_cod_uff' => 'SI000083',
+        //     'descrizione_uff' => 'Plesso Scientifico (DISPeA e DISB)',
+        // ]);
 
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '005361',
-            'descrizione_uo' => 'Ufficio Ricerca e Relazioni Internazionali - Sett. Ric. e Terza miss.',
-            'strutturainterna_cod_uff' => 'SI000048',
-            'descrizione_uff' => 'Ufficio Ricerca e Relazioni Internazionali',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '005361',
+        //     'descrizione_uo' => 'Ufficio Ricerca e Relazioni Internazionali - Sett. Ric. e Terza miss.',
+        //     'strutturainterna_cod_uff' => 'SI000048',
+        //     'descrizione_uff' => 'Ufficio Ricerca e Relazioni Internazionali',
+        // ]);
 
-        if (App::environment('local') || App::environment('preprod')) {
-            DB::table('mappinguffici')->insert([
-                'unitaorganizzativa_uo' => '005400',
-                'descrizione_uo' => 'Attività Sistemistiche  e Software Gestionali e Documentali - S.S.I.A.',
-                'strutturainterna_cod_uff' => 'Uf1_51',
-                'descrizione_uff' => 'Ufficio Protocollo e Archivio',
-            ]);
-        }else{
-            DB::table('mappinguffici')->insert([
-                'unitaorganizzativa_uo' => '005400',
-                'descrizione_uo' => 'Attività Sistemistiche  e Software Gestionali e Documentali - S.S.I.A.',
-                'strutturainterna_cod_uff' => 'SI000099',
-                'descrizione_uff' => 'Attività sistemistiche e software Gestionali e Documentali',
-            ]);
-        }
+        // if (App::environment('local') || App::environment('preprod')) {
+        //     DB::table('mappinguffici')->insert([
+        //         'unitaorganizzativa_uo' => '005400',
+        //         'descrizione_uo' => 'Attività Sistemistiche  e Software Gestionali e Documentali - S.S.I.A.',
+        //         'strutturainterna_cod_uff' => 'Uf1_51',
+        //         'descrizione_uff' => 'Ufficio Protocollo e Archivio',
+        //     ]);
+        // }else{
+        //     DB::table('mappinguffici')->insert([
+        //         'unitaorganizzativa_uo' => '005400',
+        //         'descrizione_uo' => 'Attività Sistemistiche  e Software Gestionali e Documentali - S.S.I.A.',
+        //         'strutturainterna_cod_uff' => 'SI000099',
+        //         'descrizione_uff' => 'Attività sistemistiche e software Gestionali e Documentali',
+        //     ]);
+        // }
 
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '005479',
-            'descrizione_uo' => 'Rete Dati e Voce, Servizi Telematici e Assistenza Informatica - S.S.I.A.',
-            'strutturainterna_cod_uff' => 'SI000100',
-            'descrizione_uff' => 'Rete Dati e Voce, Servizi Telematici e Assistenza Informatica',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '005479',
+        //     'descrizione_uo' => 'Rete Dati e Voce, Servizi Telematici e Assistenza Informatica - S.S.I.A.',
+        //     'strutturainterna_cod_uff' => 'SI000100',
+        //     'descrizione_uff' => 'Rete Dati e Voce, Servizi Telematici e Assistenza Informatica',
+        // ]);
 
         //004939	Dipartimento di Studi Umanistici (DISTUM) Dipartimento di Studi Umanistici (DISTUM) SI000089 PI000073
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '004939',
-            'descrizione_uo' => 'Dipartimento di Studi Umanistici (DISTUM)',
-            'strutturainterna_cod_uff' => 'SI000089',
-            'descrizione_uff' => 'Dipartimento di Studi Umanistici (DISTUM)',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '004939',
+        //     'descrizione_uo' => 'Dipartimento di Studi Umanistici (DISTUM)',
+        //     'strutturainterna_cod_uff' => 'SI000089',
+        //     'descrizione_uff' => 'Dipartimento di Studi Umanistici (DISTUM)',
+        // ]);
 
         //004424	Dipartimento di Economia, Società, Politica (DESP) - Dipartimento di Economia, Società, Politica (DESP) SI000058 PI000073
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '004424',
-            'descrizione_uo' => 'Dipartimento di Economia, Società, Politica (DESP)',
-            'strutturainterna_cod_uff' => 'SI000058',
-            'descrizione_uff' => 'Dipartimento di Economia, Società, Politica (DESP)',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '004424',
+        //     'descrizione_uo' => 'Dipartimento di Economia, Società, Politica (DESP)',
+        //     'strutturainterna_cod_uff' => 'SI000058',
+        //     'descrizione_uff' => 'Dipartimento di Economia, Società, Politica (DESP)',
+        // ]);
 
         //004419	Dipartimento di Giurisprudenza - Dipartimento di Giurisprudenza SI000062 PI000056
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '004419',
-            'descrizione_uo' => 'Dipartimento di Giurisprudenza',
-            'strutturainterna_cod_uff' => 'SI000062',
-            'descrizione_uff' => 'Dipartimento di Giurisprudenza',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '004419',
+        //     'descrizione_uo' => 'Dipartimento di Giurisprudenza',
+        //     'strutturainterna_cod_uff' => 'SI000062',
+        //     'descrizione_uff' => 'Dipartimento di Giurisprudenza',
+        // ]);
 
         //004940	Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali: Storia, Culture, Lingue, Letterature, Arti, Media (DISCUI) - Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali: Storia, Culture, Lingue, Letterature, Arti, Media - DISCUI SI000087 PI000056
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '004940',
-            'descrizione_uo' => 'Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali: Storia, Culture, Lingue, Letterature, Arti, Media (DISCUI)',
-            'strutturainterna_cod_uff' => 'SI000087',
-            'descrizione_uff' => 'Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali: Storia, Culture, Lingue, Letterature, Arti, Media - DISCUI',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '004940',
+        //     'descrizione_uo' => 'Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali: Storia, Culture, Lingue, Letterature, Arti, Media (DISCUI)',
+        //     'strutturainterna_cod_uff' => 'SI000087',
+        //     'descrizione_uff' => 'Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali: Storia, Culture, Lingue, Letterature, Arti, Media - DISCUI',
+        // ]);
 
 
         //005579	Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI) SI000087 PI000056
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '005579',
-            'descrizione_uo' => 'Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI)',
-            'strutturainterna_cod_uff' => 'SI000087',
-            'descrizione_uff' => 'Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali: Storia, Culture, Lingue, Letterature, Arti, Media - DISCUI',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '005579',
+        //     'descrizione_uo' => 'Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI)',
+        //     'strutturainterna_cod_uff' => 'SI000087',
+        //     'descrizione_uff' => 'Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali: Storia, Culture, Lingue, Letterature, Arti, Media - DISCUI',
+        // ]);
 
 
         //005019	Dipartimento di Scienze Biomolecolari (DISB) - Dipartimento di Scienze Biomolecolari SI000060 PI000083
-        DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '005019',
-            'descrizione_uo' => 'Dipartimento di Scienze Biomolecolari (DISB)',
-            'strutturainterna_cod_uff' => 'SI000060',
-            'descrizione_uff' => 'Dipartimento di Scienze Biomolecolari',
-        ]);
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '005019',
+        //     'descrizione_uo' => 'Dipartimento di Scienze Biomolecolari (DISB)',
+        //     'strutturainterna_cod_uff' => 'SI000060',
+        //     'descrizione_uff' => 'Dipartimento di Scienze Biomolecolari',
+        // ]);
 
 
         //004919	Dipartimento di Scienze Pure e Applicate (DiSPeA) - Dipartimento di Scienze Pure e Applicate - DISPeA SI000084 PI000083
+        // DB::table('mappinguffici')->insert([
+        //     'unitaorganizzativa_uo' => '004919',
+        //     'descrizione_uo' => 'Dipartimento di Scienze Pure e Applicate (DiSPeA)',
+        //     'strutturainterna_cod_uff' => 'SI000084',
+        //     'descrizione_uff' => 'Dipartimento di Scienze Pure e Applicate - DISPeA',
+        // ]);
+
+        // UNICAL
+
         DB::table('mappinguffici')->insert([
-            'unitaorganizzativa_uo' => '004919',
-            'descrizione_uo' => 'Dipartimento di Scienze Pure e Applicate (DiSPeA)',
-            'strutturainterna_cod_uff' => 'SI000084',
-            'descrizione_uff' => 'Dipartimento di Scienze Pure e Applicate - DISPeA',
+            'unitaorganizzativa_uo' => '002032',
+            'descrizione_uo' => 'Area Servizi Informatici e Tecnologici - A.S.I.T.',
+            'strutturainterna_cod_uff' => '002117',
+            'descrizione_uff' => 'Area Sistemi Informativi',
         ]);
 
-        //UNICAL 002014	Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST) SI000089 PI000073
+        // 002014	Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)
         DB::table('mappinguffici')->insert([
             'unitaorganizzativa_uo' => '002014',
             'descrizione_uo' => 'Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)',
-            'strutturainterna_cod_uff' => 'SI000089',
+            'strutturainterna_cod_uff' => '2014',
             'descrizione_uff' => 'Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)',
         ]);
 

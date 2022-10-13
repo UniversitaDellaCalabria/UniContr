@@ -60,12 +60,12 @@ return [
     /**
      * Lista email separate da , per notifica di visione accettazione da parte del docente
      */
-    'firma_direttore_email' => explode(',',env('FIRMA_DIRETTORE_EMAIL',  'firma@unical.it')),
+    'firma_direttore_email' => explode(',',env('FIRMA_DIRETTORE_EMAIL',  'firma@uniurb.it')),
 
      /**
      * Lista email separate da , per notifica compilazione terminata da parte del docente
      */
-    'cmu_email' => explode(',',env('CMU_EMAIL',  'unicontract@unical.it,amministrazione.reclutamento.pdoc@unical.it')),
+    'cmu_email' => explode(',',env('CMU_EMAIL',  'unicontract@uniurb.it,amministrazione.reclutamento.pdoc@uniurb.it')),
 
     /**
      * Inserire nuovi IBAN in Ugov

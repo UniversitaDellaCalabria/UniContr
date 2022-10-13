@@ -23,7 +23,7 @@ class A2ModalitaPagamento extends Model
     protected $appends = ['createdDate'];
 
     public function precontrattuale()
-    {        
+    {
         return $this->hasOne(Precontrattuale::class,'a2_mod_pagamento_id','id');
     }
 
@@ -35,7 +35,7 @@ class A2ModalitaPagamento extends Model
 
     public function getCreatedDateAttribute(){
         if (array_key_exists('createdDate', $this->attributes) && $this->attributes['createdDate']!=null){
-            return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['createdDate'])->setTimezone(config('unidem.timezone'))->format('Y-m-d H:i:s');
+            return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['createdDate'])->setTimezone(config('unical.timezone'))->format('Y-m-d H:i:s');
         }
         return null;
     }

@@ -34,19 +34,19 @@ class EmailService implements ApplicationService
                 Mail::to(Auth::user())->send($email);
             }else{
                 //nel caso di comandi schedulati
-                Mail::to(config('unidem.administrator_email'))->send($email);
+                Mail::to(config('unical.administrator_email'))->send($email);
             }
         } else {
             if ($pre->anagrafica){
                 Mail::to($pre->user)
                     ->cc($pre->anagrafica->email_privata ?: [])
-                    ->bcc(config('unidem.administrator_email'))->send($email);
+                    ->bcc(config('unical.administrator_email'))->send($email);
             }else{
                 //leggo email privata da ugov (non esiste ancora l'anagrafica locale)
                 $anagrafica = $pre->user->anagraficaugov()->first();
                 Mail::to($pre->user)
                     ->cc($anagrafica->e_mail_privata ?: [])
-                    ->bcc(config('unidem.administrator_email'))->send($email);
+                    ->bcc(config('unical.administrator_email'))->send($email);
             }
 
         }
@@ -62,11 +62,11 @@ class EmailService implements ApplicationService
             $email = new ContrattoEmail($pre,$document,$documentName);
 
             if (App::environment(['local','preprod'])) {
-                Mail::to(config('unidem.administrator_email'))->send($email);
+                Mail::to(config('unical.administrator_email'))->send($email);
             } else {
                 Mail::to($pre->user)
                     ->cc($pre->anagrafica->email_privata ?: [])
-                    ->bcc(config('unidem.administrator_email'))
+                    ->bcc(config('unical.administrator_email'))
                     ->send($email);
             }
 
@@ -92,8 +92,8 @@ class EmailService implements ApplicationService
         if (App::environment(['local','preprod'])) {
             Mail::to(Auth::user())->send($email);
         } else {
-            Mail::to(config('unidem.firma_direttore_email'))
-                ->bcc(config('unidem.administrator_email'))->send($email);
+            Mail::to(config('unical.firma_direttore_email'))
+                ->bcc(config('unical.administrator_email'))->send($email);
         }
 
         $sendEmail = new SendEmail();
@@ -158,8 +158,8 @@ class EmailService implements ApplicationService
             Mail::to(Auth::user())->send($email);
         } else {
             //['unicontract@uniurb.it','amministrazione.reclutamento.pdoc@uniurb.it']
-            Mail::to(config('unidem.cmu_email'))
-                ->bcc(config('unidem.administrator_email'))->send($email);
+            Mail::to(config('unical.cmu_email'))
+                ->bcc(config('unical.administrator_email'))->send($email);
         }
 
         $sendEmail = new SendEmail();
