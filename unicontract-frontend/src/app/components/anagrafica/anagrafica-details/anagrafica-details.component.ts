@@ -615,49 +615,49 @@ export class AnagraficaDetailsComponent extends BaseComponent {
       ]
     },
     // tutela lavoratrici madri
-    {
-      wrappers: ['riquadro'],
-      templateOptions: {
-        title: this.translateService.instant('a1_title8')
-      },
-      fieldGroup: [
-        {
-          fieldGroupClassName: 'row',
-          fieldGroup: [
-            {
-              key: 'flag_lavoratrici_madri',
-              type: 'checkbox',
-              className: 'col-auto',
-              defaultValue: false,
+    //{
+      //wrappers: ['riquadro'],
+      //templateOptions: {
+        //title: this.translateService.instant('a1_title8')
+      //},
+      //fieldGroup: [
+        //{
+          //fieldGroupClassName: 'row',
+          //fieldGroup: [
+            //{
+              //key: 'flag_lavoratrici_madri',
+              //type: 'checkbox',
+              //className: 'col-auto',
+              //defaultValue: false,
 
-              templateOptions: {
-                indeterminate: false,
-                required: true,
-                translate: true,
-                label: 'a1_label24'
-              },
-              validators: {
-                flag_true: {
-                  expression: ctrl => ctrl.value ? true : false,
-               }
+              //templateOptions: {
+                //indeterminate: false,
+                //required: true,
+                //translate: true,
+                //label: 'a1_label24'
+              //},
+              //validators: {
+                //flag_true: {
+                  //expression: ctrl => ctrl.value ? true : false,
+               //}
 
-              },
-            },
-          ]
-        },
-        {
-          template: '<span class="form-text">La documentazione e la normativa vigente sono dispobili presso <a href="https://www.uniurb.it/ateneo/utilita/salute-e-sicurezza/informazione-ai-lavoratori" target="_blank">https://www.uniurb.it/ateneo/utilita/salute-e-sicurezza/informazione-ai-lavoratori </a></span>',
-          className: 'pb-1'
-        }
+              //},
+            //},
+          //]
+        //},
+        //{
+          //template: '<span class="form-text">La documentazione e la normativa vigente sono dispobili presso <a href="https://www.uniurb.it/ateneo/utilita/salute-e-sicurezza/informazione-ai-lavoratori" target="_blank">https://www.uniurb.it/ateneo/utilita/salute-e-sicurezza/informazione-ai-lavoratori </a></span>',
+          //className: 'pb-1'
+        //}
 
-      ],
-      hideExpression: (model: any, formState: any) => {
-        if (!(model.sesso === 'F')) {
-          return true;
-        }
-        return false;
-      },
-    },
+      //],
+      //hideExpression: (model: any, formState: any) => {
+        //if (!(model.sesso === 'F')) {
+          //return true;
+        //}
+        //return false;
+      //},
+    //},
     // allegati
     {
       wrappers: ['riquadro'],

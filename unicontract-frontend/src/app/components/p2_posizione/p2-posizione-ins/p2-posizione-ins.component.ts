@@ -45,21 +45,21 @@ export class P2PosizioneInsComponent extends BaseComponent {
   };
 
   fields1: FormlyFieldConfig[] = [
-    {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
-        {
-          key: 'flag_rapp_studio_univ',
-          type: 'checkbox',
-          className: 'col-auto',
-          defaultValue: false,
-          templateOptions: {
-            translate: true,
-            label: 'p2_check1'
-          }
-        },
-      ]
-    },
+    //{
+      //fieldGroupClassName: 'row',
+      //fieldGroup: [
+        //{
+          //key: 'flag_rapp_studio_univ',
+          //type: 'checkbox',
+          //className: 'col-auto',
+          //defaultValue: false,
+          //templateOptions: {
+            //translate: true,
+            //label: 'p2_check1'
+          //}
+        //},
+      //]
+    //},
     {
       fieldGroupClassName: 'row',
       fieldGroup: [
@@ -109,12 +109,12 @@ export class P2PosizioneInsComponent extends BaseComponent {
             opt.push({ key: 'COCOCO', value: this.translateService.instant('p3_radio2') });
           }
 
-          if (this.tools.controlloPLAO(this.items.tipo_contratto, this.items.ore)) {
-            opt.push( { key: 'PLAO', value: this.translateService.instant('p3_radio3') });
-          }
+          //if (this.tools.controlloPLAO(this.items.tipo_contratto, this.items.ore)) {
+            //opt.push( { key: 'PLAO', value: this.translateService.instant('p3_radio3') });
+          //}
 
           opt.push( { key: 'PTG', value: this.translateService.instant('p3_radio4') });
-          opt.push( { key: 'ALD', value: this.translateService.instant('p3_radio5') });
+          //opt.push( { key: 'ALD', value: this.translateService.instant('p3_radio5') });
           return opt;
         },
         'templateOptions.description': (model: any, formState: any, field: FormlyFieldConfig) => {
@@ -122,24 +122,24 @@ export class P2PosizioneInsComponent extends BaseComponent {
             case 'PRPR': {
                return this.translateService.instant('p3_PRPR');
             }
-            case 'PLAO': {
-               return this.translateService.instant('p3_PLAO');
-            }
+            //case 'PLAO': {
+               //return this.translateService.instant('p3_PLAO');
+            //}
             case 'PTG': {
               return this.translateService.instant('p3_PTG');
             }
-            case 'ALD': {
-              return this.translateService.instant('p3_ALD');
-            }
+            //case 'ALD': {
+              //return this.translateService.instant('p3_ALD');
+            //}
             default: {
                return '';
             }
           }
         }
       },
-      
+
       // validators: {
-      //   compatibility: ctrl => ctrl.value == 'ALD' ? ['CD', 'CL','ND','NM','NE'].includes(this.items.ruolo) : true 
+      //   compatibility: ctrl => ctrl.value == 'ALD' ? ['CD', 'CL','ND','NM','NE'].includes(this.items.ruolo) : true
       // },
       // validation: {
       //   messages: {
@@ -156,7 +156,7 @@ export class P2PosizioneInsComponent extends BaseComponent {
               private precontrattualeService: PrecontrattualeService,
               private storyService: StoryProcessService,
               protected translateService: TranslateService,
-              public messageService: MessageService,              
+              public messageService: MessageService,
               private tools: InsegnamTools) { super(messageService); }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -211,11 +211,11 @@ export class P2PosizioneInsComponent extends BaseComponent {
 
         if (response['success']) {
           this.messageService.info('Parte 2: Posizione del collaboratore creata con successo');
-          this.router.navigate(['home/p2rapporto/details', lastid]);        
+          this.router.navigate(['home/p2rapporto/details', lastid]);
         } else {
           this.messageService.error(response['message']);
         }
-      
+
       },
       (error) => this.handleError(error),
       () => this.complete()
@@ -235,11 +235,11 @@ export class P2PosizioneInsComponent extends BaseComponent {
         this.isLoading = false;
         if (response['success']) {
           this.messageService.info('Parte 2: Posizione del collaboratore aggiornata con successo');
-          this.router.navigate(['home/p2rapporto/details', idP2]);          
+          this.router.navigate(['home/p2rapporto/details', idP2]);
         } else {
           this.messageService.error(response['message']);
         }
-        
+
       },
       (error) => this.handleError(error),
       () => this.complete()
