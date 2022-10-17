@@ -1,8 +1,8 @@
 export const environment = {
-  production: false,
-  API_URL: '',
-  baseHref: '/',
-  whitelistedDomains: ['unicontr-preprod.unical.it'],
-  blacklistedRoutes: [''],
-  documentation: '',
+    production: true,
+    API_URL: 'https://unicontr.unical.it/public/',
+    baseHref: '/',
+    whitelistedDomains: ['unicontr.unical.it'],
+    blacklistedRoutes: ['https://unicontr.unical.it/public/auth/'],
+    documentation: 'https://unidem.uniurb.it/unicontr/documentation/'
 };
