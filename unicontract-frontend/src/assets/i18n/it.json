@@ -699,6 +699,10 @@
     "SUPPU" : "Contratto di Supporto alla Didattica",
     "SUPPC" : "Contratto di Supporto alla Didattica",
 
+    "TC004" : "Contratto di Alta Qualificazione",
+    "TC005" : "Contratto di Alta Qualificazione",
+    "TC006" : "Contratto di Alta Qualificazione",
+    "TC007" : "Contratto di Didattica Ufficiale",
 
     "data_variazione_residenza" : "Data variazione residenza",
     "comune_fiscale" : "Comune fiscale",

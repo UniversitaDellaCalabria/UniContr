@@ -12,29 +12,29 @@ class UtilService {
 
         $findparam->limit = 10000;
         $findparam->page = null;
-        
+
         $paginator = UtilService::query($modelinstance, $request, $findparam);
         $collection = collect($paginator->items());
-       
+
         $page = 1;
         $total = $paginator->total();
 
-        while($collection->count() < $total) {            
+        while($collection->count() < $total) {
             $page = $page+1;
 
             $findparam->page = $page;
-            
-            $p = UtilService::query($modelinstance, $request, $findparam);   
+
+            $p = UtilService::query($modelinstance, $request, $findparam);
             $collection = $collection->concat($p->items());
         }
 
         return $collection;
     }
 
-    private static function query($modelinstance, Request $request, $findparam){        
+    private static function query($modelinstance, Request $request, $findparam){
         $queryBuilder = new QueryBuilder($modelinstance, $request, $findparam);
         $queryBuilder->alias = ['precontr.id'];
-        return $queryBuilder->build()->paginate();        
+        return $queryBuilder->build()->paginate();
     }
 
     public static function tipoConferimento($value) {
@@ -48,9 +48,16 @@ class UtilService {
     }
 
     public static function tipoContratto($value) {
-        if ($value === 'ALTQG' || $value === 'ALTQC' || $value === 'ALTQU') {
+        if ($value === 'ALTQG' ||
+            $value === 'ALTQC' ||
+            $value === 'ALTQU' ||
+            $value === 'TC004' ||
+            $value === 'TC005' ||
+            $value === 'TC006') {
             return 'Contratto di Alta Qualificazione';
-        } else if ($value === 'CONTC' || $value === 'CONTU') {
+        } else if ($value === 'CONTC' ||
+                   $value === 'CONTU' ||
+                   $value === 'TC007') {
             return 'Contratto di Didattica Ufficiale';
         } else if ($value === 'INTC'
                   || $value === 'INTU'

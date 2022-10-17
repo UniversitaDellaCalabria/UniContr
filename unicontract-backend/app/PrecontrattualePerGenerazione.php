@@ -20,38 +20,38 @@ use Exception;
 
 
 class PrecontrattualePerGenerazione extends Precontrattuale {
-   
-    //PROPRIETA CREATE PER GENERAZIONE CONTRATTO    
+
+    //PROPRIETA CREATE PER GENERAZIONE CONTRATTO
     // TIPOLOGIA CONTRATTUALE
     public function getTipoContrAttribute()
     {
-        return $this->insegnamento->tipo_contratto;    
+        return $this->insegnamento->tipo_contratto;
     }
 
     public function getMotivoAttoAttribute()
     {
-        return $this->insegnamento->motivo_atto;    
+        return $this->insegnamento->motivo_atto;
     }
 
     public function getNaturaRapportoAttribute()
     {
-        return $this->p2naturarapporto->natura_rapporto;  
+        return $this->p2naturarapporto->natura_rapporto;
     }
 
     public function getGenereAttribute(){
         return $this->anagrafica->genereSelection();
     }
-    
+
 
     // SPECIFICHE DELL'INSEGNAMENTO
     public function getRuoloAttribute()
     {
         $pers =$this->personaleRelation() ? $this->personaleRelation()->first() : null;
         $cd_ruolo = $pers ? $pers->cd_ruolo : null;
-        
+
         return $this->insegnamento->ruoloToString($cd_ruolo);
     }
-    
+
     public function getDipartimentoAttribute()
     {
         return $this->insegnamento->dipartimento;
@@ -61,81 +61,81 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     {
         return $this->insegnamento->insegnamentoDescr;
     }
-  
+
     public function getSettoreAttribute()
     {
         return $this->insegnamento->settoreToString();
-    }  
-      
+    }
+
     public function getCfuAttribute()
     {
         return $this->insegnamento->cfuToString();
-    }  
+    }
     public function getOreAttribute()
     {
         return $this->insegnamento->ore;
-    }  
+    }
     public function getCdlAttribute()
     {
         return  $this->insegnamento->cdlToString();
-    }  
-     
+    }
+
     public function getPeriodoAttribute()
     {
         return $this->insegnamento->periodoToString();
-    }  
-    
-    
+    }
+
+
     public function getDataDaAttribute()
     {
         return $this->insegnamento->data_ini_contr;
-    }  
-    
+    }
+
     public function getDataAAttribute()
     {
         return $this->insegnamento->data_fine_contr;
-    }  
+    }
 
     public function getAaAttribute()
-    {        
+    {
         return $this->insegnamento->aa.'/'.((int)$this->insegnamento->aa+1);
     }
 
     public function getAaNumAttribute()
-    {        
+    {
         return (int)$this->insegnamento->aa;
     }
 
 
     public function getRinnovoAttribute()
-    {        
+    {
         return $this->ContatoreSelection();
     }
 
-    
+
     // SPECIFICHE AMMINISTRATIVE E PREVIDENZIALI
     public function getCompensoAttribute()
-    {        
+    {
         return number_format($this->insegnamento->compenso, 2, ',', '.');
     }
 
     public function getTipoEmittAttribute()
-    {        
+    {
         return $this->insegnamento->emittenteToString();
     }
     public function getTipoAttoAttribute()
-    {        
+    {
         return $this->insegnamento->tipoAttoToString();
     }
 
     public function getEsercizioFinanziarioAttribute()
-    {        
-        return date('Y') + 1; 
+    {
+        return date('Y') + 1;
     }
-    
+
     public function getModPagamentoAttribute(){
-            
-        return $this->insegnamento->modalitadiPagamento();       
+
+        return $this->insegnamento->modalitadiPagamento();
     }
 
     public function getAttestazioneAttribute(){
@@ -164,19 +164,26 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
 
     public function datiAnagraficaString(){
         if($this->naturaRapporto == "ALD"){
-            // ASSIMILATO A LAVORO DIPENDENTE 
+            // ASSIMILATO A LAVORO DIPENDENTE
             return $this->anagrafica->datiAnagraficaString()." attualmente ".$this->ruolo." di questo Ateneo";
         }
-        return $this->anagrafica->datiAnagraficaString();                
+        return $this->anagrafica->datiAnagraficaString();
     }
 
 
     public function isAltaQualificazione(){
-        return $this->tipoContr == 'ALTQG' || $this->tipoContr == 'ALTQC' || $this->tipoContr == 'ALTQU';
+        return $this->tipoContr == 'ALTQG' ||
+               $this->tipoContr == 'ALTQC' ||
+               $this->tipoContr == 'ALTQU' ||
+               $this->tipoContr == 'TC004' ||
+               $this->tipoContr == 'TC005' ||
+               $this->tipoContr == 'TC006';
     }
 
     public function isDidatticaUfficiale(){
-        return $this->tipoContr == 'CONTC' || $this->tipoContr == 'CONTU';
+        return $this->tipoContr == 'CONTC' ||
+               $this->tipoContr == 'CONTU' ||
+               $this->tipoContr == 'TC007';
     }
 
     public function isDidatticaIntegrativa(){
@@ -184,20 +191,20 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     }
 
     public function isSupportoDidattica(){
-        return $this->tipoContr == 'SUPPU' || $this->tipoContr == 'SUPPC';        
+        return $this->tipoContr == 'SUPPU' || $this->tipoContr == 'SUPPC';
     }
 
     public function isNuovo(){
-        return $this->motivoAtto == 'BAN_INC' || $this->motivoAtto == 'APPR_INC';        
+        return $this->motivoAtto == 'BAN_INC' || $this->motivoAtto == 'APPR_INC';
     }
 
     public function ContatoreSelection(){
         // CONTATORE INSEGNAMENTI
-        
-        $counter = $this->insegnamento->contatore(); //contatore_insegnamenti($cod_insegnam, $cf); 
 
-        //nel caso il contatore sia 0 ma è stato importato come RINNOVO 
-        //significa che il sistema su Ugov non è coerente per eventuali delibere di rinnovo        
+        $counter = $this->insegnamento->contatore(); //contatore_insegnamenti($cod_insegnam, $cf);
+
+        //nel caso il contatore sia 0 ma è stato importato come RINNOVO
+        //significa che il sistema su Ugov non è coerente per eventuali delibere di rinnovo
         //UniContr lo considera rinnovo
         if($counter == 1){
             return [
@@ -207,7 +214,7 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
                 'text_rinnovo_3' => "rinnovo",
                 'text_rinnovo_4' => "conferito"
             ];
-            
+
         } else if($counter > 1) {
             return [
                 'storico' => "rinnovato",
@@ -219,9 +226,9 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
         }
 
         if($counter == 0){
-            
-            Log::info('Generato contratto con contatore a 0  [ id =' . $this->id . '] [ coper_id =' . $this->insegnamento->coper_id . ']');             
-            
+
+            Log::info('Generato contratto con contatore a 0  [ id =' . $this->id . '] [ coper_id =' . $this->insegnamento->coper_id . ']');
+
             return [
                 'storico' => "attribuito",
                 'text_rinnovo_1' => "rinnovato",
@@ -229,7 +236,7 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
                 'text_rinnovo_3' => "rinnovo",
                 'text_rinnovo_4' => "conferito"
             ];
-            
+
         }
 
     }
@@ -238,8 +245,8 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
         if ($this->validazioni){
             if ($this->stato == 2 || $this->stato == 3){
                 return "ANNULLATA";
-            }            
-            if (!$this->validazioni->flag_submit){            
+            }
+            if (!$this->validazioni->flag_submit){
                 return "MODULISTICA \n DA COMPILARE";
             }
             if ($this->validazioni->flag_submit && (!$this->validazioni->flag_upd || !$this->validazioni->flag_amm)){
@@ -258,7 +265,7 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
             }
             if ($this->validazioni->flag_submit && $this->validazioni->flag_upd && $this->validazioni->flag_amm && $this->validazioni->flag_accept && $this->stato == 0 ){
                 return "ALLA FIRMA";
-            }            
+            }
             return '';
         }else{
             return '';
@@ -275,7 +282,7 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
 
 
 
-    ///precondizione che sia stata caricata la relazione 
+    ///precondizione che sia stata caricata la relazione
     public function existEmail(){
         if ($this->sendemails && $this->sendemails->count()>0){
             return true;
@@ -283,20 +290,19 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
         return false;
     }
 
-    ///precondizione che sia stata caricata la relazione 
+    ///precondizione che sia stata caricata la relazione
     public function giorniUltimaEmail(){
         if ($this->existEmail()){
             $email = $this->sendemails->sortByDesc('created_at')->first();
             $datetime1 =  $email->created_at;
             $datetime2 = Carbon::now();
             $diff_in_days  = $datetime1->diffInDays($datetime2);
-            return $diff_in_days;         
+            return $diff_in_days;
         }else{
             return -1;
-        }        
+        }
     }
 
-}  
-      
+}
 
-    
+

@@ -153,14 +153,19 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        if ($insegnamentoUgov->motivo_atto=='APPR_INC' && !in_array($insegnamentoUgov->tipo_contratto, ['ALTQG','ALTQC','ALTQU'])){
+        if ($insegnamentoUgov->motivo_atto=='APPR_INC' && !in_array($insegnamentoUgov->tipo_contratto, ['ALTQG',
+                                                                                                        'ALTQC',
+                                                                                                        'ALTQU',
+                                                                                                        'TC004',
+                                                                                                        'TC005',
+                                                                                                        'TC006'])){
             $data = null;
             $message = 'Insegnamento non aggiornabile: tipologia copertura non coerente con il motivo atto';
             $success = false;
             return compact('data', 'message', 'success');
         }
 
-        if ($insegnamentoUgov->motivo_atto=='BAN_INC' && !in_array($insegnamentoUgov->tipo_contratto, ['CONTC', 'CONTU', 'INTC', 'INTU', 'INTXU', 'INTXC', 'SUPPU', 'SUPPC'])){
+        if ($insegnamentoUgov->motivo_atto=='BAN_INC' && !in_array($insegnamentoUgov->tipo_contratto, ['CONTC', 'CONTU', 'INTC', 'INTU', 'INTXU', 'INTXC', 'SUPPU', 'SUPPC', 'TC007'])){
             $data = null;
             $message = 'Insegnamento non aggiornabile: tipologia copertura non coerente con il motivo atto';
             $success = false;
@@ -282,7 +287,21 @@ class PrecontrattualeController extends Controller
             }
 
             //verificare che al docente sia associata una email istituzionale
-            if ($request->insegnamento['tipo_contratto'] && !in_array($request->insegnamento['tipo_contratto'], ['ALTQG','ALTQC','ALTQU', 'CONTC', 'CONTU', 'INTC', 'INTU', 'INTXU', 'INTXC', 'SUPPU', 'SUPPC'  ])){
+            if ($request->insegnamento['tipo_contratto'] && !in_array($request->insegnamento['tipo_contratto'], ['ALTQG',
+                                                                                                                 'ALTQC',
+                                                                                                                 'ALTQU',
+                                                                                                                 'CONTC',
+                                                                                                                 'CONTU',
+                                                                                                                 'INTC',
+                                                                                                                 'INTU',
+                                                                                                                 'INTXU',
+                                                                                                                 'INTXC',
+                                                                                                                 'SUPPU',
+                                                                                                                 'SUPPC',
+                                                                                                                 'TC004',
+                                                                                                                 'TC005',
+                                                                                                                 'TC006',
+                                                                                                                 'TC007'  ])){
                 $data = null;
                 $message = 'Insegnamento non importabile: tipologia di copertura non riconosciuta';
                 $success = false;
@@ -297,14 +316,19 @@ class PrecontrattualeController extends Controller
                 return compact('data', 'message', 'success');
             }
 
-            if ($request->insegnamento['motivo_atto']=='APPR_INC' && !in_array($request->insegnamento['tipo_contratto'], ['ALTQG','ALTQC','ALTQU'])){
+            if ($request->insegnamento['motivo_atto']=='APPR_INC' && !in_array($request->insegnamento['tipo_contratto'], ['ALTQG',
+                                                                                                                          'ALTQC',
+                                                                                                                          'ALTQU',
+                                                                                                                          'TC004',
+                                                                                                                          'TC005',
+                                                                                                                          'TC006'])){
                 $data = null;
                 $message = 'Insegnamento non importabile: tipologia copertura non coerente con il motivo atto';
                 $success = false;
                 return compact('data', 'message', 'success');
             }
 
-            if ($request->insegnamento['motivo_atto']=='BAN_INC' && !in_array($request->insegnamento['tipo_contratto'], ['CONTC', 'CONTU', 'INTC', 'INTU', 'INTXU', 'INTXC', 'SUPPU', 'SUPPC'])){
+            if ($request->insegnamento['motivo_atto']=='BAN_INC' && !in_array($request->insegnamento['tipo_contratto'], ['CONTC', 'CONTU', 'INTC', 'INTU', 'INTXU', 'INTXC', 'SUPPU', 'SUPPC', 'TC007'])){
                 $data = null;
                 $message = 'Insegnamento non importabile: tipologia copertura non coerente con il motivo atto';
                 $success = false;

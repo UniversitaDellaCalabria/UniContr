@@ -173,10 +173,10 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
 
   keyValueRulesTipoContratto: { [key: string]: any[]} = {
     'ALTAQUALIFICAZIONE': [
-      { field: "insegnamento.tipo_contratto", operator: "In", value: ['ALTQG','ALTQC','ALTQU'], type: "" },
+      { field: "insegnamento.tipo_contratto", operator: "In", value: ['ALTQG','ALTQC','ALTQU','TC004','TC005','TC006'], type: "" },
     ],
     'DIDATTICAUFFICIALE': [
-      { field: "insegnamento.tipo_contratto", operator: "In", value: ['CONTC', 'CONTU'], type: "" },
+      { field: "insegnamento.tipo_contratto", operator: "In", value: ['CONTC','CONTU','TC007'], type: "" },
     ],
     'DIDATTICAINTEGRATIVA': [
       { field: "insegnamento.tipo_contratto", operator: "In", value: ['INTC','INTU','INTXU','INTXC'], type: "" },
@@ -188,10 +188,10 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
 
   keyValueInverseRulesTipoContratto: { [key: string]: any[]} = {
     'ALTAQUALIFICAZIONE': [
-      { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['ALTQG','ALTQC','ALTQU'], type: "" },
+      { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['ALTQG','ALTQC','ALTQU','TC004','TC005','TC006'], type: "" },
     ],
     'DIDATTICAUFFICIALE': [
-      { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['CONTC', 'CONTU'], type: "" },
+      { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['CONTC','CONTU','TC007'], type: "" },
     ],
     'DIDATTICAINTEGRATIVA': [
       { field: "insegnamento.tipo_contratto", operator: "NotIn", value: ['INTC','INTU','INTXU','INTXC'], type: "" },

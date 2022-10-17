@@ -65,7 +65,12 @@ class InsegnamUgovController extends Controller
 
         $datiUgov = null;
 
-        if ( $tipo_coper_cod == 'ALTQG' ||  $tipo_coper_cod == 'ALTQC' ||  $tipo_coper_cod == 'ALTQU'){
+        if ( $tipo_coper_cod == 'ALTQG' ||
+             $tipo_coper_cod == 'ALTQC' ||
+             $tipo_coper_cod == 'ALTQU' ||
+             $tipo_coper_cod == 'TC004' ||
+             $tipo_coper_cod == 'TC005' ||
+             $tipo_coper_cod == 'TC006'){
             //contratto di alta qualificazione
             //non c'è BAN_INC cerco il primo contratto APPR_INC
             $datiUgov = self::queryFirstMotivoAttoCod($coper_id, ['APPR_INC']);

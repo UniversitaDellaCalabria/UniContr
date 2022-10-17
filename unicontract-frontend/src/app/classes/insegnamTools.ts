@@ -72,9 +72,16 @@ export class InsegnamTools {
   }
 
   tipoContratto(value) {
-      if (value === 'ALTQG' || value === 'ALTQC' || value === 'ALTQU') {
+      if (value === 'ALTQG' ||
+          value === 'ALTQC' ||
+          value === 'ALTQU' ||
+          value === 'TC004' ||
+          value === 'TC005' ||
+          value === 'TC006') {
           return 'CONTRATTO DI ALTA QUALIFICAZIONE';
-      } else if (value === 'CONTC' || value === 'CONTU') {
+      } else if (value === 'CONTC' ||
+                 value === 'CONTU' ||
+                 value === 'TC007') {
           return 'CONTRATTO DI DIDATTICA UFFICIALE';
       } else if (value === 'INTC'
                 || value === 'INTU'
@@ -141,11 +148,16 @@ export class InsegnamTools {
   }
 
   controlloCNA(tipo, ore) {
-    if (tipo === 'CONTC' || tipo === 'CONTU') {
+    if (tipo === 'CONTC' || tipo === 'CONTU' || tipo === 'TC007') {
         return true;
     } else if ((tipo === 'INTC' || tipo === 'INTU' || tipo === 'INTXU'  || tipo === 'INTXC') && ore > 15) {
         return true;
-    } else if ((tipo === 'ALTQG' || tipo === 'ALTQC' || tipo === 'ALTQU') && ore > 15) {
+    } else if ((tipo === 'ALTQG' ||
+                tipo === 'ALTQC' ||
+                tipo === 'ALTQU' ||
+                tipo === 'TC004' ||
+                tipo === 'TC005' ||
+                tipo === 'TC006') && ore > 15) {
         return true;
     } else {
         return false;
@@ -157,7 +169,12 @@ export class InsegnamTools {
         return true;
     } else if ((tipo === 'INTC' || tipo === 'INTU' || tipo === 'INTXU'  || tipo === 'INTXC') && ore <= 15) {
         return true;
-    } else if ((tipo === 'ALTQG' || tipo === 'ALTQC' || tipo === 'ALTQU') && ore <= 15) {
+    } else if ((tipo === 'ALTQG' ||
+                tipo === 'ALTQC' ||
+                tipo === 'ALTQU' ||
+                tipo === 'TC004' ||
+                tipo === 'TC005' ||
+                tipo === 'TC006') && ore <= 15) {
         return true;
     } else {
         return false;
@@ -229,6 +246,6 @@ export class InsegnamTools {
       return 'Unita civilmente';
     }
   }
- 
+
 
 }
