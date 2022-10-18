@@ -84,12 +84,12 @@ class A2ModalitaPagamentoController extends Controller
             $dati = AnagraficaUgov::leftJoin('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA', function($join) {
                 $join->on('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.MATRICOLA', '=', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.MATRICOLA');
             })
-            ->leftJoin('BANCHE', function($join) {
-                $join->on('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.ABI', '=', 'BANCHE.ABI');
+            ->leftJoin('SIAXM_UNICAL_PROD.V_IE_AC_BANCHE', function($join) {
+                $join->on('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.ABI', '=', 'SIAXM_UNICAL_PROD.V_IE_AC_BANCHE.ABI');
             })
             ->where('SIARU_UNICAL_PROD.VD_ANAGRAFICA.ID_AB', $id_ab)
             ->orderBy('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.DATA_IN', 'DESC')
-            ->first(['SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.*', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.NOME', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.COGNOME', 'BANCHE.DESCR']);
+            ->first(['SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.*', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.NOME', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.COGNOME', 'SIAXM_UNICAL_PROD.V_IE_AC_BANCHE.NOME as DESCR']);
             //cercare l'ultima precontrattuale inserita stato = 0 o stato = 1 docente_id
 
             //come determinare che non abbia compilato altri contratti dell'anno accademico corrente?
