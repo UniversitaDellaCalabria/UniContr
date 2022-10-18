@@ -178,28 +178,28 @@ export class AnagraficaDetailsComponent extends BaseComponent {
                 pattern: /^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$/
               },
             },
-            {
-              key: 'cf_coniuge',
-              type: 'input',
-              className: 'col-md-6',
-              templateOptions: {
-                minLength: 2,
-                maxLength: 16,
-                required: true,
-                translate: true,
-                label: 'a1_label6',
-                pattern: /^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]|[E]{2}|[0-9]{9}$/,
-                description: "Inserire EE per codici fiscali esteri"
-              },
-              expressionProperties: {
-                'templateOptions.required': (model: any, formState: any, field: FormlyFieldConfig) => {
-                  return (model.stato_civile === 'C' || model.stato_civile === 'Z');
-                },
-                'templateOptions.readonly': (model: any, formState: any, field: FormlyFieldConfig) => {
-                  return (model.stato_civile !== 'C' && model.stato_civile !== 'Z');
-                },
-              }
-            },
+            //{
+              //key: 'cf_coniuge',
+              //type: 'input',
+              //className: 'col-md-6',
+              //templateOptions: {
+                //minLength: 2,
+                //maxLength: 16,
+                //required: true,
+                //translate: true,
+                //label: 'a1_label6',
+                //pattern: /^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]|[E]{2}|[0-9]{9}$/,
+                //description: "Inserire EE per codici fiscali esteri"
+              //},
+              //expressionProperties: {
+                //'templateOptions.required': (model: any, formState: any, field: FormlyFieldConfig) => {
+                  //return (model.stato_civile === 'C' || model.stato_civile === 'Z');
+                //},
+                //'templateOptions.readonly': (model: any, formState: any, field: FormlyFieldConfig) => {
+                  //return (model.stato_civile !== 'C' && model.stato_civile !== 'Z');
+                //},
+              //}
+            //},
           ]
         },
         // nazionalità e titolo di studio
