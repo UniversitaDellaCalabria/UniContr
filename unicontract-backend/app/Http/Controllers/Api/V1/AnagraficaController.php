@@ -40,7 +40,7 @@ class AnagraficaController extends Controller
                 //$join->on('ANA_TIT_STUDIO.MATRICOLA', '=', 'SIARU_UNICAL_PROD.ANAGRAFICA.MATRICOLA')
                 $join->on('SIARU_UNICAL_PROD.V_IE_RU_PERS_TITSTU.MATRICOLA', '=', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.MATRICOLA')
                 //->whereNotNull('ANA_TIT_STUDIO.UNIV_LAUREA');
-                ->whereNotNull('SIARU_UNICAL_PROD.V_IE_RU_PERS_TITSTU.UNIV_LAUREA');
+                ->whereNotNull('SIARU_UNICAL_PROD.V_IE_RU_PERS_TITSTU.CD_UNIV_LAUREA');
             })
             ->leftJoin('SIARU_UNICAL_PROD.COMUNE_PROV', function($join) {
                 $join->on('SIARU_UNICAL_PROD.COMUNE_PROV.COD', '=', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.COMUNE_NASC');
@@ -48,7 +48,7 @@ class AnagraficaController extends Controller
             ->where('SIARU_UNICAL_PROD.VD_ANAGRAFICA.ID_AB', $id_ab)
             ->orderBy('SIARU_UNICAL_PROD.COMUNE_PROV.DATA_IN', 'DESC')
             //->first(['SIARU_UNICAL_PROD.FAM_ANAGRAFICA.RAP_PARENTELA', 'SIARU_UNICAL_PROD.FAM_ANAGRAFICA.COD_FISC AS COD_FISC_CONIUGE', 'ANA_TIT_STUDIO.DESCR AS TITOLO_STUDIO', 'SIARU_UNICAL_PROD.ANAGRAFICA.*', 'SIARU_UNICAL_PROD.COMUNE_PROV.PROVINCIA']);
-            ->first(['SIARU_UNICAL_PROD.FAM_ANAGRAFICA.RAP_PARENTELA', 'SIARU_UNICAL_PROD.FAM_ANAGRAFICA.COD_FISC AS COD_FISC_CONIUGE', 'SIARU_UNICAL_PROD.V_IE_RU_PERS_TITSTU.DESCR AS TITOLO_STUDIO', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.*', 'SIARU_UNICAL_PROD.COMUNE_PROV.PROVINCIA']);
+            ->first(['SIARU_UNICAL_PROD.FAM_ANAGRAFICA.RAP_PARENTELA', 'SIARU_UNICAL_PROD.FAM_ANAGRAFICA.COD_FISC AS COD_FISC_CONIUGE', 'SIARU_UNICAL_PROD.V_IE_RU_PERS_TITSTU.DS_TITSTU AS TITOLO_STUDIO', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.*', 'SIARU_UNICAL_PROD.COMUNE_PROV.PROVINCIA']);
 
             $dati['attachments'] = User::where('v_ie_ru_personale_id_ab','=', $id_ab)->first()->attachments()->where('attachmenttype_codice','DOC_CV')->get();
             //cercare l'ultima precontrattuale inserita stato = 0 o stato = 1 docente_id id_ab
