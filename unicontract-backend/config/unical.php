@@ -43,7 +43,7 @@ return [
     /**
      * Lista email separate da , per amministratori di sistema
      */
-    'administrator_email' =>  explode(',',env('ADMINISTRATOR_EMAIL', 'admin@unical.it')),
+    'administrator_email' =>  explode(',',env('ADMINISTRATOR_EMAIL', 'francesco.filicetti@unical.it')),
 
     /**
      * Lista email separate da , per spedizione report alle segreterie
