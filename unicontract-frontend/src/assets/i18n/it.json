@@ -272,6 +272,7 @@
     "a2_label5" : "Codice BIC / SWIFT",
     "a2_label6" : "Codice ABA / ROUTING NUMBER",
     "a2_label7" : "Tipologia C/C",
+    "a2_info0" : "Il C/C deve essere intestato al titolare o cointestato",
     "a2_info1" : "Modalità consentita per importi non superiori a € 1.000,00",
     "a2_info2" : "Da compilare solo se trattasi di c/c europeo o extra europeo",
     "a2_alert1" : "Il codice IBAN deve essere composto di 27 caratteri",

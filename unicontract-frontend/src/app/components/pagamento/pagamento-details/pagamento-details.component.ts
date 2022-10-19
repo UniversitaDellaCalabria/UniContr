@@ -93,6 +93,7 @@ export class PagamentoDetailsComponent extends BaseComponent {
             templateOptions: {
               translate: true,
               label: 'a2_label1',
+              description: this.translateService.instant('a2_info0'),
               required: true,
             },
           }],
