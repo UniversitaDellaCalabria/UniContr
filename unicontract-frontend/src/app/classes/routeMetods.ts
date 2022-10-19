@@ -288,7 +288,7 @@ export class RouteMetods {
     emaillist(value: number) {
         this.router.navigate(['home/emaillist', value]);
     }
-   
+
     attivaPulsanteB3(item) {
         if (item.flag_rapp_studio_univ == 1 && item.b2_incompatibilita_id !== 0 && item.b3_rapp_studio_univ_id === 0) {
             return true;
@@ -297,9 +297,9 @@ export class RouteMetods {
     }
 
     attivaPulsanteB4(item) {
-        if (item.flag_dipend_pubbl_amm == 1 && 
-            item.b2_incompatibilita_id !== 0 && 
-            item.b4_rapp_pubbl_amm_id === 0 && 
+        if (item.flag_dipend_pubbl_amm == 1 &&
+            item.b2_incompatibilita_id !== 0 &&
+            item.b4_rapp_pubbl_amm_id === 0 &&
             (item.flag_rapp_studio_univ == 0 || item.b3_rapp_studio_univ_id !== 0)) {
 
             return true;
@@ -309,10 +309,10 @@ export class RouteMetods {
 
 
     attivaPulsanteB5(item) {
-        if (item.flag_titolare_pensione == 1 && 
-            item.b2_incompatibilita_id !== 0 && 
-            item.b5_stato_pensionam_id === 0 && 
-            ( item.flag_rapp_studio_univ == 0 || item.b3_rapp_studio_univ_id !== 0) && 
+        if (item.flag_titolare_pensione == 1 &&
+            item.b2_incompatibilita_id !== 0 &&
+            item.b5_stato_pensionam_id === 0 &&
+            ( item.flag_rapp_studio_univ == 0 || item.b3_rapp_studio_univ_id !== 0) &&
             (item.flag_rapp_studio_univ == 0 || item.b4_rapp_pubbl_amm_id !== 0)) {
             return true;
         }
