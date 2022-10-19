@@ -48,7 +48,7 @@ export class PagamentoLocalUpdateComponent extends BaseComponent {
           expressionProperties: {
             'templateOptions.options': (model: any, formState: any, field: FormlyFieldConfig) => {
               return [
-                { key: 'AGBM', value: this.translateService.instant('a2_check1') },
+                //{ key: 'AGBM', value: this.translateService.instant('a2_check1') },
                 { key: 'ACIC', value: this.translateService.instant('a2_check2') }
               ];
             },
@@ -101,7 +101,7 @@ export class PagamentoLocalUpdateComponent extends BaseComponent {
               maxLength: 27,
               pattern: /^(?:(?:IT|SM)\d{2}[A-Z]{1}[0-9]{5}[0-9]{5}[0-9A-Z]{12}|NL\d{2}[A-Z]{4}\d{10}|LV\d{2}[A-Z]{4}\d{13}|(?:BG|BH|GB|IE)\d{2}[A-Z]{4}\d{14}|GI\d{2}[A-Z]{4}\d{15}|RO\d{2}[A-Z]{4}\d{16}|KW\d{2}[A-Z]{4}\d{22}|MT\d{2}[A-Z]{4}\d{23}|NO\d{13}|(?:DK|FI|GL|FO)\d{16}|MK\d{17}|(?:AT|EE|KZ|LU|XK)\d{18}|(?:BA|HR|LI|CH|CR)\d{19}|(?:GE|DE|LT|ME|RS)\d{20}|IL\d{21}|(?:AD|CZ|ES|MD|SA)\d{22}|PT\d{23}|(?:BE|IS)\d{24}|(?:FR|MR|MC)\d{25}|(?:AL|DO|LB|PL)\d{26}|(?:AZ|HU)\d{27}|(?:GR|MU)\d{28})$/
             },
-            validation: {              
+            validation: {
               messages: {
                 pattern: (error, field: FormlyFieldConfig) => `Formato IBAN non valido`,
               },
