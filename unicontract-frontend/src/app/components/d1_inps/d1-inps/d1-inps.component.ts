@@ -121,8 +121,8 @@ export class D1InpsComponent extends BaseComponent {
           templateOptions: {
             options: [
               {key: 'D1A', value: this.translateService.instant('d1_txt2')},
-              {key: 'D1B', value: this.translateService.instant('d1_txt3')},
-              {key: 'D1C', value: this.translateService.instant('d1_txt4')}
+              //{key: 'D1B', value: this.translateService.instant('d1_txt3')},
+              //{key: 'D1C', value: this.translateService.instant('d1_txt4')}
             ],
             required: true,
             translate: true,
@@ -367,7 +367,7 @@ export class D1InpsComponent extends BaseComponent {
                 key: 'attachmenttype_codice',
                 type: 'input',
                 defaultValue: 'DOM_GS',
-               
+
                 templateOptions: {
                   type: 'hidden',
                  //label: 'Tipo documento',
@@ -399,14 +399,14 @@ export class D1InpsComponent extends BaseComponent {
                 key: 'filevalue',
                 type: 'input',
                 templateOptions: {
-                  type: 'hidden'        
+                  type: 'hidden'
                 },
               },
               {
                 key: 'id',
                 type: 'input',
                 templateOptions: {
-                  type: 'hidden'        
+                  type: 'hidden'
                 },
               },
             ],
@@ -503,13 +503,13 @@ export class D1InpsComponent extends BaseComponent {
         if (response['success']) {
           this.messageService.info('Modello D.1: Dichiarazione ai fini previdenziali creato con successo');
           // AGGIORNA LO SCHEMA PRECONTRATTUALE PASSANDO L'ID DELL'INSEGNAMENTO
-          this.precontr = response['data'];          
+          this.precontr = response['data'];
           this.router.navigate(['home/inps/details',  this.precontr.d1_inps_id ]);
 
         } else {
           this.messageService.error(response['message']);
         }
-       
+
       }
     );
   }
@@ -523,7 +523,7 @@ export class D1InpsComponent extends BaseComponent {
           this.messageService.info('Modello D.1: Dichiarazione ai fini previdenziali aggiornato con successo');
         } else {
           this.messageService.error(response['message']);
-        }        
+        }
         this.router.navigate(['home/inps/details', idD1]);
       }
     );
