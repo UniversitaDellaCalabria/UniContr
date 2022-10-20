@@ -47,7 +47,7 @@ export class D2InailComponent extends BaseComponent {
           templateOptions: {
             options: [
               {key: 'INAIL7', value: this.translateService.instant('d2_txt2')},
-              {key: 'INAIL10', value: this.translateService.instant('d2_txt3')},
+              //{key: 'INAIL10', value: this.translateService.instant('d2_txt3')},
               {key: 'INAIL4', value: this.translateService.instant('d2_txt4')},
               {key: 'NOINAIL', value: this.translateService.instant('d2_txt5')}
             ],
@@ -115,7 +115,7 @@ export class D2InailComponent extends BaseComponent {
     );
   }
 
-  saveData(idD2: number) {    
+  saveData(idD2: number) {
     if (idD2 === 0) {
       this.isLoading = true;
       const toStore: IPrecontrStore<D2InailInterface> = {
@@ -126,7 +126,7 @@ export class D2InailComponent extends BaseComponent {
         response => {
           this.isLoading = false;
           const lastid = response['datiInail']['id']; // RETURN LAST ID
-  
+
           if (response['success']) {
             this.messageService.info('Modello D.2: Dichiarazione ai fini assicurativi INAIL creato con successo');
             // AGGIORNA LO SCHEMA PRECONTRATTUALE PASSANDO L'ID DELL'INSEGNAMENTO
@@ -155,7 +155,7 @@ export class D2InailComponent extends BaseComponent {
         } else {
           this.messageService.error(response['message']);
         }
-       
+
       }
     );
   }
