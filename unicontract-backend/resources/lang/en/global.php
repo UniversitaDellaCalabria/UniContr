@@ -204,7 +204,7 @@ return [
     "d3_txt2"=>"non aver percepito nel corrente anno solare retribuzioni e/o compensi a carico delle finanze pubbliche",
     "d3_txt3"=>"aver percepito o prevede di percepire nel corrente anno solare retribuzioni e/o compensi a carico delle finanze pubbliche",
     "d3_txt4"=>"non superando il limite retributivo di € 240.000,00",
-    "d3_txt5"=>"superando il limite retributivo di € 240.000,00 con i sottoelencati Enti:",
+    "d3_txt5"=>"superando il limite retributivo di € 240.000,00",
     "d3_label1"=>"Denominazione ente",
     "d3_label2"=>"Natura incarico / rapporto",
     "d3_label3"=>"Dal giorno",

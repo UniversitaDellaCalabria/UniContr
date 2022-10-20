@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     /* email*/
     'oggetto_RCP' => 'Richiesta Compilazione Modulistica Precontrattuale',
 
@@ -43,7 +43,7 @@ return [
     "b3_txt5" => "Si dichiara di essere attualmente titolari di una borsa di studio presso l'Università degli Studi di",
     "b3_txt5b" => "attualmente titolari di una borsa di studio presso l'Università degli Studi di",
     "b3_txt6" => "dal giorno",
-    "b3_txt7" => "al giorno",    
+    "b3_txt7" => "al giorno",
     "b3_txt8" => "Dipartimento di",
     "b3_txt9" => "ai sensi della legge",
 
@@ -106,7 +106,7 @@ return [
     "cassa101"=>"101 INPS Fondo Pensioni Lavoratori Dipendenti",
     "cassa102"=>"102 INPS Artigiani",
     "cassa103"=>"103 INPS Commercianti",
-    "cassa104"=>"104 INPS Coltivatori diretti, mezzadri e coloni", 
+    "cassa104"=>"104 INPS Coltivatori diretti, mezzadri e coloni",
     "cassa105"=>"105 INPS Versamenti volontari",
     "cassa106"=>"106 INPS Versamenti figurativi (CIG, ecc . . .)",
     "cassa107"=>"107 INPS Fondi speciali",
@@ -188,7 +188,7 @@ return [
     "d3_txt2"=>"non aver percepito nel corrente anno solare retribuzioni e/o compensi a carico delle finanze pubbliche",
     "d3_txt3"=>"aver percepito o prevede di percepire nel corrente anno solare retribuzioni e/o compensi a carico delle finanze pubbliche",
     "d3_txt4"=>"non superando il limite retributivo di € 240.000,00",
-    "d3_txt5"=>"superando il limite retributivo di € 240.000,00 con i sottoelencati Enti:",
+    "d3_txt5"=>"superando il limite retributivo di € 240.000,00",
     "d3_label1"=>"Denominazione ente",
     "d3_label2"=>"Natura incarico / rapporto",
     "d3_label3"=>"Dal giorno",
@@ -285,11 +285,11 @@ return [
     "LA" => "Laurea (vecchio ordinamento)",
     "M1" => "Master di I livello",
     "M2" => "Master di II livello",
-    "SS" => "Scuola di specializzazione", 
+    "SS" => "Scuola di specializzazione",
     "PQ" => "Scuola professionale quinquennale",
     "P" => "Scuola professionale triennale",
     "SP" => "Specializzazione post-laurea",
- 
+
     "DISB" =>	"Dipartimento di Scienze Biomolecolari (DISB)",
     "DISPEA" =>	"Dipartimento di Scienze Pure e Applicate (DiSPeA)",
     "DIGIUR" =>	"Dipartimento di Giurisprudenza (DiGiur)",
@@ -298,7 +298,7 @@ return [
     "DESP" =>	"Dipartimento di Economia, Società, Politica (DESP)",
 
     "27605"=> "DISB",
-    "4504"=> "DESP",  
+    "4504"=> "DESP",
     "4499"=> "DiGiur",
     "26121"=> "DISTUM",
     "26080"=> "DiSPeA",
