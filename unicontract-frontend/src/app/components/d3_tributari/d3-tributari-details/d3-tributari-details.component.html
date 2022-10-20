@@ -1,6 +1,6 @@
 <ngx-loading [show]="isLoading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
 <div class="container-fluid" *ngIf="items">
-  <app-intestazione *ngIf="items" [item]="items" [dettagli]="true"></app-intestazione> 
+  <app-intestazione *ngIf="items" [item]="items" [dettagli]="true"></app-intestazione>
 
   <app-riquadro-wrapper *ngIf="items">
     <h5>{{ 'd3_intest' | translate }}</h5>
@@ -11,9 +11,10 @@
           <span *ngIf="items.flag_percepito === 0">{{ 'd3_txt2' | translate }}</span>
           <span *ngIf="items.flag_percepito === 1">{{ 'd3_txt3' | translate }}</span>
               <span *ngIf="items.flag_limite_percepito === 0"> {{ 'd3_txt4' | translate }}</span>
-              <span *ngIf="items.flag_limite_percepito === 1"> {{ 'd3_txt5' | translate }}</span>          
-      </div>      
+              <span *ngIf="items.flag_limite_percepito === 1"> {{ 'd3_txt5' | translate }}</span>
+      </div>
     </div>
+<!--
     <br>
     <table class="table table-sm" *ngIf="items.flag_limite_percepito === 1" >
       <thead>
@@ -35,13 +36,14 @@
           <td class="text-center">€ {{ item.importo_totale }}</td>
           <td class="text-center">€ {{ item.importo_annuo }}</td>
         </tr>
-      </tbody>          
-    </table>    
+      </tbody>
+    </table>
+-->
   </app-riquadro-wrapper>
 
-  <div class="form-footer text-right"> 
-    <app-barra-comandi *ngIf="items" [item]="items" [type]="'D3'"></app-barra-comandi>   
-        
+  <div class="form-footer text-right">
+    <app-barra-comandi *ngIf="items" [item]="items" [type]="'D3'"></app-barra-comandi>
+
     <app-termina-button [item]="items" *ngIf="items.validazioni.flag_submit === 0 && tools.termina(items) === true" (update)="isLoadingChange($event)"></app-termina-button>
   </div>
 

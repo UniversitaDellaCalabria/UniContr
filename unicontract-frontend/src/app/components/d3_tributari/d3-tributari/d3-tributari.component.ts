@@ -26,8 +26,8 @@ export class D3TributariComponent extends BaseComponent {
   items: any = null;
   private precontr: UpdD3;
   idins: number;
-  adapter = new NgbStringAdapter();      
-  
+  adapter = new NgbStringAdapter();
+
   formAttch = new FormGroup({});
   model: any = {};
   options: FormlyFormOptions = {
@@ -85,17 +85,17 @@ export class D3TributariComponent extends BaseComponent {
               const form = field.formControl;
               field.formControl.valueChanges.pipe(
                 takeUntil(this.onDestroy$),
-                tap(val => {      
+                tap(val => {
                   if (field.formControl.valid){
                     let al_giorno = field.parent.fieldGroup.find(x => x.key == 'al_giorno');
-                    al_giorno.templateOptions.datepickerOptions.minDate = this.adapter.fromModel(val);        
+                    al_giorno.templateOptions.datepickerOptions.minDate = this.adapter.fromModel(val);
                     this.cdr.detectChanges();
                     //console.warn(field,field.formControl.valid, val)
-                  }                                       
+                  }
                 }),
               ).subscribe();
             },
-          }  
+          }
         },
         // al_giorno
         {
@@ -179,47 +179,47 @@ export class D3TributariComponent extends BaseComponent {
     },
 
     // elenco enti
-    {
-      fieldGroupClassName: 'row justify-content-end',
-      className: 'col-md-12',
-      fieldGroup: [
-        {
-          key: 'enti',
-          type: 'repeat',
-          className: 'col-md-12',
-          validation: {
-            show: true
-          },
-          templateOptions: {
-            label: 'Elenco enti',
-            min: 1,
-            max: 4,
-            template: '<hr></hr>',
-          },
-          validators: {
-            atleastone: {
-              expression: (c) => {
-                if (c.value) {
-                  if (c.value.length < 1) {
-                    return false;
-                  }
-                } else {
-                  return false;
-                }
-                return true;
-              },
-              message: (error, field: FormlyFieldConfig) => `Inserire almeno un ente`,
-            }
-          },
-          fieldArray: {
-            fieldGroup: this.fieldsEnti,
-          },
-          hideExpression: (model, formstate) => {
-            return (this.model.flag_limite_percepito === 0);
-          }
-        },
-      ],
-    },
+    //{
+      //fieldGroupClassName: 'row justify-content-end',
+      //className: 'col-md-12',
+      //fieldGroup: [
+        //{
+          //key: 'enti',
+          //type: 'repeat',
+          //className: 'col-md-12',
+          //validation: {
+            //show: true
+          //},
+          //templateOptions: {
+            //label: 'Elenco enti',
+            //min: 1,
+            //max: 4,
+            //template: '<hr></hr>',
+          //},
+          //validators: {
+            //atleastone: {
+              //expression: (c) => {
+                //if (c.value) {
+                  //if (c.value.length < 1) {
+                    //return false;
+                  //}
+                //} else {
+                  //return false;
+                //}
+                //return true;
+              //},
+              //message: (error, field: FormlyFieldConfig) => `Inserire almeno un ente`,
+            //}
+          //},
+          //fieldArray: {
+            //fieldGroup: this.fieldsEnti,
+          //},
+          //hideExpression: (model, formstate) => {
+            //return (this.model.flag_limite_percepito === 0);
+          //}
+        //},
+      //],
+    //},
 
   ];
 
