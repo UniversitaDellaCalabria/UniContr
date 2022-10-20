@@ -49,7 +49,7 @@ export class D2InailComponent extends BaseComponent {
               {key: 'INAIL7', value: this.translateService.instant('d2_txt2')},
               //{key: 'INAIL10', value: this.translateService.instant('d2_txt3')},
               {key: 'INAIL4', value: this.translateService.instant('d2_txt4')},
-              {key: 'NOINAIL', value: this.translateService.instant('d2_txt5')}
+              //{key: 'NOINAIL', value: this.translateService.instant('d2_txt5')}
             ],
             required: true,
             translate: true,
