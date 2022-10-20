@@ -262,6 +262,18 @@ export class CPrestazProfessComponent extends BaseComponent {
           return model;
         }
       },
+    },
+    {
+      fieldGroup: [
+        {
+          template: '<p>' + this.translateService.instant('c_txt7') + '</p>'
+        }
+      ],
+      hideExpression: (model: any, formState: any) => {
+        if (model.flag_cassa === 1 || model.flag_cassa === true) {
+          return model;
+        }
+      },
     }
   ];
 
@@ -358,9 +370,9 @@ export class CPrestazProfessComponent extends BaseComponent {
       fieldGroup: [
         {
           type: 'radio',
-          key: 'regime_fiscale',          
-          className: 'col-md-12',         
-          templateOptions: {             
+          key: 'regime_fiscale',
+          className: 'col-md-12',
+          templateOptions: {
             label: 'c_label12',       //Dichiaro di essere professionista rientrante nel
             translate: true,
             required: true,
@@ -368,9 +380,9 @@ export class CPrestazProfessComponent extends BaseComponent {
               {key: 'RF01', value: 'Ordinario'},
               {key: 'RF02', value: 'Contribuenti minimi (art.1, commi 96-117, legge n. 244/2007)'},
               {key: 'RF19', value: 'Forfettario (art.1, commi 54-89, legge n. 190/2014)'}
-            ],          
-          },       
-        },       
+            ],
+          },
+        },
       ]
     },
 
@@ -400,7 +412,7 @@ export class CPrestazProfessComponent extends BaseComponent {
       fieldGroup: this.fields5,
       hideExpression: (model: any, formState: any) => {
         //nel caso nuovo non lo devo visualizzare
-        //nel caso flag_regime_fiscale a null 
+        //nel caso flag_regime_fiscale a null
         //solo se è valorizzato il flag_regime_ficale
         if (model.id == null || model.flag_regime_fiscale == null) {
           model.flag_regime_fiscale = null;
@@ -426,7 +438,7 @@ export class CPrestazProfessComponent extends BaseComponent {
               public messageService: MessageService,
               private pivaService: CPrestazProfessService,
               private precontrattualeService: PrecontrattualeService,
-              protected translateService: TranslateService,              
+              protected translateService: TranslateService,
               private tools: InsegnamTools) { super(messageService); }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -435,7 +447,7 @@ export class CPrestazProfessComponent extends BaseComponent {
       (params) => {
         if (!params.get('upd')) {
           this.update = false;
-          this.isLoading = true;          
+          this.isLoading = true;
           this.pivaService.getPrecontr(+params.get('id')).subscribe(
             response => {
               this.items = response['datiPrecontrattuale'];
@@ -476,23 +488,23 @@ export class CPrestazProfessComponent extends BaseComponent {
     }
   }
 
-  newPrestProfess(prestaz: any) {    
+  newPrestProfess(prestaz: any) {
     this.precontrattualeService.newPrestazProfess(prestaz).subscribe(
       response => {
         this.isLoading = false;
         if (response['success']) {
           this.messageService.info('Modello C: Prestazione Professionale creato con successo');
           // AGGIORNA LO SCHEMA PRECONTRATTUALE PASSANDO L'ID DELL'INSEGNAMENTO
-          const id = response['data']['c_prestaz_profess_id'];         
+          const id = response['data']['c_prestaz_profess_id'];
           this.router.navigate(['home/cpiva/details', id]);
         } else {
           this.messageService.error(response['message']);
-        }      
+        }
       }
     );
   }
 
-  updateC(prestaz: any, idC: number) {    
+  updateC(prestaz: any, idC: number) {
     this.pivaService.updatePrestazProfess(prestaz, idC).subscribe(
       response => {
         this.isLoading = false;
@@ -500,7 +512,7 @@ export class CPrestazProfessComponent extends BaseComponent {
           this.messageService.info('Modello C: Prestazione Professionale aggiornato con successo');
         } else {
           this.messageService.error(response['message']);
-        }     
+        }
         this.router.navigate(['home/cpiva/details', idC]);
       }
     );
