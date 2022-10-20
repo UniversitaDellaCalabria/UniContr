@@ -266,7 +266,7 @@ export class CPrestazProfessComponent extends BaseComponent {
     {
       fieldGroup: [
         {
-          template: '<p>' + this.translateService.instant('c_txt7') + '</p>'
+          template: '<p>' + this.translateService.instant('c_txt7_bis') + '</p>'
         }
       ],
       hideExpression: (model: any, formState: any) => {
