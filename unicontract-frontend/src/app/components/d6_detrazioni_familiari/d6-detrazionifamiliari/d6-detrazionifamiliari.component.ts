@@ -143,7 +143,7 @@ export class D6DetrazionifamiliariComponent extends BaseComponent {
     }
   ];
 
-  //deve essere abilitato solo se nel riquadro d4 flag_detrazioni è true 
+  //deve essere abilitato solo se nel riquadro d4 flag_detrazioni è true
   fields: FormlyFieldConfig[] = [
     {
       template: '<h5>' + this.translateService.instant('d6_intest') + '</h5>',
@@ -158,7 +158,7 @@ export class D6DetrazionifamiliariComponent extends BaseComponent {
           defaultValue: false,
           validation: {
             show: true,
-          }, 
+          },
           templateOptions: {
             change: (field, $event) => {
               if (field.model.flag_richiesta_detrazioni === false || field.model.flag_richiesta_detrazioni === 0) {
@@ -178,13 +178,13 @@ export class D6DetrazionifamiliariComponent extends BaseComponent {
             // 'templateOptions.disabled': (model: any, formState: any, field: FormlyFieldConfig) => {
             //   if (this.items.flag_detrazioni == 0 || this.items.flag_detrazioni == false)
             //     return true;
-                
-            //   return false;              
+
+            //   return false;
             // }
           },
-            //validazione 
+            //validazione
           validators: {
-            compatibility_detr6: { 
+            compatibility_detr6: {
               expression: ctrl => {
                 //il valore è vero
                 // e la richiesta detrazioni è falsa
@@ -193,7 +193,7 @@ export class D6DetrazionifamiliariComponent extends BaseComponent {
                 return true;
               },
               message: (error, field: FormlyFieldConfig) => {
-                return 'Scelta non compatibile con riquadro D4 "'+this.translateService.instant('d4_intest2')+'" a NO'    
+                return 'Scelta non compatibile con riquadro D4 "'+this.translateService.instant('d4_intest2')+'" a NO'
              }
             }
           },
@@ -238,7 +238,7 @@ export class D6DetrazionifamiliariComponent extends BaseComponent {
           }
         },
       ],
-     
+
     },
 
     // ELENCO FAMILIARI
@@ -269,13 +269,13 @@ export class D6DetrazionifamiliariComponent extends BaseComponent {
         },
       ],
     },
-    //nota 
+    //nota
     {
       fieldGroupClassName: 'row',
       fieldGroup: [
       {
         //Modifiche _2022 dovute alla modifica delle aliquote fiscali Legge bilancio 2022
-        template: "<p>Dal 01/03/2022, in seguito all'introduzione dell'Assegno Unico Universale (AUU), le detrazioni per figli a carico possono essere richieste solo per figli oltre i 21 anni di età.</p>",        
+        template: "<p><b>Dal 01/03/2022, in seguito all'introduzione dell'Assegno Unico Universale (AUU), le detrazioni per figli a carico possono essere richieste solo per figli oltre i 21 anni di età.</b></p>",
         className: 'col-auto',
         hideExpression: (model, formstate) => {
           return (!this.model.flag_richiesta_detrazioni);
@@ -346,7 +346,7 @@ export class D6DetrazionifamiliariComponent extends BaseComponent {
       response => {
         this.isLoading = false;
         const lastid = response['datiFamiliari']['id']; // RETURN LAST ID
-        
+
         if (response['success']) {
           this.messageService.info('Modello D.6: Richiesta detrazioni fiscali per familiari a carico creato con successo');
           const data = response['datiFamiliari'];
