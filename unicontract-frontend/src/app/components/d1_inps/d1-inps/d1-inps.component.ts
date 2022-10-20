@@ -301,48 +301,48 @@ export class D1InpsComponent extends BaseComponent {
     }
   ];
 
-  fields4: FormlyFieldConfig[] = [
-    {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
-        {
-          type: 'checkbox',
-          key: 'flag_partita_iva',
-          className: 'custom-switch pl-4 pr-2 pt-1',
-          defaultValue: false,
-          templateOptions: {
-          },
-          expressionProperties: {
-            'templateOptions.label': (model: any, formState: any, field: FormlyFieldConfig) => {
-              if (model.flag_partita_iva === false || model.flag_partita_iva === 0) {
-                return 'NO';
-              } else {
-                return 'SI';
-              }
-            }
-          }
-        },
-        {
-          template: '<h5>' + this.translateService.instant('d1_title6') + '</h5>',
-          className: 'col-auto  pt-1'
-        }
-      ]
-    },
-    {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
-        {
-          className: 'col-auto',
-          template: '<p>' + this.translateService.instant('d1_txt14') + '</p>',
-        }
-      ],
-      hideExpression: (model: any, formState: any) => {
-        if (model.flag_partita_iva === false || model.flag_partita_iva === 0) {
-          return model;
-        }
-      },
-    },
-  ];
+  //fields4: FormlyFieldConfig[] = [
+    //{
+      //fieldGroupClassName: 'row',
+      //fieldGroup: [
+        //{
+          //type: 'checkbox',
+          //key: 'flag_partita_iva',
+          //className: 'custom-switch pl-4 pr-2 pt-1',
+          //defaultValue: false,
+          //templateOptions: {
+          //},
+          //expressionProperties: {
+            //'templateOptions.label': (model: any, formState: any, field: FormlyFieldConfig) => {
+              //if (model.flag_partita_iva === false || model.flag_partita_iva === 0) {
+                //return 'NO';
+              //} else {
+                //return 'SI';
+              //}
+            //}
+          //}
+        //},
+        //{
+          //template: '<h5>' + this.translateService.instant('d1_title6') + '</h5>',
+          //className: 'col-auto  pt-1'
+        //}
+      //]
+    //},
+    //{
+      //fieldGroupClassName: 'row',
+      //fieldGroup: [
+        //{
+          //className: 'col-auto',
+          //template: '<p>' + this.translateService.instant('d1_txt14') + '</p>',
+        //}
+      //],
+      //hideExpression: (model: any, formState: any) => {
+        //if (model.flag_partita_iva === false || model.flag_partita_iva === 0) {
+          //return model;
+        //}
+      //},
+    //},
+  //];
 
   // ALLEGATI
   fields5: FormlyFieldConfig[] = [
@@ -429,10 +429,10 @@ export class D1InpsComponent extends BaseComponent {
       wrappers: ['riquadro'],
       fieldGroup: this.fields3,
     },
-    {
-      wrappers: ['riquadro'],
-      fieldGroup: this.fields4,
-    },
+    //{
+      //wrappers: ['riquadro'],
+      //fieldGroup: this.fields4,
+    //},
     {
       wrappers: ['riquadro'],
       fieldGroup: this.fields5,
