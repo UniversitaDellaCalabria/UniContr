@@ -275,7 +275,7 @@ export class D6DetrazionifamiliariComponent extends BaseComponent {
       fieldGroup: [
       {
         //Modifiche _2022 dovute alla modifica delle aliquote fiscali Legge bilancio 2022
-        template: "<p><b>Dal 01/03/2022, in seguito all'introduzione dell'Assegno Unico Universale (AUU), le detrazioni per figli a carico possono essere richieste solo per figli oltre i 21 anni di età.</b></p>",
+        template: "<p style='font-weight: bold;'>Dal 01/03/2022, in seguito all'introduzione dell'Assegno Unico Universale (AUU), le detrazioni per figli a carico possono essere richieste solo per figli oltre i 21 anni di età.</p>",
         className: 'col-auto',
         hideExpression: (model, formstate) => {
           return (!this.model.flag_richiesta_detrazioni);
