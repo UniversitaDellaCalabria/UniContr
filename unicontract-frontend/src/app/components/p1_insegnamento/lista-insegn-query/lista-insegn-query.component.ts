@@ -118,6 +118,10 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
           // { key: '004424', value: this.translateService.instant('004424_desp') },
           // unical
           { key: '002014', value: this.translateService.instant('002014_dibest') }
+          { key: '002015', value: this.translateService.instant('002015_ctc') }
+          { key: '002022', value: this.translateService.instant('002022_dices') }
+          { key: '002025', value: this.translateService.instant('002025_desf') }
+          { key: '002021', value: this.translateService.instant('002021_dfssn') }
         ]
       }
     },

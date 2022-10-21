@@ -187,8 +187,8 @@ class DatiSeeder extends Seeder
         DB::table('mappinguffici')->insert([
             'unitaorganizzativa_uo' => '002032',
             'descrizione_uo' => 'Area Servizi Informatici e Tecnologici - A.S.I.T.',
-            'strutturainterna_cod_uff' => '002117',
-            'descrizione_uff' => 'Area Sistemi Informativi',
+            'strutturainterna_cod_uff' => '2032.2',
+            'descrizione_uff' => 'AREA SISTEMI INFORMATIVI',
         ]);
 
         // 002014	Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)
@@ -196,7 +196,39 @@ class DatiSeeder extends Seeder
             'unitaorganizzativa_uo' => '002014',
             'descrizione_uo' => 'Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)',
             'strutturainterna_cod_uff' => '2014',
-            'descrizione_uff' => 'Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)',
+            'descrizione_uff' => 'DIPARTIMENTO DI BIOLOGIA, ECOLOGIA E SCIENZE DELLA TERRA',
+        ]);
+
+        // 002015	Dipartimento di Chimica e Tecnologie Chimiche (CTC)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002015',
+            'descrizione_uo' => 'Dipartimento di Chimica e Tecnologie Chimiche (CTC)',
+            'strutturainterna_cod_uff' => '2015',
+            'descrizione_uff' => 'DIPARTIMENTO DI CHIMICA E TECNOLOGIE CHIMICHE',
+        ]);
+
+        // 002022	Dipartimento di Culture, Educazione e Società (DiCES)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002022',
+            'descrizione_uo' => 'Dipartimento di Culture, Educazione e Società (DiCES)',
+            'strutturainterna_cod_uff' => '2022',
+            'descrizione_uff' => "DIPARTIMENTO DI CULTURE EDUCAZIONE SOCIETA'",
+        ]);
+
+        // 002025	Dipartimento di Economia, Statistica e Finanza (DESF)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002025',
+            'descrizione_uo' => 'Dipartimento di Economia, Statistica e Finanza (DESF)',
+            'strutturainterna_cod_uff' => '2025',
+            'descrizione_uff' => 'DIPARTIMENTO DI ECONOMIA STATISTICA E FINANZA',
+        ]);
+
+        // 002021	Dipartimento di Farmacia e Scienze della Salute e della Nutrizione (DFSSN)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002021',
+            'descrizione_uo' => 'Dipartimento di Farmacia e Scienze della Salute e della Nutrizione (DFSSN)',
+            'strutturainterna_cod_uff' => '2021',
+            'descrizione_uff' => 'DIPARTIMENTO DI FARMACIA',
         ]);
 
     }

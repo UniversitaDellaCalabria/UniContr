@@ -314,6 +314,10 @@ return [
     //"DISTUM" =>	"Dipartimento di Studi Umanistici (DISTUM)",
     //"DESP" =>	"Dipartimento di Economia, Società, Politica (DESP)",
     "DIBEST" =>	"Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)",
+    "CTC" =>	"Dipartimento di Chimica e Tecnologie Chimiche (CTC)",
+    "DICES" =>	"Dipartimento di Culture, Educazione e Società (DiCES)",
+    "DESF" =>	"Dipartimento di Economia, Statistica e Finanza (DESF)",
+    "DFSSN" =>	"Dipartimento di Farmacia e Scienze della Salute e della Nutrizione (DFSSN)",
 
     "27605"=> "DISB",
     "4504"=> "DESP",

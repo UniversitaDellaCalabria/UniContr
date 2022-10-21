@@ -603,7 +603,12 @@
     "004919" : "DiSPeA",
     "005479" : "DISCUI",
     "005579" : "DISCUI",
+
     "002014" : "DiBEST",
+    "002015" : "CTC",
+    "002022" : "DiCES",
+    "002025" : "DESF",
+    "002021" : "DFSSN",
 
     "005019_tooltip" :	"Dipartimento di Scienze Biomolecolari (DISB)",
     "004919_tooltip" :	"Dipartimento di Scienze Pure e Applicate (DiSPeA)",
@@ -612,7 +617,12 @@
     "005579_tooltip" :   "Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI)",
     "004939_tooltip" :	"Dipartimento di Studi Umanistici (DISTUM)",
     "004424_tooltip" :	"Dipartimento di Economia, Società, Politica (DESP)",
+
     "002014_tooltip" :	"Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)",
+    "002015_tooltip" :	"Dipartimento di Chimica e Tecnologie Chimiche (CTC)",
+    "002022_tooltip" :	"Dipartimento di Culture, Educazione e Società (DiCES)",
+    "002025_tooltip" :	"Dipartimento di Economia, Statistica e Finanza (DESF)",
+    "002021_tooltip" :	"Dipartimento di Farmacia e Scienze della Salute e della Nutrizione (DFSSN)",
 
     "005019_disb" :	"Dipartimento di Scienze Biomolecolari (DISB)",
     "004919_dispea" :	"Dipartimento di Scienze Pure e Applicate (DiSPeA)",
@@ -621,7 +631,12 @@
     "005579_discui" :   "Dipartimento di Scienze della Comunicazione, Studi Umanistici e Internazionali (DISCUI)",
     "004939_distum" :	"Dipartimento di Studi Umanistici (DISTUM)",
     "004424_desp" :	"Dipartimento di Economia, Società, Politica (DESP)",
+
     "002014_dibest" :	"Dipartimento di Biologia, Ecologia e Scienze della Terra (DiBEST)",
+    "002015_ctc" :	"Dipartimento di Chimica e Tecnologie Chimiche (CTC)",
+    "002022_dices" :	"Dipartimento di Culture, Educazione e Società (DiCES)",
+    "002025_desf" :	"Dipartimento di Economia, Statistica e Finanza (DESF)",
+    "002021_dfssn" :	"Dipartimento di Farmacia e Scienze della Salute e della Nutrizione (DFSSN)",
 
     "dip_afferenza" : "Dipartiment{{s}}",
 
