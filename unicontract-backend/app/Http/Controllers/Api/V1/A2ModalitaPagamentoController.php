@@ -89,7 +89,7 @@ class A2ModalitaPagamentoController extends Controller
             })
             ->where('SIARU_UNICAL_PROD.VD_ANAGRAFICA.ID_AB', $id_ab)
             ->orderBy('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.DATA_IN', 'DESC')
-            ->first(['SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.*', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.NOME', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.COGNOME', 'SIAXM_UNICAL_PROD.V_IE_AC_BANCHE.NOME DESCR']);
+            ->first(['SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.*', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.NOME', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.COGNOME', 'SIAXM_UNICAL_PROD.V_IE_AC_BANCHE.NOME as DESCR']);
             //cercare l'ultima precontrattuale inserita stato = 0 o stato = 1 docente_id
 
             //come determinare che non abbia compilato altri contratti dell'anno accademico corrente?

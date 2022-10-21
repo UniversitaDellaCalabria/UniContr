@@ -165,7 +165,15 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        if ($insegnamentoUgov->motivo_atto=='BAN_INC' && !in_array($insegnamentoUgov->tipo_contratto, ['CONTC', 'CONTU', 'INTC', 'INTU', 'INTXU', 'INTXC', 'SUPPU', 'SUPPC', 'TC007'])){
+        if ($insegnamentoUgov->motivo_atto=='BAN_INC' && !in_array($insegnamentoUgov->tipo_contratto, ['CONTC',
+                                                                                                       'CONTU',
+                                                                                                       'INTC',
+                                                                                                       'INTU',
+                                                                                                       'INTXU',
+                                                                                                       'INTXC',
+                                                                                                       'SUPPU',
+                                                                                                       'SUPPC',
+                                                                                                       'TC007'])){
             $data = null;
             $message = 'Insegnamento non aggiornabile: tipologia copertura non coerente con il motivo atto';
             $success = false;
