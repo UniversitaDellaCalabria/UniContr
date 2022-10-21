@@ -260,7 +260,7 @@ class PrecontrattualeService implements ApplicationService
 
         TitulusExtraDoc::addIstituzione($registro, [
             'cod' => '70019',
-            'denominazione' => 'Università degli Studi di Urbino Carlo Bo',
+            'denominazione' => 'Università della Calabria',
             'dipartimento' => $pre->dipartimento,
             'dipartimento_cod' =>  $pre->insegnamento->dip_cod
         ]);

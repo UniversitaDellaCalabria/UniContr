@@ -4,7 +4,7 @@ Gentile {{ $pre->user->nameTutorString() }},<br>
 con riferimento all'incarico di insegnamento di<br>
 {{ $pre->insegnamento->insegnamentoDescr }} (anno accademico {{$pre->aa}})<br>
 presso il {{ $pre->insegnamento->dipartimento }}<br>
-dell'Università degli Studi di Urbino Carlo Bo,<br>
+dell'Università della Calabria,<br>
 La invitiamo a collegarsi il più presto possibile alla piattaforma UniContr<br>
 per la compilazione online della modulistica precontrattuale necessaria<br>
 alla definizione del contratto:
