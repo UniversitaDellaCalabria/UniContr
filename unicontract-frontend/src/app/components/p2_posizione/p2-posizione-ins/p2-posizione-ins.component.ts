@@ -45,21 +45,21 @@ export class P2PosizioneInsComponent extends BaseComponent {
   };
 
   fields1: FormlyFieldConfig[] = [
-    //{
-      //fieldGroupClassName: 'row',
-      //fieldGroup: [
-        //{
-          //key: 'flag_rapp_studio_univ',
-          //type: 'checkbox',
-          //className: 'col-auto',
-          //defaultValue: false,
-          //templateOptions: {
-            //translate: true,
-            //label: 'p2_check1'
-          //}
-        //},
-      //]
-    //},
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
+          key: 'flag_rapp_studio_univ',
+          type: 'checkbox',
+          className: 'col-auto',
+          defaultValue: false,
+          templateOptions: {
+            translate: true,
+            label: 'p2_check1'
+          }
+        },
+      ]
+    },
     {
       fieldGroupClassName: 'row',
       fieldGroup: [
