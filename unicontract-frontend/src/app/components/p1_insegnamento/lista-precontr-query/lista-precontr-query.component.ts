@@ -68,20 +68,20 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
           // { key: '004939', value: this.translateService.instant('004939_distum') },
           // { key: '004424', value: this.translateService.instant('004424_desp') },
           // unical
-          { key: '002014', value: this.translateService.instant('002014_dibest') }
-          { key: '002015', value: this.translateService.instant('002015_ctc') }
-          { key: '002022', value: this.translateService.instant('002022_dices') }
-          { key: '002025', value: this.translateService.instant('002025_desf') }
-          { key: '002021', value: this.translateService.instant('002021_dfssn') }
-          { key: '002016', value: this.translateService.instant('002016_fisica') }
-          { key: '002018', value: this.translateService.instant('002018_dinci') }
-          { key: '002020', value: this.translateService.instant('002020_diam') }
-          { key: '002017', value: this.translateService.instant('002017_dimes') }
-          { key: '002019', value: this.translateService.instant('002019_dimeg') }
-          { key: '002013', value: this.translateService.instant('002013_demacs') }
-          { key: '002024', value: this.translateService.instant('002024_discag') }
-          { key: '002026', value: this.translateService.instant('002026_dispes') }
-          { key: '002023', value: this.translateService.instant('002023_dispes') }
+          { key: '002014', value: this.translateService.instant('002014_dibest') },
+          { key: '002015', value: this.translateService.instant('002015_ctc') },
+          { key: '002022', value: this.translateService.instant('002022_dices') },
+          { key: '002025', value: this.translateService.instant('002025_desf') },
+          { key: '002021', value: this.translateService.instant('002021_dfssn') },
+          { key: '002016', value: this.translateService.instant('002016_fisica') },
+          { key: '002018', value: this.translateService.instant('002018_dinci') },
+          { key: '002020', value: this.translateService.instant('002020_diam') },
+          { key: '002017', value: this.translateService.instant('002017_dimes') },
+          { key: '002019', value: this.translateService.instant('002019_dimeg') },
+          { key: '002013', value: this.translateService.instant('002013_demacs') },
+          { key: '002024', value: this.translateService.instant('002024_discag') },
+          { key: '002026', value: this.translateService.instant('002026_dispes') },
+          { key: '002023', value: this.translateService.instant('002023_disu') },
         ]
       }
     },
