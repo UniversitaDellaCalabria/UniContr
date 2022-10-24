@@ -55,6 +55,15 @@ return [
     'dices_report_segreterie' =>  array_map('trim',explode(',',env('DICES_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
     'desf_report_segreterie' =>  array_map('trim',explode(',',env('DESF_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
     'dfssm_report_segreterie' =>  array_map('trim',explode(',',env('DFSSN_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'fisica_report_segreterie' =>  array_map('trim',explode(',',env('FISICA_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'dinci_report_segreterie' =>  array_map('trim',explode(',',env('DINCI_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'diam_report_segreterie' =>  array_map('trim',explode(',',env('DIAM_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'dimes_report_segreterie' =>  array_map('trim',explode(',',env('DIMES_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'dimeg_report_segreterie' =>  array_map('trim',explode(',',env('DIMEG_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'demacs_report_segreterie' =>  array_map('trim',explode(',',env('DEMACS_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'discag_report_segreterie' =>  array_map('trim',explode(',',env('DISCAG_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'dispes_report_segreterie' =>  array_map('trim',explode(',',env('DISPES_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
+    'disu_report_segreterie' =>  array_map('trim',explode(',',env('DISU_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
 
     /**
      * Lista email separate da , per notifica di visione accettazione da parte del docente

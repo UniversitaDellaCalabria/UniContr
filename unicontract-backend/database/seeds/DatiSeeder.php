@@ -78,6 +78,15 @@ class DatiSeeder extends Seeder
                              '002021',
                              '002022',
                              '002025',
+                             '002016',
+                             '002018',
+                             '002020',
+                             '002017',
+                             '002019',
+                             '002013',
+                             '002024',
+                             '002026',
+                             '002023',
                             ],
                             'op_dipartimentale');
 
@@ -234,6 +243,78 @@ class DatiSeeder extends Seeder
             'descrizione_uo' => 'Dipartimento di Farmacia e Scienze della Salute e della Nutrizione (DFSSN)',
             'strutturainterna_cod_uff' => '2021',
             'descrizione_uff' => 'DIPARTIMENTO DI FARMACIA',
+        ]);
+
+        // 002016	Dipartimento di Fisica
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002016',
+            'descrizione_uo' => 'Dipartimento di Fisica',
+            'strutturainterna_cod_uff' => '2016',
+            'descrizione_uff' => 'DIPARTIMENTO DI FISICA',
+        ]);
+
+        // 002018	Dipartimento di Ingegneria Civile (DInCi)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002018',
+            'descrizione_uo' => 'Dipartimento di Ingegneria Civile (DInCi)',
+            'strutturainterna_cod_uff' => '2018',
+            'descrizione_uff' => 'DIPARTIMENTO DI INGEGNERIA CIVILE',
+        ]);
+
+        // 002020	Dipartimento di Ingegneria dell'Ambiente (DIAm)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002020',
+            'descrizione_uo' => "Dipartimento di Ingegneria dell'Ambiente (DIAm)",
+            'strutturainterna_cod_uff' => '2020',
+            'descrizione_uff' => "DIPARTIMENTO DI INGEGNERIA DELL'AMBIENTE",
+        ]);
+
+        // 002017	Dipartimento di Ingegneria Informatica, Modellistica, Elettronica e Sistemistica (DIMES)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002017',
+            'descrizione_uo' => "Dipartimento di Ingegneria Informatica, Modellistica, Elettronica e Sistemistica (DIMES)",
+            'strutturainterna_cod_uff' => '2017',
+            'descrizione_uff' => "DIPARTIMENTO DI INGEGNERIA INFORMATICA MODELLISTICA ELETTRONICA E SISTEMISTICA",
+        ]);
+
+        // 002019	Dipartimento di Ingegneria Meccanica, Energetica e Gestionale (DIAm)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002019',
+            'descrizione_uo' => "Dipartimento di Ingegneria Meccanica, Energetica e Gestionale (DIMEG)",
+            'strutturainterna_cod_uff' => '2019',
+            'descrizione_uff' => "DIPARTIMENTO DI INGEGNERIA MECCANICA ENERGETICA E GESTIONALE",
+        ]);
+
+        // 002013	Dipartimento di Matematica e Informatica (DEMACS)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002013',
+            'descrizione_uo' => "Dipartimento di Matematica e Informatica (DEMACS)",
+            'strutturainterna_cod_uff' => '2013',
+            'descrizione_uff' => "DIPARTIMENTO DI MATEMATICA E INFORMATICA",
+        ]);
+
+        // 002024	Dipartimento di Scienze Aziendali e Giuridiche (DiScAG)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002024',
+            'descrizione_uo' => "Dipartimento di Scienze Aziendali e Giuridiche (DiScAG)",
+            'strutturainterna_cod_uff' => '2024',
+            'descrizione_uff' => "DIPARTIMENTO DI SCIENZE AZIENDALI E GIURIDICHE",
+        ]);
+
+        // 002026	Dipartimento di Scienze Politiche e Sociali (DiSPeS)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002026',
+            'descrizione_uo' => "Dipartimento di Scienze Politiche e Sociali (DiSPeS)",
+            'strutturainterna_cod_uff' => '2026',
+            'descrizione_uff' => "DIPARTIMENTO DI SCIENZE POLITICHE E SOCIALI",
+        ]);
+
+        // 002023	Dipartimento di Studi Umanistici (DiSU)
+        DB::table('mappinguffici')->insert([
+            'unitaorganizzativa_uo' => '002023',
+            'descrizione_uo' => "Dipartimento di Studi Umanistici (DiSU)",
+            'strutturainterna_cod_uff' => '2023',
+            'descrizione_uff' => "DIPARTIMENTO DI STUDI UMANISTICI",
         ]);
 
     }

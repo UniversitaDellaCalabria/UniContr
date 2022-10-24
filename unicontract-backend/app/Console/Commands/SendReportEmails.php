@@ -69,6 +69,15 @@ class SendReportEmails extends Command
                  'DICES',
                  'DESF',
                  'DFSSN',
+                 'FISICA',
+                 'DINCI',
+                 'DIAM',
+                 'DIMES',
+                 'DIMEG',
+                 'DEMACS',
+                 'DISCAG',
+                 'DISPES',
+                 'DISU',
                 ];
         //$dips = ['DISTUM'];
         Log::info('Esecuzione comando [ SendReportEmails ]');
