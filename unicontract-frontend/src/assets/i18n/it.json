@@ -176,8 +176,8 @@
 
     "p2_title1" : "Posizione del collaboratore",
     "p2_title2" : "Natura del rapporto",
-    "p2_check1" : "Ha rapporti di studio con l'Università",
-    "p2_check1b" : "Non ha rapporti di studio con l'Università",
+    "p2_check1" : "Ha rapporti di dottorato o assegno di ricerca con l'Università",
+    "p2_check1b" : "Non ha rapporti di dottorato o assegno di ricerca con l'Università",
     "p2_check2" : "È dipendente di Pubblica Amministrazione",
     "p2_check2b" : "Non è dipendente di Pubblica Amministrazione",
     "p2_check3" : "È titolare di pensione",
