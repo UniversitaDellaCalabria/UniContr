@@ -87,9 +87,7 @@ export class ProseguiButtonComponent implements OnInit {
     //}else if (this.goto.fromB4toB6(this.item.flag_titolare_pensione, this.item.b6_trattamento_dati_id)){
       //this.goto.switchB6(this.item.insegn_id, this.item.b6_trattamento_dati_id);
     //}
-    if (this.goto.fromB4toB6(this.item.flag_titolare_pensione, this.item.b6_trattamento_dati_id)){
-      this.goto.switchB6(this.item.insegn_id, this.item.b6_trattamento_dati_id);
-    }
+    this.goto.switchB6(this.item.insegn_id, this.item.b6_trattamento_dati_id);
   }
 
   currentB6() {
