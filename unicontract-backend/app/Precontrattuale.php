@@ -394,8 +394,8 @@ class Precontrattuale extends Model {
 
     private function checkFlagModelP2(){
         if ((($this->p2naturarapporto->flag_rapp_studio_univ === 1 && $this->b3_rapp_studio_univ_id !== 0) || $this->p2naturarapporto->flag_rapp_studio_univ === 0 ) &&
-        (($this->p2naturarapporto->flag_dipend_pubbl_amm === 1 && $this->b4_rapp_pubbl_amm_id !== 0) || $this->p2naturarapporto->flag_dipend_pubbl_amm === 0 ) &&
-        (($this->p2naturarapporto->flag_titolare_pensione === 1 && $this->b5_stato_pensionam_id !== 0) ||$this->p2naturarapporto->flag_titolare_pensione === 0 ) ){
+        (($this->p2naturarapporto->flag_dipend_pubbl_amm === 1 && $this->b4_rapp_pubbl_amm_id !== 0) || $this->p2naturarapporto->flag_dipend_pubbl_amm === 0 ) ){
+        // (($this->p2naturarapporto->flag_titolare_pensione === 1 && $this->b5_stato_pensionam_id !== 0) ||$this->p2naturarapporto->flag_titolare_pensione === 0 ) ){
             return true;
         }
         return false;
