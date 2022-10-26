@@ -10,7 +10,7 @@ export class InsegnamTools {
           data.b2_incompatibilita_id !== 0 &&
           ((data.flag_rapp_studio_univ === 1 && data.b3_rapp_studio_univ_id !== 0) || data.flag_rapp_studio_univ === 0 ) &&
           ((data.flag_dipend_pubbl_amm === 1 && data.b4_rapp_pubbl_amm_id !== 0) || data.flag_dipend_pubbl_amm === 0 ) &&
-          ((data.flag_titolare_pensione === 1 && data.b5_stato_pensionam_id !== 0) || data.flag_titolare_pensione === 0 ) &&
+          //((data.flag_titolare_pensione === 1 && data.b5_stato_pensionam_id !== 0) || data.flag_titolare_pensione === 0 ) &&
           data.b6_trattamento_dati_id !== 0 &&
           data.c_prestaz_profess_id !== 0) {
         return true;
@@ -24,7 +24,7 @@ export class InsegnamTools {
         data.b2_incompatibilita_id !== 0 &&
         ((data.flag_rapp_studio_univ === 1 && data.b3_rapp_studio_univ_id !== 0) || data.flag_rapp_studio_univ === 0 ) &&
         ((data.flag_dipend_pubbl_amm === 1 && data.b4_rapp_pubbl_amm_id !== 0) || data.flag_dipend_pubbl_amm === 0 ) &&
-        ((data.flag_titolare_pensione === 1 && data.b5_stato_pensionam_id !== 0) || data.flag_titolare_pensione === 0 ) &&
+        //((data.flag_titolare_pensione === 1 && data.b5_stato_pensionam_id !== 0) || data.flag_titolare_pensione === 0 ) &&
         data.b6_trattamento_dati_id !== 0 &&
         data.d1_inps_id !== 0 &&
         data.d2_inail_id !== 0 &&
@@ -43,7 +43,7 @@ export class InsegnamTools {
         data.b2_incompatibilita_id !== 0 &&
         ((data.flag_rapp_studio_univ === 1 && data.b3_rapp_studio_univ_id !== 0) || data.flag_rapp_studio_univ === 0 ) &&
         ((data.flag_dipend_pubbl_amm === 1 && data.b4_rapp_pubbl_amm_id !== 0) || data.flag_dipend_pubbl_amm === 0 ) &&
-        ((data.flag_titolare_pensione === 1 && data.b5_stato_pensionam_id !== 0) || data.flag_titolare_pensione === 0 ) &&
+        //((data.flag_titolare_pensione === 1 && data.b5_stato_pensionam_id !== 0) || data.flag_titolare_pensione === 0 ) &&
         data.b6_trattamento_dati_id !== 0 &&
         data.e_autonomo_occasionale_id !== 0) {
         return true;
@@ -57,7 +57,7 @@ export class InsegnamTools {
         data.b2_incompatibilita_id !== 0 &&
         ((data.flag_rapp_studio_univ === 1 && data.b3_rapp_studio_univ_id !== 0) || data.flag_rapp_studio_univ === 0 ) &&
         ((data.flag_dipend_pubbl_amm === 1 && data.b4_rapp_pubbl_amm_id !== 0) || data.flag_dipend_pubbl_amm === 0 ) &&
-        ((data.flag_titolare_pensione === 1 && data.b5_stato_pensionam_id !== 0) || data.flag_titolare_pensione === 0 ) &&
+        //((data.flag_titolare_pensione === 1 && data.b5_stato_pensionam_id !== 0) || data.flag_titolare_pensione === 0 ) &&
         data.b6_trattamento_dati_id !== 0) {
         return true;
       }
