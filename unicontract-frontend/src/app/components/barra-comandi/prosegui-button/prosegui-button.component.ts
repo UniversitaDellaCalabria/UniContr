@@ -63,7 +63,7 @@ export class ProseguiButtonComponent implements OnInit {
     //}
     }else if (this.goto.controlButtonB6(this.item.flag_rapp_studio_univ, this.item.flag_dipend_pubbl_amm,
                                         this.item.flag_titolare_pensione, this.item.b3_rapp_studio_univ_id,
-                                        this.item.b4_rapp_pubbl_amm_id, this.item.b5_stato_pensionam_id)){
+                                        this.item.b4_rapp_pubbl_amm_id)){
       this.goto.switchB6(this.item.insegn_id, this.item.b6_trattamento_dati_id);
 
     }
