@@ -209,28 +209,28 @@ export class RouteMetods {
         }
     }
 
-    controlButtonB6(p2_RS: number, p2_PA: number, p2_PNS: number, id_B3: number, id_B4: number, id_B5: number) {
+    controlButtonB6(p2_RS: number, p2_PA: number, p2_PNS: number, id_B3: number, id_B4: number) { //, id_B5: number) {
         if (p2_RS === 0 && p2_PA === 0 && p2_PNS === 0) {
             return true;
         } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 0 && p2_PNS === 0) {
             return true;
         } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 1 && id_B4 !== 0 && p2_PNS === 0) {
             return true;
-        } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 1 && id_B4 !== 0 && p2_PNS === 1 && id_B5 !== 0) {
+        } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 1 && id_B4 !== 0 && p2_PNS === 1) { // && id_B5 !== 0) {
             return true;
-        } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 1 && id_B4 === 0 && p2_PNS === 1 && id_B5 === 0) {
+        } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 1 && id_B4 === 0 && p2_PNS === 1) { //  && id_B5 === 0) {
             return true;
-        } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 1 && id_B4 !== 0 && p2_PNS === 1 && id_B5 === 0) {
+        } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 1 && id_B4 !== 0 && p2_PNS === 1) { //  && id_B5 === 0) {
             return true;
-        } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 0 && p2_PNS === 1 && id_B5 !== 0) {
+        } else if (p2_RS === 1 && id_B3 !== 0 && p2_PA === 0 && p2_PNS === 1) { //  && id_B5 !== 0) {
             return true;
         } else if (p2_RS === 0 && p2_PA === 1 && id_B4 !== 0 && p2_PNS === 0 ) {
             return true;
         } else if (p2_RS === 0 && p2_PA === 1 && id_B4 === 0 && p2_PNS === 0 ) {
             return true;
-        } else if (p2_RS === 0 && p2_PA === 1 && id_B4 !== 0 && p2_PNS === 1 && id_B5 !== 0) {
+        } else if (p2_RS === 0 && p2_PA === 1 && id_B4 !== 0 && p2_PNS === 1) { //  && id_B5 !== 0) {
             return true;
-        } else if (p2_RS === 0 && p2_PA === 0 && p2_PNS === 1 && id_B5 !== 0) {
+        } else if (p2_RS === 0 && p2_PA === 0 && p2_PNS === 1) { //  && id_B5 !== 0) {
             return true;
         } else {
             return false;
