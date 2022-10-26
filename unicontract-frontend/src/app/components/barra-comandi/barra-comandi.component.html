@@ -45,10 +45,8 @@
   <button type="button" class="{{ getClassName('B4') + ' btn-warning' }}" *ngIf="!isDisabled('B4') && goto.attivaPulsanteB4(item)" (click)="goto.switchB4(item.insegn_id, item.b4_rapp_pubbl_amm_id)" title="{{ 'btn_b4_title' | translate }}">{{ 'btn_b4' | translate }}</button>
   <button type="button" class="{{ getClassName('B4') }}" [disabled]="isDisabled('B4')" *ngIf="item.b4_rapp_pubbl_amm_id !== 0 && item.flag_dipend_pubbl_amm == 1" (click)="goto.gotoB4(item.b4_rapp_pubbl_amm_id)" title="{{ 'btn_b4_title' | translate }}">{{ 'btn_b4' | translate }}</button>
   <!--B5-->
-<!--
   <button type="button" class="{{ getClassName('B5') + ' btn-warning' }}" *ngIf="!isDisabled('B5') && goto.attivaPulsanteB5(item)" (click)="goto.switchB5(item.insegn_id, item.b5_stato_pensionam_id)" title="{{ 'btn_b5_title' | translate }}">{{ 'btn_b5' | translate }}</button>
   <button type="button" class="{{ getClassName('B5') }}" [disabled]="isDisabled('B5')" *ngIf="item.b5_stato_pensionam_id !== 0 && item.flag_titolare_pensione == 1" (click)="goto.gotoB5(item.b5_stato_pensionam_id)" title="{{ 'btn_b5_title' | translate }}">{{ 'btn_b5' | translate }}</button>
--->
   <!--B6-->
   <button type="button" class="{{ getClassName('B6') }}" [disabled]="isDisabled('B6')" *ngIf="item.b6_trattamento_dati_id !== 0" (click)="goto.gotoB6(item.b6_trattamento_dati_id)" title="{{ 'btn_b6_title' | translate }}">{{ 'btn_b6' | translate }}</button>
 
