@@ -197,9 +197,11 @@
     @include('reports.b4report', $pre)
   @endif
 
+  <!--
   @if($pre->p2naturarapporto->flag_titolare_pensione == 1 && $pre->b5statopensionamento()->first()!=null)
     @include('reports.b5report', $pre)
   @endif
+  -->
   </div>
 
   <div class="page">
