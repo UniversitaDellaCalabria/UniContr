@@ -309,6 +309,7 @@ export class RouteMetods {
 
 
     attivaPulsanteB5(item) {
+        return false;
         if (item.flag_titolare_pensione == 1 &&
             item.b2_incompatibilita_id !== 0 &&
             item.b5_stato_pensionam_id === 0 &&
