@@ -50,8 +50,9 @@ export class PagamentoLocalDetailsComponent extends BaseComponent {
     }
   }
 
-  paymentModality(value: string) {
+  paymentModality(value: string, natura_rapporto: string) {
     if (value === 'ACIC') {
+      if (natura_rapporto === 'PTG') return this.translateService.instant('a2_check3');
       return this.translateService.instant('a2_check2');
     } else if (value === 'AGBM') {
       return this.translateService.instant('a2_check1');

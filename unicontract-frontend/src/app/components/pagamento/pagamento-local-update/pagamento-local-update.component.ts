@@ -47,10 +47,18 @@ export class PagamentoLocalUpdateComponent extends BaseComponent {
           },
           expressionProperties: {
             'templateOptions.options': (model: any, formState: any, field: FormlyFieldConfig) => {
-              return [
-                //{ key: 'AGBM', value: this.translateService.instant('a2_check1') },
-                { key: 'ACIC', value: this.translateService.instant('a2_check2') }
-              ];
+              if(model.natura_rapporto === 'PTG'){
+                  return [
+                    //{ key: 'AGBM', value: this.translateService.instant('a2_check1') },
+                    { key: 'ACIC', value: this.translateService.instant('a2_check3') }
+                  ];
+                }
+                else{
+                    return [
+                    //{ key: 'AGBM', value: this.translateService.instant('a2_check1') },
+                    { key: 'ACIC', value: this.translateService.instant('a2_check2') }
+                  ];
+                }
             },
             'templateOptions.description': (model: any, formState: any, field: FormlyFieldConfig) => {
               if (model.modality === 'AGBM') {
@@ -66,7 +74,7 @@ export class PagamentoLocalUpdateComponent extends BaseComponent {
     // dati relativi al cc
     {
       wrappers: ['riquadro'],
-      hideExpression:  (model: any, formState: any) => model.modality === 'AGBM',
+      hideExpression:  (model: any, formState: any) => model.modality === 'AGBM' || model.natura_rapporto === 'PTG',
       templateOptions: {
         title:  this.translateService.instant('a2_title2')
       },
