@@ -151,6 +151,7 @@
     @endif
   </p>
 
+  @if($pre->p2naturarapporto->natura_rapporto != 'PTG')
   <h4>QUADRO A.2: DATI BANCARI</h4>
   <p class="normal">
    @if($pre->a2modalitapagamento)
@@ -159,10 +160,9 @@
    @elseif($pre->a2modalitapagamento->modality == 'ACNT')
       Modalità di pagamento: SPEDIZIONE DI ASSEGNO CIRCOLARE NON TRASFERIBILE ALL'INDIRIZZO DI RESIDENZA <br>
    @elseif($pre->a2modalitapagamento->modality == 'ACIC')
-      @if($pre->p2naturarapporto->natura_rapporto == 'PTG')Modalità di pagamento: A TITOLO GRATUITO <br>
-      @else Modalità di pagamento: ACCREDITAMENTO PRESSO ISTITUTO DI CREDITO
-      @endif
+      Modalità di pagamento: ACCREDITAMENTO PRESSO ISTITUTO DI CREDITO
    @endif
+
 
    @if($pre->a2modalitapagamento->tipologia_conto_corrente ==  'CC' || $pre->a2modalitapagamento->tipologia_conto_corrente == 'CB')
       Tipologia: CONTO CORRENTE BANCARIO <br>
@@ -188,6 +188,7 @@
    Intestazione C/C: {{$pre->a2modalitapagamento->intestazione}} <br>
    @endif
   </p>
+  @endif
   </div>
 
   <div class="page">
