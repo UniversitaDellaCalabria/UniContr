@@ -190,7 +190,7 @@ return [
     "d2_txt3"=>"essere soggetti individuati nell'art. 50, comma 1, lettera c-bis del TUIR che esercitano un'attività a rischio (art.1 del Testo Unico n. 1124/65) attratta all'obbligo assicurativo INAIL.",
     "d2_txt4"=>"essere soggetti individuati nell'art. 50, comma 1, lettera c-bis del TUIR che esercitano un'attività a rischio (art. 1 del Testo Unico n. 1124/65) attratta all'obbligo assicurativo INAIL.",
     "d2_txt5"=>"non essere soggetti all'obbligo di assicurazione INAIL in quanto l'attività oggetto del contratto consiste in docenza frontale.",
-    "d2_sub_txt1"=>"Posizione assicurativa 11475146/71: Laboratori di analisi chimiche, fisiche, industriali, merceologiche, ecc. (solo per attività effettuate a se stante; compreso l'accesso ad opifici, cantieri, ecc.); istituti sperimentali e di ricerca scientifica (istituti fisici, chimici, mineralogici, petrografici, elettrotecnici, meccanici, agrari, ecc.).",
+    "d2_sub_txt1"=>"Posizione assicurativa 011471434/55: Laboratori di analisi chimiche, fisiche, industriali, merceologiche, ecc. (solo per attività effettuate a se stante; compreso l'accesso ad opifici, cantieri, ecc.); istituti sperimentali e di ricerca scientifica (istituti fisici, chimici, mineralogici, petrografici, elettrotecnici, meccanici, agrari, ecc.).",
     "d2_sub_txt2"=>"Posizione assicurativa 90211454/03: Istruttori sportivi.",
     "d2_sub_txt3"=>"Posizione assicurativa 11475145/26: Personale che per lo svolgimento delle proprie mansioni fa uso diretto di videoterminali e macchine da ufficio; personale addetto a centri di elaborazione dati, a centralini telefonici, a sportelli informatizzati, a registratori di cassa, e simili.",
 
