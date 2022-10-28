@@ -41,7 +41,7 @@ class ContrattiTest extends TestCase
     // ./vendor/bin/phpunit  --testsuite Unit --filter testPrecontrattuale
     public function testPrecontrattuale()
     {
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $repo = new PrecontrattualeRepository($this->app);
@@ -60,7 +60,7 @@ class ContrattiTest extends TestCase
     // ./vendor/bin/phpunit  --testsuite Unit --filter testDateInsegnamento
     public function testDateInsegnamento()
     {
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
 
@@ -117,7 +117,7 @@ class ContrattiTest extends TestCase
     // ./vendor/bin/phpunit  --testsuite Unit --filter testQueryPrecontr
     public function testQueryPrecontr(){
 
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         //insegnamenti
@@ -159,7 +159,7 @@ class ContrattiTest extends TestCase
         Storage::disk('local')->put('filetest.txt', 'Primo contenuto');
         $contents = Storage::get('filetest.txt');
 
-        $user = User::where('email','test.admin@uniurb.it')->first();
+        $user = User::where('email','test.admin@unical.it')->first();
 
         $type = AttachmentType::where('codice','DOC_CV')->first();
         /** @var Attachment $attachment */
@@ -183,7 +183,7 @@ class ContrattiTest extends TestCase
      //./vendor/bin/phpunit  --testsuite Unit --filter testGeneraPdfConflitto
     public function testGeneraPdfConflitto() {
 
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $repo = new PrecontrattualeRepository($this->app);
@@ -217,7 +217,7 @@ class ContrattiTest extends TestCase
      //./vendor/bin/phpunit  --testsuite Unit --filter testGeneraPdfConflittoTrasparenza
     public function testGeneraPdfConflittoTrasparenza() {
 
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $repo = new PrecontrattualeRepository($this->app);
@@ -251,7 +251,7 @@ class ContrattiTest extends TestCase
     //./vendor/bin/phpunit  --testsuite Unit --filter testSendFirstEmail
     public function testSendFirstEmail() {
 
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $repo = new PrecontrattualeRepository($this->app);
@@ -282,7 +282,7 @@ class ContrattiTest extends TestCase
     //./vendor/bin/phpunit  --testsuite Unit --filter testGenerazioneContratto
     public function testGenerazioneContratto() {
 
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         //IMPORT INSEGNAMENTO DOCENTE
@@ -312,7 +312,7 @@ class ContrattiTest extends TestCase
 
     //./vendor/bin/phpunit  --testsuite Unit --filter testTitulusContratto
     public function testTitulusContratto() {
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         //IMPORT INSEGNAMENTO DOCENTE
@@ -345,7 +345,7 @@ class ContrattiTest extends TestCase
 
      // ./vendor/bin/phpunit  --testsuite Unit --filter test_exportCSV
      public function test_exportCSV(){
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         //IMPORT INSEGNAMENTO DOCENTE
@@ -379,7 +379,7 @@ class ContrattiTest extends TestCase
 
     // ./vendor/bin/phpunit  --testsuite Unit --filter test_exportXLS
     public function test_exportXLS(){
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         //IMPORT INSEGNAMENTO DOCENTE
@@ -425,7 +425,7 @@ class ContrattiTest extends TestCase
     //./vendor/bin/phpunit  --testsuite Unit --filter testGenerazioneReport
     public function testGenerazioneReport() {
 
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $result = PrecontrattualeService::makePdfForReport('DISB');
@@ -498,7 +498,7 @@ class ContrattiTest extends TestCase
   //./vendor/bin/phpunit  --testsuite Unit --filter testGenPrecontrattualeReport
   public function testGenPrecontrattualeReport() {
 
-    $user = User::where('email','enrico.oliva@uniurb.it')->first();
+    $user = User::where('email','francesco.filicetti@unical.it')->first();
     $this->actingAs($user);
 
     //IMPORT INSEGNAMENTO DOCENTE
@@ -531,7 +531,7 @@ class ContrattiTest extends TestCase
    //./vendor/bin/phpunit  --testsuite Unit --filter testUgovCompensi
    public function testUgovCompensi() {
 
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $contr = ContrUgov::where('ID_DG', 2045192)->first();
@@ -573,7 +573,7 @@ class ContrattiTest extends TestCase
 
     //./vendor/bin/phpunit  --testsuite Unit --filter testUgovPagamentoCompensi
     public function testUgovPagamentoCompensi() {
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $contrs = ContrUgov::with(['compensi','compensi.ordinativi'])
@@ -591,7 +591,7 @@ class ContrattiTest extends TestCase
      //vuole la connessione ugov
      // ./vendor/bin/phpunit  --testsuite Unit --filter test_ContrUgovExportCSV
      public function test_ContrUgovExportCSV(){
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $controller  = new ContrUgovController();
@@ -631,7 +631,7 @@ class ContrattiTest extends TestCase
      //vuole la connessione ugov
      // ./vendor/bin/phpunit  --testsuite Unit --filter test_InseganmentiConSegmentiUgov
     public function test_InseganmentiConSegmentiUgov(){
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         $insegnamentoUgov = InsegnamUgov::with(['segmenti'])->where('COPER_ID', 28128)
@@ -660,7 +660,7 @@ class ContrattiTest extends TestCase
 
     //./vendor/bin/phpunit  --testsuite Unit --filter testPrecontrattualeIbanUgovValidazione
     public function testPrecontrattualeIbanUgovValidazione() {
-        $user = User::where('email','enrico.oliva@uniurb.it')->first();
+        $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
         //IMPORT INSEGNAMENTO DOCENTE

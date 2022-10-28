@@ -18,18 +18,18 @@ Titolare del trattamento e Responsabile della Protezione Dati
 </p>
 <p class="infor">
 Il Titolare del trattamento è l'Università della Calabria nella figura del Legale rappresentante, il Rettore.<br>
-Indirizzo: Via A. Saffi, 2 - 61029 Urbino (PU) - Italy - Telefono: 0722 305343<br>
+Indirizzo: via Pietro Bucci, Cubo 25, 87036 Arcavacata di Rende (CS) - Italy - Italy - Telefono: 0984 49 6775<br>
 I dati di contatto del Titolare sono:<br>
-email: rettore@uniurb.it<br>
-PEC: amministrazione@uniurb.legalmail.it<br>
+email: rettore@unical.it<br>
+PEC: amministrazione@pec.unical.it<br>
 </p>
 <br>
 <p class="infor">
-Il Responsabile della Protezione dei Dati - Data Protection Officier (RPD-DPO) è l'Ing. Mauro Raimondi.<br>
-Indirizzo: Via A. Saffi, 2 - 61029 Urbino (PU) - Italy - Telefono: 0722 305234<br>
+Il Responsabile della Protezione dei Dati - Data Protection Officier (RPD-DPO) è l'avv. Sergio Niger.<br>
+Indirizzo: via Pietro Bucci, Cubo 7/11, 87036 Arcavacata di Rende (CS) - Italy - Telefono: 0984 493918<br>
 I dati di contatto del RPD sono:<br>
-email: rpd@uniurb.it<br>
-PEC: rpd@uniurb.legalmail.it<br>
+email: rpd@unical.it<br>
+PEC: rpd@pec.unical.it<br>
 </p>
 <br>
 <p class="subtitleinfor">
@@ -98,7 +98,7 @@ Modalità di esercizio dei diritti
 </p>
 <p class="infor">
 Lei potrà esercitare tutti i diritti di cui sopra inviando una email al Responsabile Protezione dei dati al
-seguente indirizzo email: rpd@uniurb.it PEC: rpd@uniurb.legalmail.it
+seguente indirizzo email: rpd@unical.it PEC: rpd@pec.unical.it
 </p>
 <br>
 <p class="subtitleinfor">
@@ -123,5 +123,5 @@ Settore del Personale <br>
 Ufficio Amministrazione e reclutamento personale docente<br>
 Via Puccinotti, 25 - 61029 Urbino (PU)<br>
 Tel. +39 0722 305476 / 401 / 402 / 404 / 418 / 446 / 481 Fax +39 0722 305477<br>
-amministrazione.reclutamento.pdoc@uniurb.it - www.uniurb.it<br>
+amministrazione.reclutamento.pdoc@uniurb.it - www.unical.it<br>
 </p>
