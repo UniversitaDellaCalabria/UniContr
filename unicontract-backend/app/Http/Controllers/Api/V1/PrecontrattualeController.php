@@ -22,6 +22,7 @@ use PHP_IBAN\IBAN;
 use Illuminate\Support\Facades\Cache;
 use App\Exceptions\Handler;
 use Illuminate\Container\Container;
+use DB;
 use Exception;
 
 class PrecontrattualeController extends Controller

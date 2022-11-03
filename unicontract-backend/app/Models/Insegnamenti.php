@@ -29,6 +29,7 @@ class Insegnamenti extends Model {
         'cod_settore',
         'cfu',
         'ore',
+        'ore_desc',
         'cdl',
         'data_ini_contr',
         'data_fine_contr',
