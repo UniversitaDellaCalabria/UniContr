@@ -129,15 +129,14 @@ class PrecontrattualeController extends Controller
                     ->select('tipo_atto_did_cod','ore')
                     ->get();
 
-        $desc_string = "";
+        $ore_desc_string = "";
         foreach ($ore_desc as $single_desc) {
-            $desc_string .="(";
-            $desc_string .=$single_desc->tipo_atto_did_cod;
-            $desc_string .="-";
-            $desc_string .=$single_desc->ore;
-            $desc_string .=")";
+            $ore_desc_string .="(";
+            $ore_desc_string .=$single_desc->tipo_atto_did_cod;
+            $ore_desc_string .="-";
+            $ore_desc_string .=$single_desc->ore;
+            $ore_desc_string .=")";
         }
-        $insegnamentoUgov->ore_desc = $desc_string;
 
         //verificare la data di conferimento
         if (!$insegnamentoUgov->motivo_atto_cod){
@@ -237,7 +236,7 @@ class PrecontrattualeController extends Controller
             }
         }
 
-        $precontr->insegnamento->setDataFromUgov($insegnamentoUgov);
+        $precontr->insegnamento->setDataFromUgov($insegnamentoUgov, $ore_desc_string);
 
         $precontr->insegnamento->save();
 
