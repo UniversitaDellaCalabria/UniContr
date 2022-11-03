@@ -16,6 +16,7 @@
     "00_int6": "Conferimento",
     "00_int7": "Epigrafe S.S.D. / Codice S.S.D.",
     "00_int8": "CFU / ore",
+    "00_int8_extra": "Dettaglio ore",
     "00_int9": "Dipartimento",
     "00_int10": "Corso di laurea",
     "00_int11": "Compenso lordo",
