@@ -241,8 +241,6 @@ class PrecontrattualeController extends Controller
 
         $precontr->insegnamento->save();
 
-
-
         $precontr->storyprocess()->save(
             PrecontrattualeService::createStoryProcess('Modello P1: Aggiornamento dati insegnamento',
             $precontr->insegn_id)
