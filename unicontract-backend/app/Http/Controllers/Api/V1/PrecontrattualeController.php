@@ -124,7 +124,20 @@ class PrecontrattualeController extends Controller
                 'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
                 'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id']);
 
+        $ore_desc = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_ORE_COPER_DET V1')
+                    ->where('coper_id','=',$precontr->insegnamento->coper_id)
+                    ->select('tipo_atto_did_cod','ore')
+                    ->get();
 
+        $desc_string = "";
+        foreach ($ore_desc as $single_desc) {
+            $desc_string .="(";
+            $desc_string .=$single_desc->tipo_atto_did_cod;
+            $desc_string .="-";
+            $desc_string .=$single_desc->ore;
+            $desc_string .=")";
+        }
+        $insegnamentoUgov->ore_desc = $desc_string;
 
         //verificare la data di conferimento
         if (!$insegnamentoUgov->motivo_atto_cod){

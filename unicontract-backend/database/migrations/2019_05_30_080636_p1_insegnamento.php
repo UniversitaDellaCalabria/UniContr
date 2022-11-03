@@ -22,13 +22,14 @@ class P1Insegnamento extends Migration
             $table->string('cod_settore', 50)->nullable();
             $table->integer('cfu')->unsigned()->nullable();
             $table->integer('ore')->unsigned()->nullable();
+            $table->string('ore_desc', 255)->nullable();
             $table->string('cdl', 255)->nullable();
             $table->date('data_ini_contr')->nullable();
             $table->date('data_fine_contr')->nullable();
             $table->string('ciclo', 255)->nullable();
             $table->string('aa', 11)->nullable();
             $table->string('dipartimento', 255)->nullable();
-            $table->decimal('compenso',12,2)->nullable();     
+            $table->decimal('compenso',12,2)->nullable();
             //$table->string('compenso', 9)->nullable();
             $table->string('tipo_contratto', 10)->nullable();
             $table->string('tipo_atto', 255)->nullable();
@@ -40,7 +41,7 @@ class P1Insegnamento extends Migration
             $table->tinyInteger('stato', false, true)->default(0);
             $table->smallInteger('storico', false, true)->default(0);
             $table->string('user_role', 30)->default('NULL');
-            
+
             //codice dipartimento
             $table->string('dip_cod', 10)->nullable();
             $table->timestamps();
