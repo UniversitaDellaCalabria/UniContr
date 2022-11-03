@@ -102,6 +102,7 @@
     S.S.D.: {{$pre->insegnamento->cod_settore}} - {{ $pre->settore }}<br>
     CFU: {{ $pre->insegnamento->cfu }}<br>
     Ore: {{ $pre->ore }}<br>
+    Dettaglio ore: {{ $pre->ore_desc }}<br>
     Periodo: {{ $pre->periodo }}<br>
     Compenso lordo: € {{ $pre->compenso }} <br>
     Dipartimento: {{ $pre->dipartimento }}<br>

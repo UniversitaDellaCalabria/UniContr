@@ -19,14 +19,14 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
         $this->request = $request;
         $this->findparam = $findparam;
     }
-      
+
 
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
-    {               
-        $collection = UtilService::alldata(new Precontrattuale, $this->request, $this->findparam);        
+    {
+        $collection = UtilService::alldata(new Precontrattuale, $this->request, $this->findparam);
         return $collection;
     }
 
@@ -34,23 +34,23 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
     * @var Precontrattuale $precontr
     */
     public function map($precontr): array
-    {      
+    {
         return [
             $precontr->insegnamento ? $precontr->insegnamento->coper_id : '',
             $precontr->insegnamento ? $precontr->insegnamento->aa : '',
             $precontr->insegnamento ? $precontr->insegnamento->data_ini_contr : '',
             $precontr->insegnamento ? $precontr->insegnamento->data_fine_contr: '',
-            
+
             $precontr->user ? $precontr->user->cognome: '',
             $precontr->user ? $precontr->user->nome: '',
 
             $precontr->user ? $precontr->user->cf: '',
             $precontr->user ? $precontr->user->email: '',
-            
+
             $precontr->anagrafica ? $precontr->anagrafica->sesso : '',
             $precontr->anagrafica ? (($precontr->anagrafica->data_nascita != null) ? $precontr->anagrafica->data_nascita :'') : '',
             $precontr->anagrafica ? (($precontr->anagrafica->comune_nascita != null) ? $precontr->anagrafica->comune_nascita :'') : '',
-            $precontr->anagrafica ?  (($precontr->anagrafica->nazione_residenza != null) ? $precontr->anagrafica->nazione_residenza :'') : '', 
+            $precontr->anagrafica ?  (($precontr->anagrafica->nazione_residenza != null) ? $precontr->anagrafica->nazione_residenza :'') : '',
 
             $precontr->p2naturarapporto ? ($precontr->p2naturarapporto->flag_titolare_pensione == 1 ? 'si' : 'no') : '',
             $precontr->p2naturarapporto ? ($precontr->p2naturarapporto->flag_dipend_pubbl_amm == 1 ? 'si' : 'no') : '',
@@ -61,6 +61,7 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
             $precontr->insegnamento ? $precontr->insegnamento->cdl: '',
             $precontr->insegnamento ? $precontr->insegnamento->cfu: '',
             $precontr->insegnamento ? $precontr->insegnamento->ore: '',
+            $precontr->insegnamento ? $precontr->insegnamento->ore_desc: '',
             $precontr->insegnamento ? $precontr->insegnamento->compenso: '',
             $precontr->insegnamento ? $precontr->insegnamento->dipartimento: '',
             $this->naturaRapporto($precontr->p2naturarapporto),
@@ -71,38 +72,38 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
             $precontr->insegnamento ? $precontr->insegnamento->num_delibera: '',
             $precontr->insegnamento ? $precontr->insegnamento->data_delibera: '',
 
-            $precontr->a2modalitapagamento && $precontr->a2modalitapagamento->modality == 'ACIC' ? 
+            $precontr->a2modalitapagamento && $precontr->a2modalitapagamento->modality == 'ACIC' ?
                 $precontr->a2modalitapagamento->iban : '',
 
-            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d1inps 
+            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d1inps
                 ? ($precontr->d1inps->flag_gestione_separata == 0 ? 'no' : 'si') : '',
 
-            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d1inps 
+            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d1inps
                 ? ($precontr->d1inps->flag_misura_ridotta == 0 ? 'no' : 'si') : '',
 
-            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d1inps 
-                ? (($precontr->d1inps->flag_misura_ridotta == 1 && $precontr->d1inps->specif_misura_ridotta == 'D3C') 
-                    ? (!is_null($precontr->d1inps->cassa_gestioni_previdenziali) && !empty($precontr->d1inps->cassa_gestioni_previdenziali) 
-                        ? __('global.cassa'.$precontr->d1inps->cassa_gestioni_previdenziali) : '') 
-                    : '') 
+            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d1inps
+                ? (($precontr->d1inps->flag_misura_ridotta == 1 && $precontr->d1inps->specif_misura_ridotta == 'D3C')
+                    ? (!is_null($precontr->d1inps->cassa_gestioni_previdenziali) && !empty($precontr->d1inps->cassa_gestioni_previdenziali)
+                        ? __('global.cassa'.$precontr->d1inps->cassa_gestioni_previdenziali) : '')
+                    : '')
                 : '',
 
             ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d2inail
-                ?  __('global.'.$precontr->d2inail->posizione_previdenziale) : '', 
+                ?  __('global.'.$precontr->d2inail->posizione_previdenziale) : '',
 
-            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali 
-                ?  $precontr->d4fiscali->percentuale_aliquota_irpef.' %': '', 
-            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali 
+            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali
+                ?  $precontr->d4fiscali->percentuale_aliquota_irpef.' %': '',
+            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali
                 ?  ($precontr->d4fiscali->flag_detrazioni == 0 ? 'no' : 'si') : '',
-            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali && !is_null($precontr->d4fiscali->flag_bonus_renzi) 
+            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali && !is_null($precontr->d4fiscali->flag_bonus_renzi)
                 ?  ($precontr->d4fiscali->flag_bonus_renzi == 0 ? 'no' : 'si') : '',
-            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali && !is_null($precontr->d4fiscali->flag_bonus_renzi) 
+            ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali && !is_null($precontr->d4fiscali->flag_bonus_renzi)
                 ?  ($precontr->d4fiscali->flag_detrazioni_21_2020 == 0 ? 'no' : 'si') : '',
             ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d6familiari
                 ?  ($precontr->d6familiari->flag_richiesta_detrazioni == 0 ? 'no' : 'si') : '',
 
-            $precontr->currentState,         
-            
+            $precontr->currentState,
+
             $precontr->flag_no_compenso == 0 ? '' : 'si'
         ];
     }
@@ -115,7 +116,7 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
             'Anno Offerta Formativa',
             'Data inizio',
             'Data fine',
-            
+
             'Cognome',
             'Nome',
 
@@ -162,15 +163,15 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
     }
 
     public function tipoConferimento($value) {
-        return UtilService::tipoConferimento($value);        
+        return UtilService::tipoConferimento($value);
     }
 
     public function tipoContratto($value) {
-        return UtilService::tipoContratto($value);          
+        return UtilService::tipoContratto($value);
     }
 
     public function naturaRapporto($p2naturarapporto) {
-        return UtilService::naturaRapporto($p2naturarapporto);  
+        return UtilService::naturaRapporto($p2naturarapporto);
     }
 
 
