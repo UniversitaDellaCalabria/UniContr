@@ -36,12 +36,13 @@ class PrecontrattualeRepository extends BaseRepository {
         return 'App\Precontrattuale';
     }
 
-    public function newPrecontrImportInsegnamento(array $data){
+    public function newPrecontrImportInsegnamento(array $data, String $ore_desc_string){
         DB::beginTransaction();
         try {
             // IMPORTAZIONE NUOVO INSEGNAMENTO DA UGOV
             $insegn = new Insegnamenti();
             $insegn->fill($data['insegnamento']);
+            $insegn->ore_desc = $ore_desc_string;
             $success = $insegn->save();
 
             // PROFILO DOCENTE

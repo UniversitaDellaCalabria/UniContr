@@ -397,7 +397,20 @@ class PrecontrattualeController extends Controller
             $message = '';
             $postData = $request->except('id', '_method');
 
-            $data = $this->repo->newPrecontrImportInsegnamento($postData);
+            $ore_desc = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_ORE_COPER_DET V1')
+                    ->where('coper_id','=',$request->insegnamento['coper_id'])
+                    ->select('tipo_att_did_cod','ore')
+                    ->get();
+            $ore_desc_string = "";
+            foreach ($ore_desc as $single_desc) {
+                $ore_desc_string .="(";
+                $ore_desc_string .=$single_desc->tipo_att_did_cod;
+                $ore_desc_string .="-";
+                $ore_desc_string .=$single_desc->ore;
+                $ore_desc_string .=")";
+            }
+
+            $data = $this->repo->newPrecontrImportInsegnamento($postData, $ore_desc_string);
         } else {
             $success = false;
             $message = 'Insegnamento già presente nel sistema, gestire quello esistente';
