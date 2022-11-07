@@ -121,7 +121,7 @@ const routes: Routes = [
             { title: 'Nuovo contratto' }
           ]
         }
-      },  
+      },
 
       {
         path: 'ugov-insegn-detail/:coper_id/:aa_off_id',
@@ -171,7 +171,7 @@ const routes: Routes = [
           ]
         }
       },
-      
+
 
       {
         path: 'lista-insegn',
@@ -829,8 +829,8 @@ const routes: Routes = [
           ]
         }
       },
-      { 
-        path: 'logattivita',  component: LogAttivitaComponent,  canActivate:[AuthGuard], 
+      {
+        path: 'logattivita',  component: LogAttivitaComponent,  canActivate:[AuthGuard],
         data: {
           title: 'Log attività',
           urls: [
@@ -891,8 +891,8 @@ const routes: Routes = [
           ]
         }
       },
-      { 
-        path: 'mappinguffici',  component: MappingUfficiTitulus,  canActivate:[AuthGuard], 
+      {
+        path: 'mappinguffici',  component: MappingUfficiTitulus,  canActivate:[AuthGuard],
         data: {
           title: 'Mapping uffici',
           urls: [
@@ -900,9 +900,9 @@ const routes: Routes = [
             { title: 'Ricerca associazione uffici' }
           ]
         }
-      }, 
-      { 
-        path: 'mappinguffici/:id',  component: MappingUfficioTitulus,  canActivate:[AuthGuard], 
+      },
+      {
+        path: 'mappinguffici/:id',  component: MappingUfficioTitulus,  canActivate:[AuthGuard],
         data: {
           title: 'Mapping uffici',
           urls: [
@@ -910,9 +910,9 @@ const routes: Routes = [
             { title: 'Ricerca mapping uffici' }
           ]
         }
-      }, 
-      { 
-        path: 'mappinguffici/new',  component: MappingUfficioTitulus,  canActivate:[AuthGuard], 
+      },
+      {
+        path: 'mappinguffici/new',  component: MappingUfficioTitulus,  canActivate:[AuthGuard],
         data: {
           title: 'Nuova associazione uffici',
           urls: [
@@ -920,7 +920,7 @@ const routes: Routes = [
             { title: 'Nuova associazione uffici' }
           ]
         }
-      }, 
+      },
 
     ]
   },
