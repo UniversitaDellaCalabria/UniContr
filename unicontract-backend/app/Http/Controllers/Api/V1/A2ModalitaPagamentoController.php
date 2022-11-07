@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ModalitaPagamentoUgov;
 use App\Models\A2ModalitaPagamento;
 use App\Models\AnagraficaUgov;
-use App\Models\Precontrattuale;
+use App\Models\P2rapporto;
 use App\Precontrattuale;
 use App\Repositories\A2ModalitaPagamentoRepository;
 use App\Service\PrecontrattualeService;
