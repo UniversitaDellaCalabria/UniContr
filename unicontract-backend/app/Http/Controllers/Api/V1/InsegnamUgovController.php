@@ -43,6 +43,20 @@ class InsegnamUgovController extends Controller
             ->where('SIAXM_UNICAL_PROD.V_IE_DI_COPER.COPER_ID', $coper_id)
             ->first(['SIARU_UNICAL_PROD.VD_ANAGRAFICA.ID_AB', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.EMAIL', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.E_MAIL', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.E_MAIL_PRIVATA', 'SIAXM_UNICAL_PROD.V_IE_DI_COPER.*']);
 
+        $ore_desc = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_ORE_COPER_DET V1')
+                    ->where('coper_id','=',$coper_id)
+                    ->select('tipo_att_did_cod','ore')
+                    ->get();
+        $ore_desc_string = "";
+        foreach ($ore_desc as $single_desc) {
+            $ore_desc_string .="(";
+            $ore_desc_string .=$single_desc->tipo_att_did_cod;
+            $ore_desc_string .="-";
+            $ore_desc_string .=$single_desc->ore;
+            $ore_desc_string .=")";
+        }
+        $datiUgov['ore_desc'] = $ore_desc_string;
+
         $datiUgov['contatore_insegnamenti'] = InsegnamUgovController::contatoreInsegnamenti($coper_id);
 
         $success = true;
