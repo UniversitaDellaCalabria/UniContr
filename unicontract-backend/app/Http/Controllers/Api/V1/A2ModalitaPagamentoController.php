@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ModalitaPagamentoUgov;
 use App\Models\A2ModalitaPagamento;
 use App\Models\AnagraficaUgov;
+use App\Models\Precontrattuale;
 use App\Precontrattuale;
 use App\Repositories\A2ModalitaPagamentoRepository;
 use App\Service\PrecontrattualeService;
@@ -112,11 +113,10 @@ class A2ModalitaPagamentoController extends Controller
             }
             $dati['copy'] = $copy;
 
-            $natura_rapporto = A2ModalitaPagamento::leftJoin('precontr', function($join) {
-                $join->on('precontr.a2_mod_pagamento_id', '=', 'a2_mod_pagamento.id');
-            })
+            $precontr = Precontrattuale::where('docente_id', $id_ab)->orderBy('id','desc')->first();
+            $natura_rapport = P2rapport::wehere('id', $precontr->p2_natura_rapporto_id).first();
 
-            $dati['natura_rapporto'] = $natura_rapporto;
+            $dati['natura_rapporto'] = $natura_rapport->natura_rapporto;
             $success = true;
 
         return compact('dati', 'message', 'success');
