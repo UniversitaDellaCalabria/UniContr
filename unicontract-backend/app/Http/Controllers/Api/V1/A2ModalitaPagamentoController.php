@@ -112,11 +112,11 @@ class A2ModalitaPagamentoController extends Controller
             }
             $dati['copy'] = $copy;
 
-            $precontr_attuale = A2ModalitaPagamento::whereHas('precontrattuale', function ($query) use($id_ab) {
-                $query->where('docente_id',$id_ab);
-            })->orderBy('id','desc')->first();
+            $natura_rapporto = A2ModalitaPagamento::leftJoin('precontr', function($join) {
+                $join->on('precontr.a2_mod_pagamento_id', '=', 'a2_mod_pagamento.id');
+            })
 
-            $dati['natura_rapporto'] = $precontr_attuale->p2_natura_rapporto;
+            $dati['natura_rapporto'] = $natura_rapporto;
             $success = true;
 
         return compact('dati', 'message', 'success');
