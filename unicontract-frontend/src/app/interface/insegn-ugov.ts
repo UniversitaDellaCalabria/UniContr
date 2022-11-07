@@ -17,6 +17,7 @@ export interface InsegnUgovInterface {
     ruolo_doc_cod: string;
     coper_peso: string;
     ore: number;
+    ore_desc: string;
     data_ini_contratto: string;
     data_fine_contratto: string;
     compenso: string;

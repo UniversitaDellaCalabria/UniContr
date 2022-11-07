@@ -19,6 +19,7 @@ export class InsegnUgov implements InsegnUgovInterface {
     ruolo_doc_cod: string;
     coper_peso: string;
     ore: number;
+    ore_desc: string;
     data_ini_contratto: string;
     data_fine_contratto: string;
     compenso: string;
@@ -49,6 +50,7 @@ export class InsegnUgov implements InsegnUgovInterface {
         this.ruolo_doc_cod = '';
         this.coper_peso = '';
         this.ore = 0;
+        this.ore_desc = '';
         this.data_ini_contratto = '';
         this.data_fine_contratto = '';
         this.compenso = '';
