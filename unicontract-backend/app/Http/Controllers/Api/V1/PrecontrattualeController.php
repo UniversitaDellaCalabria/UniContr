@@ -147,7 +147,7 @@ class PrecontrattualeController extends Controller
         }
 
         //verificare motivo atto non supportato
-        if ($insegnamentoUgov->motivo_atto_cod && !in_array($insegnamentoUgov->motivo_atto_cod, ['BAN_INC','APPR_INC','CONF_INC'])){
+        if ($insegnamentoUgov->motivo_atto_cod && !in_array($insegnamentoUgov->motivo_atto_cod, ['BAN_INC','APPR_INC','CONF_INC', 'PROP_INC'])){
             $message = 'Insegnamento non aggiornabile: motivo atto non supportato';
             $success = false;
             return compact('data', 'message', 'success');
@@ -166,7 +166,7 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        if ($insegnamentoUgov->motivo_atto=='APPR_INC' && !in_array($insegnamentoUgov->tipo_contratto, ['ALTQG',
+        if (($insegnamentoUgov->motivo_atto=='APPR_INC' || $insegnamentoUgov->motivo_atto=='PROP_INC') && !in_array($insegnamentoUgov->tipo_contratto, ['ALTQG',
                                                                                                         'ALTQC',
                                                                                                         'ALTQU',
                                                                                                         'TC004',
@@ -280,7 +280,7 @@ class PrecontrattualeController extends Controller
             }
 
             //verificare motivo atto non supportato
-            if ($request->insegnamento['motivo_atto'] && !in_array($request->insegnamento['motivo_atto'], ['BAN_INC','APPR_INC','CONF_INC'])){
+            if ($request->insegnamento['motivo_atto'] && !in_array($request->insegnamento['motivo_atto'], ['BAN_INC','APPR_INC','CONF_INC','PROP_INC'])){
                 $message = 'Insegnamento non importabile: motivo atto non supportato';
                 $success = false;
                 return compact('data', 'message', 'success');
@@ -335,7 +335,7 @@ class PrecontrattualeController extends Controller
                 return compact('data', 'message', 'success');
             }
 
-            if ($request->insegnamento['motivo_atto']=='APPR_INC' && !in_array($request->insegnamento['tipo_contratto'], ['ALTQG',
+            if (($request->insegnamento['motivo_atto']=='APPR_INC' || $request->insegnamento['motivo_atto']=='PROP_INC') && !in_array($request->insegnamento['tipo_contratto'], ['ALTQG',
                                                                                                                           'ALTQC',
                                                                                                                           'ALTQU',
                                                                                                                           'TC004',

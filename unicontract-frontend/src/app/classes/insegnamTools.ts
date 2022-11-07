@@ -96,7 +96,7 @@ export class InsegnamTools {
   }
 
   tipoConferimento(value) {
-      if (value === 'BAN_INC' || value === 'APPR_INC') {
+      if (value === 'BAN_INC' || value === 'APPR_INC' || value === 'PROP_INC') {
           return 'NUOVO CONTRATTO';
       } else if (value === 'CONF_INC') {
           return 'RINNOVO CONTRATTO';

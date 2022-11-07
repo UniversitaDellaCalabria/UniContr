@@ -38,7 +38,7 @@ class UtilService {
     }
 
     public static function tipoConferimento($value) {
-        if ($value === 'BAN_INC' || $value === 'APPR_INC') {
+        if ($value === 'BAN_INC' || $value === 'APPR_INC' || $value === 'PROP_INC') {
             return 'Nuovo contratto';
         } else if ($value === 'CONF_INC') {
             return 'Rinnovo contratto';

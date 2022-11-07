@@ -87,7 +87,7 @@ class InsegnamUgovController extends Controller
              $tipo_coper_cod == 'TC006'){
             //contratto di alta qualificazione
             //non c'è BAN_INC cerco il primo contratto APPR_INC
-            $datiUgov = self::queryFirstMotivoAttoCod($coper_id, ['APPR_INC']);
+            $datiUgov = self::queryFirstMotivoAttoCod($coper_id, ['APPR_INC', 'PROP_INC']);
 
         }else{
             //altro
@@ -96,7 +96,7 @@ class InsegnamUgovController extends Controller
 
         //ATTENZIONE per i casi di rinnovi contratti già a sistema, di didattica ufficiale ma con affidamento incarico di docenza
         if (!$datiUgov){
-            $datiUgov = self::queryFirstMotivoAttoCod($coper_id, ['APPR_INC', 'BAN_INC']);
+            $datiUgov = self::queryFirstMotivoAttoCod($coper_id, ['APPR_INC', 'BAN_INC', 'PROP_INC']);
             Log::info('Conferimento incarico [ cod_coper_id: '.$coper_id.' ] tipo contratto: '.$tipo_coper_cod.' - non consistente con l\'origine dell\'attribuzione');
         }
 
@@ -113,7 +113,7 @@ class InsegnamUgovController extends Controller
             ->get();
             $count = $result->count();
         }else{
-            Log::info('Conferimento incarico [ cod_coper_id: '.$coper_id.' ] senza BAN_INC o APPR_INC');
+            Log::info('Conferimento incarico [ cod_coper_id: '.$coper_id.' ] senza BAN_INC o APPR_INC o PROP_INC');
             if ($force){
                 //NON c'è il BAN_INC o APPR_INC conto tutti i contratti CONF_INC PRESENTI escludendo il presente
                 //è un caso di errore quindi ritorno 0

@@ -195,7 +195,7 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     }
 
     public function isNuovo(){
-        return $this->motivoAtto == 'BAN_INC' || $this->motivoAtto == 'APPR_INC';
+        return $this->motivoAtto == 'BAN_INC' || $this->motivoAtto == 'APPR_INC' || $this->motivoAtto == 'PROP_INC';
     }
 
     public function ContatoreSelection(){
