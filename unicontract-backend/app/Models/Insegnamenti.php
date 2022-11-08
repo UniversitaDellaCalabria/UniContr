@@ -149,7 +149,7 @@ class Insegnamenti extends Model {
         return $this->hasOne(Precontrattuale::class,'insegn_id','id');
     }
 
-    public function setDataFromUgov(InsegnamUgov $insegnamentoUgov, String $ore_desc){
+    public function setDataFromUgov(InsegnamUgov $insegnamentoUgov){
 
         $this->compenso = $insegnamentoUgov->compenso;
         $this->data_delibera =$insegnamentoUgov->data;
@@ -160,7 +160,7 @@ class Insegnamenti extends Model {
         $this->motivo_atto = $insegnamentoUgov->motivo_atto_cod;
         $this->num_delibera = $insegnamentoUgov->numero;
         $this->ore = $insegnamentoUgov->ore;
-        $this->ore_desc = $ore_desc;
+        $this->ore_desc = $insegnamentoUgov->ore_desc;
         $this->tipo_atto = $insegnamentoUgov->tipo_atto_des;
         $this->tipo_contratto = $insegnamentoUgov->tipo_coper_cod;
         $this->ciclo = $insegnamentoUgov->des_tipo_ciclo;
