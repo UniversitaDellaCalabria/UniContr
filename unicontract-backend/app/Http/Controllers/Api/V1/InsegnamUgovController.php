@@ -45,7 +45,7 @@ class InsegnamUgovController extends Controller
 
         $ore_desc = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_ORE_COPER_DET V1')
                     ->where('coper_id','=',$coper_id)
-                    ->select('tipo_att_did_cod','ore')
+                    ->select('tipo_att_did_cod','ore','compenso_calc')
                     ->get();
         $ore_desc_string = "";
         $compenso_calcolato = 0;
