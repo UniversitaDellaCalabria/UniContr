@@ -247,7 +247,7 @@ class PrecontrattualeController extends Controller
             }
         }
 
-        $precontr->insegnamento->setDataFromUgov($insegnamentoUgov, $compenso_);
+        $precontr->insegnamento->setDataFromUgov($insegnamentoUgov);
 
         $precontr->insegnamento->save();
 
