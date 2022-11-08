@@ -421,14 +421,9 @@ class PrecontrattualeController extends Controller
                     $compenso_calcolato += $single_desc->compenso_calc;
             }
 
-            $request->insegnamento['ore_desc'] = $ore_desc_string;
-            if($request->insegnamento['compenso'] == 0){
-                $request->insegnamento['compenso'] = $compenso_calcolato;
-            }
-
             $message = '';
             $postData = $request->except('id', '_method');
-            $data = $this->repo->newPrecontrImportInsegnamento($postData);
+            $data = $this->repo->newPrecontrImportInsegnamento($postData, $ore_desc_string, $compenso_calcolato);
         } else {
             $success = false;
             $message = 'Insegnamento già presente nel sistema, gestire quello esistente';
