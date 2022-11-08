@@ -404,10 +404,6 @@ class PrecontrattualeController extends Controller
                 }
             }
 
-
-            $message = '';
-            $postData = $request->except('id', '_method');
-
             $ore_desc = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_ORE_COPER_DET V1')
                     ->where('coper_id','=',$request->insegnamento['coper_id'])
                     ->select('tipo_att_did_cod','ore','compenso_calc')
@@ -425,11 +421,13 @@ class PrecontrattualeController extends Controller
                     $compenso_calcolato += $single_desc->compenso_calc;
             }
 
-            $postData->insegnamento['ore_desc'] = $ore_desc_string;
-            if($postData->insegnamento['compenso'] == 0){
-                $postData->insegnamento['compenso'] = $compenso_calcolato;
+            $request->insegnamento['ore_desc'] = $ore_desc_string;
+            if($request->insegnamento['compenso'] == 0){
+                $request->insegnamento['compenso'] = $compenso_calcolato;
             }
 
+            $message = '';
+            $postData = $request->except('id', '_method');
             $data = $this->repo->newPrecontrImportInsegnamento($postData);
         } else {
             $success = false;
