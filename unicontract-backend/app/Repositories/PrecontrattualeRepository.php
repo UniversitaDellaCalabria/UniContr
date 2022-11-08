@@ -42,7 +42,7 @@ class PrecontrattualeRepository extends BaseRepository {
             // IMPORTAZIONE NUOVO INSEGNAMENTO DA UGOV
             $insegn = new Insegnamenti();
             $insegn->fill($data['insegnamento']);
-            $insegn->ore_desc = $data['ore_desc'];
+            $insegn->ore_desc = $data['insegnamento']['ore_desc'];
             $success = $insegn->save();
 
             // PROFILO DOCENTE
