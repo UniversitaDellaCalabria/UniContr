@@ -43,7 +43,7 @@ class PrecontrattualeRepository extends BaseRepository {
             $insegn = new Insegnamenti();
             $insegn->fill($data['insegnamento']);
             $insegn->ore_desc = $ore_desc;
-            if($insegn->compenso == 0) =  $insegn->compenso = $compenso_calcolato;
+            if($insegn->compenso == 0) $insegn->compenso = $compenso_calcolato;
             $success = $insegn->save();
 
             // PROFILO DOCENTE
