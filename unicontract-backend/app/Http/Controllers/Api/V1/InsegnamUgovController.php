@@ -48,12 +48,19 @@ class InsegnamUgovController extends Controller
                     ->select('tipo_att_did_cod','ore')
                     ->get();
         $ore_desc_string = "";
+        $compenso_calcolato = 0;
         foreach ($ore_desc as $single_desc) {
             $ore_desc_string .="(";
             $ore_desc_string .=$single_desc->tipo_att_did_cod;
             $ore_desc_string .="-";
             $ore_desc_string .=$single_desc->ore;
             $ore_desc_string .=")";
+
+            $compenso_calcolato += $single_desc->compenso_calc;
+        }
+
+        if($datiUgov['compenso'] == 0){
+            $datiUgov['compenso'] = $compenos_calcolato;
         }
         $datiUgov['ore_desc'] = $ore_desc_string;
 
