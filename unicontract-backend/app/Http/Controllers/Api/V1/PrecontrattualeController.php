@@ -171,7 +171,8 @@ class PrecontrattualeController extends Controller
                                                                                                         'ALTQU',
                                                                                                         'TC004',
                                                                                                         'TC005',
-                                                                                                        'TC006'])){
+                                                                                                        'TC006',
+                                                                                                        'TC007'])){
             $data = null;
             $message = 'Insegnamento non aggiornabile: tipologia copertura non coerente con il motivo atto';
             $success = false;
@@ -340,7 +341,8 @@ class PrecontrattualeController extends Controller
                                                                                                                           'ALTQU',
                                                                                                                           'TC004',
                                                                                                                           'TC005',
-                                                                                                                          'TC006'])){
+                                                                                                                          'TC006',
+                                                                                                                          'TC007'])){
                 $data = null;
                 $message = 'Insegnamento non importabile: tipologia copertura non coerente con il motivo atto';
                 $success = false;
