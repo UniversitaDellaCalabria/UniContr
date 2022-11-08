@@ -425,7 +425,7 @@ class PrecontrattualeController extends Controller
                     $compenso_calcolato += $single_desc->compenso_calc;
             }
 
-            $postData->insegnamento->ore_desc = $ore_desc_string;
+            $postData['ore_desc'] = $ore_desc_string;
             if($postData['compenso'] == 0){
                 $postData['compenso'] = $compenso_calcolato;
             }
