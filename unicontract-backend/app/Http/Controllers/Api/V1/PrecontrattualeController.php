@@ -143,7 +143,7 @@ class PrecontrattualeController extends Controller
                 $compenso_calcolato += $single_desc->compenso_calc;
         }
 
-        $insegnamentoUgov->ore_desc = $ore_desc_string;
+        $insegnamentoUgov['ore_desc'] = $ore_desc_string;
         if($insegnamentoUgov['compenso'] == 0){
             $insegnamentoUgov['compenso'] = $compenso_calcolato;
         }
@@ -425,9 +425,9 @@ class PrecontrattualeController extends Controller
                     $compenso_calcolato += $single_desc->compenso_calc;
             }
 
-            $postData['ore_desc'] = $ore_desc_string;
-            if($postData['compenso'] == 0){
-                $postData['compenso'] = $compenso_calcolato;
+            $postData->insegnamento['ore_desc'] = $ore_desc_string;
+            if($postData->insegnamento['compenso'] == 0){
+                $postData->insegnamento['compenso'] = $compenso_calcolato;
             }
 
             $data = $this->repo->newPrecontrImportInsegnamento($postData);
