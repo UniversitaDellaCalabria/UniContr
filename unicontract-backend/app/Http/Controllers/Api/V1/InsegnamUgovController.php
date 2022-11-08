@@ -56,11 +56,12 @@ class InsegnamUgovController extends Controller
             $ore_desc_string .=$single_desc->ore;
             $ore_desc_string .=")";
 
-            $compenso_calcolato += $single_desc->compenso_calc;
+            if($single_desc->compenso_calc != null)
+                $compenso_calcolato += $single_desc->compenso_calc;
         }
 
         if($datiUgov['compenso'] == 0){
-            $datiUgov['compenso'] = $compenos_calcolato;
+            $datiUgov['compenso'] = $compenso_calcolato;
         }
         $datiUgov['ore_desc'] = $ore_desc_string;
 
