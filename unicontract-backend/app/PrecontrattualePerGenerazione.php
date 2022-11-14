@@ -317,10 +317,6 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     {
         return $this->insegnamento->data_delibera;
     }
-    public function getData_deliberaAttribute()
-    {
-        return $this->insegnamento->data_delibera;
-    }
     public function getEmittenteAttribute()
     {
         return $this->insegnamento->emittente;
@@ -329,7 +325,7 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     {
         return $this->insegnamento->ore_desc;
     }
-    public function getTipo_corso_desAttribute()
+    public function getTipoCorsoDesAttribute()
     {
         return $this->insegnamento->tipo_corso_des;
     }

@@ -8,14 +8,14 @@ S.S.D. {{$pre->settore}} -
 {{$pre->ore}} ore complessive,
 {{$pre->oreDesc}} -
 {{$pre->periodo}} -
-del Corso di {{$pre->tipo_corso_des}} in {{$pre->cdl}} -
+del Corso di {{$pre->tipoCorsoDes}} in {{$pre->cdl}} -
 A.A. {{$pre->aa}},
 con inizio {{$pre->dataDa}} e termine {{$pre->dataA}}.======================
 </p>
 
 <h4>Art. 2</h4>
 <p class="normal">
-La prestazione d’opera intellettuale, stabilita nella seduta del {{$pre->data_delibera}}  dal {{$pre->emittente}} di {{$pre->dipartimento}}, in seguito indicato Dipartimento, consiste in un impegno didattico complessivo di {{$pre->ore}} ore di lezioni, esercitazioni e laboratorio, oltre ad esami e ricevimento studenti. ==========================================================
+La prestazione d’opera intellettuale, stabilita nella seduta del {{$pre->dataDelibera}}  dal {{$pre->emittente}} di {{$pre->dipartimento}}, in seguito indicato Dipartimento, consiste in un impegno didattico complessivo di {{$pre->ore}} ore di lezioni, esercitazioni e laboratorio, oltre ad esami e ricevimento studenti. ==========================================================
 </p>
 
 <h4>Art. 3</h4>

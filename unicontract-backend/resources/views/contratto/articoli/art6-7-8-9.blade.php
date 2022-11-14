@@ -35,7 +35,7 @@
 @elseif($pre->naturaRapporto == "PRPR")
 {{-- // / TC006 - TC007 PRESTAZIONE PROFESSIONALE (PARTITA IVA) --}}
 	<p class="normal">
-	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str1']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfettario lordo ammontante a € {{$pre->compenso}}, al netto di IVA e Cassa Previdenza, per come stabilito dal {{$pre->emittente}} nella seduta del {{$pre->data_delibera}}. Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico, previa validazione del registro elettronico da parte del Direttore del Dipartimento. In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte. =========
+	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str1']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfettario lordo ammontante a € {{$pre->compenso}}, al netto di IVA e Cassa Previdenza, per come stabilito dal {{$pre->emittente}} nella seduta del {{$pre->dataDelibera}}. Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico, previa validazione del registro elettronico da parte del Direttore del Dipartimento. In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte. =========
 	</p>
 @else
 {{-- // PLAO - PRESTAZIONE DI LAVORO AUTONOMO OCCASIONALE OPPURE ALD - ASSIMILATO A LAVORO DIPENDENTE --}}
@@ -53,7 +53,7 @@
 @elseif($pre->naturaRapporto == "COCOCO")
 {{-- // TC006 / TC007 - COLLABORAZIONE DI NATURA AUTONOMA --}}
 	<p class="normal">
-	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str4']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfetario lordo ammontante a € {{$pre->compenso}}, al netto degli oneri a carico dell’Amministrazione, per come stabilito dal {{$pre->emittente}} nella seduta del {{$pre->data_delibera}}. Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico, previa validazione del registro elettronico da parte del Direttore del Dipartimento. In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte. ==========================================
+	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str4']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfetario lordo ammontante a € {{$pre->compenso}}, al netto degli oneri a carico dell’Amministrazione, per come stabilito dal {{$pre->emittente}} nella seduta del {{$pre->dataDelibera}}. Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico, previa validazione del registro elettronico da parte del Direttore del Dipartimento. In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte. ==========================================
 	</p>
 @elseif($pre->naturaRapporto == "PRPR")
 {{-- // / TC006 - TC007 PRESTAZIONE PROFESSIONALE (PARTITA IVA) --}}
