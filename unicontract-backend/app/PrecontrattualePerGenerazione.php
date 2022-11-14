@@ -303,6 +303,37 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
         }
     }
 
+    // Unical functions
+    public function isComma1Gratuito(){
+        return $this->tipoContr == 'TC004';
+    }
+    public function isComma1Retribuito(){
+        return $this->tipoContr == 'TC006';
+    }
+    public function isComma2Retribuito(){
+        return $this->tipoContr == 'TC007';
+    }
+    public function getDataDeliberaAttribute()
+    {
+        return $this->insegnamento->data_delibera;
+    }
+    public function getData_deliberaAttribute()
+    {
+        return $this->insegnamento->data_delibera;
+    }
+    public function getEmittenteAttribute()
+    {
+        return $this->insegnamento->emittente;
+    }
+     public function getOre_descAttribute()
+    {
+        return $this->insegnamento->ore_desc;
+    }
+     public function getTipo_corso_desAttribute()
+    {
+        return $this->insegnamento->tipo_corso_des;
+    }
+
 }
 
 

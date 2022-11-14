@@ -75,45 +75,13 @@
 
   <div class="page">
 
-  <h4>CONTRATTO DI DIRITTO PRIVATO PER ATTIVITÀ DI INSEGNAMENTO
-  <br>AI SENSI DELL'ART. 23, CO. 1, DELLA LEGGE 30/12/2010, N. 240</h4>
-    <h4>TRA</h4>
-    <p class="normal">
-        l'Università della Calabria, codice fiscale n. 80003950781, partita IVA n.
-        00419160783, rappresentata legalmente dal Magnifico Rettore Nicola Leone,
-        nato il 30/09/1956 ad Urbino (PU), domiciliato per la sua carica in Urbino (PU) - Via Saffi n. 2, il
-        quale agisce in ottemperanza del Regolamento d'Ateneo per il conferimento di incarichi di
-        insegnamento e della Legge 30/12/2010, n. 240,
-    </p>
-    <h4>E</h4>
-	<p class="normal">
-	{{ $pre->user->nameTutorString() }} {{ $pre->datiAnagraficaString() }}, codice fiscale
-	{{ $pre->user->cf }} {{ $pre->anagrafica->datiResidenza() }}
-	</p>
-    <h4>PREMESSO E CONSIDERATO</h4>
-    <p class="normal">
-        - che il Codice di comportamento dei lavoratori dell'Università della Calabria,
-        emanato con D.R. n. 37/2014 del 27/01/2014, è entrato in vigore il 28/01/2014;
-    </p>
-    <p class="normal">
-        - che con D.R. n. 359/2017 del 25/07/2017 è stato emanato il Regolamento d'Ateneo per il
-        conferimento di incarichi di insegnamento ai sensi della Legge 30/12/2010, n. 240 e ss.mm.ii.,
-        quale risultante della modifica apportata all'articolo 11 del Regolamento precedentemente
-        emanato con D.R. n. 498/2016 del 02/11/2016;
-    </p>
+	<h4>UNIVERSITA' DELLA CALABRIA</h4>
 
 
-    @include( 'contratto.premessa.premessaCont', $pre)
-
-    <p class="normal">
-    Ciò premesso e consensualmente assunto come parte integrante del presente contratto
-    </p>
-
-    @include( 'contratto.articoli.art1', $pre)
-    @include( 'contratto.articoli.art2', $pre)
-    @include( 'contratto.articoli.art3-4', $pre)
-    @include( 'contratto.articoli.art5', $pre)
+	@include( 'contratto.premessa.premessaCont', $pre)
+    @include( 'contratto.articoli.art1-2-3-4-5', $pre)
     @include( 'contratto.articoli.art6-7-8-9', $pre)
+    @include( 'contratto.articoli.art10-11-12-13', $pre)
 
     <br>
     <p class="small">
@@ -131,7 +99,9 @@
     {{-- INFORMATIVA SULLA PRIVACY --}}
     <div class="page ">
     <div class="logo" ></div>
-        @include( 'contratto.informativa', $pre)
+        @include( 'contratto.codice_comportamento', $pre)
+		@include( 'contratto.informativa', $pre)
+		@include( 'contratto.piao', $pre)
     </div>
 </body>
 </html>

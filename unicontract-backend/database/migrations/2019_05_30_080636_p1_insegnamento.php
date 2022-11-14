@@ -23,6 +23,7 @@ class P1Insegnamento extends Migration
             $table->integer('cfu')->unsigned()->nullable();
             $table->integer('ore')->unsigned()->nullable();
             $table->string('ore_desc', 255)->nullable();
+            $table->string('tipo_corso_des', 255)->nullable();
             $table->string('cdl', 255)->nullable();
             $table->date('data_ini_contr')->nullable();
             $table->date('data_fine_contr')->nullable();

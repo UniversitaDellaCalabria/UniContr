@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <script>
      /*<![CDATA[*/
-    function subst() {        
-        var vars={};        
+    function subst() {
+        var vars={};
         var x=window.location.search.substring(1).split('&');
         for (var i in x) {
             var z=x[i].split('=',2);
@@ -18,39 +18,39 @@
     /*]]>*/
 </script>
 <style type="text/css">
-    body 
+    body
     {
-        border:0; 
+        border:0;
         margin: 0;
-        padding: 0;   
-        height: 151px;                  
+        padding: 0;
+        height: 151px;
     }
 
     #master-div
-    {        
+    {
         overflow: hidden;
         height: 100%;
     }
-    
+
     .logo {
-      float: left;           
-      height: 120px;    
-      position: absolute;               
+      float: left;
+      height: 120px;
+      position: absolute;
       top: 0;
-      /* background-image: url("/img/logo_uniurb.png"); */
-      
+      /* background-image: url("/img/logo_unical.png"); */
+
     }
 
 </style>
 </head>
 <body onload="subst()">
- 
-    <div id="master-div">       
-        {{-- <img src="file:///{{public_path('/img/logo_uniurb.png')}}" class="logo" />    --}}
-        <img id="faker" src="file:///{{public_path('img\\logo_uniurb.png')}}" class="logo" />         
+
+    <div id="master-div">
+        {{-- <img src="file:///{{public_path('/img/logo_unical.png')}}" class="logo" />    --}}
+        <img id="faker" src="file:///{{public_path('img\\logo_unical.png')}}" class="logo" />
     </div>
 
-    {{-- <script  type="text/javascript"> 
+    {{-- <script  type="text/javascript">
         console.log('inizio');
         var vars={};
         console.log(window.location);
@@ -59,8 +59,8 @@
             var z=x[i].split('=',2);
             vars[z[0]] = unescape(z[1]);
         }
-        document.getElementById('page').innerHTML = vars.page; 
-        document.getElementById('topage').innerHTML = vars.topage; 
+        document.getElementById('page').innerHTML = vars.page;
+        document.getElementById('topage').innerHTML = vars.topage;
     </script>   --}}
 
  <!-- <script type="text/javascript">

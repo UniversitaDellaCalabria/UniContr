@@ -27,4 +27,5 @@ export interface InsegnUgovInterface {
     motivo_atto_cod: string;
     numero: string;
     data: string;
+    tipo_corso_des: string;
 }
