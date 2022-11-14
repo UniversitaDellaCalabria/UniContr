@@ -2,14 +2,20 @@
 <p class="normal">
 {{$pre->genere['str0']}} {{$pre->genere['str5']}}
 s’impegna a prestare in favore dell’Università la propria opera intellettuale quale professore a
-contratto a tempo determinato dell’insegnamento di {{$pre->insegnamentoDescr}} - S.S.D. {{$pre->settore}} - ({{$pre->cfu}} CFU  - {{$pre->ore}} ore complessive,
-{{$pre->ore_desc}} - {{$pre->periodo}} - del Corso di {{$pre->tipo_corso_des}} in {{$pre->cdl}} - A.A. {{$pre->aa}},
+contratto a tempo determinato dell’insegnamento di {{$pre->insegnamentoDescr}} -
+S.S.D. {{$pre->settore}} -
+{{$pre->cfu}} CFU  -
+{{$pre->ore}} ore complessive,
+{{$pre->oreDesc}} -
+{{$pre->periodo}} -
+del Corso di {{$pre->tipo_corso_des}} in {{$pre->cdl}} -
+A.A. {{$pre->aa}},
 con inizio {{$pre->dataDa}} e termine {{$pre->dataA}}.======================
 </p>
 
 <h4>Art. 2</h4>
 <p class="normal">
-La prestazione d’opera intellettuale, stabilita nella seduta del {{$pre->data_delibera}}  dal # {{$pre->emittente}} di {{$pre->dipartimento}}, in seguito indicato Dipartimento, consiste in un impegno didattico complessivo di {{$pre->ore}} ore di lezioni, esercitazioni e laboratorio, oltre ad esami e ricevimento studenti. ==========================================================
+La prestazione d’opera intellettuale, stabilita nella seduta del {{$pre->data_delibera}}  dal {{$pre->emittente}} di {{$pre->dipartimento}}, in seguito indicato Dipartimento, consiste in un impegno didattico complessivo di {{$pre->ore}} ore di lezioni, esercitazioni e laboratorio, oltre ad esami e ricevimento studenti. ==========================================================
 </p>
 
 <h4>Art. 3</h4>

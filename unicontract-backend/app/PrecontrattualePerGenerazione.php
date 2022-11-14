@@ -325,11 +325,11 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     {
         return $this->insegnamento->emittente;
     }
-     public function getOre_descAttribute()
+    public function getOreDescAttribute()
     {
         return $this->insegnamento->ore_desc;
     }
-     public function getTipo_corso_desAttribute()
+    public function getTipo_corso_desAttribute()
     {
         return $this->insegnamento->tipo_corso_des;
     }

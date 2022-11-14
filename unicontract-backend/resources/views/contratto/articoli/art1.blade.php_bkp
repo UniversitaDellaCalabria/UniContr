@@ -54,7 +54,7 @@ comprensivo della sessione straordinaria d'esame.
 @if($pre->isNuovo())
 {{$pre->genere['str0']}} {{$pre->genere['str5']}} si impegna a prestare, in favore dell'Università della Calabria,
 la propria opera intellettuale quale professore a contratto per lo svolgimento del corso integrativo dell'insegnamento ufficiale
-di {{$pre->insegnamentoDescr}}{{$pre->settore}}, {{$pre->ore}} ore {{$pre->ore_desc}},
+di {{$pre->insegnamentoDescr}}{{$pre->settore}}, {{$pre->ore}} ore {{$pre->oreDesc}},
 corso di laurea in {{$pre->cdl}} nel {{$pre->dipartimento}}, per l'anno accademico {{$pre->aa}}, {{$pre->periodo}}.<br>
 Il presente contratto non può protrarsi oltre il periodo sopraindicato.
 @else
@@ -62,7 +62,7 @@ Il presente contratto non può protrarsi oltre il periodo sopraindicato.
 {{$pre->genere['str0']}} {{$pre->genere['str5']}} a seguito di {{$pre->rinnovo['text_rinnovo_3']}} del contratto di
 insegnamento {{$pre->rinnovo['text_rinnovo_4']}} per il precedente anno accademico, si impegna a prestare, in favore
 dell'Università della Calabria, la propria opera intellettuale quale professore a contratto per lo svolgimento
-del corso integrativo dell'insegnamento ufficiale di {{$pre->insegnamentoDescr}}{{$pre->settore}}, {{$pre->ore}} ore {{$pre->ore_desc}},
+del corso integrativo dell'insegnamento ufficiale di {{$pre->insegnamentoDescr}}{{$pre->settore}}, {{$pre->ore}} ore {{$pre->oreDesc}},
 corso di laurea in {{$pre->cdl}} nel {{$pre->dipartimento}} per l'anno accademico {{$pre->aa}}, {{$pre->periodo}}.
 <br>Il presente contratto non può protrarsi oltre il periodo sopraindicato.
 @endif
@@ -73,7 +73,7 @@ corso di laurea in {{$pre->cdl}} nel {{$pre->dipartimento}} per l'anno accademic
 @if($pre->isNuovo())
 {{$pre->genere['str0']}} {{$pre->genere['str5']}} si impegna a prestare, in favore dell'Università della Calabria,
 la propria opera intellettuale quale professore a contratto per lo svolgimento di attività di supporto alla didattica
-all'insegnamento ufficiale di {{$pre->insegnamentoDescr}}{{$pre->settore}}, {{$pre->ore}} ore {{$pre->ore_desc}},
+all'insegnamento ufficiale di {{$pre->insegnamentoDescr}}{{$pre->settore}}, {{$pre->ore}} ore {{$pre->oreDesc}},
 corso di laurea in {{$pre->cdl}} nel {{$pre->dipartimento}}, per l'anno accademico {{$pre->aa}}, {{$pre->periodo}}.
 <br>Il presente contratto non può protrarsi oltre il periodo sopraindicato.
 @else
