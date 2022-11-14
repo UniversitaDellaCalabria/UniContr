@@ -1,4 +1,3 @@
-
 <h4 style="line-height: normal">INFORMATIVA SUI CONTRATTI DI INSEGNAMENTO EX ART. 23 LEGGE 240/2010 <br>
 Informativa per il trattamento dei dati personali di soggetti interessati<br>
 ai contratti di insegnamento stipulati dall'Ateneo o da una struttura dell'Ateneo</h4>
