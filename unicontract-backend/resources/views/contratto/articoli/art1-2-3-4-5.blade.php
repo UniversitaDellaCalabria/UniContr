@@ -2,10 +2,10 @@
 <p class="normal">
 {{$pre->genere['str0']}} {{$pre->genere['str5']}}
 s’impegna a prestare in favore dell’Università la propria opera intellettuale quale professore a
-contratto a tempo determinato dell’insegnamento di {{$pre->insegnamentoDescr}} -
-S.S.D. {{$pre->settore}} -
-{{$pre->cfu}} CFU  -
-{{$pre->ore}} ore complessive,
+contratto a tempo determinato dell’insegnamento di {{$pre->insegnamentoDescr}}
+{{$pre->settore}},
+{{$pre->cfu}},
+{{$pre->ore}} ore complessive
 {{$pre->oreDesc}} -
 {{$pre->periodo}} -
 del Corso di {{$pre->tipoCorsoDes}} in {{$pre->cdl}} -
