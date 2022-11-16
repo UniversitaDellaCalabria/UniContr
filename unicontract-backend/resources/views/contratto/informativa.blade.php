@@ -118,9 +118,9 @@ La revoca del consenso può essere esercitata solo per i trattamenti opzionali.
 <br>
 <br>
 <p class="piepagina">
-Settore del Personale <br>
-Ufficio Amministrazione e reclutamento personale docente<br>
-Via Puccinotti, 25 - 61029 Urbino (PU)<br>
-Tel. +39 0722 305476 / 401 / 402 / 404 / 418 / 446 / 481 Fax +39 0722 305477<br>
-amministrazione.reclutamento.pdoc@uniurb.it - www.unical.it<br>
+Direzione Risorse Umane <br>
+Area Professori e ricercatori<br>
+Via P. Bucci, cubo 25B - 87036 Rende (CS)<br>
+Tel. +39 0984 496829 / 32 / 34 / 54 <br>
+dru@unical.it - www.unical.it<br>
 </p>
