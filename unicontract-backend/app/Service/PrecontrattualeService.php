@@ -223,7 +223,7 @@ class PrecontrattualeService implements ApplicationService
         $doc->rootElementAttributes->tipo = 'partenza';
         $doc->rootElementAttributes->bozza = 'si';
 
-        $doc->addRepertorio('CONTdoc','Contratti docenza');
+        $doc->addRepertorio('CONTRDO','Contratti di docenza');
 
         //TODO epigrafe insegnamento
         $doc->oggetto = 'Contratto di insegnamento '.$pre->insegnamento->insegnamento; //almeno 30 caratteri
