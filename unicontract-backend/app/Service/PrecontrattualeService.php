@@ -234,8 +234,8 @@ class PrecontrattualeService implements ApplicationService
         $unitaorganizzativa_uo = $pre->insegnamento->dip_cod;
 
         TitulusHelper::addRPA_Titulus($doc,$unitaorganizzativa_uo);
-        $doc->addCC("Ufficio Amministrazione e Reclutamento Personale Docente", "Antonelli Gianluca");
-        $doc->addCC("Segreteria del Direttore Generale", "Rossi Catia");
+        $doc->addCC("DIREZIONE RISORSE UMANE", "Elmo Roberto");
+        //$doc->addCC("Segreteria del Direttore Generale", "Rossi Catia");
         $mapping = MappingUfficio::where('unitaorganizzativa_uo', $unitaorganizzativa_uo)->first();
         $doc->addCC($mapping->descrizione_uff, "tutti");
 
