@@ -649,7 +649,7 @@ class ContrattiTest extends TestCase
         $insegnamentoUgov1 = InsegnamUgov::where('COPER_ID', 28128)
             ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
                 'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
-                'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id']);
+                'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id', 'tipo_corso_des']);
 
         //$this->assertNull($insegnamentoUgov1->segmenti);
         $this->assertNotNull($insegnamentoUgov1->sett_des);

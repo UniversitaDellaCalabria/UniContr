@@ -195,7 +195,8 @@ class Anagrafica extends Model
                 'str2' => "o",
                 'str3' => "dal",
                 'str4' => "al",
-                'str5' => "Docente"
+                'str5' => "Contraente",
+                'str6' => "del"
             ];
         }else{
             return [
@@ -204,7 +205,8 @@ class Anagrafica extends Model
                 'str2' => "a",
                 'str3' => "dalla",
                 'str4' => "alla",
-                'str5' => "Docente"
+                'str5' => "Contraente",
+                'str6' => "della"
             ];
         }
     }
