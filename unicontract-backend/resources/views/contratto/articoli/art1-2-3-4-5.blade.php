@@ -8,7 +8,7 @@ contratto a tempo determinato dell’insegnamento di {{$pre->insegnamentoDescr}}
 {{$pre->ore}} ore complessive
 {{$pre->oreDesc}} -
 {{$pre->periodo}} -
-del Corso di {{$pre->getTipoCorsoDesAttribute}} in {{$pre->cdl}} -
+del Corso di {{$pre->getTipoCorsoDes}} in {{$pre->cdl}} -
 A.A. {{$pre->aa}},
 con inizio {{$pre->dataDa}} e termine {{$pre->dataA}}.======================
 </p>
