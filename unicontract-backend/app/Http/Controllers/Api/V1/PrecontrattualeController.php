@@ -264,6 +264,7 @@ class PrecontrattualeController extends Controller
 
 
     public function newPrecontrImportInsegnamento(Request $request){
+
         $success = true;
         $count = 0;
 

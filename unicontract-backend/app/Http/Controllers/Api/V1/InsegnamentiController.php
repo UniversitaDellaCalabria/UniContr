@@ -182,7 +182,6 @@ class InsegnamentiController extends Controller
 
             $datiInsegnamento = Insegnamenti::findOrFail($id);
             $success = true;
-
         return compact('datiInsegnamento', 'message', 'success');
     }
 
