@@ -1,3 +1,4 @@
+art6-7-8-9.blade.php
 <h4>Art. 6</h4>
 @if($pre->naturaRapporto == "PTG")
 {{-- // COLLABORAZIONE GRATUITA --}}
