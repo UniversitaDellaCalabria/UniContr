@@ -73,7 +73,7 @@
 <body class="@if ($type=='CONTR_BOZZA') bozza @endif">
 
 
-  <div class="page">
+	<div class="page">
 
 	<h4>UNIVERSITA' DELLA CALABRIA</h4>
 
@@ -85,7 +85,7 @@
 
     <br>
     <p class="small">
-    RENDE, (data ultima sottoscrizione digitale in ordine cronologico attestata dalla marcatura temporale)
+    RENDE (CS), (data ultima sottoscrizione digitale in ordine cronologico attestata dalla marcatura temporale)
     </p>
     <br>
     <p class="normal">
@@ -95,13 +95,32 @@
     <p class="normal">
     {{$pre->genere['str0']}} {{$pre->genere['str5']}} {{ $pre->user->nameTutorString() }}
     </p>
+    <br>
+    <br>
+	<br>
+	<br>
+	<p class="small">
+    <i>{{$pre->genere['str0']}} {{$pre->genere['str5']}} dichiara di ricevere copia del Codice di Comportamento dell’Università della Calabria e di averlo sottoscritto in data odierna. Dichiara, altresì, di ricevere copia del “Piano Integrato delle Attività e Organizzazione (PIAO), contenente il Sistema di prevenzione della Corruzione e attuazione della Trasparenza, e copia dell’Informativa rivolta ai collaboratori esterni (con contratto di lavoro autonomo) nel rispetto della normativa vigente in materia di protezione dei dati personali (Regolamento UE 2016/679, RGPD).	</i>
+	</p>
+    <br>
+	<p class="normal">
+    {{$pre->genere['str0']}} {{$pre->genere['str5']}} {{ $pre->user->nameTutorString() }}
+	</p>
     </div>
     {{-- INFORMATIVA SULLA PRIVACY --}}
     <div class="page ">
-    <div class="logo" ></div>
-        @include( 'contratto.codice_comportamento', $pre)
+		<div class="logo" > </div>
+		@include( 'contratto.codice.comportamento', $pre)
+	</div>
+
+	<div class="page ">
+		<div class="logo" >	</div>
 		@include( 'contratto.informativa', $pre)
-		@include( 'contratto.piao', $pre)
-    </div>
+	</div>
+
+	<div class="page ">
+		<div class="logo" > </div>
+		@include( 'contratto.PIAO', $pre)
+	</div>
 </body>
 </html>
