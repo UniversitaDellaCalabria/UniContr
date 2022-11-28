@@ -1,8 +1,9 @@
+codice.comportamento.blade.php
 <h4>Codice di comportamento dell'Università della Calabria<br>
 <i>(Emanato con D.R. n. 2653 del 23/12/2014)</i></h4>
 
 <h4>Art. 1 - Disposizioni di carattere generale</h4>
-<p class="normal">
+p class="normal">
 1.Il presente Codice di comportamento, di seguito denominato "Codice", è adottato in attuazione del combinato disposto dell'articolo 54, comma 5, del D.Lgs. n. 165/2001 e del D.P.R. n. 62/2013.
 </p>
 <p class="normal">
