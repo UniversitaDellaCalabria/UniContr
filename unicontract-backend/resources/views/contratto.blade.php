@@ -110,7 +110,7 @@
     {{-- INFORMATIVA SULLA PRIVACY --}}
     <div class="page ">
 		<div class="logo" > </div>
-		@include( 'contratto.codice.comportamento', $pre)
+		@include( 'contratto.codice_comportamento', $pre)
 	</div>
 
 	<div class="page ">
