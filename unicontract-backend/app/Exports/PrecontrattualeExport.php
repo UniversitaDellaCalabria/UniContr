@@ -63,6 +63,7 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
             $precontr->insegnamento ? $precontr->insegnamento->ore: '',
             $precontr->insegnamento ? $precontr->insegnamento->ore_desc: '',
             $precontr->insegnamento ? $precontr->insegnamento->tipo_corso_des: '',
+            $precontr->insegnamento ? $precontr->insegnamento->anno_corso: '',
             $precontr->insegnamento ? $precontr->insegnamento->compenso: '',
             $precontr->insegnamento ? $precontr->insegnamento->dipartimento: '',
             $this->naturaRapporto($precontr->p2naturarapporto),

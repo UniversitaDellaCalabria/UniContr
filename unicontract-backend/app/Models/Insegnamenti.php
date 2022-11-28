@@ -49,6 +49,7 @@ class Insegnamenti extends Model {
         'user_role',
         'dip_cod',
         'tipo_corso_des',
+        'anno_corso'
     ];
 
     protected $casts = [
@@ -168,6 +169,7 @@ class Insegnamenti extends Model {
         $this->settore = $insegnamentoUgov->sett_des;
         $this->cod_settore = $insegnamentoUgov->sett_cod;
         $this->tipo_corso_des = $insegnamentoUgov->tipo_corso_des;
+        $this->anno_corso = $insegnamentoUgov->anno_corso;
 
         // <input type="hidden" name="coper_id" [(ngModel)]="item.coper_id" >
         // <input type="hidden" name="ruolo" [(ngModel)]="item.ruolo_doc_cod">

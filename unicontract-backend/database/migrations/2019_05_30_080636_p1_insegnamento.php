@@ -46,6 +46,8 @@ class P1Insegnamento extends Migration
             $table->string('dip_cod', 10)->nullable();
 
             $table->string('tipo_corso_des', 255)->nullable();
+            $table->string('anno_corso', 255)->nullable();
+
             $table->timestamps();
         });
     }

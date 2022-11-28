@@ -31,6 +31,7 @@ export class InsegnUgov implements InsegnUgovInterface {
     data: string;
     contatore_insegnamenti?: number;
     tipo_corso_des: string;
+    anno_corso: string;
 
     constructor() {
         this.coper_id = 0;
@@ -62,6 +63,7 @@ export class InsegnUgov implements InsegnUgovInterface {
         this.numero = '';
         this.data = '';
         this.tipo_corso_des = '';
+        this.anno_corso = '';
     }
 
 }

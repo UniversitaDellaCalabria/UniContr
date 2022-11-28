@@ -28,4 +28,5 @@ export interface InsegnUgovInterface {
     numero: string;
     data: string;
     tipo_corso_des: string;
+    anno_corso: string;
 }

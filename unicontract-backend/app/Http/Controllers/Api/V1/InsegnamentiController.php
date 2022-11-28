@@ -192,7 +192,7 @@ class InsegnamentiController extends Controller
         $datiUgov = InsegnamUgov::where('COPER_ID', $coper_id)
             ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
                     'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des',
-                    'tipo_emitt_des', 'numero', 'data', 'tipo_corso_des']);
+                    'tipo_emitt_des', 'numero', 'data', 'tipo_corso_des', 'anno_corso']);
 
 
             $success = true;

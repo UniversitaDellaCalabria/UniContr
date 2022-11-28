@@ -20,6 +20,7 @@
     "00_int9": "Dipartimento",
     "00_int10": "Corso di laurea",
     "00_int10_1": "Tipo corso",
+    "00_int10_2": "Anno corso",
     "00_int11": "Compenso lordo",
     "00_int12": "Tipo atto",
     "00_int13": "Emittente",

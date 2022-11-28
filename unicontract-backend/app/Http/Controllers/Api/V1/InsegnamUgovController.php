@@ -81,7 +81,8 @@ class InsegnamUgovController extends Controller
         $insegnamentoUgov = InsegnamUgov::where('COPER_ID', $coper_id)
             ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
                 'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
-                'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id', 'tipo_corso_des']);
+                'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id',
+                'tipo_corso_des', 'anno_corso']);
 
         $tipo_coper_cod = $insegnamentoUgov->tipo_coper_cod;
 

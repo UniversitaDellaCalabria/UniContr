@@ -329,6 +329,10 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     {
         return $this->insegnamento->tipo_corso_des;
     }
+    public function getAnnoCorsoAttribute()
+    {
+        return $this->insegnamento->anno_corso;
+    }
 
 }
 
