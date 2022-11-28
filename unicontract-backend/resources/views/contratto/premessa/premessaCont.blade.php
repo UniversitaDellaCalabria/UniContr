@@ -5,7 +5,7 @@
 <p class="normal">
 	la stessa Università della Calabria, Codice Fiscale 80003950781, in seguito indicata Università, rappresentata legalmente dal <b>Prof. Nicola LEONE</b>, nato a Diamante (CS) il 28.02.1963, Rettore pro-tempore, domiciliato per la sua carica presso l’Università
 </p>
-<h4>E</h4>
+<h4>e</h4>
 <p class="normal">
 	{{ $pre->user->nameTutorString() }} {{ $pre->datiAnagraficaString() }}, codice fiscale
 	{{ $pre->user->cf }} {{ $pre->anagrafica->datiResidenza() }}
@@ -19,5 +19,5 @@
 	@else
 		**** TIPOLOGIA DI CONTRATTO NON PREVISTA ****
 	@endif
-	valevole esclusivamente per l’A.A. {{$pre->aa}}#.======================
+	valevole esclusivamente per l’<b>A.A. {{$pre->aa}}</b>.======================
 </p>
