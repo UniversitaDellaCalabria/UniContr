@@ -4,7 +4,7 @@
 s’impegna a prestare in favore dell’Università la propria opera intellettuale quale professore a
 contratto a tempo determinato dell’insegnamento di {{$pre->insegnamentoDescr}}
 {{$pre->settore}},
-{{$pre->cfu}},
+{{$pre->cfu}}
 {{$pre->ore}} ore complessive
 {{$pre->oreDesc}} -
 {{$pre->periodo}} -
