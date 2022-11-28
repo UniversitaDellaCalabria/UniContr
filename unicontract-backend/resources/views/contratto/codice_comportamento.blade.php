@@ -1,4 +1,3 @@
-codice.comportamento.blade.php
 <h4>Codice di comportamento dell'Università della Calabria<br>
 <i>(Emanato con D.R. n. 2653 del 23/12/2014)</i></h4>
 
