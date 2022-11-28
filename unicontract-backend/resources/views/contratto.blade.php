@@ -120,7 +120,7 @@
 
 	<div class="page ">
 		<div class="logo" > </div>
-		@include( 'contratto.PIAO', $pre)
+		@include( 'contratto.piao', $pre)
 	</div>
 </body>
 </html>
