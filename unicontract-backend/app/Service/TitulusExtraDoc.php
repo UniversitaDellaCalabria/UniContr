@@ -1,19 +1,19 @@
-<?php 
+<?php
 
 namespace App\Service;
 
 class TitulusExtraDoc
 {
-    
+
     public static function addRegistro($node, array $dati){
         $dati = (object)$dati;
         $registro = $node->addChild('registro');
-        $registro->addAttribute('tipo', $dati->tipo);   
+        $registro->addAttribute('tipo', $dati->tipo);
         $registro->addchild('anno_accademico',$dati->anno_accademico);
         $registro->addchild('periodo_didattico',$dati->periodo_didattico);
-        $vigenza_contrattuale = $registro->addchild('vigenza_contrattuale');        
+        $vigenza_contrattuale = $registro->addchild('vigenza_contrattuale');
             $vigenza_contrattuale->addChild('dal',$dati->vigenza_contrattuale_dal);
-            $vigenza_contrattuale->addChild('al',$dati->vigenza_contrattuale_al);        
+            $vigenza_contrattuale->addChild('al',$dati->vigenza_contrattuale_al);
 
         return $registro;
     }
@@ -21,9 +21,9 @@ class TitulusExtraDoc
     public static function addIstituzione($node, array $dati){
         $dati = (object)$dati;
         $istituzione = $node->addChild('istituzione');
-        $istituzione->addAttribute('cod', $dati->cod);   
+        $istituzione->addAttribute('cod', $dati->cod);
 
-            $istituzione->addChild('denominazione',$dati->denominazione);        
+            $istituzione->addChild('denominazione',$dati->denominazione);
             $dipartimento = $istituzione->addChild('dipartimento',$dati->dipartimento);
             $dipartimento->addAttribute('cod',$dati->dipartimento_cod);
 
@@ -50,7 +50,7 @@ class TitulusExtraDoc
         return $sistema_mittente;
     }
 
-    public static function addEvento($node,  array $dati){        
+    public static function addEvento($node,  array $dati){
         $dati = (object)$dati;
         $evento = $node->addChild('evento');
         $evento->addChild('denominazione',$dati->denominazione);
@@ -75,7 +75,7 @@ class TitulusExtraDoc
 
         $persona->addChild('sesso',$dati->sesso);
 
-        $nazione_nascita = $persona->addChild('nazione_nascita',$dati->nazione_nascita);        
+        $nazione_nascita = $persona->addChild('nazione_nascita',$dati->nazione_nascita);
         $nazione_nascita->addAttribute('cod_ANS',$dati->cod_ANS);
 
         $recapito = $persona->addChild('recapito');

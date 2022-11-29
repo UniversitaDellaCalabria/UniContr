@@ -247,25 +247,39 @@ class PrecontrattualeService implements ApplicationService
         $extra = new \SimpleXMLElement('<extra></extra>');
         $dati_conservazione = TitulusExtraDoc::addDati_conservazione($extra,[
             'tipologia' => 'registro_docente',
-            'versione' => 1
-        ]);
+            'versione' => 1,
 
-        $registro = TitulusExtraDoc::addRegistro($dati_conservazione,[
-            'tipo' => 'Registro docente',
             'anno_accademico' => $pre->aa,
             'periodo_didattico' => $pre->ciclo,
             'vigenza_contrattuale_dal' => $pre->insegnamento->dataInizioPeriodo(),
             'vigenza_contrattuale_al' => $pre->insegnamento->dataFinePeriodo(),
         ]);
 
-        TitulusExtraDoc::addIstituzione($registro, [
+        //$registro = TitulusExtraDoc::addRegistro($dati_conservazione,[
+            //'tipo' => 'Registro docente',
+            //'anno_accademico' => $pre->aa,
+            //'periodo_didattico' => $pre->ciclo,
+            //'vigenza_contrattuale_dal' => $pre->insegnamento->dataInizioPeriodo(),
+            //'vigenza_contrattuale_al' => $pre->insegnamento->dataFinePeriodo(),
+        //]);
+
+        //TitulusExtraDoc::addIstituzione($registro, [
+            //'cod' => '70019',
+            //'denominazione' => 'Università della Calabria',
+            //'dipartimento' => $pre->dipartimento,
+            //'dipartimento_cod' =>  $pre->insegnamento->dip_cod
+        //]);
+
+        //$informazioni_di_corredo = $registro->addchild('informazioni_di_corredo');
+
+        TitulusExtraDoc::addIstituzione($dati_conservazione, [
             'cod' => '70019',
             'denominazione' => 'Università della Calabria',
             'dipartimento' => $pre->dipartimento,
             'dipartimento_cod' =>  $pre->insegnamento->dip_cod
         ]);
 
-        $informazioni_di_corredo = $registro->addchild('informazioni_di_corredo');
+        $informazioni_di_corredo = $dati_conservazione->addchild('informazioni_di_corredo');
 
         $matricola = '';
         TitulusExtraDoc::addEvento($informazioni_di_corredo,[
@@ -287,6 +301,9 @@ class PrecontrattualeService implements ApplicationService
             'cod_ANS' => $pre->anagrafica->nazione_nascita,
             'email' => $pre->user->email
         ]);
+
+        $sistema_mittente_flat = new \SimpleXMLElement('<sistema_mittente><anno_accademico>'.$pre->aa.'</anno_accademico></sistema_mittente>');
+        TitulusExtraDoc::xml_append($extra, $sistema_mittente_flat);
 
         $newDoc = new \SimpleXMLElement($doc->toXml());
         TitulusExtraDoc::xml_append($newDoc, $extra);
