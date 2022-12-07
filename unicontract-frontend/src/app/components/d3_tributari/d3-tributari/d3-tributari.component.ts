@@ -178,48 +178,48 @@ export class D3TributariComponent extends BaseComponent {
       },
     },
 
-    // elenco enti
-    //{
-      //fieldGroupClassName: 'row justify-content-end',
-      //className: 'col-md-12',
-      //fieldGroup: [
-        //{
-          //key: 'enti',
-          //type: 'repeat',
-          //className: 'col-md-12',
-          //validation: {
-            //show: true
-          //},
-          //templateOptions: {
-            //label: 'Elenco enti',
-            //min: 1,
-            //max: 4,
-            //template: '<hr></hr>',
-          //},
-          //validators: {
-            //atleastone: {
-              //expression: (c) => {
-                //if (c.value) {
-                  //if (c.value.length < 1) {
-                    //return false;
-                  //}
-                //} else {
-                  //return false;
-                //}
-                //return true;
-              //},
-              //message: (error, field: FormlyFieldConfig) => `Inserire almeno un ente`,
-            //}
-          //},
-          //fieldArray: {
-            //fieldGroup: this.fieldsEnti,
-          //},
-          //hideExpression: (model, formstate) => {
-            //return (this.model.flag_limite_percepito === 0);
-          //}
-        //},
-      //],
-    //},
+     elenco enti
+    {
+      fieldGroupClassName: 'row justify-content-end',
+      className: 'col-md-12',
+      fieldGroup: [
+        {
+          key: 'enti',
+          type: 'repeat',
+          className: 'col-md-12',
+          validation: {
+            show: true
+          },
+          templateOptions: {
+            label: 'Elenco enti',
+            min: 1,
+            max: 4,
+            template: '<hr></hr>',
+          },
+          validators: {
+            atleastone: {
+              expression: (c) => {
+                if (c.value) {
+                  if (c.value.length < 1) {
+                    return false;
+                  }
+                } else {
+                  return false;
+                }
+                return true;
+              },
+              message: (error, field: FormlyFieldConfig) => `Inserire almeno un ente`,
+            }
+          },
+          fieldArray: {
+            fieldGroup: this.fieldsEnti,
+          },
+          hideExpression: (model, formstate) => {
+            return (this.model.flag_limite_percepito === 0);
+          }
+        },
+      ],
+    },
 
   ];
 
