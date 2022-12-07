@@ -163,10 +163,12 @@ class Anagrafica extends Model
 
     public function datiResidenza(){
         if($this->sesso == 'M') {
-            $str1 = "il Docente";
+            //$str1 = "il Docente";
+            $str1 = "il Contraente";
             $str2 = "o";
         } else {
-            $str1 = "la Docente";
+            //$str1 = "la Docente";
+            $str1 = "la Contraente";
             $str2 = "a";
         }
 

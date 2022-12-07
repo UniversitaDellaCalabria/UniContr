@@ -8,8 +8,8 @@
 <h4>e</h4>
 <p class="normal">
 	{{ $pre->user->nameTutorString() }} {{ $pre->datiAnagraficaString() }}, codice fiscale
-	{{ $pre->user->cf }} {{ $pre->anagrafica->datiResidenza() }}
-	in seguito indicato contrattista, viene stipulato il presente contratto di prestazione d’opera intellettuale
+	{{ $pre->user->cf }} {{ $pre->anagrafica->datiResidenza() }},
+    viene stipulato il presente contratto di prestazione d’opera intellettuale
 	@if($pre->isComma1Gratuito())
 		a <b>titolo gratuito, nei limiti del 5% dell’organico dei professori e ricercatori di ruolo del Dipartimento, ai sensi dell’art. 23, comma 1, della legge n. 240/2010</b>,
 	@elseif($pre->isComma1Retribuito())

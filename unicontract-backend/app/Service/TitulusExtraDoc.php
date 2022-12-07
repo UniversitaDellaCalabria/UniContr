@@ -23,9 +23,9 @@ class TitulusExtraDoc
         $istituzione = $node->addChild('istituzione');
         $istituzione->addAttribute('cod', $dati->cod);
 
-            $istituzione->addChild('denominazione',$dati->denominazione);
-            $dipartimento = $istituzione->addChild('dipartimento',$dati->dipartimento);
-            $dipartimento->addAttribute('cod',$dati->dipartimento_cod);
+        $istituzione->addChild('denominazione',$dati->denominazione);
+        $dipartimento = $istituzione->addChild('dipartimento',$dati->dipartimento);
+        $dipartimento->addAttribute('cod',$dati->dipartimento_cod);
 
         return $istituzione;
     }
@@ -56,9 +56,9 @@ class TitulusExtraDoc
         $evento->addChild('denominazione',$dati->denominazione);
         $evento->addChild('data',$dati->data);
         $agente = $evento->addChild('agente');
-            $agente->addAttribute('tipo', $dati->agente_tipo);
-            $agente->addChild('denominazione',$dati->agente_denominazione);
-            $agente->addChild('matricola', $dati->agente_matricola);
+        $agente->addAttribute('tipo', $dati->agente_tipo);
+        $agente->addChild('denominazione',$dati->agente_denominazione);
+        $agente->addChild('matricola', $dati->agente_matricola);
         return $evento;
     }
 

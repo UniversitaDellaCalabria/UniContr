@@ -121,7 +121,7 @@
 	<br>
 
 	<p class="normal">
-	Urbino, {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y') : $pre->validazioni->dateSubmitToPrint()}} <br>
+	Rende, {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y') : $pre->validazioni->dateSubmitToPrint()}} <br>
 	In fede, f.to {{ $pre->user->nameTutorString() }}
 	</p>
 
