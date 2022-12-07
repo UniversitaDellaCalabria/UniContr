@@ -177,8 +177,6 @@ export class D3TributariComponent extends BaseComponent {
         }
       },
     },
-
-     elenco enti
     {
       fieldGroupClassName: 'row justify-content-end',
       className: 'col-md-12',
