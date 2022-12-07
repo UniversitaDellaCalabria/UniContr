@@ -363,7 +363,7 @@ class Insegnamenti extends Model {
     public function cicloToString() {
         $input = $this->attributes['ciclo'];
         if(!$input) return "-";
-        if(str_contains($input, "Semestre")) return "Semestre";
+        if(str_contains($input, "Semestre")) return "Semestrale";
         return "Annuale";
     }
 
