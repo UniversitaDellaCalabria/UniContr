@@ -213,7 +213,7 @@ export class D3TributariComponent extends BaseComponent {
             fieldGroup: this.fieldsEnti,
           },
           hideExpression: (model, formstate) => {
-            return (this.model.flag_limite_percepito === 0);
+            return (this.model.flag_limite_percepito === 0 || this.model.flag_percepito === 0);
           }
         },
       ],
