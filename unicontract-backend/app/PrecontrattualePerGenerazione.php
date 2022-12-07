@@ -85,6 +85,10 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
         return $this->insegnamento->periodoToString();
     }
 
+    public function getCicloAttribute()
+    {
+        return $this->insegnamento->cicloToString();
+    }
 
     public function getDataDaAttribute()
     {

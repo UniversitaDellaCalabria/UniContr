@@ -360,6 +360,13 @@ class Insegnamenti extends Model {
         return "dal ".$data_da." al ".$data_a;
     }
 
+    public function cicloToString() {
+        $input = $this->attributes['ciclo'];
+        if(!$input) return "-";
+        if(str_contains($input, "Semestre")) return "Semestre";
+        return "Annuale";
+    }
+
     public function emittenteToString() {
         if($this->emittente == "Consiglio di Dipartimento") {
             return "Consiglio";
