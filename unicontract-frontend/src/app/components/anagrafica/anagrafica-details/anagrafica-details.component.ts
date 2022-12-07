@@ -711,7 +711,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
                     type: 'input',
                     readonly: true,
                     placeholder: 'Carica il documento . . . ',
-                    description: 'N.B. Il Curriculum Vitae da caricare deve essere in formato PDF e privo di dati sensibili. Dimensione massima 2MB.',
+                    description: 'N.B. Il Curriculum Vitae da caricare deve essere in formato PDF e PRIVO DI DATI SENSIBILI. Dimensione massima 2MB.',
                     accept: 'application/pdf',
                     maxLength: 255,
                     required: true,

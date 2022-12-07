@@ -229,7 +229,7 @@ class PrecontrattualeService implements ApplicationService
         $doc->oggetto = 'Contratto di insegnamento '.$pre->insegnamento->insegnamento; //almeno 30 caratteri
         $doc->addClassifCod('07/16');
         $doc->addAllegato('0 - nessun allegato');
-        $doc->addVoceIndice(' GDA - Contratto docente');
+        $doc->addVoceIndice('UNICONTR - Contratto docente');
 
         $unitaorganizzativa_uo = $pre->insegnamento->dip_cod;
 
