@@ -12,12 +12,10 @@
     </app-list-item>
     <app-list-item label="{{ 'a1_cf' | translate }}" value="{{ item.cf }}"></app-list-item>
 
-    <!--
     <app-list-item  *ngIf="item.stato_civile === 'C' || item.stato_civile === 'Z'" label="{{ 'a1_cfc' | translate }}">
       <div *ngIf="item.cf_coniuge">{{ item.cf_coniuge | uppercase }}</div>
       <div *ngIf="!item.cf_coniuge" style="color: red">{{ 'a1_nrilevato' | translate | uppercase }}</div>
     </app-list-item>
-    -->
 
     <app-list-item label="{{ 'a1_citt' | translate }}" value="{{ item.nazione_residenza | uppercase }}"></app-list-item>
 
