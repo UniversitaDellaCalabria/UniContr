@@ -37,6 +37,7 @@ use App\Soap\Request\WsdtoPersonaFisicaSearch;
 use App\Soap\Request\WsdtoPagamento;
 use PHP_IBAN\IBAN;
 //use App\Http\Controllers\Api\V1\PersonaInternaController;
+use Request;
 use Exception;
 
 
@@ -264,7 +265,7 @@ class PrecontrattualeService implements ApplicationService
             'codice_fiscale' => $pre->user->cf,
             'cognome' =>$pre->user->cognome,
             'nome' => $pre->user->nome,
-            'data_nascita' => $pre->anagrafica->provincia_nascita,
+            'data_nascita' => $pre->anagrafica->data_nascita,
             'luogo_nascita' => $pre->anagrafica->comune_nascita,
             'sesso' =>  $pre->anagrafica->sesso,
             'nazione_nascita' => $pre->anagrafica->nazione_nascita,
@@ -329,7 +330,7 @@ class PrecontrattualeService implements ApplicationService
             'agente_denominazione' =>$pre->user->nameTutorString(),
             'agente_matricola' => $pre->user->v_ie_ru_personale_id_ab,
             'agente_login' => '',
-            'agente_indirizzo_ip' => '',
+            'agente_indirizzo_ip' => Request::ip(),
         ]);
 
         TitulusExtraDoc::xml_append($newDoc, $extra);
