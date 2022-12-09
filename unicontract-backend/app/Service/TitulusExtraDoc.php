@@ -42,11 +42,13 @@ class TitulusExtraDoc
         $dati = (object)$dati;
         $sistema_mittente = $node->addChild('sistema_mittente');
         $sistema_mittente->addChild('id_documento', $dati->id_documento);
+        $sistema_mittente->addChild('applicativo', $dati->applicativo);
+        $sistema_mittente->addChild('anno_accademico', $dati->anno_accademico);
         //<!--ID nel sistema Unicontract-->
-        $sistema_mittente->addChild('pers_id',$dati->pers_id);
-        $sistema_mittente->addChild('codice_dipartimento_registro',$dati->codice_dipartimento_registro);
-        $sistema_mittente->addChild('applicativo',$dati->applicativo);
-        $sistema_mittente->addChild('versione',$dati->versione);
+        //$sistema_mittente->addChild('pers_id',$dati->pers_id);
+        //$sistema_mittente->addChild('codice_dipartimento_registro',$dati->codice_dipartimento_registro);
+        //$sistema_mittente->addChild('applicativo',$dati->applicativo);
+        //$sistema_mittente->addChild('versione',$dati->versione);
         return $sistema_mittente;
     }
 
@@ -60,6 +62,27 @@ class TitulusExtraDoc
         $agente->addChild('denominazione',$dati->agente_denominazione);
         $agente->addChild('matricola', $dati->agente_matricola);
         return $evento;
+    }
+
+    public static function addEventoUniContr($node,  array $dati){
+        $dati = (object)$dati;
+        $evento = $node->addChild('evento');
+        $evento->addChild('denominazione',$dati->denominazione);
+        $evento->addChild('data',$dati->data);
+        $agente = $evento->addChild('agente');
+        $agente->addAttribute('tipo', $dati->agente_tipo);
+        $agente->addChild('denominazione',$dati->agente_denominazione);
+        $agente->addChild('matricola', $dati->agente_matricola);
+        $login = $agente->addChild('login', $dati->agente_login);
+        $login->addAttribute('indirizzo_ip', $dati->agente_indirizzo_ip);
+        return $evento;
+    }
+
+    public static function addModalitaSottoscrizione($node,  array $dati){
+        $dati = (object)$dati;
+        $modalita = $node->addChild('modalita_sottoscrizione',$dati->modalita_sottoscrizione);
+        $modalita->addAttribute('cod', $dati->modalita_sottoscrizione_cod);
+        return $modalita;
     }
 
     public static function addPersona($node, array $dati){
@@ -80,6 +103,12 @@ class TitulusExtraDoc
 
         $recapito = $persona->addChild('recapito');
         $recapito->addChild('email',$dati->email);
+
+        $carriera = $persona->addChild('carriera');
+        $carriera->addChild('categoria', '');
+        $carriera->addChild('matricola', $dati->matricola);
+        $carriera->addChild('ruolo', '');
+
         return $persona;
     }
 

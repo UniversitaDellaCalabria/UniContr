@@ -36,6 +36,7 @@ use App\Http\Controllers\SoapControllerWSACPersonaFisica;
 use App\Soap\Request\WsdtoPersonaFisicaSearch;
 use App\Soap\Request\WsdtoPagamento;
 use PHP_IBAN\IBAN;
+use App\Http\Controllers\Api\V1\PersonaInternaController;
 use Exception;
 
 
@@ -227,7 +228,7 @@ class PrecontrattualeService implements ApplicationService
 
         //TODO epigrafe insegnamento
         $doc->oggetto = 'Contratto di insegnamento '.$pre->insegnamento->insegnamento; //almeno 30 caratteri
-        $doc->addClassifCod('07/16');
+        //$doc->addClassifCod('07/16');
         $doc->addAllegato('0 - nessun allegato');
         $doc->addVoceIndice('UNICONTR - Contratto docente');
 
@@ -244,9 +245,34 @@ class PrecontrattualeService implements ApplicationService
         //IN DATA '.$dataSottoscrizione.' - '.$insegnamento.' - A.A. '.$aa.' DAL GIORNO '.date_format(date_create($dalGiorno), 'd/m/Y').'
         //AL GIORNO '.date_format(date_create($alGiorno), 'd/m/Y').'</postit>
 
+        $mezzo_trasmissione = new \SimpleXMLElement('<mezzo_trasmissione cod="Web Service"/>');
+        TitulusExtraDoc::xml_append($doc, $mezzo_trasmissione);
+
         $extra = new \SimpleXMLElement('<extra></extra>');
+
+        TitulusExtraDoc::addSistemaMittente($extra, [
+            'id_documento' => $pre->id,
+            'applicativo' => 'UNICONTR',
+            'anno_accademico' => $pre->aa,
+        ]);
+
+        $persint = new PersonaInternaController();
+        $persint->getminimalByName($pre->user->utenteNomepersona)
+        TitulusExtraDoc::addPersona($extra,[
+            'codice_fiscale' => $pre->user->cf,
+            'cognome' =>$pre->user->cognome,
+            'nome' => $pre->user->nome,
+            'data_nascita' => $pre->anagrafica->provincia_nascita,
+            'luogo_nascita' => $pre->anagrafica->comune_nascita,
+            'sesso' =>  $pre->anagrafica->sesso,
+            'nazione_nascita' => $pre->anagrafica->nazione_nascita,
+            'cod_ANS' => $pre->anagrafica->nazione_nascita,
+            'email' => $pre->user->email,
+            'matricola' => $persint->matricola,
+        ]);
+
         $dati_conservazione = TitulusExtraDoc::addDati_conservazione($extra,[
-            'tipologia' => 'registro_docente',
+            'tipologia' => 'contratto docente',
             'versione' => 1,
 
             'anno_accademico' => $pre->aa,
@@ -281,29 +307,28 @@ class PrecontrattualeService implements ApplicationService
 
         $informazioni_di_corredo = $dati_conservazione->addchild('informazioni_di_corredo');
 
-        $matricola = '';
+        TitulusExtraDoc::addModalitaSottoscrizione($informazioni_di_corredo,[
+            'modalita_sottoscrizione' => 'firma debole o semplice',
+            'modalita_sottoscrizione_cod' => 'FS',
+        ]);
+
+        $matricola = $persint->matricola;
         TitulusExtraDoc::addEvento($informazioni_di_corredo,[
-            'denominazione' => 'Sottoscrizione con firma elettronica',
+            'denominazione' => 'creazione',
             'data' => $pre->validazioni->date_accept,
             'agente_tipo' =>'persona',
             'agente_denominazione' =>$pre->user->nameTutorString(),
             'agente_matricola' => $matricola,
         ]);
-
-        TitulusExtraDoc::addPersona($extra,[
-            'codice_fiscale' => $pre->user->cf,
-            'cognome' =>$pre->user->cognome,
-            'nome' => $pre->user->nome,
-            'data_nascita' => $pre->anagrafica->provincia_nascita,
-            'luogo_nascita' => $pre->anagrafica->comune_nascita,
-            'sesso' =>  $pre->anagrafica->sesso,
-            'nazione_nascita' => $pre->anagrafica->nazione_nascita,
-            'cod_ANS' => $pre->anagrafica->nazione_nascita,
-            'email' => $pre->user->email
+        TitulusExtraDoc::addEventoUniContr($informazioni_di_corredo,[
+            'denominazione' => 'Accesso con credenziali alla piattaforma UNICONTR',
+            'data' => $pre->validazioni->date_accept,
+            'agente_tipo' =>'persona',
+            'agente_denominazione' =>$pre->user->nameTutorString(),
+            'agente_matricola' => $matricola,
+            'agente_login' => '',
+            'agente_indirizzo_ip' => '',
         ]);
-
-        $sistema_mittente_flat = new \SimpleXMLElement('<sistema_mittente><anno_accademico>'.$pre->aa.'</anno_accademico></sistema_mittente>');
-        TitulusExtraDoc::xml_append($extra, $sistema_mittente_flat);
 
         $newDoc = new \SimpleXMLElement($doc->toXml());
         TitulusExtraDoc::xml_append($newDoc, $extra);
