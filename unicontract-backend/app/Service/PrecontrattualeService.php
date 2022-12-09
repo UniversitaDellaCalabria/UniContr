@@ -314,20 +314,20 @@ class PrecontrattualeService implements ApplicationService
             'modalita_sottoscrizione_cod' => 'FS',
         ]);
 
-        $matricola = $persint->matricola;
+        //$matricola = $persint->matricola;
         TitulusExtraDoc::addEvento($informazioni_di_corredo,[
             'denominazione' => 'creazione',
             'data' => $pre->validazioni->date_accept,
             'agente_tipo' =>'persona',
             'agente_denominazione' =>$pre->user->nameTutorString(),
-            'agente_matricola' => $matricola,
+            'agente_matricola' => $pre->user->v_ie_ru_personale_id_ab,
         ]);
         TitulusExtraDoc::addEventoUniContr($informazioni_di_corredo,[
             'denominazione' => 'Accesso con credenziali alla piattaforma UNICONTR',
             'data' => $pre->validazioni->date_accept,
             'agente_tipo' =>'persona',
             'agente_denominazione' =>$pre->user->nameTutorString(),
-            'agente_matricola' => $matricola,
+            'agente_matricola' => $pre->user->v_ie_ru_personale_id_ab,
             'agente_login' => '',
             'agente_indirizzo_ip' => '',
         ]);
