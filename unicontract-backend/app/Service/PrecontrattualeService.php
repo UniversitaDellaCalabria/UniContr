@@ -258,7 +258,8 @@ class PrecontrattualeService implements ApplicationService
         ]);
 
         $persint = new PersonaInternaController();
-        $persint->getminimalByName($pre->user->utenteNomepersona);
+        $pers_extra_data = $persint->getminimalByName($pre->user->utenteNomepersona);
+
         TitulusExtraDoc::addPersona($extra,[
             'codice_fiscale' => $pre->user->cf,
             'cognome' =>$pre->user->cognome,
@@ -269,7 +270,7 @@ class PrecontrattualeService implements ApplicationService
             'nazione_nascita' => $pre->anagrafica->nazione_nascita,
             'cod_ANS' => $pre->anagrafica->nazione_nascita,
             'email' => $pre->user->email,
-            'matricola' => $persint->matricola,
+            'matricola' => $pers_extra_data->matricola,
         ]);
 
         $dati_conservazione = TitulusExtraDoc::addDati_conservazione($extra,[
