@@ -329,7 +329,7 @@ class PrecontrattualeService implements ApplicationService
             'agente_denominazione' =>$pre->user->nameTutorString(),
             'agente_matricola' => $pre->user->v_ie_ru_personale_id_ab,
             'agente_login' => '',
-            'agente_indirizzo_ip' => $this->_getClientIp(),
+            'agente_indirizzo_ip' => $request->ip(),
         ]);
 
         TitulusExtraDoc::xml_append($newDoc, $extra);
