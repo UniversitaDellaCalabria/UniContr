@@ -245,8 +245,9 @@ class PrecontrattualeService implements ApplicationService
         //IN DATA '.$dataSottoscrizione.' - '.$insegnamento.' - A.A. '.$aa.' DAL GIORNO '.date_format(date_create($dalGiorno), 'd/m/Y').'
         //AL GIORNO '.date_format(date_create($alGiorno), 'd/m/Y').'</postit>
 
+        $newDoc = new \SimpleXMLElement($doc->toXml());
         $mezzo_trasmissione = new \SimpleXMLElement('<mezzo_trasmissione cod="Web Service"/>');
-        TitulusExtraDoc::xml_append($doc, $mezzo_trasmissione);
+        TitulusExtraDoc::xml_append($newDoc, $mezzo_trasmissione);
 
         $extra = new \SimpleXMLElement('<extra></extra>');
 
@@ -330,7 +331,6 @@ class PrecontrattualeService implements ApplicationService
             'agente_indirizzo_ip' => '',
         ]);
 
-        $newDoc = new \SimpleXMLElement($doc->toXml());
         TitulusExtraDoc::xml_append($newDoc, $extra);
 
         return $newDoc->asXML();
