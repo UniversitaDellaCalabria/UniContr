@@ -36,7 +36,7 @@ use App\Http\Controllers\SoapControllerWSACPersonaFisica;
 use App\Soap\Request\WsdtoPersonaFisicaSearch;
 use App\Soap\Request\WsdtoPagamento;
 use PHP_IBAN\IBAN;
-use App\Http\Controllers\Api\V1\PersonaInternaController;
+//use App\Http\Controllers\Api\V1\PersonaInternaController;
 use Exception;
 
 
@@ -257,8 +257,8 @@ class PrecontrattualeService implements ApplicationService
             'anno_accademico' => $pre->aa,
         ]);
 
-        $persint = new PersonaInternaController();
-        $pers_extra_data = $persint->getminimalByName($pre->user->utenteNomepersona);
+        //$persint = new PersonaInternaController();
+        //$pers_extra_data = $persint->getminimalByName($pre->user->utenteNomepersona);
 
         TitulusExtraDoc::addPersona($extra,[
             'codice_fiscale' => $pre->user->cf,
@@ -270,7 +270,7 @@ class PrecontrattualeService implements ApplicationService
             'nazione_nascita' => $pre->anagrafica->nazione_nascita,
             'cod_ANS' => $pre->anagrafica->nazione_nascita,
             'email' => $pre->user->email,
-            'matricola' => $pers_extra_data->matricola,
+            'matricola' => $pre->user->v_ie_ru_personale_id_ab,
         ]);
 
         $dati_conservazione = TitulusExtraDoc::addDati_conservazione($extra,[
