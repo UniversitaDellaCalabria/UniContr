@@ -257,7 +257,7 @@ class PrecontrattualeService implements ApplicationService
         ]);
 
         $persint = new PersonaInternaController();
-        $persint->getminimalByName($pre->user->utenteNomepersona)
+        $persint->getminimalByName($pre->user->utenteNomepersona);
         TitulusExtraDoc::addPersona($extra,[
             'codice_fiscale' => $pre->user->cf,
             'cognome' =>$pre->user->cognome,
