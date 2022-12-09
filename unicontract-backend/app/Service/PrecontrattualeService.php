@@ -37,7 +37,6 @@ use App\Soap\Request\WsdtoPersonaFisicaSearch;
 use App\Soap\Request\WsdtoPagamento;
 use PHP_IBAN\IBAN;
 //use App\Http\Controllers\Api\V1\PersonaInternaController;
-use Request;
 use Exception;
 
 
