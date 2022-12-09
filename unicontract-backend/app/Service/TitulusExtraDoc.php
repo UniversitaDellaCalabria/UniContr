@@ -64,6 +64,18 @@ class TitulusExtraDoc
         return $evento;
     }
 
+    public static function addEventoSoftware($node,  array $dati){
+        $dati = (object)$dati;
+        $evento = $node->addChild('evento');
+        $evento->addChild('denominazione',$dati->denominazione);
+        $evento->addChild('data',$dati->data);
+        $agente = $evento->addChild('agente');
+        $agente->addAttribute('tipo', $dati->agente_tipo);
+        $agente->addChild('denominazione',$dati->agente_denominazione);
+        $agente->addChild('versione', $dati->agente_versione);
+        return $evento;
+    }
+
     public static function addEventoUniContr($node,  array $dati){
         $dati = (object)$dati;
         $evento = $node->addChild('evento');

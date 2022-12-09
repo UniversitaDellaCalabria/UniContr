@@ -315,12 +315,15 @@ class PrecontrattualeService implements ApplicationService
         ]);
 
         //$matricola = $persint->matricola;
-        TitulusExtraDoc::addEvento($informazioni_di_corredo,[
+        TitulusExtraDoc::addEventoSoftware($informazioni_di_corredo,[
             'denominazione' => 'creazione',
             'data' => $pre->validazioni->date_accept,
-            'agente_tipo' =>'persona',
-            'agente_denominazione' =>$pre->user->nameTutorString(),
-            'agente_matricola' => $pre->user->v_ie_ru_personale_id_ab,
+            //'agente_tipo' =>'persona',
+            //'agente_denominazione' =>$pre->user->nameTutorString(),
+            //'agente_matricola' => $pre->user->v_ie_ru_personale_id_ab,
+            'agente_tipo' =>'sofware',
+            'agente_denominazione' => 'UniContr',
+            'agente_versione' => '1.0',
         ]);
         TitulusExtraDoc::addEventoUniContr($informazioni_di_corredo,[
             'denominazione' => 'Accesso con credenziali alla piattaforma UNICONTR',
