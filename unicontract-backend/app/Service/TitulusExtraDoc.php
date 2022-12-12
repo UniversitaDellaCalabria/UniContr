@@ -84,7 +84,7 @@ class TitulusExtraDoc
         $agente = $evento->addChild('agente');
         $agente->addAttribute('tipo', $dati->agente_tipo);
         $agente->addChild('denominazione',$dati->agente_denominazione);
-        $agente->addChild('matricola', $dati->agente_matricola);
+        $agente->addChild('id_ab', $dati->agente_matricola);
         $login = $agente->addChild('login', $dati->agente_login);
         $login->addAttribute('indirizzo_ip', $dati->agente_indirizzo_ip);
         return $evento;
