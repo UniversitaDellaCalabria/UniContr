@@ -60,7 +60,7 @@ class TitulusExtraDoc
         $agente = $evento->addChild('agente');
         $agente->addAttribute('tipo', $dati->agente_tipo);
         $agente->addChild('denominazione',$dati->agente_denominazione);
-        $agente->addChild('matricola', $dati->agente_matricola);
+        $agente->addChild('id_ab', $dati->agente_matricola);
         return $evento;
     }
 
@@ -118,7 +118,7 @@ class TitulusExtraDoc
 
         $carriera = $persona->addChild('carriera');
         $carriera->addChild('categoria', '');
-        $carriera->addChild('matricola', $dati->matricola);
+        $carriera->addChild('id_ab', $dati->matricola);
         $carriera->addChild('ruolo', '');
 
         return $persona;
