@@ -115,7 +115,7 @@ export const ROUTES: RouteInfo[] = [
         permissions: [],
       },
       {
-        path: 'supporto-tecnico',
+        path: 'https://www.unical.it',
         title: 'Supporto tecnica',
         icon: '',
         class: '',
