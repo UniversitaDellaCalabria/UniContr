@@ -70,6 +70,9 @@
     <input type="hidden" name="tipo_corso_des" [(ngModel)]="item.tipo_corso_des">
     <input type="hidden" name="anno_corso" [(ngModel)]="item.anno_corso">
 
+    <input type="hidden" name="dip_doc_cod" [(ngModel)]="item.dip_doc_cod">
+    <input type="hidden" name="dipartimento_cod" [(ngModel)]="item.dip_doc_des">
+
     <div class="form-footer text-right">
       <button *ngIf="checkEmail(item.email, item.e_mail, item.e_mail_privata)" class="btn btn-outline-secondary rounded mr-1" (click)="saveIns(f.value, item.nome, item.cognome, item.cod_fis, item.id_ab, email(item.email, item.e_mail, item.e_mail_privata))" title="IMPORTA IL PRESENTE INSEGNAMENTO">IMPORTA</button>
     </div>

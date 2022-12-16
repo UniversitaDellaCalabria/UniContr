@@ -28,6 +28,9 @@ export interface InsegnamentoInterface {
 
     nominativo?: string;
     docente_id?: string;
+
+    dip_doc_cod: string;
+    dipartimento_doc: string;
 }
 
 export interface UpdateP1 {

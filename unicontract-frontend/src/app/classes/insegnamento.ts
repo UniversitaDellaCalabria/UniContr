@@ -32,6 +32,9 @@ export class Insegnamento implements InsegnamentoInterface {
     nominativo?: string;
     docente_id?: string;
 
+    dip_doc_cod: string;
+    dipartimento_doc: string;
+
     constructor() {
         this.id = 0;
         this.coper_id = 0;

@@ -49,7 +49,9 @@ class Insegnamenti extends Model {
         'user_role',
         'dip_cod',
         'tipo_corso_des',
-        'anno_corso'
+        'anno_corso',
+        'dip_cod_cod',
+        'dipartimento_doc'
     ];
 
     protected $casts = [

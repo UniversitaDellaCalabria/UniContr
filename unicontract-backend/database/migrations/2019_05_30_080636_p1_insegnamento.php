@@ -48,6 +48,10 @@ class P1Insegnamento extends Migration
             $table->string('tipo_corso_des', 255)->nullable();
             $table->string('anno_corso', 255)->nullable();
 
+            //dipartimento di afferenza del docente (quello che sigla il contratto)
+            $table->string('dip_doc_cod', 10)->nullable();
+            $table->string('dipartimento_doc', 10)->nullable();
+
             $table->timestamps();
         });
     }
