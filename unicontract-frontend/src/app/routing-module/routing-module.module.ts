@@ -5,7 +5,7 @@ import { AuthGuard } from '../core/auth.guard';
 import { AuthService } from 'src/app/core';
 
 // UNICONTRACT APP COMPONENTS
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from '../home/home.component';
 import { ListaInsegnComponent } from '../components/p1_insegnamento/lista-insegn/lista-insegn.component';
 import { InsegnDetailComponent } from '../components/p1_insegnamento/insegn-detail/insegn-detail.component';
 import { InsegnFormComponent } from '../components/p1_insegnamento/insegn-form/insegn-form.component';
