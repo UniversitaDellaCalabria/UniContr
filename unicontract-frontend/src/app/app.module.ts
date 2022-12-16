@@ -213,7 +213,7 @@ import { LogAttivitaService } from './services/logattivita.service';
 import { SettingsService } from './services/settings.service';
 import { SessionStorageService } from './services/session-storage.service';
 
-import { Redirect_FAQ } from '../components/redirect_faq/redirect_faq.component';
+import { Redirect_FAQ } from './components/redirect_faq/redirect_faq.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
