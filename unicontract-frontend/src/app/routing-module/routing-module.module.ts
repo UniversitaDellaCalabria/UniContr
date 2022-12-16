@@ -86,7 +86,10 @@ import { MappingUfficioTitulus } from '../components/mapping/mappingufficio.comp
 import { ListaContrugovQueryComponent } from '../components/p1_insegnamento/lista-contrugov-query/lista-contrugov-query.component';
 import { LogAttivitaComponent } from '../components/user/logattivita.component';
 
-import { Redirect_FAQ, Redirect_FAQ_operatori, Redirect_Supporto_compilazione, Redirect_Supporto_tecnico  } from '../components/redirect/redirect.component';
+import { Redirect_FAQ } from '../components/redirect/redirect.component';
+import { Redirect_FAQ_operatori } from '../components/redirect/redirect.component';
+import { Redirect_Supporto_compilazione } from '../components/redirect/redirect.component';
+import { Redirect_Supporto_tecnico } from '../components/redirect/redirect.component';
 
 
 const externalLoginUrlProvider = new InjectionToken('externalUrlRedirectResolver');
