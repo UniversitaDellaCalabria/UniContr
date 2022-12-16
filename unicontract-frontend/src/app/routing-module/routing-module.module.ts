@@ -87,7 +87,7 @@ import { ListaContrugovQueryComponent } from '../components/p1_insegnamento/list
 import { LogAttivitaComponent } from '../components/user/logattivita.component';
 
 import { Redirect_FAQ } from '../components/redirect/redirect_faq.component';
-import { Redirect_FAQ_operatori } from '../components/redirect/redirect_faq_opeatori.component';
+import { Redirect_FAQ_operatori } from '../components/redirect/redirect_faq_operatori.component';
 import { Redirect_Supporto_compilazione } from '../components/redirect/redirect_supporto_compilazione.component';
 import { Redirect_Supporto_tecnico } from '../components/redirect/redirect_supporto_tecnico.component';
 

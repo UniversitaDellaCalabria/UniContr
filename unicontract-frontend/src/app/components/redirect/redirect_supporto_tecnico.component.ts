@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "redirect",
+  selector: "redirect_supporto_tecnico",
   templateUrl: "redirect.component.html"
 })
 
