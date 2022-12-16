@@ -7,4 +7,6 @@ export interface RouteInfo {
   extralink: boolean;
   submenu: RouteInfo[];
   permissions: string[];
+  extra_url: boolean;
+  url: string;
 }
