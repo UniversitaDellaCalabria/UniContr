@@ -58,7 +58,38 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
       key: 'insegnamento.dip_cod',
       type: 'select',
       templateOptions: {
-        label: 'Dipartimento',
+        label: 'Dipartimento insegnamento',
+        options: [
+          // { key: '005019', value: this.translateService.instant('005019_disb') },
+          // { key: '004919', value: this.translateService.instant('004919_dispea')},
+          // { key: '004419', value: this.translateService.instant('004419_digiur') },
+          // { key: '004940', value: this.translateService.instant('004940_discui') },
+          // { key: '005579', value: this.translateService.instant('005579_discui') },
+          // { key: '004939', value: this.translateService.instant('004939_distum') },
+          // { key: '004424', value: this.translateService.instant('004424_desp') },
+          // unical
+          { key: '002014', value: this.translateService.instant('002014_dibest') },
+          { key: '002015', value: this.translateService.instant('002015_ctc') },
+          { key: '002022', value: this.translateService.instant('002022_dices') },
+          { key: '002025', value: this.translateService.instant('002025_desf') },
+          { key: '002021', value: this.translateService.instant('002021_dfssn') },
+          { key: '002016', value: this.translateService.instant('002016_fisica') },
+          { key: '002018', value: this.translateService.instant('002018_dinci') },
+          { key: '002020', value: this.translateService.instant('002020_diam') },
+          { key: '002017', value: this.translateService.instant('002017_dimes') },
+          { key: '002019', value: this.translateService.instant('002019_dimeg') },
+          { key: '002013', value: this.translateService.instant('002013_demacs') },
+          { key: '002024', value: this.translateService.instant('002024_discag') },
+          { key: '002026', value: this.translateService.instant('002026_dispes') },
+          { key: '002023', value: this.translateService.instant('002023_disu') },
+        ]
+      }
+    },
+    {
+      key: 'insegnamento.dip_doc_cod',
+      type: 'select',
+      templateOptions: {
+        label: 'Dipartimento afferenza docente',
         options: [
           // { key: '005019', value: this.translateService.instant('005019_disb') },
           // { key: '004919', value: this.translateService.instant('004919_dispea')},
@@ -364,7 +395,8 @@ export class ListaPrecontrQueryComponent extends BaseResearchComponent {
           { name: '', prop: 'insegn_id',  with: 100, maxWidth: 100, cellTemplate: this.comandi },
           { name: '#', prop: 'id', width: 80, maxWidth: 100 },
           { name: 'Copertura', prop: 'insegnamento.coper_id', width: 100, maxWidth: 100 },
-          { name: 'Dipartimento', prop: 'insegnamento.dip_cod', cellTemplate: this.tooltipCellTemplate, width: 100, maxWidth: 150 },
+          { name: 'Dipartimento insegnamento', prop: 'insegnamento.dip_cod', cellTemplate: this.tooltipCellTemplate, width: 100, maxWidth: 150 },
+          { name: 'Dipartimento afferenza docente', prop: 'insegnamento.dip_doc_cod', cellTemplate: this.tooltipCellTemplate, width: 100, maxWidth: 150 },
           { name: 'Inizio', prop: 'insegnamento.data_ini_contr', width: 100, maxWidth: 150, type: 'date' },
           { name: 'Fine', prop: 'insegnamento.data_fine_contr', width: 100, maxWidth: 150, type: 'date' },
           { name: 'Cognome', prop: 'user.cognome', width: 150, maxWidth: 150 },

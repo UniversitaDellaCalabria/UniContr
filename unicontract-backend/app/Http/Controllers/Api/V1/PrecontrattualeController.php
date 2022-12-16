@@ -936,14 +936,16 @@ class PrecontrattualeController extends Controller
                     //filtro per unitaorganizzativa dell'utente di inserimento (plesso)
                     array_push($parameters['rules'],[
                         "operator" => "In",
-                        "field" => "insegnamento.dip_cod",
+                        //"field" => "insegnamento.dip_cod",
+                        "field" => "insegnamento.dip_doc_cod",
                         "value" => $uo->dipartimenti()
                     ]);
                 } else {
                     //ad un afferente al dipartimento filtro per dipartimento
                     array_push($parameters['rules'],[
                         "operator" => "=",
-                        "field" => "insegnamento.dip_cod",
+                        //"field" => "insegnamento.dip_cod",
+                        "field" => "insegnamento.dip_doc_cod",
                         "value" => $uo->uo
                     ]);
                 }
@@ -1040,12 +1042,14 @@ class PrecontrattualeController extends Controller
                 }
 
                 if ($uo->isPlesso()){
-                    if (!(in_array($pre->insegnamento->dip_cod,$uo->dipartimenti()))){
+                    //if (!(in_array($pre->insegnamento->dip_cod,$uo->dipartimenti()))){
+                    if (!(in_array($pre->insegnamento->dip_doc_cod,$uo->dipartimenti()))){
                         abort(403, trans('global.utente_non_autorizzato'));
                     }
 
                 } else {
-                    if ($pre->insegnamento->dip_cod != $uo->uo){
+                    //if ($pre->insegnamento->dip_cod != $uo->uo){
+                    if ($pre->insegnamento->dip_doc_cod != $uo->uo){
                         abort(403, trans('global.utente_non_autorizzato'));
                     }
                 }

@@ -230,14 +230,16 @@ class InsegnamUgovController extends Controller
                 //filtro per unitaorganizzativa dell'utente di inserimento (plesso)
                 array_push($parameters['rules'],[
                     "operator" => "In",
-                    "field" => "dip_cod",
+                    //"field" => "dip_cod",
+                    "field" => "dip_doc_cod",
                     "value" => $uo->dipartimenti()
                 ]);
             } else {
                 //ad un afferente al dipartimento filtro per dipartimento
                 array_push($parameters['rules'],[
                     "operator" => "=",
-                    "field" => "dip_cod",
+                    //"field" => "dip_cod",
+                    "field" => "dip_doc_cod",
                     "value" => $uo->uo
                 ]);
             }

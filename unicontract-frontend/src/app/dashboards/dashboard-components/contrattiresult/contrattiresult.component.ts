@@ -11,14 +11,14 @@ import { MyTranslatePipe } from 'src/app/shared/pipe/custom.translatepipe';
 
 @Component({
   selector: 'app-contrattiresult',
-  templateUrl: './contrattiresult.component.html', 
+  templateUrl: './contrattiresult.component.html',
   styles: []
 })
 export class ConvenzioniresultComponent implements OnInit {
   isLoading: boolean = false;
 
   //@ViewChild('detailRow') detailRow: TemplateRef<any>;
-  @ViewChild('converter') converter: TemplateRef<any>;  
+  @ViewChild('converter') converter: TemplateRef<any>;
   @ViewChild('tooltip') tooltipCellTemplate: TemplateRef<any>;
 
   @Input() querymodel: any;
@@ -45,11 +45,12 @@ export class ConvenzioniresultComponent implements OnInit {
   }
 
   ngOnInit() {
-       
+
     let baseColumns: Array<any> = [
       { name: '#', prop: 'id', width: 80, maxWidth: 100, sortable: true },
       { name: 'Copertura', prop: 'insegnamento.coper_id', width: 100, maxWidth: 100, sortable: false },
-      { name: 'Dipartimento', prop: 'insegnamento.dip_cod', cellTemplate: this.tooltipCellTemplate, width: 100, maxWidth: 150, sortable: false },
+      { name: 'Dipartimento insegnamento', prop: 'insegnamento.dip_cod', cellTemplate: this.tooltipCellTemplate, width: 100, maxWidth: 150, sortable: false },
+      { name: 'Dipartimento afferenza docente', prop: 'insegnamento.dip_doc_cod', cellTemplate: this.tooltipCellTemplate, width: 100, maxWidth: 150, sortable: false },
       { name: 'Inizio', prop: 'insegnamento.data_ini_contr', width: 100, maxWidth: 150, sortable: false },
       { name: 'Fine', prop: 'insegnamento.data_fine_contr', width: 100, maxWidth: 150, sortable: false },
       { name: 'Cognome', prop: 'user.cognome', width: 150, maxWidth: 150, sortable: true },
@@ -60,24 +61,24 @@ export class ConvenzioniresultComponent implements OnInit {
     if (this.columns){
       baseColumns = baseColumns.concat(this.columns);
     }
-    
-    baseColumns = this.applyOrder(baseColumns);  
+
+    baseColumns = this.applyOrder(baseColumns);
 
     this.resultMetadata =  [
       {
           key: 'data',
           type: 'datatablelookup',
-          //wrappers: ['accordion'],      
+          //wrappers: ['accordion'],
           templateOptions: {
-            label: 'Risultati',   
+            label: 'Risultati',
             columnMode: 'force',
             headerHeight: 50,
-            footerHeight: 50,            
-            scrollbarH: false,             
-            hidetoolbar: true, 
+            footerHeight: 50,
+            scrollbarH: false,
+            hidetoolbar: true,
             //detailRow: this.detailRow,
-            selected: [],                        
-            page: new Page(15),       
+            selected: [],
+            page: new Page(15),
             onDblclickRow: (event) => this.onDblclickRow(event),
             onSetPage: (pageInfo) => this.onSetPage(pageInfo),
             onReorder: (event) => this.onReorder(event),
@@ -89,16 +90,16 @@ export class ConvenzioniresultComponent implements OnInit {
           }
         }
       ];
-      
+
       this.orderColumn = baseColumns.map(x => x.name);
 
-      this.querymodel['limit']= 15;     
+      this.querymodel['limit']= 15;
       this.onFind(this.querymodel);
-      
+
   }
 
   applyOrder(columns: Array<any>){
-    if (this.postname){      
+    if (this.postname){
       this.orderColumn = JSON.parse(localStorage.getItem('order_'+this.postname));
       if (this.orderColumn && this.orderColumn.length>0)
       columns = columns.sort((a,b)=> {
@@ -109,14 +110,14 @@ export class ConvenzioniresultComponent implements OnInit {
         }else{
           return -1;
         }
-      });      
+      });
     }
     return columns;
   }
 
 
-  onReorder(event){ 
-   
+  onReorder(event){
+
     let temp = this.orderColumn[event.newValue];
     this.orderColumn[event.newValue] = this.orderColumn[event.prevValue];
     this.orderColumn[event.prevValue] = temp;
@@ -125,7 +126,7 @@ export class ConvenzioniresultComponent implements OnInit {
       localStorage.setItem('order_'+this.postname,JSON.stringify(this.orderColumn));
       console.log(this.orderColumn);
     }
-            
+
   }
 
   array_move(arr, old_index, new_index) {
@@ -135,49 +136,49 @@ export class ConvenzioniresultComponent implements OnInit {
             arr.push(undefined);
         }
     }
-    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);    
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
   };
 
 
 
   onDblclickRow(event) {
     if (event.type === 'dblclick') {
-      if (event.row.insegn_id){        
+      if (event.row.insegn_id){
         this.router.navigate(['home/summary', event.row.insegn_id]);
       }
     }
-   
+
   }
 
-  onSetPage(pageInfo){      
+  onSetPage(pageInfo){
     if (pageInfo.limit)
-      this.querymodel['limit']= pageInfo.limit;     
+      this.querymodel['limit']= pageInfo.limit;
     if (this.model.data.length>0){
-      this.querymodel['page']=pageInfo.offset + 1;     
+      this.querymodel['page']=pageInfo.offset + 1;
       this.onFind(this.querymodel);
     }
   }
 
   onFind(model){
-    this.querymodel.rules = model.rules;  
+    this.querymodel.rules = model.rules;
     if (model.orderBy){
       this.querymodel.orderBy = model.orderBy;
-    }    
+    }
 
-    this.isLoading = true;    
+    this.isLoading = true;
     //this.service.clearMessage();
-    try{      
+    try{
       this.service.query(this.querymodel).subscribe((data) => {
         const to = this.resultMetadata[0].templateOptions;
-        this.isLoading = false;   
+        this.isLoading = false;
         this.model=  {
           data: data.data
         }
 
         to.page.totalElements = data.total; // data.to;
         to.page.pageNumber = data.current_page-1;
-        to.page.size = data.per_page;        
-        
+        to.page.size = data.per_page;
+
       }, err => {
         this.isLoading=false;
         console.error('Oops:', err.message);

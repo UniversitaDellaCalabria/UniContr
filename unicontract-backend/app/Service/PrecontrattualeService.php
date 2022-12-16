@@ -232,7 +232,8 @@ class PrecontrattualeService implements ApplicationService
         $doc->addAllegato('0 - nessun allegato');
         $doc->addVoceIndice('UNICONTR - Contratto docente');
 
-        $unitaorganizzativa_uo = $pre->insegnamento->dip_cod;
+        //$unitaorganizzativa_uo = $pre->insegnamento->dip_cod;
+        $unitaorganizzativa_uo = $pre->insegnamento->dip_doc_cod;
 
         TitulusHelper::addRPA_Titulus($doc,$unitaorganizzativa_uo);
         $doc->addCC("DIREZIONE RISORSE UMANE", "Elmo Roberto");
@@ -304,7 +305,8 @@ class PrecontrattualeService implements ApplicationService
             'cod' => '70019',
             'denominazione' => 'Università della Calabria',
             'dipartimento' => $pre->dipartimento,
-            'dipartimento_cod' =>  $pre->insegnamento->dip_cod
+            //'dipartimento_cod' =>  $pre->insegnamento->dip_cod
+            'dipartimento_cod' =>  $pre->insegnamento->dip_doc_cod
         ]);
 
         $informazioni_di_corredo = $dati_conservazione->addchild('informazioni_di_corredo');
