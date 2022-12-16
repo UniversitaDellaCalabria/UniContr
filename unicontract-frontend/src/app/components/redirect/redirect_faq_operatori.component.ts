@@ -10,6 +10,10 @@ export class Redirect_FAQ_operatori implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    window.location.href = 'https://docs.google.com/document/d/1cfT7GRT3ThzNMJ3SXvHsJYSKG-UCVAnlu8RWvGsWwCs/edit?usp=sharing';
+    //window.location.href = 'https://docs.google.com/document/d/1cfT7GRT3ThzNMJ3SXvHsJYSKG-UCVAnlu8RWvGsWwCs/edit?usp=sharing';
+    window.open(
+      'https://docs.google.com/document/d/1cfT7GRT3ThzNMJ3SXvHsJYSKG-UCVAnlu8RWvGsWwCs/edit?usp=sharing',
+      '_blank' // <- This is what makes it open in a new window.
+    );
   }
 }
