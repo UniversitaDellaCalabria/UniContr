@@ -95,8 +95,6 @@ export const ROUTES: RouteInfo[] = [
         extralink: false,
         submenu: [],
         permissions: [],
-        external_url: true,
-        url: 'https://www.unical.it'
       },
       {
         path: 'lineeguida/compilazione',
@@ -121,7 +119,7 @@ export const ROUTES: RouteInfo[] = [
         title: 'Supporto tecnica',
         icon: '',
         class: '',
-        extralink: false,
+        extralink: true,
         submenu: [],
         permissions: [],
       },
