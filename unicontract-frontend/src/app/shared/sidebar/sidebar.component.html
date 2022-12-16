@@ -58,7 +58,7 @@
                         {{sidebarnavSubItem.title}}
                     </a>
                     <a class="sidebar-link" [routerLink]="sidebarnavSubItem.submenu.length > 0 ? null : [sidebarnavSubItem.path]" [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'router-link-active'"
-                        [ngClass]="[sidebarnavSubItem.class]" *ngElseIf="!sidebarnavSubItem.extralink;" (click)="addActiveClass(sidebarnavSubItem.title)">
+                        [ngClass]="[sidebarnavSubItem.class]" *ngIf="!sidebarnavSubItem.external_url && !sidebarnavSubItem.extralink;" (click)="addActiveClass(sidebarnavSubItem.title)">
                         <i [ngClass]="[sidebarnavSubItem.icon]"></i>
                         <span class="hide-menu">{{sidebarnavSubItem.title}}</span>
                     </a>
