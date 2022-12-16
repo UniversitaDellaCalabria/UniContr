@@ -8,7 +8,7 @@ export const ROUTES: RouteInfo[] = [
     class: 'has-arrow',
     permissions: ['SUPER-ADMIN','OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE'],
     extralink: false,
-    submenu: [          
+    submenu: [
       {
         path: 'dashboard/dashboarduffdocenti',
         title: 'Validazione Uff. Personale',
@@ -78,7 +78,55 @@ export const ROUTES: RouteInfo[] = [
     permissions: ['OP_APPROVAZIONE_ECONOMICA','SUPER-ADMIN'],
   },
 
-  // DOCUMENTAZIONE A SUPPORTO
+  // Supporto
+  {
+    path: '',
+    title: 'Supporto ai contrattisti',
+    icon: 'icon-Speach-Bubble',
+    class: 'has-arrow',
+    extralink: false,
+    permissions: [],
+    submenu: [
+      {
+        path: 'faq',
+        title: 'FAQ per la compilazione',
+        icon: '',
+        class: '',
+        extralink: false,
+        submenu: [],
+        permissions: [],
+      },
+      {
+        path: 'lineeguida/compilazione',
+        title: 'Compilazione modulistica',
+        icon: '',
+        class: '',
+        extralink: false,
+        submenu: [],
+        permissions: ['OP_DOCENTE','OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
+      },
+      {
+        path: 'https://ticket.unical.it/tickets/new/17/443/',
+        title: 'Richiesta supporto nella compilazione',
+        icon: '',
+        class: '',
+        extralink: true,
+        submenu: [],
+        permissions: [],
+      },
+      {
+        path: 'https://ticket.unical.it/tickets/new/17/444/',
+        title: 'Richiesta assistenza tecnica',
+        icon: '',
+        class: '',
+        extralink: true,
+        submenu: [],
+        permissions: [],
+      },
+    ],
+  },
+
+
   {
     path: '',
     title: 'Documentazione',
@@ -105,55 +153,37 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
         permissions: ['OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
       },
-      {
-        path: 'lineeguida/ugovdidattica',
-        title: 'L.G. U-Gov Didattica',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: [],
-        permissions: ['OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
-      },
-      {
-        path: 'lineeguida/ugovcompensi',
-        title: 'L.G. U-Gov Compensi',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: [],
-        permissions: ['OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
-      },
-      {
-        path: 'lineeguida/precontreditabile',
-        title: 'Modulistica editabile',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: [],
-        permissions: ['OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN','OP_RISUMANE'],
-      },
-      {
-        path: 'lineeguida/compilazione',
-        title: 'Compilazione modulistica',
-        icon: '',
-        class: '',
-        extralink: false,
-        submenu: [],
-        permissions: ['OP_DOCENTE','OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
-      },
+      //{
+        //path: 'lineeguida/ugovdidattica',
+        //title: 'L.G. U-Gov Didattica',
+        //icon: '',
+        //class: '',
+        //extralink: false,
+        //submenu: [],
+        //permissions: ['OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
+      //},
+      //{
+        //path: 'lineeguida/ugovcompensi',
+        //title: 'L.G. U-Gov Compensi',
+        //icon: '',
+        //class: '',
+        //extralink: false,
+        //submenu: [],
+        //permissions: ['OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
+      //},
+      //{
+        //path: 'lineeguida/precontreditabile',
+        //title: 'Modulistica editabile',
+        //icon: '',
+        //class: '',
+        //extralink: false,
+        //submenu: [],
+        //permissions: ['OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN','OP_RISUMANE'],
+      //},
     ],
   },
 
-  // GESTIONE
-  {
-    path: '',
-    title: 'Gestione',
-    icon: 'mdi mdi-dots-horizontal',
-    class: 'nav-small-cap',
-    extralink: true,
-    permissions: ['ADMIN'],
-    submenu: [],
-  },
+
   {
     path: '',
     title: 'Utenti',
@@ -205,8 +235,8 @@ export const ROUTES: RouteInfo[] = [
         class: '',
         extralink: false,
         submenu: [],
-        permissions: ['SUPER-ADMIN'], 
-      },  
+        permissions: ['SUPER-ADMIN'],
+      },
     ]}, // chiude gestione utenti
     {
       path: '',
@@ -272,4 +302,14 @@ export const ROUTES: RouteInfo[] = [
       },
     ]}, // chiude ricerche titulus
 
+    // GESTIONE
+    {
+        path: '',
+        title: 'Gestione',
+        icon: 'mdi mdi-dots-horizontal',
+        class: 'nav-small-cap',
+        extralink: true,
+        permissions: ['ADMIN', 'SUPER-ADMIN'],
+        submenu: [],
+    },
 ];

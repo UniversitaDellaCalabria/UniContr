@@ -1,5 +1,6 @@
 Università della Calabria Ufficio<br>
 Direzione Risorse Umane<br>
 Responsabile: Dott. Roberto Elmo<br>
-e-mail: dru@unical.it<br>
-tel. +39 0984 496829 / 32 / 34 / 54
+Assistenza alla compilazione: https://ticket.unical.it/tickets/new/17/443/<br>
+Assistenza problemi tecnici: https://ticket.unical.it/tickets/new/17/444/<br>
+(accesso con le credenziali di ateneo)
