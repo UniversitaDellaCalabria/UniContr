@@ -50,7 +50,7 @@ class Insegnamenti extends Model {
         'dip_cod',
         'tipo_corso_des',
         'anno_corso',
-        'dip_cod_cod',
+        'dip_doc_cod',
         'dip_doc_des'
     ];
 
