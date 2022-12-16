@@ -921,6 +921,38 @@ const routes: Routes = [
           ]
         }
       },
+      {
+        path: 'faq',
+        resolve: {
+            url: 'https://docs.google.com/document/d/1UioNHVdc1lIAP1okcrhjR6CXKtzHuhVBIhg26Js6yqg/edit?usp=sharing',
+        },
+        // We need a component here because we cannot define the route otherwise
+        component: NotFoundComponent,
+      },
+      {
+        path: 'supporto-tecnico',
+        resolve: {
+            url: 'https://ticket.unical.it/tickets/new/17/444/',
+        },
+        // We need a component here because we cannot define the route otherwise
+        component: NotFoundComponent,
+      },
+      {
+        path: 'supporto-compilazione',
+        resolve: {
+            url: 'https://ticket.unical.it/tickets/new/17/443/',
+        },
+        // We need a component here because we cannot define the route otherwise
+        component: NotFoundComponent,
+      },
+      {
+        path: 'faq-operatori',
+        resolve: {
+            url: 'https://docs.google.com/document/d/1cfT7GRT3ThzNMJ3SXvHsJYSKG-UCVAnlu8RWvGsWwCs/edit?usp=sharing',
+        },
+        // We need a component here because we cannot define the route otherwise
+        component: NotFoundComponent,
+      },
 
     ]
   },

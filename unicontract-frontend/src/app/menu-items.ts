@@ -106,20 +106,20 @@ export const ROUTES: RouteInfo[] = [
         permissions: ['OP_DOCENTE','OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
       },
       {
-        path: 'https://ticket.unical.it/tickets/new/17/443/',
+        path: 'supporto-compilazione',
         title: 'Richiesta supporto nella compilazione',
         icon: '',
         class: '',
-        extralink: true,
+        extralink: false,
         submenu: [],
         permissions: [],
       },
       {
-        path: 'https://ticket.unical.it/tickets/new/17/444/',
+        path: 'supporto-tecnico',
         title: 'Richiesta assistenza tecnica',
         icon: '',
         class: '',
-        extralink: true,
+        extralink: false,
         submenu: [],
         permissions: [],
       },
@@ -147,6 +147,15 @@ export const ROUTES: RouteInfo[] = [
       {
         path: 'procedura',
         title: 'Proceduralizzazione',
+        icon: '',
+        class: '',
+        extralink: false,
+        submenu: [],
+        permissions: ['OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
+      },
+      {
+        path: 'faq-operatori',
+        title: 'FAQ operatori',
         icon: '',
         class: '',
         extralink: false,
@@ -303,13 +312,13 @@ export const ROUTES: RouteInfo[] = [
     ]}, // chiude ricerche titulus
 
     // GESTIONE
-    {
-        path: '',
-        title: 'Gestione',
-        icon: 'mdi mdi-dots-horizontal',
-        class: 'nav-small-cap',
-        extralink: true,
-        permissions: ['ADMIN', 'SUPER-ADMIN'],
-        submenu: [],
-    },
+    //{
+        //path: '',
+        //title: 'Gestione',
+        //icon: 'mdi mdi-dots-horizontal',
+        //class: 'nav-small-cap',
+        //extralink: true,
+        //permissions: ['ADMIN', 'SUPER-ADMIN'],
+        //submenu: [],
+    //},
 ];
