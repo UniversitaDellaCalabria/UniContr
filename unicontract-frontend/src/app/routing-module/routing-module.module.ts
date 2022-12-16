@@ -86,6 +86,8 @@ import { MappingUfficioTitulus } from '../components/mapping/mappingufficio.comp
 import { ListaContrugovQueryComponent } from '../components/p1_insegnamento/lista-contrugov-query/lista-contrugov-query.component';
 import { LogAttivitaComponent } from '../components/user/logattivita.component';
 
+import { Redirect_FAQ } from '../components/redirect_faq/redirect_faq.component';
+
 
 const externalLoginUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
@@ -924,11 +926,7 @@ const routes: Routes = [
       },
       {
         path: 'faq',
-        data: {
-          externalUrl: 'https://docs.google.com/document/d/1UioNHVdc1lIAP1okcrhjR6CXKtzHuhVBIhg26Js6yqg/edit?usp=sharing'
-        },
-        // We need a component here because we cannot define the route otherwise
-        component: HomeComponent,
+        component: Redirect_FAQ,
       },
       {
         path: 'supporto-tecnico',
