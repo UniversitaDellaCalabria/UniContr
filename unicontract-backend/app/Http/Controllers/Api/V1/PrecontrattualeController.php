@@ -124,7 +124,7 @@ class PrecontrattualeController extends Controller
             ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
                 'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
                 'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id',
-                'tipo_corso_des', 'anno_corso']);
+                'tipo_corso_des', 'anno_corso', 'dip_doc_cod', 'dip_doc_des']);
 
         $ore_desc = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_ORE_COPER_DET V1')
                     ->where('coper_id','=',$precontr->insegnamento->coper_id)

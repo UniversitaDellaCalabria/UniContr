@@ -337,6 +337,14 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     {
         return $this->insegnamento->anno_corso;
     }
+    public function getDipDocCodAttribute()
+    {
+        return $this->insegnamento->dip_doc_cod;
+    }
+    public function getDipDocDesAttribute()
+    {
+        return $this->insegnamento->dip_doc_des;
+    }
 
 }
 

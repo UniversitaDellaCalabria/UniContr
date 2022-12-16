@@ -30,7 +30,7 @@ export interface InsegnamentoInterface {
     docente_id?: string;
 
     dip_doc_cod: string;
-    dipartimento_doc: string;
+    dip_doc_des: string;
 }
 
 export interface UpdateP1 {
