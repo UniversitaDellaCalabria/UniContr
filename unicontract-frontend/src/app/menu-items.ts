@@ -129,7 +129,7 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: '',
-    title: 'Documentazione',
+    title: 'Documentazione interna',
     icon: 'icon-Speach-Bubble',
     class: 'has-arrow',
     extralink: false,

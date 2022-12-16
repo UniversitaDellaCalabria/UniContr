@@ -927,7 +927,7 @@ const routes: Routes = [
             url: 'https://docs.google.com/document/d/1UioNHVdc1lIAP1okcrhjR6CXKtzHuhVBIhg26Js6yqg/edit?usp=sharing',
         },
         // We need a component here because we cannot define the route otherwise
-        component: NotFoundComponent,
+        component: PermissionComponent,
       },
       {
         path: 'supporto-tecnico',
@@ -935,7 +935,7 @@ const routes: Routes = [
             url: 'https://ticket.unical.it/tickets/new/17/444/',
         },
         // We need a component here because we cannot define the route otherwise
-        component: NotFoundComponent,
+        component: PermissionComponent,
       },
       {
         path: 'supporto-compilazione',
@@ -943,7 +943,7 @@ const routes: Routes = [
             url: 'https://ticket.unical.it/tickets/new/17/443/',
         },
         // We need a component here because we cannot define the route otherwise
-        component: NotFoundComponent,
+        component: PermissionComponent,
       },
       {
         path: 'faq-operatori',
@@ -951,7 +951,7 @@ const routes: Routes = [
             url: 'https://docs.google.com/document/d/1cfT7GRT3ThzNMJ3SXvHsJYSKG-UCVAnlu8RWvGsWwCs/edit?usp=sharing',
         },
         // We need a component here because we cannot define the route otherwise
-        component: NotFoundComponent,
+        component: PermissionComponent,
       },
 
     ]
