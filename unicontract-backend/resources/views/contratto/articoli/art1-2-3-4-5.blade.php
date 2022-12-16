@@ -14,7 +14,7 @@ con inizio contratto {{$pre->dataDa}} e termine contratto {{$pre->dataA}}.======
 
 <h4>Art. 2</h4>
 <p class="normal">
-La prestazione d’opera intellettuale, stabilita nella seduta del {{$pre->dataDelibera}}  dal {{$pre->emittente}} del {{$pre->dipartimento}}, in seguito indicato Dipartimento, consiste in un impegno didattico complessivo di {{$pre->ore}} ore, oltre ad esami e ricevimento studenti.==========================================================
+La prestazione d’opera intellettuale, stabilita nella seduta del {{$pre->dataDelibera}}  dal {{$pre->emittente}} del {{$pre->dipDocDes}}, in seguito indicato Dipartimento, consiste in un impegno didattico complessivo di {{$pre->ore}} ore, oltre ad esami e ricevimento studenti.==========================================================
 </p>
 
 <h4>Art. 3</h4>

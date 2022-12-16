@@ -362,7 +362,8 @@ class PrecontrattualeService implements ApplicationService
 
         $pres = PrecontrattualePerGenerazione::with(['anagrafica','user','insegnamento','p2naturarapporto','validazioni'])
                     ->whereHas('insegnamento', function ($query) use($dip) {
-                        $query->where('dipartimento','like','%'.$dip.'%');
+                        //$query->where('dipartimento','like','%'.$dip.'%');
+                        $query->where('dip_doc_des','like','%'.$dip.'%');
                     })->where('stato','=',0)->get();
 
         $pdf = PrecontrattualeService::makePdfFromPresForReport($dip, $pres);

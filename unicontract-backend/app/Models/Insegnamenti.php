@@ -230,7 +230,8 @@ class Insegnamenti extends Model {
             $tipo_atto = $this->tipo_atto;
         }
 
-        return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dipartimento;
+        //return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dipartimento;
+        return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dip_doc_des;
     }
 
     public function contatore(){

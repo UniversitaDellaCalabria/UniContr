@@ -95,6 +95,7 @@
     Anno Accademico: {{$pre->aa}}<br>
     Tipologia: {{$pre->insegnamento->tipoContrattoToString()}}<br>
     Conferimento: {{$pre->insegnamento->tipoConferimentoToString()}}<br>
+    Conferito da: {{$pre->insegnamento->dip_doc_des()}}<br>
   </p>
   <hr>
   <p class="normal">

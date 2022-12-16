@@ -52,7 +52,8 @@ class SendReportEmails extends Command
     public function getPrecontrs($dip){
         return PrecontrattualePerGenerazione::with(['anagrafica','user','insegnamento','p2naturarapporto','validazioni'])
             ->whereHas('insegnamento', function ($query) use($dip) {
-                $query->where('dipartimento','like','%'.$dip.'%');
+                //$query->where('dipartimento','like','%'.$dip.'%');
+                $query->where('dip_doc_des','like','%'.$dip.'%');
             })->where('stato','=',0)->get();
     }
 
