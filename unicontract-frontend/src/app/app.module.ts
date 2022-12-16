@@ -213,11 +213,6 @@ import { LogAttivitaService } from './services/logattivita.service';
 import { SettingsService } from './services/settings.service';
 import { SessionStorageService } from './services/session-storage.service';
 
-import { Redirect_FAQ } from './components/redirect/redirect_faq.component';
-import { Redirect_FAQ_operatori } from './components/redirect/redirect_faq_operatori.component';
-import { Redirect_Supporto_compilazione } from './components/redirect/redirect_supporto_compilazione.component';
-import { Redirect_Supporto_tecnico } from './components/redirect/redirect_supporto_tecnico.component';
-
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -331,11 +326,6 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     MappingUfficiTitulus,
     MappingUfficioTitulus,
     LogAttivitaComponent,
-
-    Redirect_FAQ,
-    Redirect_FAQ_operatori,
-    Redirect_Supporto_compilazione,
-    Redirect_Supporto_tecnico,
   ],
 
   imports: [

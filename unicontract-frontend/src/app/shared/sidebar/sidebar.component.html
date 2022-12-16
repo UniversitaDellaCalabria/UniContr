@@ -54,7 +54,7 @@
                 <div *ngFor="let sidebarnavSubItem of sidebarnavItem.submenu">
                 <li class="sidebar-item"  *ngxPermissionsOnly="sidebarnavSubItem.permissions" [class.active]="showSubMenu === sidebarnavSubItem.title"
                     [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'active'" >
-                    <a class="sidebar-link" *ngIf="sidebarnavSubItem.external_url" href="{{sidebarnavSubItem.path}}" target="_blank">
+                    <a class="sidebar-link" *ngIf="sidebarnavSubItem.external_url" href="{{sidebarnavSubItem.path}}" target="_blank" [ngClass]="[sidebarnavSubItem.class]" >
                         {{sidebarnavSubItem.title}}
                     </a>
                     <a class="sidebar-link" [routerLink]="sidebarnavSubItem.submenu.length > 0 ? null : [sidebarnavSubItem.path]" [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'router-link-active'"
