@@ -54,13 +54,13 @@
                 <div *ngFor="let sidebarnavSubItem of sidebarnavItem.submenu">
                 <li class="sidebar-item"  *ngxPermissionsOnly="sidebarnavSubItem.permissions" [class.active]="showSubMenu === sidebarnavSubItem.title"
                     [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'active'" >
-                    <a class="sidebar-link" *ngIf="sidebarnavItem.extralink" href="{{sidebarnavSubItem.path}}" target="_blank">
-                        {{sidebarnavSubItem.title}}
-                    </a>
-                    <a *ngElse class="sidebar-link" [routerLink]="sidebarnavSubItem.submenu.length > 0 ? null : [sidebarnavSubItem.path]" [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'router-link-active'"
+                    <a class="sidebar-link" [routerLink]="sidebarnavSubItem.submenu.length > 0 ? null : [sidebarnavSubItem.path]" [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'router-link-active'"
                         [ngClass]="[sidebarnavSubItem.class]" *ngIf="!sidebarnavSubItem.extralink;" (click)="addActiveClass(sidebarnavSubItem.title)">
                         <i [ngClass]="[sidebarnavSubItem.icon]"></i>
                         <span class="hide-menu">{{sidebarnavSubItem.title}}</span>
+                    </a>
+                    <a class="sidebar-link" *ngElse href="{{sidebarnavSubItem.path}}" target="_blank">
+                        {{sidebarnavSubItem.title}}
                     </a>
                     <!-- Third level menu -->
                     <ul aria-expanded="false" class="collapse second-level" *ngIf="sidebarnavSubItem.submenu.length > 0" [ngClass]="{'in' : showSubMenu === sidebarnavSubItem.title }">
