@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "redirect_faq",
-  templateUrl: "about.component.html"
+  templateUrl: "redirect.component.html"
 })
 
 export class Redirect_FAQ implements OnInit {
