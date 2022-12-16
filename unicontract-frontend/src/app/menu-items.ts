@@ -128,7 +128,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: 'https://ticket.unical.it/tickets/new/17/444/',
-        title: 'Supporto tecnica',
+        title: 'Supporto tecnico',
         icon: '',
         class: '',
         extralink: false,
