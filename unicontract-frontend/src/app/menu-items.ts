@@ -107,7 +107,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: 'supporto-compilazione',
-        title: 'Richiesta supporto nella compilazione',
+        title: 'Supporto nella compilazione',
         icon: '',
         class: '',
         extralink: false,
@@ -116,7 +116,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: 'supporto-tecnico',
-        title: 'Richiesta assistenza tecnica',
+        title: 'Supporto tecnica',
         icon: '',
         class: '',
         extralink: false,

@@ -5,6 +5,7 @@ import { AuthGuard } from '../core/auth.guard';
 import { AuthService } from 'src/app/core';
 
 // UNICONTRACT APP COMPONENTS
+import { HomeComponent } from './home/home.component';
 import { ListaInsegnComponent } from '../components/p1_insegnamento/lista-insegn/lista-insegn.component';
 import { InsegnDetailComponent } from '../components/p1_insegnamento/insegn-detail/insegn-detail.component';
 import { InsegnFormComponent } from '../components/p1_insegnamento/insegn-form/insegn-form.component';
@@ -923,35 +924,35 @@ const routes: Routes = [
       },
       {
         path: 'faq',
-        resolve: {
-            url: 'https://docs.google.com/document/d/1UioNHVdc1lIAP1okcrhjR6CXKtzHuhVBIhg26Js6yqg/edit?usp=sharing',
+        data: {
+          externalUrl: 'https://docs.google.com/document/d/1UioNHVdc1lIAP1okcrhjR6CXKtzHuhVBIhg26Js6yqg/edit?usp=sharing'
         },
         // We need a component here because we cannot define the route otherwise
-        component: PermissionComponent,
+        component: HomeComponent,
       },
       {
         path: 'supporto-tecnico',
-        resolve: {
-            url: 'https://ticket.unical.it/tickets/new/17/444/',
+        data: {
+          externalUrl: 'https://ticket.unical.it/tickets/new/17/444/'
         },
         // We need a component here because we cannot define the route otherwise
-        component: PermissionComponent,
+        component: HomeComponent,
       },
       {
         path: 'supporto-compilazione',
-        resolve: {
-            url: 'https://ticket.unical.it/tickets/new/17/443/',
+        data: {
+          externalUrl: 'https://ticket.unical.it/tickets/new/17/443/'
         },
         // We need a component here because we cannot define the route otherwise
-        component: PermissionComponent,
+        component: HomeComponent,
       },
       {
         path: 'faq-operatori',
-        resolve: {
-            url: 'https://docs.google.com/document/d/1cfT7GRT3ThzNMJ3SXvHsJYSKG-UCVAnlu8RWvGsWwCs/edit?usp=sharing',
+        data: {
+          externalUrl: 'https://docs.google.com/document/d/1cfT7GRT3ThzNMJ3SXvHsJYSKG-UCVAnlu8RWvGsWwCs/edit?usp=sharing'
         },
         // We need a component here because we cannot define the route otherwise
-        component: PermissionComponent,
+        component: HomeComponent,
       },
 
     ]
