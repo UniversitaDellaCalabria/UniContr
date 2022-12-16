@@ -323,10 +323,12 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     LinkEsterniComponent,
     EmailListComponent,
     IntestazioneComponent,
-    SalvaAnnullaButtonComponent,    
+    SalvaAnnullaButtonComponent,
     MappingUfficiTitulus,
     MappingUfficioTitulus,
     LogAttivitaComponent,
+
+    Redirect_FAQ,
   ],
 
   imports: [
@@ -435,7 +437,7 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     { provide: RequestCache, useClass: RequestCacheWithMap },
     // { provide: 'InsegnamentoService', useClass: InsegnamentoService },
     { provide: 'userService', useClass: UserService },
-    { provide: 'unitaorganizzativaService', useClass: UnitaOrganizzativaService },    
+    { provide: 'unitaorganizzativaService', useClass: UnitaOrganizzativaService },
     { provide: 'roleService', useClass: RoleService },
     { provide: LOCALE_ID, useValue: 'it' },
     // { provide: 'applicationService', useClass: ApplicationService },
@@ -458,14 +460,14 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     {provide: 'mappingruoloService', useClass: MappingRuoloService },
     {provide: NgbDateAdapter, useClass: NgbStringAdapter},
     {provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter},
-    {  
+    {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFactory,
       deps: [TranslateService, Injector],
       multi: true
-    },       
+    },
     InsegnamTools,
-    RouteMetods,    
+    RouteMetods,
   ],
 
   bootstrap: [
