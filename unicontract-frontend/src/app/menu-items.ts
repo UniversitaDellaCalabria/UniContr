@@ -112,7 +112,7 @@ export const ROUTES: RouteInfo[] = [
         icon: '',
         class: '',
         extralink: false,
-        external_url: true,
+        external_url: false,
         submenu: [],
         permissions: ['OP_DOCENTE','OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA','OP_DIPARTIMENTALE', 'ADMIN', 'SUPER-ADMIN'],
       },
