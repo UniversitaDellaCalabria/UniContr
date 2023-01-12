@@ -73,6 +73,10 @@
     </div>
   </app-riquadro-wrapper>
 
+    <div class="text_centered_bold" *ngIf="items.flag_rapp_studio_univ === 1;">
+      {{ 'b2_extra' | translate }}
+  </div>
+
   <div class="form-footer text-right">
     <app-barra-comandi *ngIf="item" [item]="item" [type]="'P2'"></app-barra-comandi>
 
