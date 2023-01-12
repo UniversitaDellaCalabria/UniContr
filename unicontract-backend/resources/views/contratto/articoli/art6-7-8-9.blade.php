@@ -7,7 +7,7 @@
 @elseif($pre->naturaRapporto == "COCOCO")
 {{-- // TC006 / TC007 - COLLABORAZIONE DI NATURA AUTONOMA --}}
 	<p class="normal">
-	In materia di assicurazione contro gli infortuni sul lavoro e le malattie professionali, a norma dell’art. 55, comma I, della Legge 17.05.1999, n. 144, troveranno applicazione le disposizioni contenute nell’art. 5 “Assicurazione dei lavoratori parasubordinati” del Decreto Legislativo 23.02.2000, n. 38, nell’art. 1, comma 1180 della legge n. 296/2006 e nel Decreto Interministeriale del Ministero del Lavoro e della Previdenza Sociale del 30.10.2007. Il premio assicurativo sarà ripartito nella misura di un terzo a carico del contraente e di due terzi a carico del committente. =====================================
+	In materia di assicurazione contro gli infortuni sul lavoro e le malattie professionali, a norma dell’art. 55, comma I, della Legge 17.05.1999, n. 144, troveranno applicazione le disposizioni contenute nell’art. 5 “Assicurazione dei lavoratori parasubordinati” del Decreto Legislativo 23.02.2000, n. 38, nell’art. 1, comma 1180 della legge n. 296/2006 e nel Decreto Interministeriale del Ministero del Lavoro e della Previdenza Sociale del 30.10.2007. Il premio assicurativo sarà ripartito nella misura di un terzo a carico del contrattista e di due terzi a carico del committente. =====================================
 	</p>
 @elseif($pre->naturaRapporto == "PRPR")
 {{-- // / TC006 - TC007 PRESTAZIONE PROFESSIONALE (PARTITA IVA) --}}

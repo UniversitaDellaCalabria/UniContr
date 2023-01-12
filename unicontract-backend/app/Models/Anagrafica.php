@@ -164,11 +164,11 @@ class Anagrafica extends Model
     public function datiResidenza(){
         if($this->sesso == 'M') {
             //$str1 = "il Docente";
-            $str1 = "il Contraente";
+            $str1 = "il Contrattista";
             $str2 = "o";
         } else {
             //$str1 = "la Docente";
-            $str1 = "la Contraente";
+            $str1 = "la Contrattista";
             $str2 = "a";
         }
 
@@ -197,7 +197,7 @@ class Anagrafica extends Model
                 'str2' => "o",
                 'str3' => "dal",
                 'str4' => "al",
-                'str5' => "Contraente",
+                'str5' => "Contrattista",
                 'str6' => "del"
             ];
         }else{
@@ -207,7 +207,7 @@ class Anagrafica extends Model
                 'str2' => "a",
                 'str3' => "dalla",
                 'str4' => "alla",
-                'str5' => "Contraente",
+                'str5' => "Contrattista",
                 'str6' => "della"
             ];
         }

@@ -174,14 +174,14 @@
   </div>
 </app-collapse-wrapper>
 
-<app-collapse-wrapper [options]="{title:'Linee guida operative - Ruolo del contraente', type:'info'}">
+<app-collapse-wrapper [options]="{title:'Linee guida operative - Ruolo del contrattista', type:'info'}">
   <div class="text-justify mr-3 mt-3 ml-3">
     <p>
         I contratti che giuridicamente vengono definiti quali contratti d’opera intellettuale
         possono avere, sotto il profilo tributario, diverse qualificazioni.
     </p>
     <p>
-        Non sorgono particolari problemi nelle situazioni in cui il contraente svolga in forma
+        Non sorgono particolari problemi nelle situazioni in cui il contrattista svolga in forma
         abituale attività di lavoro autonomo (per la quale ha partita IVA, anche all’interno
         di studio associato) e le competenze cui deve attingere per lo svolgimento dell’incarico
         sono comuni rispetto al patrimonio di conoscenze che gli è necessario per svolgere
@@ -197,7 +197,7 @@
       co. 1 lett. l del DPR 917/86). Purtroppo, la normativa fiscale non detta criteri
       distintivi certi ed univocamente determinabili fra le due figure; in particolare,
       la collaborazione coordinata e continuativa deve per l’appunto essere caratterizzata
-      da "coordinamento" fra struttura dell’Ente ed attività del contraente (e ciò normalmente
+      da "coordinamento" fra struttura dell’Ente ed attività del contrattista (e ciò normalmente
       esiste) e da "continuità" del rapporto (ma questa non viene mai definita). D’altro canto,
       la giurisprudenza connota il rapporto non abituale (e dunque non continuativo) con
       sostantivi del tipo "contingenza, secondarietà, sussidiarietà", sostantivi che comunque
@@ -234,7 +234,7 @@
     Criteri per decidere tra CC e AU
   </h5>
   <p class="mb-0">
-    Ad esclusione del caso PR, in cui il contraente svolge in forma abituale attività di lavoro
+    Ad esclusione del caso PR, in cui il contrattista svolge in forma abituale attività di lavoro
   autonomo (per cui ha partita IVA, anche all’interno di studio associato) e le competenze a
   cui deve attingere per lo svolgimento dell’incarico sono comuni rispetto al patrimonio di
   conoscenze che gli è necessario per svolgere l’attività per la quale ha identificativo IVA,
