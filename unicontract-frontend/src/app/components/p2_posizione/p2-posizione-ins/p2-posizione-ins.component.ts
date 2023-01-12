@@ -58,7 +58,19 @@ export class P2PosizioneInsComponent extends BaseComponent {
             label: 'p2_check1'
           }
         },
-      ]
+      ],
+      expressionProperties: {
+        'templateOptions.description': (model: any, formState: any, field: FormlyFieldConfig) => {
+          switch (model.flag_rapp_studio_univ) {
+            case 1: {
+               return this.translateService.instant('b2_extra');
+            }
+            default: {
+               return '';
+            }
+          }
+        }
+      },
     },
     {
       fieldGroupClassName: 'row',
