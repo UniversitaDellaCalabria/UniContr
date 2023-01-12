@@ -66,8 +66,8 @@ export class P2PosizioneInsComponent extends BaseComponent {
       fieldGroup: [
         {
           key: 'descr_attivita',
-          type: 'string',
-          className: 'col-md-6',
+          type: 'hidden',
+          className: 'col-auto',
           templateOptions: {
             translate: true,
             label: 'b2_extra',
