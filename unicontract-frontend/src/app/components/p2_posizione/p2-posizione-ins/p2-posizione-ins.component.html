@@ -21,10 +21,6 @@
     </app-riquadro-wrapper>
   </form>
 
-  <div class="text_centered_bold" *ngIf="items.flag_rapp_studio_univ === 1;">
-      {{ 'b2_extra' | translate }}
-  </div>
-
   <app-salva-annulla-button [isNew]="!update" [fields]="fields1" [formRef]="formAttch" (valid)="saveData(items.p2_natura_rapporto_id)"></app-salva-annulla-button>
 
 
