@@ -59,18 +59,24 @@ export class P2PosizioneInsComponent extends BaseComponent {
           }
         },
       ],
-      expressionProperties: {
-        'templateOptions.description': (model: any, formState: any, field: FormlyFieldConfig) => {
-          switch (model.flag_rapp_studio_univ) {
-            case 1: {
-               return this.translateService.instant('b2_extra');
-            }
-            default: {
-               return '';
-            }
-          }
+    },
+    // label dottorato
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
+          key: 'descr_attivita',
+          type: 'string',
+          className: 'col-md-6',
+          templateOptions: {
+            translate: true,
+            label: 'b2_extra',
+          },
+          hideExpression: (model, formstate) => {
+            return (!model.flag_rapp_studio_univ);
+          },
         }
-      },
+      ],
     },
     {
       fieldGroupClassName: 'row',
