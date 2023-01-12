@@ -372,5 +372,21 @@ class DatiSeeder extends Seeder
             'parent_type' => D1_Inps::class,
         ]);
 
+        DB::table('attachmenttypes')->insert([
+            'codice' => 'CONFL_INT_15',
+            'gruppo' => 'Precontrattuale',
+            'descrizione' => 'Art. 15',
+            'descrizione_compl' => 'Dichiarazione conflitto interessi',
+            'parent_type' => Precontrattuale::class,
+        ]);
+
+        DB::table('attachmenttypes')->insert([
+            'codice' => 'CONFL_INT',
+            'gruppo' => 'Precontrattuale',
+            'descrizione' => 'Dichiarazione coflitto interessi',
+            'descrizione_compl' => 'Dichiarazione conflitto interessi',
+            'parent_type' => Precontrattuale::class,
+        ]);
+
     }
 }
