@@ -99,7 +99,7 @@ export class P2PosizioneInsComponent extends BaseComponent {
       templateOptions: {
         options: [],
         required: true,
-        label: 'Sezionare una opzione'
+        label: 'Selezionare una opzione'
       },
       expressionProperties: {
         'templateOptions.options': (model: any, formState: any, field: FormlyFieldConfig) => {
