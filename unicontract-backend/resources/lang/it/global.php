@@ -153,7 +153,7 @@ return [
     "d1_txt5"=>"essere iscritti alla Gestione Separata:",
     "d1_txt5not"=>"non essere iscritti alla Gestione Separata e di provvedere all'iscrizione",
     "d1_txt6"=>"INPS, di cui all'art. 2, comma 26, della Legge 335/1995",
-    "d1_txt7"=>"INPGI",
+    "d1_txt7"=>"INPGI (per gli iscritti all’albo dei giornalisti)",
     "d1_txt8"=>"aver diritto all'applicazione in misura ridotta del contributo INPS Gestione Separata, INPGI Gestione Separata, in quanto:",
     "d1_txt8not"=>"non aver diritto all'applicazione in misura ridotta del contributo INPS Gestione Separata, INPGI Gestione Separata",
     "d1_txt9"=>"titolari di pensione diretta",
