@@ -59,7 +59,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
       isLoading: this.isLoading,
     },
   };
-  
+
   fields: FormlyFieldConfig[] = [
     // motivazione
     {
@@ -76,7 +76,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             maxLength: 450,
             description: 'Lunghezza massima 450 caratteri',
           },
-          
+
           expressionProperties: {
             'templateOptions.description': (model, formState) => {
               if (model.tipo_annullamento=='REVOC') {
@@ -84,7 +84,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
               }
               return 'Lunghezza massima 450 caratteri';
             },
-           
+
           }
         },
       ],
@@ -135,11 +135,11 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
           response => {
             this.items = response['datiGenerali'];
             this.idins = +params.get('id');
-            
+
             this.permissionsService.hasPermission(['OP_APPROVAZIONE_AMM', 'OP_APPROVAZIONE_ECONOMICA', 'SUPER-ADMIN']).then(
               (hasPermission) => hasPermission ? this.getIddg(this.items.coper_id) : {}
             );
-           
+
           },
           (error) => this.handleError(error),
           () => this.complete()
@@ -197,8 +197,8 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
 
   previewcontratto() {
     this.isLoading = true;
-    
-    let newWindow = window.open();//OPEN WINDOW FIRST ON SUBMIT THEN POPULATE PDF   
+
+    let newWindow = window.open();//OPEN WINDOW FIRST ON SUBMIT THEN POPULATE PDF
     newWindow.document.write('caricamento ...');
 
     this.summaryService.previewContratto(this.idins).subscribe(file => {
@@ -209,7 +209,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
         const blob = new Blob([decode(file.filevalue)], { type: 'application/pdf' });
 
         const fileURL = URL.createObjectURL(blob);
-        newWindow.location.href = fileURL;//POPULATING PDF        
+        newWindow.location.href = fileURL;//POPULATING PDF
       }else{
         newWindow.close();
       }
@@ -262,15 +262,15 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
   downloadModulisticaPrecontr(){
     this.isLoading = true;
      //aperture al di fuori della chiamata asicrona per il blocco popup
-    let newWindow = window.open();//OPEN WINDOW FIRST ON SUBMIT THEN POPULATE PDF   
+    let newWindow = window.open();//OPEN WINDOW FIRST ON SUBMIT THEN POPULATE PDF
     newWindow.document.write('caricamento ...');
 
     this.summaryService.modulisticaPrecontr(this.idins).subscribe(file => {
       this.isLoading = false;
       if (file && file.filevalue) {
-        const blob = new Blob([decode(file.filevalue)], { type: 'application/pdf' });        
+        const blob = new Blob([decode(file.filevalue)], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(blob);
-        newWindow.location.href = fileURL;//POPULATING PDF       
+        newWindow.location.href = fileURL;//POPULATING PDF
       }else{
         newWindow.close();
       }
@@ -313,7 +313,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             if (response.success) {
               this.items = {...this.items, ...response.data};
               this.messageService.info('Operazione di validazione terminata con successo');
-              this.storyProcess('Precontrattuale validata da Ufficio Amm.ne e Reclutamento Personale Docente');
+              this.storyProcess('Precontrattuale validata da DRU – Area Professori e Ricercatori');
             } else {
               this.messageService.error(response.message);
             }
@@ -339,8 +339,8 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
           response => {
             this.isLoading = false;
             if (response.success) {
-              this.items = {...this.items, ...response.data};                                          
-              this.messageService.info('Operazione di validazione terminata con successo');                        
+              this.items = {...this.items, ...response.data};
+              this.messageService.info('Operazione di validazione terminata con successo');
               if (response.message){
                 this.messageService.info(response.message,false);
               }
@@ -412,7 +412,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
 
   presaVisione() {
     const message: string =
-    `<p align="justify">Procedendo con questa operazione, si dichiara di aver preso visione 
+    `<p align="justify">Procedendo con questa operazione, si dichiara di aver preso visione
     del contratto di insegnamento e di averlo accettato in tutte le sue parti.
     <br>
     Grazie per il suo contributo! </p>`;
@@ -581,7 +581,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
 
   toggleGestioneannulamento(tipo) {
 
-    //se è gia aperto e il tipo è diverso dal corrente 
+    //se è gia aperto e il tipo è diverso dal corrente
     if (this.gestioneannulamento && this.model.tipo_annullamento && this.model.tipo_annullamento != tipo){
       this.model.tipo_annullamento = tipo;
     }else{

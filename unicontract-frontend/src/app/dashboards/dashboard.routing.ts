@@ -14,13 +14,13 @@ export const DashboardRoutes: Routes = [
         component: DashboardUffDocentiComponent,
         canActivate:[AuthGuard],
         data: {
-          title: 'Dashboard Ufficio Amm.ne e Reclutamento Personale Docente',
+          title: 'Dashboard DRU – Area Professori e Ricercatori',
           urls: [
             { title: 'Home', url: '/home' },
-            { title: 'Dashboard Ufficio Amm.ne e Reclutamento Personale Docente' }
+            { title: 'Dashboard DRU – Area Professori e Ricercatori' }
           ]
         }
-      },     
+      },
       {
         path: 'dashboardufftrattamenti',
         component: DashboardUffTrattamentiComponent,
@@ -32,7 +32,7 @@ export const DashboardRoutes: Routes = [
             { title: 'Dashboard Ufficio Trattamenti Economici e Previdenziali' }
           ]
         }
-      }, 
+      },
       {
         path: 'dashboarddipartimento',
         component: DashboardDipartimentiComponent,
@@ -44,9 +44,9 @@ export const DashboardRoutes: Routes = [
             { title: 'Dashboard Dipartimentale' }
           ]
         }
-      }, 
-               
-  
+      },
+
+
     ]
   }
 ];
