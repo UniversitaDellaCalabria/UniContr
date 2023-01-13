@@ -14,7 +14,7 @@
       <h5>{{ 'p2_title1' | translate }}</h5>
       <formly-form [model]="model" [fields]="fields1" [form]="formAttch" [options]="options"></formly-form>
 
-       <div class="row" style="padding: 3px 15px 0 15px;" *ngIf="items.p2_flag_rapp_studio_univ.checked">
+       <div class="row" style="padding: 3px 15px 0 15px;" *ngIf="formAttch.get('flag_rapp_studio_univ').value">
           {{ 'b2_extra' | translate }}
         </div>
     </app-riquadro-wrapper>
