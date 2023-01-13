@@ -144,7 +144,7 @@ return [
     "d1_title5"=>"Principali gestioni previdenziali",
     "d1_title6"=>"essere titolari di Partita IVA",
     "d1_title7"=>"Allegati",
-    "d1_premessa"=>"Ai sensi dell'art. 2, comma 26, della Legge 335/1995, del Decreto Legge 81/2015, del Decreto Legge 75/2017 e della Legge 205/2017, si dichiara di:",
+    "d1_premessa"=>"Ai sensi dell'art. 2, comma 26, della Legge 335/1995 e successive modificazioni si dichiara di:",
     "d1_txt1"=>"essere esclusi dall'obbligo contributivo INPS Gestione Separata, INPGI Gestione Separata, in quanto:",
     "d1_txt1not"=>"non essere esclusi dall'obbligo contributivo INPS Gestione Separata",
     "d1_txt2"=>"si è superato per il corrente anno solare il massimale di reddito annuo imponibile di € 103.055,00  (massimale contributivo INPS)",
