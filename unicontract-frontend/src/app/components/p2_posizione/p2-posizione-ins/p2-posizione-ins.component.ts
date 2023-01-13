@@ -60,24 +60,6 @@ export class P2PosizioneInsComponent extends BaseComponent {
         },
       ],
     },
-    // label dottorato
-    {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
-        {
-          key: 'descr_attivita',
-          type: 'string',
-          className: 'col-auto',
-          templateOptions: {
-            translate: true,
-            label: 'b2_extra',
-          },
-          hideExpression: (model, formstate) => {
-            return (!model.flag_rapp_studio_univ);
-          },
-        }
-      ],
-    },
     {
       fieldGroupClassName: 'row',
       fieldGroup: [
