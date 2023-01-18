@@ -15,7 +15,7 @@ use Auth;
 
 class B1ConflittoIntController extends Controller
 {
-    
+
     //B1ConflittoInteressiRepository
 
     /**
@@ -36,7 +36,7 @@ class B1ConflittoIntController extends Controller
     {
         $datiPrecontrattuale = [];
         $message = '';
-    
+
             $datiPrecontrattuale = PrecontrattualeService::getDatiIntestazione($id);
 
             //cercare l'ultima precontrattuale inserita stato = 0 o stato = 1 docente_id
@@ -44,10 +44,10 @@ class B1ConflittoIntController extends Controller
                 $query->where('docente_id',$datiPrecontrattuale['docente_id'])->where('stato','<',2);
             })->orderBy('id','desc')->first();
 
-            $datiPrecontrattuale['copy'] = $copy;                
+            $datiPrecontrattuale['copy'] = $copy;
 
             $success = true;
-     
+
         return compact('datiPrecontrattuale', 'message', 'success');
     }
 
@@ -71,14 +71,14 @@ class B1ConflittoIntController extends Controller
     {
         if (!Auth::user()->hasPermissionTo('compila precontrattuale')) {
             abort(403, trans('global.utente_non_autorizzato'));
-        }        
+        }
 
         $datiConflitto = [];
         $message = '';
-        $success = true;                
-        $postData = $request->except('id', '_method');             
-        $datiConflitto = $this->repo->store($postData);      
-        return compact('datiConflitto', 'message', 'success');        
+        $success = true;
+        $postData = $request->except('id', '_method');
+        $datiConflitto = $this->repo->store($postData);
+        return compact('datiConflitto', 'message', 'success');
     }
 
     /**
@@ -91,7 +91,7 @@ class B1ConflittoIntController extends Controller
     {
         $datiConflitto = [];
         $message = '';
-       
+
             $datiConflitto = B1ConflittoInteressi::leftJoin('precontr', function($join) {
                 $join->on('precontr.b1_confl_interessi_id', '=', 'b1_confl_interessi.id');
             })
@@ -126,11 +126,11 @@ class B1ConflittoIntController extends Controller
             $datiConflitto['cariche'] = $b1rel->cariche;
             $datiConflitto['incarichi'] = $b1rel->incarichi;
 
-            $pre = Precontrattuale::with(['validazioni'])->where('b1_confl_interessi_id', $id)->first();                                                        
+            $pre = Precontrattuale::with(['validazioni'])->where('b1_confl_interessi_id', $id)->first();
             $datiConflitto['validazioni'] = $pre->validazioni;
 
             $success = true;
-        
+
         return compact('datiConflitto', 'message', 'success');
     }
 
@@ -156,22 +156,22 @@ class B1ConflittoIntController extends Controller
     {
         if (!Auth::user()->hasPermissionTo('compila precontrattuale')) {
             abort(403, trans('global.utente_non_autorizzato'));
-        }        
+        }
 
         if (Precontrattuale::with(['validazioni'])->where('b1_confl_interessi_id', $id)->first()->isBlockedAmministrativa()){
             $data = [];
             $message = trans('global.aggiornamento_non_consentito');
             $success = false;
-            return compact('data', 'message', 'success');   
-        }        
+            return compact('data', 'message', 'success');
+        }
 
         $datiConflitto = [];
         $message = '';
-        $success = true;                
-        $postData = $request->except('id', '_method');             
-        $datiConflitto = $this->repo->updateConflitto($postData, $id);      
-        return compact('datiConflitto', 'message', 'success');        
-    }      
+        $success = true;
+        $postData = $request->except('id', '_method');
+        $datiConflitto = $this->repo->updateConflitto($postData, $id);
+        return compact('datiConflitto', 'message', 'success');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -191,30 +191,39 @@ class B1ConflittoIntController extends Controller
      */
     public function generatePDF($id,$kind)
     {
-        $conflitto = B1ConflittoInteressi::findOrFail($id);   
+        $conflitto = B1ConflittoInteressi::findOrFail($id);
 
         $pre = Precontrattuale::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])
-            ->where('b1_confl_interessi_id',$id)->first();   
+            ->where('b1_confl_interessi_id',$id)->first();
 
         $attach = null;
 
-        if ($kind=='CONFL_INT_TRASP'){
-            $pdf = PDF::loadView('pdfConflittoInteressiTrasparenza', ['pre' => $pre])
+        if ($kind=='CONFL_INT_15_TRASP'){
+            $pdf = PDF::loadView('pdfConflittoInteressi15Trasparenza', ['pre' => $pre])
                 ->setOption('margin-left','20')
                 ->setOption('margin-right','20')
                 ->setOption('margin-top','30')
                 ->setOption('margin-bottom','20');
-                 
-            $attach['filename'] = 'Dichiarazione Trasparenza '. $pre->user->nameTutorString() .'.pdf';
-        }else{ //CONFL_INT
+
+            $attach['filename'] = 'Dichiarazione Art15 Trasparenza '. $pre->user->nameTutorString() .'.pdf';
+        }else if ($kind=='CONFL_INT_15'){
+            $pdf = PDF::loadView('pdfConflittoInteressi15', ['pre' => $pre])
+                ->setOption('margin-left','20')
+                ->setOption('margin-right','20')
+                ->setOption('margin-top','30')
+                ->setOption('margin-bottom','20');
+
+            $attach['filename'] = 'Dichiarazione Art15'. $pre->user->nameTutorString() .'.pdf';
+        }
+        }else if ($kind=='CONFL_INT'){
             $pdf = PDF::loadView('pdfConflittoInteressi', ['pre' => $pre])
                 ->setOption('margin-left','20')
                 ->setOption('margin-right','20')
                 ->setOption('margin-top','30')
-                ->setOption('margin-bottom','20');   
-                
+                ->setOption('margin-bottom','20');
+
             $attach['filename'] = 'Dichiarazione '. $pre->user->nameTutorString() .'.pdf';
-        }                          
+        }
         $attach['filevalue'] =  base64_encode($pdf->output());
 
         return $attach;

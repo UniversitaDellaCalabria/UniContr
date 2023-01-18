@@ -202,7 +202,7 @@ class ContrattiTest extends TestCase
 
         $pre = Precontrattuale::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])->find($response->id);
 
-        $pdf = PDF::loadView('pdfConflittoInteressi',['pre' => $pre]);
+        $pdf = PDF::loadView('pdfConflittoInteressi15',['pre' => $pre]);
 
         Storage::disk('local')->delete('test.pdf');
 
@@ -236,7 +236,7 @@ class ContrattiTest extends TestCase
 
         $pre = Precontrattuale::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])->find($response->id);
 
-        $pdf = PDF::loadView('pdfConflittoInteressiTrasparenza',['pre' => $pre]);
+        $pdf = PDF::loadView('pdfConflittoInteressi15Trasparenza',['pre' => $pre]);
 
         Storage::disk('local')->delete('test.pdf');
 
