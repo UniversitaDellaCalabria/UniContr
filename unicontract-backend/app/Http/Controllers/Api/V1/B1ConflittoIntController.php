@@ -214,7 +214,6 @@ class B1ConflittoIntController extends Controller
                 ->setOption('margin-bottom','20');
 
             $attach['filename'] = 'Dichiarazione Art15'. $pre->user->nameTutorString() .'.pdf';
-        }
         }else if ($kind=='CONFL_INT'){
             $pdf = PDF::loadView('pdfConflittoInteressi', ['pre' => $pre])
                 ->setOption('margin-left','20')
