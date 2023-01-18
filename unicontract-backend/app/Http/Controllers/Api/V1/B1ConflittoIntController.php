@@ -193,10 +193,7 @@ class B1ConflittoIntController extends Controller
     {
         $conflitto = B1ConflittoInteressi::findOrFail($id);
 
-        $pre = Precontrattuale::with(['anagrafica','user','validazioni',
-                                      'insegnamento',
-                                      'conflittointeressi.cariche',
-                                      'conflittointeressi.incarichi'])
+        $pre = Precontrattuale::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])
             ->where('b1_confl_interessi_id',$id)->first();
 
         $attach = null;
