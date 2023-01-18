@@ -195,10 +195,6 @@ class B1ConflittoIntController extends Controller
 
         $pre = Precontrattuale::with(['anagrafica','user','validazioni',
                                       'insegnamento',
-                                      'conflittointeressi.flag_controll',
-                                      'conflittointeressi.flag_quota',
-                                      'conflittointeressi.flag_rappext',
-                                      'conflittointeressi.flag_contrast',
                                       'conflittointeressi.cariche',
                                       'conflittointeressi.incarichi'])
             ->where('b1_confl_interessi_id',$id)->first();
