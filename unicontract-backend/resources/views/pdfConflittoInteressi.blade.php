@@ -49,34 +49,34 @@
 
 	<h3>DICHIARA</h3>
 
-	@if ($pre->conflittointeressi &&  $pre->conflittointeressi->flag_controll && $pre->conflittointeressi->flag_quota)
-		<p class="normal">- di avere il controllo e di possedere una quota significativa di partecipazione
-        finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria</p>
-	@elseif ($pre->conflittointeressi &&  $pre->conflittointeressi->flag_controll &! $pre->conflittointeressi->flag_quota)
-		<p class="normal">- di avere il controllo e di non possedere una quota significativa di partecipazione
-        finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria</p>
-	@elseif ($pre->conflittointeressi &!  $pre->conflittointeressi->flag_controll && $pre->conflittointeressi->flag_quota)
-		<p class="normal">- di non avere il controllo e di possedere una quota significativa di partecipazione
-        finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria</p>
-	@elseif ($pre->conflittointeressi &!  $pre->conflittointeressi->flag_controll &! $pre->conflittointeressi->flag_quota)
-		<p class="normal">- di non avere il controllo e di non possedere una quota significativa di partecipazione
-        finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria</p>
-	@endif
+    @if ($pre->conflittointeressi)
+        @if ($pre->conflittointeressi->flag_controll && $pre->conflittointeressi->flag_quota)
+            <p class="normal">- di avere il controllo e di possedere una quota significativa di partecipazione
+            finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria;</p>
+        @elseif ($pre->conflittointeressi->flag_controll &! $pre->conflittointeressi->flag_quota)
+            <p class="normal">- di avere il controllo e di non possedere una quota significativa di partecipazione
+            finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria;</p>
+        @elseif (!$pre->conflittointeressi->flag_controll && $pre->conflittointeressi->flag_quota)
+            <p class="normal">- di non avere il controllo e di possedere una quota significativa di partecipazione
+            finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria;</p>
+        @elseif (!$pre->conflittointeressi->flag_controll &! $pre->conflittointeressi->flag_quota)
+            <p class="normal">- di non avere il controllo e di non possedere una quota significativa di partecipazione
+            finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria;</p>
+        @endif
 
-    @if ($pre->conflittointeressi && $pre->conflittointeressi->flag_rappext)
-		<p class="normal">- di avere rapporti esterni di lavoro con enti
-        di formazione e di ricerca potenzialmente concorrenti con l’Università della Calabria</p>
-	@elseif ($pre->conflittointeressi &! $pre->conflittointeressi->flag_rappext)
-		<p class="normal">- di non avere il controllo e di non possedere una quota significativa di partecipazione
-        finanziaria in enti o persone giuridiche in situazioni di conflitto di interesse con l’Università della Calabria</p>
-    @endif
+        @if ($pre->conflittointeressi->flag_rappext)
+            <p class="normal">- avere rapporti esterni di lavoro con enti di formazione e di ricerca
+            potenzialmente concorrenti con l’Università della Calabria;</p>
+        @else
+            <p class="normal">- non avere rapporti esterni di lavoro con enti di formazione e di ricerca
+            potenzialmente concorrenti con l’Università della Calabria;</p>
+        @endif
 
-    @if ($pre->conflittointeressi && $pre->conflittointeressi->flag_contrast)
-		<p class="normal">- di svolgere attività che contrastano realmente o potenzialmente
-        con l’interesse, non solo economico, dell’Università della Calabria</p>
-	@elseif ($pre->conflittointeressi &! $pre->conflittointeressi->flag_contrast)
-		<p class="normal">- di non svolgere attività che contrastano realmente o potenzialmente
-        con l’interesse, non solo economico, dell’Università della Calabria</p>
+        @if($pre->conflittointeressi->flag_contrast)
+            <p class="normal">- di svolgere attività che contrastano realmente o potenzialmente con l’interesse, non solo economico, dell’Università della Calabria.</p>
+        @else
+            <p class="normal">- di non svolgere attività che contrastano realmente o potenzialmente con l’interesse, non solo economico, dell’Università della Calabria.</p>
+        @endif
     @endif
 
 </body>
