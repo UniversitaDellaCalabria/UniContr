@@ -83,11 +83,21 @@
 
     <br>
 	<br>
-    <p>La sottoscritto/a si impegna, altresì, a comunicare tempestivamente eventuali variazioni del
+    <p>@if($pre->anagrafica->sesso == 'M')
+			Il sottoscritto
+		@else
+			La sottoscritta
+		@endif
+        si impegna, altresì, a comunicare tempestivamente eventuali variazioni del
     contenuto della presente dichiarazione e a rendere, nel caso, una nuova dichiarazione sostitutiva.</p>
     <br>
 	<br>
-    <p></p>La sottoscritto/a dichiara inoltre l'insussistenza delle predette situazioni di conflitto e cause
+    <p></p>@if($pre->anagrafica->sesso == 'M')
+			Il sottoscritto
+		@else
+			La sottoscritta
+		@endif
+        dichiara inoltre l'insussistenza delle predette situazioni di conflitto e cause
     di incompatibilità sin dal momento del conferimento dell'incarico.</p>
     <br>
 	<br>
