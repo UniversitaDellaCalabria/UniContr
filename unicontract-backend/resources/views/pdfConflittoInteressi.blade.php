@@ -33,8 +33,8 @@
 </head>
 <body>
 	<h3>DICHIARAZIONE DI ASSENZA DI CONFLITTO DI INTERESSI</h3>
-    <p>(ai sensi dell'art 53, comma 14, d.lgs. n. 165/2001)</p>
-
+    <small style="text-align: center">(ai sensi dell'art 53, comma 14, d.lgs. n. 165/2001)</small>
+    <br>
 	<p class="normal">
 		@if($pre->anagrafica->sesso == 'M')
 			Il sottoscritto
@@ -42,7 +42,7 @@
 			La sottoscritta
 		@endif
 	<b>{{ $pre->user->nameTutorString() }}</b>, in relazione all'incarico
-    conferito con provvedimento <b>{{ $pre->insegnamento->deliberaString() }}</b>
+    conferito con <b>{{ $pre->insegnamento->deliberaString() }}</b>
 	 dell'Università della Calabria
      </p>
 
