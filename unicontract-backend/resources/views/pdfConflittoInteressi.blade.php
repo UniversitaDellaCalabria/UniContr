@@ -32,20 +32,19 @@
 	</style>
 </head>
 <body>
-	<h3>Dichiarazione ai sensi dell'art. 15, comma 1, lett. c, del D.Lgs. n. 33/2013 e s.m.i.</h3>
+	<h3>DICHIARAZIONE DI ASSENZA DI CONFLITTO DI INTERESSI</h3>
+    <p>(ai sensi dell'art 53, comma 14, d.lgs. n. 165/2001)</p>
+
 	<p class="normal">
 		@if($pre->anagrafica->sesso == 'M')
 			Il sottoscritto
 		@else
 			La sottoscritta
 		@endif
-	{{ $pre->user->nameTutorString() }} {{ $pre->anagrafica->datiAnagraficaString() }}, C.F.
-	{{ $pre->user->cf }}, in relazione all'incarico conferito con {{ $pre->insegnamento->deliberaString() }}
-	 dell'Università della Calabria,
-     consapevole delle sanzioni penali previste dall'art. 76 del D.P.R. 445/2000, per le ipotesi
-	di falsità in atti e di dichiarazioni mendaci ivi indicate, ai sensi e per gli effetti del citato D.P.R. n.
-	445/2000, e di quanto disposto dall'art. 15, comma 1, lettera c, del D.Lgs 33/2013 e s.m.i., sotto la
-	propria responsabilità</p>
+	<b>{{ $pre->user->nameTutorString() }}</b>, in relazione all'incarico
+    conferito con provvedimento <b>{{ $pre->insegnamento->deliberaString() }}</b>
+	 dell'Università della Calabria
+     </p>
 
 	<h3>DICHIARA</h3>
 
@@ -78,6 +77,16 @@
             <p class="normal">- di non svolgere attività che contrastano realmente o potenzialmente con l’interesse, non solo economico, dell’Università della Calabria.</p>
         @endif
     @endif
+
+
+    <p>La sottoscritto/a si impegna, altresì, a comunicare tempestivamente eventuali variazioni del
+    contenuto della presente dichiarazione e a rendere, nel caso, una nuova dichiarazione sostitutiva.</p>
+
+    <p></p>La sottoscritto/a dichiara inoltre l'insussistenza delle predette situazioni di conflitto e cause
+    di incompatibilità sin dal momento del conferimento dell'incarico.</p>
+
+    <p>F.to<br>
+    <b>{{ $pre->user->nameTutorString() }}</b></p>
 
 </body>
 </html>
