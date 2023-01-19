@@ -33,8 +33,11 @@
 </head>
 <body>
 	<h3>DICHIARAZIONE DI ASSENZA DI CONFLITTO DI INTERESSI</h3>
-    <small style="text-align: center">(ai sensi dell'art 53, comma 14, d.lgs. n. 165/2001)</small>
+    <p style="text-align: center">
+        <small>(ai sensi dell'art 53, comma 14, d.lgs. n. 165/2001)</small>
+    </p>
     <br>
+	<br>
 	<p class="normal">
 		@if($pre->anagrafica->sesso == 'M')
 			Il sottoscritto
@@ -78,13 +81,16 @@
         @endif
     @endif
 
-
+    <br>
+	<br>
     <p>La sottoscritto/a si impegna, altresì, a comunicare tempestivamente eventuali variazioni del
     contenuto della presente dichiarazione e a rendere, nel caso, una nuova dichiarazione sostitutiva.</p>
-
+    <br>
+	<br>
     <p></p>La sottoscritto/a dichiara inoltre l'insussistenza delle predette situazioni di conflitto e cause
     di incompatibilità sin dal momento del conferimento dell'incarico.</p>
-
+    <br>
+	<br>
     <p>F.to<br>
     <b>{{ $pre->user->nameTutorString() }}</b></p>
 
