@@ -526,7 +526,7 @@ class PrecontrattualeService implements ApplicationService
     }
 
     # custom pdf functions
-    public static function makePdfForConflittoInteressi($pre, $view, $type,){
+    public static function makePdfForConflittoInteressi($pre, $view, $type){
         $pdf = PDF::loadView('contratto', ['pre' => $pre, 'type'=>$type]);
         $pdf->setOption('enable-local-file-access',true);
         $pdf->setOption('load-error-handling','ignore');
