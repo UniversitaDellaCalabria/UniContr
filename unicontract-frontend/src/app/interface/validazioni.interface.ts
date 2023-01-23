@@ -3,6 +3,7 @@ export interface ValidazioneInterface {
     insegn_id: number;
     flag_submit: boolean;
     date_submit: string;
+    flag_confl_int_dip: boolean;
     flag_upd: boolean;
     date_upd: string;
     flag_amm: boolean;
