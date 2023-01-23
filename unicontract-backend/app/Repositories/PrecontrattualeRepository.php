@@ -260,9 +260,6 @@ class PrecontrattualeRepository extends BaseRepository {
             //creazione dell'allegato
             $result = PrecontrattualeService::createContrattoBozza($data['insegn_id']);
 
-            $this->saveAttachments([$result], Precontrattuale::where('insegn_id', $data['insegn_id'])->first());
-            EmailService::sendEmailByType($data['insegn_id'],"CMU");
-
             $precontr = $valid->precontrattuale()->first();
             $precontr->storyprocess()->save(
                 PrecontrattualeService::createStoryProcess('Compilazione modulistica precontrattuale terminata',
@@ -273,6 +270,9 @@ class PrecontrattualeRepository extends BaseRepository {
             $confl_int = PrecontrattualeService::createConflittoInteressi($precontr->id, 'pdfConflittoInteressi', 'CONFL_INT');
             $confl_int_15 = PrecontrattualeService::createConflittoInteressi($precontr->id, 'pdfConflittoInteressi15Trasparenza', 'CONFL_INT_15_TRASP');
             $this->saveAttachments([$confl_int, $confl_int_15], $precontr);
+
+            $this->saveAttachments([$result], Precontrattuale::where('insegn_id', $data['insegn_id'])->first());
+            EmailService::sendEmailByType($data['insegn_id'],"CMU");
 
         } catch(\Exception $e) {
 
