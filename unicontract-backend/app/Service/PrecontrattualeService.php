@@ -527,7 +527,7 @@ class PrecontrattualeService implements ApplicationService
 
     # custom pdf functions
     public static function makePdfForConflittoInteressi($pre, $view, $type){
-        $pdf = PDF::loadView('contratto', ['pre' => $pre, 'type'=>$type]);
+        $pdf = PDF::loadView($view, ['pre' => $pre, 'type'=>$type]);
         $pdf->setOption('enable-local-file-access',true);
         $pdf->setOption('load-error-handling','ignore');
         $pdf->setOption('margin-top','44');
@@ -538,12 +538,12 @@ class PrecontrattualeService implements ApplicationService
         return $pdf;
     }
 
-    public static function createConflittoInteressi($precontr_id, $type){
+    public static function createConflittoInteressi($precontr_id, $view, $type){
 
         $pre = Precontrattuale::find($precontr_id);
 
         $attach = null;
-        $pdf = PrecontrattualeService::makePdfForConflittoInteressi($pre, $type);
+        $pdf = PrecontrattualeService::makePdfForConflittoInteressi($pre, $view, $type);
 
         $attach['attachmenttype_codice'] = $type;
         $attach['filename'] = 'Dichiarazione '. $pre->user->nameTutorString() .'.pdf';
