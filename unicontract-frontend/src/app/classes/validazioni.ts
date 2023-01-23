@@ -26,7 +26,7 @@ export class Validazione implements ValidazioneInterface {
         this.insegn_id = 0;
         this.flag_submit = false;
         this.date_submit = '';
-        flag_confl_int_dip = false;
+        this.flag_confl_int_dip = false;
         this.flag_upd = false;
         this.date_upd = '';
         this.flag_amm = false;
