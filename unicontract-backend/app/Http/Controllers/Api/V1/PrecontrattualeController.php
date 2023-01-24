@@ -541,6 +541,15 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
+        // il dipartimento non ha caricato l'attestazione di
+        // assenza di conflitto di interessi
+        if ($valid->flag_confl_int_dip == 0){
+            $data = [];
+            $success = false;
+            $message = 'Operazione di validazione non eseguibile';
+            return compact('data', 'message', 'success');
+        }
+
         $postData = $request->except('id', '_method');
         $valid->fill($postData['entity']);
         $valid->date_upd = Carbon::now()->format(config('unical.datetime_format'));
