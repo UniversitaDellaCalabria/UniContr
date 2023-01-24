@@ -417,7 +417,7 @@
     <span class="ml-2">Vai alla modulistica</span>
   </button>
 
-  <ng-container *ngIf="isStepValidazioneAmm() && !isAnnullato()" >
+  <ng-container *ngIf="isStepValidazioneAmm() && !isAnnullato() && items.flag_confl_int_dip === 1" >
     <button type="button" class="btn btn-outline-secondary rounded mr-1" *ngxPermissionsOnly="['OP_APPROVAZIONE_AMM','SUPER-ADMIN']" (click)="validazioneAmm()" title="{{ 'summary_title3' | translate }}">
       <span class="oi oi-thumb-up iconic"></span>
       <span class="ml-2">{{ 'summary_valida' | translate }}</span>
