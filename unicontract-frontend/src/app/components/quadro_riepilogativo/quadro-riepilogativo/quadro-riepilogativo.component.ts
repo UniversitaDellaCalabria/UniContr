@@ -651,4 +651,11 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
     );
   }
 
+
+  toggleUploadConflIntDip() {
+    //se è gia aperto, lo chiudi
+    this.toggle_confl_int_dip = !this.toggle_confl_int_dip;
+  }
+
+
 }
