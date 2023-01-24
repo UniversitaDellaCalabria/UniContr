@@ -35,6 +35,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
   email: SendEmail = null;
   gestioneannulamento: boolean = false;
   gestioneinformazioni: boolean = false;
+  toggle_confl_int_dip: boolean = false;
   story: StoryProcess;
   datiCont: any = null;
 
