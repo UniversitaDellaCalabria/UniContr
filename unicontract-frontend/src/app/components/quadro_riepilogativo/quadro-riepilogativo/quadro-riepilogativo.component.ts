@@ -118,7 +118,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
       fieldGroup: [
         {
           key: 'confl_int_dip',
-          type: 'file',
+          type: 'fileinput',
           className: 'col-md-12',
           templateOptions: {
             required: true,
