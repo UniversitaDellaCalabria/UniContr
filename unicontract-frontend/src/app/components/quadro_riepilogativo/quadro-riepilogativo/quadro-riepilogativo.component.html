@@ -382,7 +382,7 @@
   <app-riquadro-wrapper *ngIf="toggle_confl_int_dip && !isAnnullato()">
     <h5>Upload dichiarazione conflitto interessi Dipartimeto</h5>
     <form [formGroup]="form" *ngIf="items">
-      <formly-form [model]="model" [fields]="fields" [form]="form" [options]="options"></formly-form>
+      <formly-form [model]="model" [fields]="fields3" [form]="form" [options]="options"></formly-form>
     </form>
     <div class="form-footer text-right">
       <button class="btn btn-sm btn-danger rounded m-1" [disabled]="form.invalid"

@@ -111,6 +111,24 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
     }
   ];
 
+  fields3: FormlyFieldConfig[] = [
+    // upload conflitto interessi dipartimento
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
+          key: 'confl_int_dip',
+          type: 'file',
+          className: 'col-md-12',
+          templateOptions: {
+            required: true,
+            label: 'Dichiarazione conflitto interessi del Direttore del Dipartimento',
+          },
+        },
+      ],
+    }
+  ];
+
 
 
   constructor(private route: ActivatedRoute,
