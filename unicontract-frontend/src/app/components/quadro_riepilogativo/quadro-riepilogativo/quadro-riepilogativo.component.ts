@@ -117,13 +117,25 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: 'confl_int_dip',
-          type: 'fileinput',
-          className: 'col-md-12',
-          templateOptions: {
-            required: true,
-            label: 'Dichiarazione conflitto interessi del Direttore del Dipartimento',
-          },
+            key: 'confl_int_dip',
+            type: 'fileinput',
+            className: 'col-md-12',
+            templateOptions: {
+                accept: 'application/pdf',
+                maxLength: 255,
+                required: true,
+                label: 'Dichiarazione conflitto interessi del Direttore del Dipartimento',
+            },
+            validators: {
+                maxsize: {
+                  expression: (c,f) => (f.model._filesize && f.model._filesize > 2720000) ? false : true,
+                  message: (error, field) => `La dimensione del file eccede la dimensione massima consentita `,
+                },
+                filetype: {
+                  expression: (c,f) => (c.value ? (c.value.endsWith('.pdf') ? true : false) :true),
+                  message: (error, field) => `Il formato file richiesto è PDF`,
+                }
+            },
         },
       ],
     }
