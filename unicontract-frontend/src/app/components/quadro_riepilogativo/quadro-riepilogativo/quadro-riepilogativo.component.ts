@@ -127,10 +127,6 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                 label: 'Dichiarazione conflitto interessi del Direttore del Dipartimento',
             },
             validators: {
-                maxsize: {
-                  expression: (c,f) => (f.model._filesize && f.model._filesize > 2720000) ? false : true,
-                  message: (error, field) => `La dimensione del file eccede la dimensione massima consentita `,
-                },
                 filetype: {
                   expression: (c,f) => (c.value ? (c.value.endsWith('.pdf') ? true : false) :true),
                   message: (error, field) => `Il formato file richiesto è PDF`,
