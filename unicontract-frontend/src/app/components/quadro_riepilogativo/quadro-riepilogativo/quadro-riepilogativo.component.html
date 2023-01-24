@@ -381,6 +381,14 @@
 
 <div class="text-right">
 <div class="btn-group row mr-2 mb-1" *ngIf="items">
+
+    <ng-container *ngIf="isStepValidazioneAmm() && !isAnnullato()" >
+        <button type="button" class="btn btn-outline-secondary rounded mr-1" *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']">
+          <span class="oi oi-cloud-upload iconic"></span>
+          <span class="ml-2">Upload dichiarazione conflitto interessi</span>
+        </button>
+      </ng-container>
+
   <ng-container *ngIf="!isRinuncia() && !isAnnullato()" >
     <button type="button" class="btn btn-outline-secondary rounded mr-1" *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']" (click)="rinunciaCompenso()">
       <span class="oi oi-euro iconic"></span>
