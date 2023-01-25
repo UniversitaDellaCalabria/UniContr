@@ -125,10 +125,13 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                 maxLength: 255,
                 required: true,
                 label: 'Dichiarazione conflitto interessi del Direttore del Dipartimento',
-                type: 'input',
+                //type: 'input',
                 readonly: true,
                 placeholder: 'Carica il documento . . . ',
                 onSelected: (selFile, field) => { this.onSelectCurrentFile(selFile, field); }
+            },
+            validation: {
+                show: true
             },
             validators: {
                 filetype: {
