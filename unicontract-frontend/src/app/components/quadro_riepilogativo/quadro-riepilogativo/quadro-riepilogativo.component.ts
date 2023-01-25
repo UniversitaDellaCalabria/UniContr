@@ -212,7 +212,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                 fieldGroupClassName: 'row',
                 fieldGroup: [
                   {
-                    key: 'confl_int_dip',
+                    key: 'confl_int_dip_value',
                     type: 'input',
                     templateOptions: {
                       type: 'hidden'
@@ -800,7 +800,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
 
         reader.onload = async (e: any) => {
           this.isLoading = true;
-          field.formControl.parent.get('confl_int_dip').setValue(encode(e.target.result));
+          field.formControl.parent.get('confl_int_dip_value').setValue(encode(e.target.result));
           if (currentSelFile.name.search('pdf') > 0) {
             try {
               field.formControl.markAsDirty();
