@@ -1084,8 +1084,8 @@ class PrecontrattualeController extends Controller
         $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $request->insegn_id)->first();
         if ($pre){
             if ($pre->validazioni->flag_confl_int_dip == 0){
-                 //aggiornare email utente
-                $pre->validazioni->flag_confl_int_dip == 1;
+                 //aggiornare flat
+                $pre->validazioni->flag_confl_int_dip = 1;
                 $pre->validazioni->save();
                 $data = null;
                 $message = 'Operazione di upload completata con successo';
