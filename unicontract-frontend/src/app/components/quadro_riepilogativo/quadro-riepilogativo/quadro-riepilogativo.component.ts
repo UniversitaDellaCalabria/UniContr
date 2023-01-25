@@ -264,9 +264,9 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
               (hasPermission) => hasPermission ? this.getIddg(this.items.coper_id) : {}
             );
 
-            if (!this.item['attachments'] || this.item['attachments'].length === 0) {
+            if (!this.items['attachments'] || this.items['attachments'].length === 0) {
                 // se non ci sono allegati
-                this.item['attachments'] =  [
+                this.items['attachments'] =  [
                   {
                     attachmenttype_codice: 'CONFL_INT_DIP',
                   },
