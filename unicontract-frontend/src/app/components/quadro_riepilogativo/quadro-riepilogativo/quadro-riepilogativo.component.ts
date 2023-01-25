@@ -191,7 +191,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                         btnType: 'primary oi oi-data-transfer-download',
                         title: 'Scarica il documento',
                         // icon: 'oi oi-data-transfer-download'
-                        onClick: ($event, model, field) => this.download($event, model),
+                        onClick: ($event, model, field) => this.downloadFromModel($event, model),
                       },
                       hideExpression: (model: any, formState: any) => {
                         return !model.id;
@@ -377,6 +377,18 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
       e => { console.log(e); }
     );
 
+  }
+
+  downloadFromModel(event, model) {
+    // implementare api
+    this.anagraficaLocalService.download(model.id).subscribe(file => {
+      if (file.filevalue) {
+        const blob = new Blob([decode(file.filevalue)]);
+        saveAs(blob, file.filename);
+      }
+    },
+      e => { console.log(e); }
+    );
   }
 
   downloadModulisticaPrecontr(){
