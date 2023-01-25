@@ -838,7 +838,8 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             const data: IPrecontrStore<any> = {
               insegn_id: this.idins,
               entity: {
-                //flag_no_compenso: false
+                flag_confl_int_dip: true;
+                dati: response['dati']['attachments']
               }
             };
 
