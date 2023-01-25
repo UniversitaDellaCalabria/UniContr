@@ -1082,28 +1082,22 @@ class PrecontrattualeController extends Controller
         }
 
         $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $request->insegn_id)->first();
-
-        //if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email),'@unical.it')){
-            //$email = $pre->user->anagraficaugov()->first()->e_mail;
-            //if ($email && Str::contains(strtolower($email),'@unical.it')){
-                // //aggiornare email utente
-                //$pre->user->email = $email;
-                //$pre->user->save();
-            //}else{
-                //$data = null;
-                //$message = 'A '.$pre->user->nameTutorString().' non è associata una email istituzionale';
-                //$success = false;
-                //return compact('data', 'message', 'success');
-            //}
-        //}
-
-        //$data = EmailService::sendEmailInfo($request->insegn_id, $request->entity);
-        //$data->load('user');
-        //$data->model = null;
-        $data = null;
-        $message = 'Email inviata con successo';
-        $success = true;
-
+        abort(403, $request->except('id', '_method'));
+        if ($pre){
+            if ($precontr->validazioni->flag_confl_int_dip == 0){
+                 //aggiornare email utente
+                $precontr->validazioni->flag_confl_int_dip == 1;
+                $precontr->validazioni->save();
+                $data = null;
+                $message = 'Operazione di upload completata con successo';
+                $success = true;
+            }else{
+                $data = null;
+                $message = 'Il documento risulta già caricato';
+                $success = false;
+                return compact('data', 'message', 'success');
+            }
+        }
         return compact('data', 'message', 'success');
     }
 
