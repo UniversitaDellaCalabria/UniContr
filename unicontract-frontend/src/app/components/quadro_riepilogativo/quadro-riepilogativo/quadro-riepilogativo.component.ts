@@ -839,7 +839,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
               insegn_id: this.idins,
               entity: {
                 flag_confl_int_dip: true,
-                dati: response['dati']['attachments']
+                dati: this.item
               }
             };
 
