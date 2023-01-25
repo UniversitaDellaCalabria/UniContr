@@ -53,7 +53,14 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
   idins: number;
 
   form = new FormGroup({});
-  model: any = {};
+  model: any = {
+    attachments: [
+      {
+        attachmenttype_codice: 'CONFL_INT_DIP',
+      },
+
+    ]
+  };
   options: FormlyFormOptions = {
     formState: {
       model: this.model,
