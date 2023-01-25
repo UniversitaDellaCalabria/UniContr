@@ -114,52 +114,116 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
   fields3: FormlyFieldConfig[] = [
     // upload conflitto interessi dipartimento
     {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
+        fieldGroup: [
         {
-            key: 'confl_int_dip',
-            type: 'fileinput',
-            className: 'col-md-12',
-            templateOptions: {
-                accept: 'application/pdf',
-                maxLength: 255,
-                required: true,
-                label: 'Dichiarazione conflitto interessi del Direttore del Dipartimento',
-                //type: 'input',
-                readonly: true,
-                placeholder: 'Carica il documento . . . ',
-                onSelected: (selFile, field) => { this.onSelectCurrentFile(selFile, field); }
-            },
-            validation: {
-                show: true
-            },
-            validators: {
-                filetype: {
-                  expression: (c,f) => (c.value ? (c.value.endsWith('.pdf') ? true : false) :true),
-                  message: (error, field) => `Il formato file richiesto è PDF`,
-                }
-            },
-        },
-        {
-            fieldGroupClassName: 'row',
+          key: 'attachments',
+          type: 'repeat',
+          templateOptions: {
+            translate: true,
+            label: 'a1_label19',
+            min: 0,
+            max: 2,
+            btnHidden: true,
+            btnRemoveHidden: true,
+          },
+          fieldArray: {
             fieldGroup: [
               {
-                key: 'confl_int_dip_value',
-                type: 'input',
-                templateOptions: {
-                  type: 'hidden'
+                fieldGroupClassName: 'row',
+                fieldGroup: [
+                // attachmenttype_codice
+                {
+                  key: 'attachmenttype_codice',
+                  type: 'input',
+                  defaultValue: 'CONFLINT_DIP',
+                  templateOptions: {
+                    type: 'hidden',
+                    options: [
+                      { codice: 'CONFL_INT_DIP', descrizione: 'Dichiarazione conflitto interessi Dipartimento' },
+                    ],
+                    valueProp: 'codice',
+                    labelProp: 'descrizione',
+                  }
                 },
+                // filename
+                {
+                  // NB è stato richiesto in fase di validazione di poter inserire dei
+                  // riferimenti ad degli allegati ma senza includere il file
+                  key: 'confl_int_dip',
+                  type: 'fileinput',
+                  className: 'col-md-6',
+                  validation: {
+                    show: true
+                  },
+                  templateOptions: {
+                    label: 'Dichiarazione conflitto interessi Dipartimento',
+                    type: 'input',
+                    readonly: true,
+                    placeholder: 'Carica il documento . . . ',
+                    description: 'N.B. Il documento deve essere in formato PDF e PRIVO DI DATI SENSIBILI. Dimensione massima 2MB.',
+                    accept: 'application/pdf',
+                    maxLength: 255,
+                    required: true,
+                    onSelected: (selFile, field) => { this.onSelectCurrentFile(selFile, field); }
+                  },
+                  validators: {
+                    maxsize: {
+                      expression: (c,f) => (f.model._filesize && f.model._filesize > 2720000) ? false : true,
+                      message: (error, field) => `La dimensione del file eccede la dimensione massima consentita `,
+                    },
+                    filetype: {
+                      expression: (c,f) => (c.value ? (c.value.endsWith('.pdf') ? true : false) :true),
+                      message: (error, field) => `Il formato file richiesto è PDF`,
+                    }
+
+                  },
+                },
+
+                // bottoni azione
+                {
+                  fieldGroupClassName: 'btn-toolbar',
+                  className: 'col-md-2 btn-group',
+                  fieldGroup: [
+                    {
+                      type: 'button',
+                      className: 'mt-4 pt-2',
+                      templateOptions: {
+                        btnType: 'primary oi oi-data-transfer-download',
+                        title: 'Scarica il documento',
+                        // icon: 'oi oi-data-transfer-download'
+                        onClick: ($event, model, field) => this.download($event, model),
+                      },
+                      hideExpression: (model: any, formState: any) => {
+                        return !model.id;
+                      },
+                    },
+                  ],
+                },
+              ],
               },
               {
-                key: 'id',
-                type: 'input',
-                templateOptions: {
-                  type: 'hidden'
-                },
+                fieldGroupClassName: 'row',
+                fieldGroup: [
+                  {
+                    key: 'confl_int_dip',
+                    type: 'input',
+                    templateOptions: {
+                      type: 'hidden'
+                    },
+                  },
+                  {
+                    key: 'id',
+                    type: 'input',
+                    templateOptions: {
+                      type: 'hidden'
+                    },
+                  },
+                ],
               },
             ],
           },
-      ],
+        },
+      ]
     }
   ];
 
