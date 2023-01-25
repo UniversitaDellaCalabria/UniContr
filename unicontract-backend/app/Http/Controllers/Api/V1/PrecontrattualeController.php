@@ -1085,6 +1085,7 @@ class PrecontrattualeController extends Controller
         if ($pre){
             if ($pre->validazioni->flag_confl_int_dip == 0){
                 $postData = $request->except('id', '_method');
+                Log::info("test post data");
                 Log::info($postData);
                 if (array_key_exists('attachments',$postData)){
                     //salvare allegati ...

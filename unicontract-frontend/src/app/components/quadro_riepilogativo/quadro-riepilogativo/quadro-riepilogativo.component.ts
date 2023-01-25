@@ -260,7 +260,9 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             this.items = response['datiGenerali'];
             this.idins = +params.get('id');
 
-            this.permissionsService.hasPermission(['OP_DIPARTIMENTALE', 'OP_APPROVAZIONE_AMM', 'OP_APPROVAZIONE_ECONOMICA', 'SUPER-ADMIN']).then(
+            this.permissionsService.hasPermission(['OP_APPROVAZIONE_AMM',
+                                                   'OP_APPROVAZIONE_ECONOMICA',
+                                                   'SUPER-ADMIN']).then(
               (hasPermission) => hasPermission ? this.getIddg(this.items.coper_id) : {}
             );
 
