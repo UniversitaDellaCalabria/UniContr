@@ -1086,7 +1086,7 @@ class PrecontrattualeController extends Controller
         //if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email),'@unical.it')){
             //$email = $pre->user->anagraficaugov()->first()->e_mail;
             //if ($email && Str::contains(strtolower($email),'@unical.it')){
-                aggiornare email utente
+                // //aggiornare email utente
                 //$pre->user->email = $email;
                 //$pre->user->save();
             //}else{

@@ -99,7 +99,7 @@ export class SummaryService extends CoreSevice {
     }
 
     sendInfoEmail(data): Observable<InfraResponse<any>> {
-        return this.http.post<any>(AppConstants.baseApiURL + '/sendinfoemail/', data, httpOptions).pipe(
+        return this.http.post<any>(this._baseURL + '/sendinfoemail/', data, httpOptions).pipe(
           catchError(this.handleError('sendEmailRichiestaCompilazione', null, true)),
         );
     }
@@ -109,7 +109,7 @@ export class SummaryService extends CoreSevice {
     }
 
     uploadConflIntDip(data): Observable<InfraResponse<any>> {
-        return this.http.post<any>(this._baseURL + '/precontrattuale/uploadconflintdip/', data, httpOptions).pipe(
+        return this.http.post<any>(AppConstants.baseApiURL + '/precontrattuale/uploadconflintdip/', data, httpOptions).pipe(
           catchError(this.handleError('uploadConflittoInteressiDip', null, true)),
         );
     }
