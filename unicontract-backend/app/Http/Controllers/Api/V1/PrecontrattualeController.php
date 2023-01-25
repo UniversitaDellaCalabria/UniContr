@@ -1082,7 +1082,6 @@ class PrecontrattualeController extends Controller
         }
 
         $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $request->insegn_id)->first();
-        abort(403, $request->except('id', '_method'));
         if ($pre){
             if ($precontr->validazioni->flag_confl_int_dip == 0){
                  //aggiornare email utente
