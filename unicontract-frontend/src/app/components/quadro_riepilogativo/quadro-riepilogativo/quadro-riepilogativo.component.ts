@@ -125,6 +125,10 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                 maxLength: 255,
                 required: true,
                 label: 'Dichiarazione conflitto interessi del Direttore del Dipartimento',
+                type: 'input',
+                readonly: true,
+                placeholder: 'Carica il documento . . . ',
+                onSelected: (selFile, field) => { this.onSelectCurrentFile(selFile, field); }
             },
             validators: {
                 filetype: {
@@ -684,5 +688,42 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
     this.toggle_confl_int_dip = !this.toggle_confl_int_dip;
   }
 
+
+    onSelectCurrentFile(currentSelFile, field: FormlyFieldConfig) {
+        const currentAttachment = field.formControl.parent.value;
+        if (currentSelFile == null) {
+          // caso di cancellazione
+          field.model._filesize = null;
+          currentAttachment.filevalue = null;
+          return;
+        }
+        field.model._filesize = currentSelFile.size;
+        field.formControl.updateValueAndValidity();
+
+        this.isLoading = true;
+        currentAttachment.model_type = 'precontruattuale';
+
+        const reader = new FileReader();
+
+        reader.onload = async (e: any) => {
+          this.isLoading = true;
+          field.formControl.parent.get('filevalue').setValue(encode(e.target.result));
+          if (currentSelFile.name.search('pdf') > 0) {
+            try {
+              field.formControl.markAsDirty();
+            } catch (error) {
+              console.log(error);
+              this.isLoading = false;
+            }
+          }
+
+          if (!currentAttachment.filevalue) {
+            this.isLoading = false;
+            return;
+          }
+          this.isLoading = false;
+        };
+        reader.readAsArrayBuffer(currentSelFile);
+      }
 
 }
