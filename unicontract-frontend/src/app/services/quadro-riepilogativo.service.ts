@@ -107,4 +107,10 @@ export class SummaryService extends CoreSevice {
     getIddg(id: number) {
         return this.http.get(this._baseURL + '/iddg/' + id);
     }
+
+    uploadConflIntDip(data): Observable<InfraResponse<any>> {
+        return this.http.post<any>(this._baseURL + '/precontrattuale/uploadconflintdip/', data, httpOptions).pipe(
+          catchError(this.handleError('uploadConflittoInteressiDip', null, true)),
+        );
+    }
 }

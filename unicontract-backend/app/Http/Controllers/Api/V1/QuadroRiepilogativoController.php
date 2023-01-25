@@ -201,4 +201,5 @@ class QuadroRiepilogativoController extends Controller
 
         return compact('datiCont', 'message', 'success');
     }
+
 }

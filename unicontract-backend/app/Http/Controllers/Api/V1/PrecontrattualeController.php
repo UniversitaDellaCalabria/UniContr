@@ -1074,4 +1074,37 @@ class PrecontrattualeController extends Controller
         abort(404, "Documento non trovato");
     }
 
+
+    public function uploadConflIntDip(Request $request){
+
+        if (!Auth::user()->hasPermissionTo('sending infoemail')) {
+            abort(403, trans('global.utente_non_autorizzato'));
+        }
+
+        $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $request->insegn_id)->first();
+
+        //if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email),'@unical.it')){
+            //$email = $pre->user->anagraficaugov()->first()->e_mail;
+            //if ($email && Str::contains(strtolower($email),'@unical.it')){
+                aggiornare email utente
+                //$pre->user->email = $email;
+                //$pre->user->save();
+            //}else{
+                //$data = null;
+                //$message = 'A '.$pre->user->nameTutorString().' non è associata una email istituzionale';
+                //$success = false;
+                //return compact('data', 'message', 'success');
+            //}
+        //}
+
+        //$data = EmailService::sendEmailInfo($request->insegn_id, $request->entity);
+        //$data->load('user');
+        //$data->model = null;
+        $data = null;
+        $message = 'Email inviata con successo';
+        $success = true;
+
+        return compact('data', 'message', 'success');
+    }
+
 }

@@ -23,7 +23,7 @@ Route::group(['middleware' => ['cors','auth:api','log','role:super-admin','check
 
     Route::get('mappingruoli', 'MappingRuoloController@index');
     Route::get('mappingruoli/{id}', 'MappingRuoloController@show');
-    Route::post('mappingruoli/query', 'MappingRuoloController@query'); 
+    Route::post('mappingruoli/query', 'MappingRuoloController@query');
     Route::post('mappingruoli', 'MappingRuoloController@store');
     Route::put('mappingruoli/{id}', 'MappingRuoloController@update');
     Route::delete('mappingruoli/{id}', 'MappingRuoloController@delete');
@@ -32,12 +32,12 @@ Route::group(['middleware' => ['cors','auth:api','log','role:super-admin','check
     Route::get('users/roles','UserController@roles');
     Route::get('users/permissions','UserController@permissions');
     Route::resource('users', 'UserController');
-    Route::post('users/query', 'UserController@query'); 
+    Route::post('users/query', 'UserController@query');
 
     // ROLES
     Route::get('roles', 'RoleController@index');
     Route::get('roles/{id}', 'RoleController@show');
-    Route::post('roles/query', 'RoleController@query'); 
+    Route::post('roles/query', 'RoleController@query');
     Route::post('roles', 'RoleController@store');
     Route::put('roles/{id}', 'RoleController@update');
     Route::delete('roles/{id}', 'RoleController@delete');
@@ -45,18 +45,18 @@ Route::group(['middleware' => ['cors','auth:api','log','role:super-admin','check
     // PERMISSIONS
     Route::get('permissions', 'PermissionController@index');
     Route::get('permissions/{id}', 'PermissionController@show');
-    Route::post('permissions/query', 'PermissionController@query'); 
+    Route::post('permissions/query', 'PermissionController@query');
     Route::post('permissions', 'PermissionController@store');
     Route::put('permissions/{id}', 'PermissionController@update');
     Route::delete('permissions/{id}', 'PermissionController@delete');
-    
-    
+
+
 });
 
 Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'], function() {
- 
+
     //mail
-    Route::post('mail/sendMail', 'NotificationController@sendMail'); 
+    Route::post('mail/sendMail', 'NotificationController@sendMail');
 
     //logattivita
     Route::post('logattivita/query','LogActivityController@query');
@@ -75,11 +75,11 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     Route::get('copertura/reload/{coper_id}', 'InsegnamentiController@refreshUgovData');
 
     //CONTR UGOV
-    Route::post('contrugov/query','ContrUgovController@query');    
-    Route::post('contrugov/export','ContrUgovController@export');   
-    Route::post('contrugov/exportxls','ContrUgovController@exportxls');  
+    Route::post('contrugov/query','ContrUgovController@query');
+    Route::post('contrugov/export','ContrUgovController@export');
+    Route::post('contrugov/exportxls','ContrUgovController@exportxls');
 
-    // P.1 INSEGNAMENTO    
+    // P.1 INSEGNAMENTO
     Route::get('insegnamenti/{id}', 'InsegnamentiController@show')->middleware(['ownermiddleware']);
     Route::post('insegnamenti', 'InsegnamentiController@store');
     Route::put('insegnamenti/{id}', 'InsegnamentiController@update');
@@ -87,36 +87,36 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     Route::get('docente/{id}', 'InsegnamentiController@getName');
     Route::post('insegnamenti/query','InsegnamentiController@query');
     Route::get('insegnamenti/sendfirstemail/{id}','InsegnamentiController@sendFirstEmail');
-  
+
 
     // PRECONTRATTUALE
     Route::resource('precontrattuale', 'PrecontrattualeController');
-    Route::post('precontrattuale', 'PrecontrattualeController@store');  
+    Route::post('precontrattuale', 'PrecontrattualeController@store');
     Route::put('precontrattuale/{insegn_id}', 'PrecontrattualeController@update');
     Route::post('precontrattuale/query','PrecontrattualeController@query');
     Route::post('precontrattuale/newprecontrimportinsegnamento','PrecontrattualeController@newPrecontrImportInsegnamento');
-    Route::post('precontrattuale/newincompat','PrecontrattualeController@newIncompat');    
-    Route::post('precontrattuale/newprivacy','PrecontrattualeController@newPrivacy');        
-    Route::post('precontrattuale/newinps','PrecontrattualeController@newInps');        
-    Route::post('precontrattuale/newprestazprofess','PrecontrattualeController@newPrestazioneProfessionale');            
+    Route::post('precontrattuale/newincompat','PrecontrattualeController@newIncompat');
+    Route::post('precontrattuale/newprivacy','PrecontrattualeController@newPrivacy');
+    Route::post('precontrattuale/newinps','PrecontrattualeController@newInps');
+    Route::post('precontrattuale/newprestazprofess','PrecontrattualeController@newPrestazioneProfessionale');
     Route::post('precontrattuale/terminainoltra','PrecontrattualeController@terminaInoltra');
     Route::get('precontrattuale/previewcontratto/{insegn_id}','PrecontrattualeController@previewcontratto');
     Route::get('precontrattuale/modulisticaprecontr/{insegn_id}','PrecontrattualeController@modulisticaPrecontr');
-    Route::post('precontrattuale/validazioneamm','PrecontrattualeController@validazioneAmm');  
-    Route::post('precontrattuale/validazioneeconomica','PrecontrattualeController@validazioneEconomica');    
-    Route::post('precontrattuale/annullaamm','PrecontrattualeController@annullaAmm');    
-    Route::post('precontrattuale/annullaeconomica','PrecontrattualeController@annullaEconomica');    
-    Route::post('precontrattuale/presavisioneaccettazione','PrecontrattualeController@presaVisioneAccettazione');    
-    Route::get('precontrattuale/gettitulusdocumenturl/{id}','PrecontrattualeController@getTitulusDocumentURL');  
-    Route::post('precontrattuale/annullacontratto','PrecontrattualeController@annullaContratto');    
-    Route::post('precontrattuale/rinunciacompenso','PrecontrattualeController@rinunciaCompenso');   
-    Route::post('precontrattuale/annullarinuncia','PrecontrattualeController@annullaRinuncia');  
-    Route::post('precontrattuale/export','PrecontrattualeController@export'); 
-    Route::post('precontrattuale/exportxls','PrecontrattualeController@exportxls'); 
-    Route::post('precontrattuale/updateinsegnamentofromugov', 'PrecontrattualeController@updateInsegnamentoFromUgov'); 
-    Route::get('precontrattuale/downloadcontrattofirmato/{id}', 'PrecontrattualeController@downloadContrattoFirmato'); 
-    
-    
+    Route::post('precontrattuale/validazioneamm','PrecontrattualeController@validazioneAmm');
+    Route::post('precontrattuale/validazioneeconomica','PrecontrattualeController@validazioneEconomica');
+    Route::post('precontrattuale/annullaamm','PrecontrattualeController@annullaAmm');
+    Route::post('precontrattuale/annullaeconomica','PrecontrattualeController@annullaEconomica');
+    Route::post('precontrattuale/presavisioneaccettazione','PrecontrattualeController@presaVisioneAccettazione');
+    Route::get('precontrattuale/gettitulusdocumenturl/{id}','PrecontrattualeController@getTitulusDocumentURL');
+    Route::post('precontrattuale/annullacontratto','PrecontrattualeController@annullaContratto');
+    Route::post('precontrattuale/rinunciacompenso','PrecontrattualeController@rinunciaCompenso');
+    Route::post('precontrattuale/annullarinuncia','PrecontrattualeController@annullaRinuncia');
+    Route::post('precontrattuale/export','PrecontrattualeController@export');
+    Route::post('precontrattuale/exportxls','PrecontrattualeController@exportxls');
+    Route::post('precontrattuale/updateinsegnamentofromugov', 'PrecontrattualeController@updateInsegnamentoFromUgov');
+    Route::get('precontrattuale/downloadcontrattofirmato/{id}', 'PrecontrattualeController@downloadContrattoFirmato');
+    Route::post('precontrattuale/uploadconflintdip','precontrattualeController@uploadConflIntDip');
+
     // QUADRO RIEPILOGATIVO
     Route::get('summary/{id}', 'QuadroRiepilogativoController@index')->middleware(['ownermiddleware']);
     Route::post('summary/sendinfoemail','QuadroRiepilogativoController@sendInfoEmail');
@@ -124,7 +124,7 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
 
     // P.2 RAPPORTO
     //Route::resource('rapporto', 'P2RapportoController');
-    Route::post('rapporto', 'P2RapportoController@store');  
+    Route::post('rapporto', 'P2RapportoController@store');
     Route::get('rapporto/{id}', 'P2RapportoController@show');
     Route::put('rapporto/{id}', 'P2RapportoController@update');
 
@@ -140,12 +140,12 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     Route::put('pagamento/local/{id}', 'A2ModalitaPagamentoController@update');
     Route::get('pagamento/{id_ab}/{insegn_id}', 'A2ModalitaPagamentoController@show');
 
-    // B.1 CONFLITTO INTERESSI    
+    // B.1 CONFLITTO INTERESSI
     Route::get('conflitto/generatepdf/{id}/{kind}','B1ConflittoIntController@generatePDF');
     Route::get('conflitto/{id}', 'B1ConflittoIntController@index');
     Route::post('conflitto', 'B1ConflittoIntController@store');
     Route::get('conflitto/details/{id}', 'B1ConflittoIntController@show');
-    Route::put('conflitto/{id}', 'B1ConflittoIntController@update'); 
+    Route::put('conflitto/{id}', 'B1ConflittoIntController@update');
 
     // B.2 INCOMPATIBILITA'
     Route::get('incompat/{id}', 'B2IncompatibilitaController@index');
@@ -158,7 +158,7 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     Route::post('studio', 'B3RappStudioUniversController@store');
     Route::get('studio/details/{id}', 'B3RappStudioUniversController@show');
     Route::put('studio/{id}', 'B3RappStudioUniversController@update');
-    
+
     // B.4 RAPPORTO CON LA PUBBLICA AMMINISTRAZIONE
     Route::get('rapppa/{id}', 'B4RapportoPAController@index');
     Route::post('rapppa', 'B4RapportoPAController@store');
@@ -254,7 +254,7 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     // Documenti
     Route::post('documenti/query','DocumentoController@query');
     Route::get('documenti/{id}','DocumentoController@getminimal');
-  
+
     //unità organizzativa
     Route::post('unitaorganizzative/query','UnitaOrganizzativaController@query');
     Route::get('unitaorganizzative/{id}','UnitaOrganizzativaController@getminimal');
@@ -266,7 +266,7 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     //mapping uffici
     Route::get('mappinguffici', 'MappingUfficioController@index');
     Route::get('mappinguffici/{id}', 'MappingUfficioController@show');
-    Route::post('mappinguffici/query', 'MappingUfficioController@query'); 
+    Route::post('mappinguffici/query', 'MappingUfficioController@query');
     Route::post('mappinguffici', 'MappingUfficioController@store');
     Route::put('mappinguffici/{id}', 'MappingUfficioController@update');
     Route::delete('mappinguffici/{id}', 'MappingUfficioController@delete');
