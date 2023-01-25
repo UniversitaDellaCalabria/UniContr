@@ -828,4 +828,31 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
         reader.readAsArrayBuffer(currentSelFile);
       }
 
+
+    uploadConflIntDip() {
+        this.confirmationDialogService.confirm('Conferma', 'Procedere con l\'operazione di upload?')
+        .then((confirmed) => {
+          if (confirmed) {
+            //const data: IPrecontrStore<any> = {
+              //insegn_id: this.idins,
+              //entity: {
+                //flag_no_compenso: false
+              //}
+            //};
+
+            this.isLoading = true;
+            this.summaryService.uploadConflIntDip(data).subscribe(
+              response => {
+                this.isLoading = false;
+                if (response.success) {
+                  this.items = {...this.items, ...response.data};
+                  this.messageService.info('Operazione di upload completata con successo');
+                } else {
+                  this.messageService.error(response.message);
+                }
+              }
+            );
+          }
+        });
+      }
 }
