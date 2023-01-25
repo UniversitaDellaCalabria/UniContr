@@ -1084,6 +1084,12 @@ class PrecontrattualeController extends Controller
         $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $request->insegn_id)->first();
         if ($pre){
             if ($pre->validazioni->flag_confl_int_dip == 0){
+                $postData = $request->except('id', '_method');
+                if (array_key_exists('attachments',$postData)){
+                    //salvare allegati ...
+                    $this->repo->saveAttachments($postData['attachments'], $pre);
+                }
+
                  //aggiornare flat
                 $pre->validazioni->flag_confl_int_dip = 1;
                 $pre->validazioni->save();
