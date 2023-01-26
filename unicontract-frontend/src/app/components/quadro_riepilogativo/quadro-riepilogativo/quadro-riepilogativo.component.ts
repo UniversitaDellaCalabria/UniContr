@@ -385,6 +385,17 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
     }
   }
 
+  downloadConflIntDip() {
+    if (this.items.flag_submit) {
+      const attach = this.items['attachments'].find(x => x.attachmenttype_codice === 'CONFL_INT_DIP');
+      if (attach){
+        this.download(attach.id);
+      }else {
+        this.messageService.error('Allegato non presente');
+      }
+    }
+  }
+
   download(id) {
     this.summaryService.download(id).subscribe(file => {
       if (file.filevalue) {
