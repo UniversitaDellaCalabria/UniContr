@@ -835,13 +835,10 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
         this.confirmationDialogService.confirm('Conferma', 'Procedere con l\'operazione di upload?')
         .then((confirmed) => {
           if (confirmed) {
-            const data: IPrecontrStore<any> = {
+            const data = {
               insegn_id: this.idins,
-              entity: {
-                attachments: this.form.value.attachments,
-              }
+              attachments: this.form.value.attachments,
             };
-
             this.isLoading = true;
             this.summaryService.uploadConflIntDip(data).subscribe(
               response => {
