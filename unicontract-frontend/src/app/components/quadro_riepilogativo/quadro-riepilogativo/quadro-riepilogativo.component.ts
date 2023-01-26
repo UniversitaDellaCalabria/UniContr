@@ -811,7 +811,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
 
         reader.onload = async (e: any) => {
           this.isLoading = true;
-          field.formControl.parent.get('confl_int_dip_value').setValue(encode(e.target.result));
+          field.formControl.parent.get('filevalue').setValue(encode(e.target.result));
           if (currentSelFile.name.search('pdf') > 0) {
             try {
               field.formControl.markAsDirty();
@@ -838,7 +838,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             const data: IPrecontrStore<any> = {
               insegn_id: this.idins,
               entity: {
-                attachemnt_type: this.form.value,
+                dati: this.form.value,
               }
             };
 
