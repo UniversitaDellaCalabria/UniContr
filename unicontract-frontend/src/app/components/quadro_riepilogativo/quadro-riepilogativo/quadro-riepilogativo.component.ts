@@ -838,7 +838,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             const data: IPrecontrStore<any> = {
               insegn_id: this.idins,
               entity: {
-                dati: this.form.value,
+                attachments: this.form.value.attachments,
               }
             };
 

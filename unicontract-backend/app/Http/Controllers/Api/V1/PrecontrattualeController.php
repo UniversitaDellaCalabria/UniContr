@@ -1088,6 +1088,8 @@ class PrecontrattualeController extends Controller
                 Log::info("test post data");
                 Log::info($postData);
                 if (array_key_exists('attachments',$postData)){
+                    Log::info("attachments");
+                    Log::info($postData);
                     //salvare allegati ...
                     $this->repo->saveAttachments($postData['attachments'], $pre);
                 }
