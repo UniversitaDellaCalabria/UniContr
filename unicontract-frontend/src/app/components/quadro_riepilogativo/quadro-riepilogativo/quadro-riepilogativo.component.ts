@@ -156,7 +156,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                 {
                   // NB è stato richiesto in fase di validazione di poter inserire dei
                   // riferimenti ad degli allegati ma senza includere il file
-                  key: 'confl_int_dip',
+                  key: 'filename',
                   type: 'fileinput',
                   className: 'col-md-6',
                   validation: {
@@ -212,7 +212,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                 fieldGroupClassName: 'row',
                 fieldGroup: [
                   {
-                    key: 'confl_int_dip_value',
+                    key: 'filevalue',
                     type: 'input',
                     templateOptions: {
                       type: 'hidden'
@@ -838,8 +838,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             const data: IPrecontrStore<any> = {
               insegn_id: this.idins,
               entity: {
-                flag_confl_int_dip: true,
-                //dati: this
+                attachemnt_type: this.form.value,
               }
             };
 
