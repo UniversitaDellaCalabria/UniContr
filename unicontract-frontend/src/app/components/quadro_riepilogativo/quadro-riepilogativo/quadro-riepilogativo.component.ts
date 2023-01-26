@@ -856,6 +856,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                 this.isLoading = false;
                 if (response.success) {
                   this.items = {...this.items, ...response.data};
+                  this.items['flag_confl_int_dip'] = 1;
                   this.messageService.info('Operazione di upload completata con successo');
                 } else {
                   this.messageService.error(response.message);
