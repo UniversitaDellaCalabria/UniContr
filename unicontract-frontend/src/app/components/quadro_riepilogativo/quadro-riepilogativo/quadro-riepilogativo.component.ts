@@ -315,9 +315,6 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
     if (this.isRevisioneAmministrativa()) {
       return this.translateService.instant('summary_txt5_revisione');
     }
-    if (!this.items.flag_confl_int_dip){
-        return this.translateService.instant('summary_txt5_extra');
-    }
     return this.translateService.instant('summary_txt5');
   }
 

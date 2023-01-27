@@ -72,6 +72,32 @@
         <td></td>
       </tr>
 
+      <!-- Validazione dichiarazione interessi caricata dal dipartimento-->
+      <tr *ngIf="isCompilato()" [className]="items.flag_confl_int_dip === 1 ? 'table-success' : 'table-warning'">
+        <td>
+          <!-- <button type="button" class="btn btn-outline-secondary border-0" disabled="true"></button>  -->
+           <span *ngIf="items.flag_confl_int_dip === 0" class="oi oi-thumb-up iconic pl-2 pb-1 m-1"></span>
+           <span *ngIf="items.flag_confl_int_dip === 1" class="oi oi-check iconic  pl-2 pb-1 m-1"></span>
+        </td>
+        <td>{{ 'summary_val_confl_int' | translate }}</td>
+        <td>
+          <span *ngIf="items.flag_confl_int_dip === 0">{{ 'summary_txt5_confl_int_ko' | translate }}</span>
+          <span *ngIf="items.flag_confl_int_dip === 1">{{ 'summary_txt5_confl_int_ok' | translate }}</span>
+        </td>
+        <td>{{ 'summary_confl_int_tip' | translate }}</td>
+        <td>{{ items.date_upd }}</td>
+<!--
+        <td>
+          <ng-container *ngxPermissionsOnly="['OP_APPROVAZIONE_AMM','SUPER-ADMIN']">
+            <button *ngIf="items.flag_upd == 1  && !isFirmato()" type="button" class="btn btn-sm btn-danger rounded m-1"
+              title="{{ 'summary_annulla' | translate }} {{ 'summary_val' | translate }}" (click)="annullaAmm()">
+                {{ 'summary_annulla' | translate }}
+            </button>
+          </ng-container>
+        </td>
+-->
+      </tr>
+
       <!-- Validazione modulistica precontrattuale Ufficio Amm.ne e Reclutamento Personale Docente title="{{ 'summary_title3' | translate }}"-->
       <tr *ngIf="isCompilato()" [className]="items.flag_upd === 0 ? isRevisioneAmministrativa() ? 'table-danger' : 'table-warning' : 'table-success'">
         <td>
