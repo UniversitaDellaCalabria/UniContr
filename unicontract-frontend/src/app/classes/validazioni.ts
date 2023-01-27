@@ -1,5 +1,6 @@
 import {ValidazioneInterface,
         UpdateSubmit,
+        UpdateConflIntDip,
         UpdateUpd,
         UpdateAmm,
         UpdateMake,
@@ -12,6 +13,7 @@ export class Validazione implements ValidazioneInterface {
     flag_submit: boolean;
     date_submit: string;
     flag_confl_int_dip: boolean;
+    date_confl_int_dip: string;
     flag_upd: boolean;
     date_upd: string;
     flag_amm: boolean;
@@ -27,6 +29,7 @@ export class Validazione implements ValidazioneInterface {
         this.flag_submit = false;
         this.date_submit = '';
         this.flag_confl_int_dip = false;
+        this.date_confl_int_dip = '';
         this.flag_upd = false;
         this.date_upd = '';
         this.flag_amm = false;
@@ -47,6 +50,18 @@ export class UpdSubmit implements UpdateSubmit {
         this.insegn_id = 0;
         this.flag_submit = false;
         this.date_submit = '';
+    }
+}
+
+export class UpdConflIntDip implements UpdConflIntDip {
+    insegn_id: number;
+    flag_confl_int_dip: boolean;
+    date_confl_int_dip: string;
+
+    constructor() {
+        this.insegn_id = 0;
+        this.flag_confl_int_dip = false;
+        this.date_confl_int_dip = '';
     }
 }
 

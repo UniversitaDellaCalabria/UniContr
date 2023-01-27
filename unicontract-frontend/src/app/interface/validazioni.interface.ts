@@ -20,6 +20,12 @@ export interface UpdateSubmit {
     date_submit: string;
 }
 
+export interface UpdateConflIntDip {
+    insegn_id: number;
+    flag_confl_int_dip: boolean;
+    date_confl_int_dip: string;
+}
+
 export interface UpdateUpd {
     insegn_id: number;
     flag_upd: boolean;

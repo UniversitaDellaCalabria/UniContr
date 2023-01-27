@@ -316,6 +316,11 @@ class Precontrattuale extends Model {
        return $this->toLocalTimezone($input);
     }
 
+    public function getDateConflIntDipAttribute($input)
+    {
+       return $this->toLocalTimezone($input);
+    }
+
     public function getDateUpdAttribute($input)
     {
        return $this->toLocalTimezone($input);
