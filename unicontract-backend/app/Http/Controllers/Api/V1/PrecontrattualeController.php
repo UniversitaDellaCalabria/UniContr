@@ -1096,6 +1096,16 @@ class PrecontrattualeController extends Controller
                 $data = null;
                 $message = 'Operazione di upload completata con successo';
                 $success = true;
+
+
+                $valid = Validazioni::where('insegn_id',$request->insegn_id)->first();
+                $valid->date_confl_int_dip = Carbon::now()->format(config('unical.datetime_format'));
+
+                //validata_confl_int_dip
+                $transitions = $valid->workflow_transitions();
+                $valid->workflow_apply($transitions[0]->getName());
+
+        $valid->save();
             }else{
                 $data = null;
                 $message = 'Il documento risulta già caricato';
