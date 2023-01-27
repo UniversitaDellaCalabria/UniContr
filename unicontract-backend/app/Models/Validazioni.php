@@ -20,6 +20,8 @@ class Validazioni extends Model
         'insegn_id',
         'flag_submit',
         'date_submit',
+        'flag_confl_int_dip',
+        'date_confl_int_dip',
         'flag_upd',
         'date_upd',
         'flag_amm',
@@ -32,6 +34,7 @@ class Validazioni extends Model
 
     protected $casts = [
         'date_submit' => 'datetime:d-m-Y H:i:s',
+        'date_confl_int_dip' => 'datetime:d-m-Y H:i:s',
         'date_upd' => 'datetime:d-m-Y H:i:s',
         'date_amm' => 'datetime:d-m-Y H:i:s',
         'date_make' => 'datetime:d-m-Y H:i:s',
@@ -67,6 +70,34 @@ class Validazioni extends Model
             $this->attributes['date_submit'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
         }else{
             $this->attributes['date_submit'] = null;
+        }
+    }
+
+    /**
+     * Get attribute from date format
+     * @param $input
+     *
+     * @return string
+     */
+    public function getDateSubmitAttribute($input)
+    {
+        if($input != null && $input != '00-00-0000') {
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
+        }else{
+            return null;
+        }
+    }
+
+     /**
+     * Set attribute to date format
+     * @param $input
+     */
+    public function setDateConflIntDipAttribute($input)
+    {
+        if($input != '') {
+            $this->attributes['date_ì_confl_int_dip'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
+        }else{
+            $this->attributes['date_confl_int_dip'] = null;
         }
     }
 

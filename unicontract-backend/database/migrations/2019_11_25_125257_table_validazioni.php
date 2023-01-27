@@ -19,6 +19,7 @@ class TableValidazioni extends Migration
             $table->boolean('flag_submit')->default(0);
             $table->dateTime('date_submit')->nullable();
             $table->boolean('flag_confl_int_dip')->default(0);
+            $table->dateTime('date_confl_int_dip')->nullable();
             $table->boolean('flag_upd')->default(0);
             $table->dateTime('date_upd')->nullable();
             $table->boolean('flag_amm')->default(0);
