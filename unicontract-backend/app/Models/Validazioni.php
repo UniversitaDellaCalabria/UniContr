@@ -107,7 +107,7 @@ class Validazioni extends Model
      *
      * @return string
      */
-    public function getDateSubmitAttribute($input)
+    public function getDateConflIntDipAttribute($input)
     {
         if($input != null && $input != '00-00-0000') {
             return Carbon::createFromFormat('Y-m-d H:i:s', $input)->setTimezone(config('unical.timezone'))->format(config('unical.datetime_format'));
