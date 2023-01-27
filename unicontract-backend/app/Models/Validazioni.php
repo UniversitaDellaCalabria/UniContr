@@ -95,7 +95,7 @@ class Validazioni extends Model
     public function setDateConflIntDipAttribute($input)
     {
         if($input != '') {
-            $this->attributes['date_ì_confl_int_dip'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_confl_int_dip'] = Carbon::createFromFormat(config('unical.datetime_format'), $input)->format('Y-m-d H:i:s');
         }else{
             $this->attributes['date_confl_int_dip'] = null;
         }
