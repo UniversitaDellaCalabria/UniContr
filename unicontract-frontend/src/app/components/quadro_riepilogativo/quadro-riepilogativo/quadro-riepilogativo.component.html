@@ -85,7 +85,8 @@
           <span *ngIf="items.flag_confl_int_dip === 1">{{ 'summary_txt5_confl_int_ok' | translate }}</span>
         </td>
         <td>{{ 'summary_confl_int_tip' | translate }}</td>
-        <td>{{ items.date_confl_int_dip }}</td>
+        <td *ngIf="items.flag_confl_int_dip === 0"></td>
+        <td *ngIf="items.flag_confl_int_dip === 1">{{ items.date_confl_int_dip }}</td>
         <td></td>
 <!--
         <td>
