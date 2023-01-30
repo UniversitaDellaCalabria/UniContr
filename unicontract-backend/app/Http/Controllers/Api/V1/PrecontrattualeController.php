@@ -1102,8 +1102,8 @@ class PrecontrattualeController extends Controller
                 $valid->date_confl_int_dip = Carbon::now()->format(config('unical.datetime_format'));
 
                 //validata_confl_int_dip
-                $transitions = $valid->workflow_transitions();
-                $valid->workflow_apply($transitions[0]->getName());
+                //$transitions = $valid->workflow_transitions();
+                //$valid->workflow_apply($transitions[0]->getName());
 
                 $valid->save();
 
@@ -1145,8 +1145,8 @@ class PrecontrattualeController extends Controller
                 $valid->date_confl_int_dip = null;
 
                 //validata_confl_int_dip
-                $transitions = $valid->workflow_transitions();
-                $valid->workflow_apply($transitions[0]->getName());
+                //$transitions = $valid->workflow_transitions();
+                //$valid->workflow_apply($transitions[0]->getName());
 
                 $valid->save();
 
