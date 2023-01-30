@@ -85,8 +85,7 @@
           <span *ngIf="items.flag_confl_int_dip === 1">{{ 'summary_txt5_confl_int_ok' | translate }}</span>
         </td>
         <td>{{ 'summary_confl_int_tip' | translate }}</td>
-        <td *ngIf="items.flag_confl_int_dip === 0"></td>
-        <td *ngIf="items.flag_confl_int_dip === 1">{{ items.date_confl_int_dip }}</td>
+        <td>{{ items.date_confl_int_dip }}</td>
         <td>
           <ng-container *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']">
             <button *ngIf="items.flag_confl_int_dip == 1  && items.flag_upd == 0" type="button" class="btn btn-sm btn-danger rounded m-1"
