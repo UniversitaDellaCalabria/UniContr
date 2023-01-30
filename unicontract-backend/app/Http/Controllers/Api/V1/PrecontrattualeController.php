@@ -1150,8 +1150,9 @@ class PrecontrattualeController extends Controller
 
                 $valid->save();
 
+                $entity = array_dot($postData['entity']);
                 $pre->storyprocess()->save(
-                    PrecontrattualeService::createStoryProcess('Annullamento upload dichiarazione assenza conflitto di interessi da parte del Dipartimento',
+                    PrecontrattualeService::createStoryProcess('Annullamento upload dichiarazione assenza conflitto di interessi da parte del Dipartimento: '.$entity['note.motivazione'],
                     $pre->insegn_id)
                 );
             }else{
