@@ -1106,6 +1106,7 @@ class PrecontrattualeController extends Controller
                 //$valid->workflow_apply($transitions[0]->getName());
 
                 $valid->save();
+                $data = Validazioni::where('insegn_id',$request->insegn_id)->first();
 
                 $pre->storyprocess()->save(
                     PrecontrattualeService::createStoryProcess('Upload dichiarazione assenza conflitto di interessi da parte del Dipartimento',
@@ -1115,7 +1116,6 @@ class PrecontrattualeController extends Controller
                 $data = null;
                 $message = "Il documento risulta già caricato o altre validazioni impediscono l'uplpoad";
                 $success = false;
-                return compact('data', 'message', 'success');
             }
         }
         return compact('data', 'message', 'success');
@@ -1149,6 +1149,7 @@ class PrecontrattualeController extends Controller
                 //$valid->workflow_apply($transitions[0]->getName());
 
                 $valid->save();
+                $data = Validazioni::where('insegn_id',$request->insegn_id)->first();
 
                 $entity = array_dot($postData['entity']);
                 $pre->storyprocess()->save(
@@ -1159,7 +1160,6 @@ class PrecontrattualeController extends Controller
                 $data = null;
                 $message = "Impossibile annullare l'upload";
                 $success = false;
-                return compact('data', 'message', 'success');
             }
         }
         return compact('data', 'message', 'success');
