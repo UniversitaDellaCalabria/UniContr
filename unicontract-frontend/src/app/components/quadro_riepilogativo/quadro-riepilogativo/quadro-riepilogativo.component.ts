@@ -870,7 +870,6 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
       if (confirmed.result) {
         const data: IPrecontrStore<any> = {
           insegn_id: this.idins,
-          this.items['flag_confl_int_dip']: 0,
           entity: {
             note: confirmed.entity
           }
@@ -882,6 +881,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             this.isLoading = false;
             if (response.success) {
               this.items = {...this.items, ...response.data};
+              this.items['flag_confl_int_dip']: 0,
               this.messageService.info('Operazione di annullamento terminata con successo');
             } else {
               this.messageService.error(response.message);
