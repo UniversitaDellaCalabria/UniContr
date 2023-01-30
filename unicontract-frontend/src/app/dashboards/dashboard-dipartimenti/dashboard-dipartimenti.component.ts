@@ -15,15 +15,16 @@ export class DashboardDipartimentiComponent implements OnInit {
   public columnsCompletare = [];
 
   public querycontrattiDaPrendereVisione: any = {};
+  public querycontrattiConflIntDip: any = {};
 
   constructor(public service: AuthService) { }
 
   ngOnInit() {
     //non annulati e da completare da parte del docente
-    this.querycontrattidacompletare.rules = [        
-      { field: "validazioni.flag_submit", operator: "=", value: 0, type: "" },               
-      { field: "stato", operator: "=", value: 0, type: "" }   
-    ];     
+    this.querycontrattidacompletare.rules = [
+      { field: "validazioni.flag_submit", operator: "=", value: 0, type: "" },
+      { field: "stato", operator: "=", value: 0, type: "" }
+    ];
     this.querycontrattidacompletare.orderBy = ['insegnamento.data_delibera','asc'];
     this.columnsCompletare = [ { name: 'Giorni dal conf.', prop: 'insegnamento.data_delibera', pipe: new MyDiffdatePipe(), minWidth: 100, sortable: false } ];
 
@@ -32,7 +33,13 @@ export class DashboardDipartimentiComponent implements OnInit {
         { field: "validazioni.flag_upd", operator: "=", value: 1, type: "" },
         { field: "validazioni.flag_amm", operator: "=", value: 1, type: "" },
         { field: "validazioni.flag_accept", operator: "=", value: 0, type: "" },
-        { field: "stato", operator: "=", value: 0, type: "" }      
+        { field: "stato", operator: "=", value: 0, type: "" }
+      ];
+
+    this.querycontrattiConflIntDip.rules =  [
+        { field: "validazioni.flag_submit", operator: "=", value: 1, type: "" },
+        { field: "validazioni.flag_confl_int_dip", operator: "=", value: 0, type: "" },
+        { field: "stato", operator: "=", value: 0, type: "" }
       ];
   }
 

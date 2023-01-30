@@ -1,14 +1,18 @@
 
-<div class="mb-2"> 
+<div class="mb-2">
   <span>{{ 'dip_afferenza' | translate : {'s': service.dips.length > 1 ? 'i' : 'o'} }}: </span>
   <span *ngFor="let dip of service.dips; let last = last;">
     {{ dip | translate }}
     <span *ngIf="!last">, </span>
-  </span> 
+  </span>
 </div>
 
 <app-collapse-wrapper [options]="{title:'Precontrattuali da completare', type:'warning'}">
   <app-contrattiresult [columns]="columnsCompletare" [querymodel]="querycontrattidacompletare"></app-contrattiresult>
+</app-collapse-wrapper>
+
+<app-collapse-wrapper [options]="{title:'Precontrattuali in attesa per cui caricare la dichiarazione di assenza di conflitto di interessi', type:'warning'}">
+  <app-contrattiresult [querymodel]="querycontrattiConflIntDip"></app-contrattiresult>
 </app-collapse-wrapper>
 
 <app-collapse-wrapper [options]="{title:'Precontrattuali in attesa della presa visione', type:'warning'}">
