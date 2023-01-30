@@ -90,7 +90,7 @@
         <td>
           <ng-container *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']">
             <button *ngIf="items.flag_confl_int_dip == 1  && items.flag_upd == 0" type="button" class="btn btn-sm btn-danger rounded m-1"
-              title="{{ 'summary_annulla' | translate }} {{ 'summary_val' | translate }}">
+              title="{{ 'summary_annulla' | translate }} {{ 'summary_val' | translate }}" (click)="annullaConflIntDip()">
                 {{ 'summary_annulla' | translate }}
             </button>
           </ng-container>

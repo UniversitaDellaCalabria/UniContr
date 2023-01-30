@@ -113,4 +113,9 @@ export class SummaryService extends CoreSevice {
           catchError(this.handleError('uploadConflittoInteressiDip', null, true)),
         );
     }
+
+    annullaConflIntDip(data) {
+        return this.http.post( AppConstants.baseApiURL + '/precontrattuale/annullaconflintdip', data)
+            .pipe(catchError(this.handleError('annullaconflintdip', null, false)));
+    }
 }

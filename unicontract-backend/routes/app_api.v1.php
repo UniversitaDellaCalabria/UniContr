@@ -116,6 +116,7 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     Route::post('precontrattuale/updateinsegnamentofromugov', 'PrecontrattualeController@updateInsegnamentoFromUgov');
     Route::get('precontrattuale/downloadcontrattofirmato/{id}', 'PrecontrattualeController@downloadContrattoFirmato');
     Route::post('precontrattuale/uploadconflintdip','PrecontrattualeController@uploadConflIntDip');
+    Route::post('precontrattuale/annullaconflintdip','PrecontrattualeController@annullaConflIntDip');
 
     // QUADRO RIEPILOGATIVO
     Route::get('summary/{id}', 'QuadroRiepilogativoController@index')->middleware(['ownermiddleware']);

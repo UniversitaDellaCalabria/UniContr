@@ -1077,20 +1077,20 @@ class PrecontrattualeController extends Controller
 
     public function uploadConflIntDip(Request $request){
 
-        if (!Auth::user()->hasPermissionTo('sending infoemail')) {
+        if (!Auth::user()->hasPermissionTo('uploadconflintdip precontrattuale')) {
             abort(403, trans('global.utente_non_autorizzato'));
         }
 
         $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $request->insegn_id)->first();
         if ($pre){
-            if ($pre->validazioni->flag_confl_int_dip == 0){
+            if ($pre->validazioni->flag_confl_int_dip == 0 && $pre->validazioni->flag_upd == 0){
                 $postData = $request->except('id', '_method');
                 if (array_key_exists('attachments',$postData)){
                     //salvare allegati ...
                     $this->repo->saveAttachments($postData['attachments'], $pre);
                 }
 
-                 //aggiornare flat
+                //aggiornare flat
                 $pre->validazioni->flag_confl_int_dip = 1;
                 $pre->validazioni->save();
                 $data = null;
@@ -1105,10 +1105,58 @@ class PrecontrattualeController extends Controller
                 $transitions = $valid->workflow_transitions();
                 $valid->workflow_apply($transitions[0]->getName());
 
-        $valid->save();
+                $valid->save();
+
+                $pre->storyprocess()->save(
+                    PrecontrattualeService::createStoryProcess('Upload dichiarazione assenza conflitto di interessi da parte del Dipartimento',
+                    $pre->insegn_id)
+                );
             }else{
                 $data = null;
-                $message = 'Il documento risulta già caricato';
+                $message = "Il documento risulta già caricato o altre validazioni impediscono l'uplpoad";
+                $success = false;
+                return compact('data', 'message', 'success');
+            }
+        }
+        return compact('data', 'message', 'success');
+    }
+
+    //annullamento amministrativo flag_upd e successivi
+    public function annullaConflIntDip(Request $request){
+
+        if (!Auth::user()->hasPermissionTo('annullaconflintdip precontrattuale')) {
+            abort(403, trans('global.utente_non_autorizzato'));
+        }
+
+        $pre = Precontrattuale::with(['validazioni'])->where('insegn_id', $request->insegn_id)->first();
+        if ($pre){
+            if ($pre->validazioni->flag_confl_int_dip == 1 && $pre->validazioni->flag_upd == 0){
+                $postData = $request->except('id', '_method');
+
+                //aggiornare flat
+                $pre->validazioni->flag_confl_int_dip = 0;
+                $pre->validazioni->save();
+                $data = null;
+                $message = 'Operazione di annullamento completata con successo';
+                $success = true;
+
+
+                $valid = Validazioni::where('insegn_id',$request->insegn_id)->first();
+                $valid->date_confl_int_dip = null;
+
+                //validata_confl_int_dip
+                $transitions = $valid->workflow_transitions();
+                $valid->workflow_apply($transitions[0]->getName());
+
+                $valid->save();
+
+                $pre->storyprocess()->save(
+                    PrecontrattualeService::createStoryProcess('Annullamento upload dichiarazione assenza conflitto di interessi da parte del Dipartimento',
+                    $pre->insegn_id)
+                );
+            }else{
+                $data = null;
+                $message = "Impossibile annullare l'upload";
                 $success = false;
                 return compact('data', 'message', 'success');
             }

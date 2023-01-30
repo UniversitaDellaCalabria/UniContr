@@ -57,7 +57,8 @@ class RolesTableSeeder extends Seeder
         Permission::create(['name' => 'rinuncia precontrattuale']);
 
         Permission::create(['name' => 'compila precontrattuale']);
-        Permission::create(['name' => 'upload conflito interessi dipartimento']);
+        Permission::create(['name' => 'uploadconflintdip precontrattuale']);
+        Permission::create(['name' => 'annullaconflintdip precontrattuale']);
 
 
         // create roles and assign created permissions
