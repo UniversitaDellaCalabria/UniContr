@@ -870,7 +870,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
       if (confirmed.result) {
         const data: IPrecontrStore<any> = {
           insegn_id: this.idins,
-          this.items['flag_confl_int_dip'] = 0;
+          this.items['flag_confl_int_dip'] = 0,
           entity: {
             note: confirmed.entity
           }
