@@ -377,7 +377,7 @@ class DatiSeeder extends Seeder
             'codice' => 'CONFL_INT_15',
             'gruppo' => 'Precontrattuale',
             'descrizione' => 'Art. 15',
-            'descrizione_compl' => 'Dichiarazione conflitto interessi',
+            'descrizione_compl' => 'Dichiarazione Art15 DLgs 33-2013',
             'parent_type' => Precontrattuale::class,
         ]);
 
@@ -385,7 +385,7 @@ class DatiSeeder extends Seeder
             'codice' => 'CONFL_INT',
             'gruppo' => 'Precontrattuale',
             'descrizione' => 'Dichiarazione coflitto interessi',
-            'descrizione_compl' => 'Dichiarazione conflitto interessi standard',
+            'descrizione_compl' => 'Dichiarazione assenza conflitto interessi',
             'parent_type' => Precontrattuale::class,
         ]);
 
@@ -393,7 +393,7 @@ class DatiSeeder extends Seeder
             'codice' => 'CONFL_INT_DIP',
             'gruppo' => 'Precontrattuale',
             'descrizione' => 'Dichiarazione coflitto interessi Dipartimento',
-            'descrizione_compl' => 'Dichiarazione conflitto interessi caricata dal Dipartimento',
+            'descrizione_compl' => 'Dichiarazione verifica conflitto interessi',
             'parent_type' => Precontrattuale::class,
         ]);
 
