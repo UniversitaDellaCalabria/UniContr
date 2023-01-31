@@ -306,7 +306,8 @@ class DatiSeeder extends Seeder
             'unitaorganizzativa_uo' => '002026',
             'descrizione_uo' => "Dipartimento di Scienze Politiche e Sociali (DiSPeS)",
             'strutturainterna_cod_uff' => '2026',
-            'descrizione_uff' => "DIPARTIMENTO DI SCIENZE POLITICHE E SOCIALI",
+            //'descrizione_uff' => "DIPARTIMENTO DI SCIENZE POLITICHE E SOCIALI",
+            'descrizione_uff' => "DIPARTIMENTO SCIENZE POLITICHE SOCIALI",
         ]);
 
         // 002023	Dipartimento di Studi Umanistici (DiSU)
