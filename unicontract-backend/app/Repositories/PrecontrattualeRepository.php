@@ -266,11 +266,6 @@ class PrecontrattualeRepository extends BaseRepository {
                 $precontr->insegn_id)
             );
 
-            //creazione allegati conflitto interessi
-            $confl_int = PrecontrattualeService::createConflittoInteressi($precontr->id, 'pdfConflittoInteressi', 'CONFL_INT');
-            $confl_int_15 = PrecontrattualeService::createConflittoInteressi($precontr->id, 'pdfConflittoInteressi15Trasparenza', 'CONFL_INT_15');
-            $this->saveAttachments([$confl_int, $confl_int_15], $precontr);
-
             $this->saveAttachments([$result], Precontrattuale::where('insegn_id', $data['insegn_id'])->first());
             EmailService::sendEmailByType($data['insegn_id'],"CMU");
 

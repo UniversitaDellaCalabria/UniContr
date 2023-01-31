@@ -169,6 +169,12 @@ class PrecontrattualeService implements ApplicationService
         //aggiorna titulus ref e attachment
         $result = $this->repo->newPresavisioneAccettazione($data, $pre);
         // email segreteria del rettore catia rossi
+
+        //creazione allegati conflitto interessi
+        $confl_int = PrecontrattualeService::createConflittoInteressi($pre->id, 'pdfConflittoInteressi', 'CONFL_INT');
+        $confl_int_15 = PrecontrattualeService::createConflittoInteressi($pre->id, 'pdfConflittoInteressi15Trasparenza', 'CONFL_INT_15');
+        $this->saveAttachments([$confl_int, $confl_int_15], $pre);
+
         EmailService::sendEmailByType($insegn_id,'APP_FIRMA');
 
         return $result;
