@@ -450,7 +450,7 @@ class ContrattiTest extends TestCase
     //./vendor/bin/phpunit  --testsuite Unit --filter testCalcoloNumeroRinnovi
     public function testCalcoloNumeroRinnovi() {
 
-        $datiUgov = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_COPER V1')->join('SIAXM_UNICAL_PROD.V_IE_DI_COPER V2', function($join) {
+        $datiUgov = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V1')->join(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V2', function($join) {
             $join->on('V2.AF_GEN_COD', '=', 'V1.AF_GEN_COD')
                  ->on('V2.cod_fis','=','V1.cod_fis')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID,-1)"), '=', DB::raw("COALESCE(V1.SEDE_ID,-1)"))
@@ -462,7 +462,7 @@ class ContrattiTest extends TestCase
         ->select('V2.data_ini_contratto as ultima_nuova_attribuzione','V1.data_ini_contratto as data_contratto_corrente')
         ->orderBy('V2.data_ini_contratto', 'DESC')->first();
 
-        $count = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_COPER V1')->join('SIAXM_UNICAL_PROD.V_IE_DI_COPER V2', function($join) {
+        $count = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V1')->join(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V2', function($join) {
             $join->on('V2.AF_GEN_COD', '=', 'V1.AF_GEN_COD')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID,-1)"), '=', DB::raw("COALESCE(V1.SEDE_ID,-1)"))
                  ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))

@@ -19,7 +19,11 @@ class PersonaleResponsOrg extends Model
 
     protected $connection = 'oracle';
 
-    public $table = 'SIAXM_UNICAL_PROD.V_IE_RU_PERS_RESPONS_ORG';
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaxm').'.V_IE_RU_PERS_RESPONS_ORG';
+    }
     public $primaryKey = 'ID_AB';
 
 

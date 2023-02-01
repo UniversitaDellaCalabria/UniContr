@@ -8,5 +8,10 @@ use App\Models\AnagraficaUgov;
 class RappParentelaUgov extends Model
 {
     protected $connection = 'oracle';
-    protected $table = 'SIARU_UNICAL_PROD.FAM_ANAGRAFICA';
+
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaru').'.FAM_ANAGRAFICA';
+    }
 }

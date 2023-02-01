@@ -9,7 +9,11 @@ class TipoTitoloStudio extends Model
 
     protected $connection = 'oracle';
 
-    public $table = 'SIARU_UNICAL_PROD.TIPI_TITOLO_STUDIO';
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaru').'.TIPI_TITOLO_STUDIO';
+    }
     public $primaryKey = 'TIPO_TITOLO';
 
 

@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class RelazioneRateUgov extends Model
 {
     protected $connection = 'oracle';
-    protected $table = 'SIADG_UNICAL_PROD.V_IE_DG11_R_RATE_COMPENSO';
+
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO';
+    }
 
     //id_dg_ref_a è il contratto
     //id_dg_ref_b è il compenso

@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class CompensoUgov extends DGUgov
 {
     protected $connection = 'oracle';
-    protected $table = 'SIADG_UNICAL_PROD.V_IE_DG15_X_COMPENSO';
+
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO';
+    }
+
 
     protected $nome_tipo_dg = 'COMPENSO';
 

@@ -82,21 +82,21 @@ class A2ModalitaPagamentoController extends Controller
         $dati = [];
         $message = '';
 
-            $dati = AnagraficaUgov::leftJoin('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA', function($join) {
-                $join->on('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.MATRICOLA', '=', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.MATRICOLA');
+            $dati = AnagraficaUgov::leftJoin(config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA', function($join) {
+                $join->on(config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA.MATRICOLA', '=', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.MATRICOLA');
             })
-            ->leftJoin('SIAXM_UNICAL_PROD.V_IE_AC_BANCHE', function($join) {
-                $join->on('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.ABI', '=', 'SIAXM_UNICAL_PROD.V_IE_AC_BANCHE.ABI');
+            ->leftJoin(config('unical.db_oracle_siaxm').'.V_IE_AC_BANCHE', function($join) {
+                $join->on(config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA.ABI', '=', config('unical.db_oracle_siaxm').'.V_IE_AC_BANCHE.ABI');
             })
-            ->leftJoin('SIAXM_UNICAL_PROD.V_IE_AC_BANCHE', function($join) {
-                $join->on('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.ABI', '=', 'SIAXM_UNICAL_PROD.V_IE_AC_BANCHE.ABI');
+            ->leftJoin(config('unical.db_oracle_siaxm').'.V_IE_AC_BANCHE', function($join) {
+                $join->on(config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA.ABI', '=', config('unical.db_oracle_siaxm').'.V_IE_AC_BANCHE.ABI');
             })
-            ->where('SIARU_UNICAL_PROD.VD_ANAGRAFICA.ID_AB', $id_ab)
-            ->orderBy('SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.DATA_IN', 'DESC')
-            ->first(['SIARU_UNICAL_PROD.VD_PAGAMENTI_CSA.*',
-                     'SIARU_UNICAL_PROD.VD_ANAGRAFICA.NOME',
-                     'SIARU_UNICAL_PROD.VD_ANAGRAFICA.COGNOME',
-                     'SIAXM_UNICAL_PROD.V_IE_AC_BANCHE.NOME as DESCR']);
+            ->where(config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.ID_AB', $id_ab)
+            ->orderBy(config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA.DATA_IN', 'DESC')
+            ->first([config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA.*',
+                     config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.NOME',
+                     config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.COGNOME',
+                     config('unical.db_oracle_siaxm').'.V_IE_AC_BANCHE.NOME as DESCR']);
             //cercare l'ultima precontrattuale inserita stato = 0 o stato = 1 docente_id
 
             //come determinare che non abbia compilato altri contratti dell'anno accademico corrente?

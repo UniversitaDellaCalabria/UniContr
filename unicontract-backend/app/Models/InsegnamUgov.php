@@ -8,7 +8,13 @@ use App\Models\InsegnamSegmentiUgov;
 class InsegnamUgov extends Model
 {
     protected $connection = 'oracle';
-    protected $table = 'SIAXM_UNICAL_PROD.V_IE_DI_COPER';
+
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaxm').'.V_IE_DI_COPER';
+    }
+
 
     protected $casts = [
         'data_ini_contratto' => 'date:d-m-Y',

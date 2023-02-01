@@ -8,15 +8,18 @@ class Organico extends Model
 {
     protected $connection = 'oracle';
 
-    public $table = 'SIAXM_UNICAL_PROD.V_IE_RU_ORGANICO_COP';
-
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaxm').'.V_IE_RU_ORGANICO_COP';
+    }
 
     public static function boot()
     {
         parent::boot();
         static::addGlobalScope('Fetch', function ($builder) {
-            $builder->select(['SIAXM_UNICAL_PROD.V_IE_RU_ORGANICO_COP.matricola','SIAXM_UNICAL_PROD.V_IE_RU_ORGANICO_COP.nome','SIAXM_UNICAL_PROD.V_IE_RU_ORGANICO_COP.cognome', 'SIAXM_UNICAL_PROD.V_IE_RU_ORGANICO_COP.nome_esteso', 'SIAXM_UNICAL_PROD.V_IE_RU_ORGANICO_COP.cd_posizorg',
-            'SIAXM_UNICAL_PROD.V_IE_RU_ORGANICO_COP.ds_tipo_posizorg','SIAXM_UNICAL_PROD.V_IE_RU_ORGANICO_COP.id_ab_uo']);
+            $builder->select([config('unical.db_oracle_siaxm').'.V_IE_RU_ORGANICO_COP.matricola',config('unical.db_oracle_siaxm').'.V_IE_RU_ORGANICO_COP.nome',config('unical.db_oracle_siaxm').'.V_IE_RU_ORGANICO_COP.cognome', config('unical.db_oracle_siaxm').'.V_IE_RU_ORGANICO_COP.nome_esteso', config('unical.db_oracle_siaxm').'.V_IE_RU_ORGANICO_COP.cd_posizorg',
+            config('unical.db_oracle_siaxm').'.V_IE_RU_ORGANICO_COP.ds_tipo_posizorg',config('unical.db_oracle_siaxm').'.V_IE_RU_ORGANICO_COP.id_ab_uo']);
         });
     }
 

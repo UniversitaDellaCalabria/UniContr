@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class RataUgov extends Model
 {
     protected $connection = 'oracle';
-    protected $table = 'SIADG_UNICAL_PROD.V_IE_DG11_X_RATE';
 
-
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siadg').'.V_IE_DG11_X_RATE';
+    }
 
 }

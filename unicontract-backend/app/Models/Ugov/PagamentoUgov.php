@@ -8,7 +8,12 @@ use App\Models\Ugov\RelazioniDgUgov;
 class PagamentoUgov extends DGUgov
 {
     protected $connection = 'oracle';
-    protected $table = 'SIADG_UNICAL_PROD.V_IE_DG19_X_ORDINATIVO';
+
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siadg').'.V_IE_DG19_X_ORDINATIVO';
+    }
 
     protected $nome_tipo_dg = 'ORDINATIVO_PAGAMENTO_INCASSO';
 

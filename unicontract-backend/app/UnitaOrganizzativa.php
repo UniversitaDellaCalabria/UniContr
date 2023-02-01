@@ -14,7 +14,11 @@ class UnitaOrganizzativa extends Model
 {
     protected $connection = 'oracle';
 
-    public $table = 'SIARU_UNICAL_PROD.VISTA_ORG_ATTIVA';
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaru').'.VISTA_ORG_ATTIVA';
+    }
     public $primaryKey = 'ID_AB';
 
     protected $dates = [

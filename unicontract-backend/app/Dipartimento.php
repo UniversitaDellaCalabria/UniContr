@@ -18,7 +18,12 @@ class Dipartimento extends Model
      */
     protected $connection = 'oracle';
 
-    public $table = 'SIAXM_UNICAL_PROD.V_IE_AC_DIPARTIMENTI';
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaxm').'.V_IE_AC_DIPARTIMENTI';
+    }
+
     public $primaryKey = 'CD_DIP';
 
     /**

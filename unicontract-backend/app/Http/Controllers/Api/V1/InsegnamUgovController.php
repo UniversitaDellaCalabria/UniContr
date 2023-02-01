@@ -39,11 +39,11 @@ class InsegnamUgovController extends Controller
         $datiUgov = [];
         $message = '';
 
-        $datiUgov = InsegnamUgov::join('SIARU_UNICAL_PROD.VD_ANAGRAFICA', 'SIAXM_UNICAL_PROD.V_IE_DI_COPER.MATRICOLA', '=', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.MATRICOLA')
-            ->where('SIAXM_UNICAL_PROD.V_IE_DI_COPER.COPER_ID', $coper_id)
-            ->first(['SIARU_UNICAL_PROD.VD_ANAGRAFICA.ID_AB', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.EMAIL', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.E_MAIL', 'SIARU_UNICAL_PROD.VD_ANAGRAFICA.E_MAIL_PRIVATA', 'SIAXM_UNICAL_PROD.V_IE_DI_COPER.*']);
+        $datiUgov = InsegnamUgov::join(config('unical.db_oracle_siaru').'VD_ANAGRAFICA', config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.MATRICOLA', '=', config('unical.db_oracle_siaru').'VD_ANAGRAFICA.MATRICOLA')
+            ->where(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.COPER_ID', $coper_id)
+            ->first([config('unical.db_oracle_siaru').'VD_ANAGRAFICA.ID_AB', config('unical.db_oracle_siaru').'VD_ANAGRAFICA.EMAIL', config('unical.db_oracle_siaru').'VD_ANAGRAFICA.E_MAIL', config('unical.db_oracle_siaru').'VD_ANAGRAFICA.E_MAIL_PRIVATA', config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.*']);
 
-        $ore_desc = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_ORE_COPER_DET V1')
+        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ORE_COPER_DET V1')
                     ->where('coper_id','=',$coper_id)
                     ->select('tipo_att_did_cod','ore','compenso_calc')
                     ->get();
@@ -111,7 +111,7 @@ class InsegnamUgovController extends Controller
         }
 
         if ($datiUgov){
-            $result = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_COPER V1')->join('SIAXM_UNICAL_PROD.V_IE_DI_COPER V2', function($join) use($coper_id){
+            $result = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V1')->join(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V2', function($join) use($coper_id){
                 $join->on('V2.AF_GEN_COD', '=', 'V1.AF_GEN_COD')
                      ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                      ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
@@ -128,7 +128,7 @@ class InsegnamUgovController extends Controller
                 //NON c'è il BAN_INC o APPR_INC conto tutti i contratti CONF_INC PRESENTI escludendo il presente
                 //è un caso di errore quindi ritorno 0
                 //è impostato un rinnovo ma non vengono trovati i dati per il rinnovo
-                $count = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_COPER V1')->join('SIAXM_UNICAL_PROD.V_IE_DI_COPER V2', function($join) use($coper_id){
+                $count = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V1')->join(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V2', function($join) use($coper_id){
                     $join->on('V2.AF_GEN_COD', '=', 'V1.AF_GEN_COD')
                         ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                         ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
@@ -144,7 +144,7 @@ class InsegnamUgovController extends Controller
 
     public static function queryFirstMotivoAttoCod($coper_id,$motivo_atto_cod_array)
     {
-        $datiUgov = DB::connection('oracle')->table('SIAXM_UNICAL_PROD.V_IE_DI_COPER V1')->join('SIAXM_UNICAL_PROD.V_IE_DI_COPER V2', function($join) use($coper_id) {
+        $datiUgov = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V1')->join(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V2', function($join) use($coper_id) {
             $join->on('V2.AF_GEN_COD', '=', 'V1.AF_GEN_COD')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                  ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))

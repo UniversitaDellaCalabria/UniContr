@@ -8,5 +8,10 @@ class TitoloStudioUgov extends Model
 {
     protected $connection = 'oracle';
     //protected $table = 'ANA_TIT_STUDIO';
-    protected $table = 'SIARU_UNICAL_PROD.V_IE_RU_PERS_TITSTU';
+
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaru').'.V_IE_RU_PERS_TITSTU';
+    }
 }

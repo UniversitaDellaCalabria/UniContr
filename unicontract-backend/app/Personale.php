@@ -15,7 +15,11 @@ class Personale extends Model
 
     protected $connection = 'oracle';
 
-    public $table = 'SIAXM_UNICAL_PROD.V_IE_RU_PERSONALE';
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaxm').'.V_IE_RU_PERSONALE';
+    }
     public $primaryKey = 'ID_AB';
 
     public $selectcolumns = array('nome','cognome', 'matricola', 'aff_org', 'email','cd_ruolo'. 'id_ab','cod_fis');
@@ -33,7 +37,7 @@ class Personale extends Model
     {
         parent::boot();
         static::addGlobalScope('Fetch', function ($builder) {
-            $builder->select(['nome','cognome', 'matricola', 'aff_org', 'email','cd_ruolo', 'SIAXM_UNICAL_PROD.V_IE_RU_PERSONALE.id_ab as id_ab','cod_fis']);
+            $builder->select(['nome','cognome', 'matricola', 'aff_org', 'email','cd_ruolo', config('unical.db_oracle_siaxm').'.V_IE_RU_PERSONALE.id_ab as id_ab','cod_fis']);
         });
     }
 

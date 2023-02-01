@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Banche extends Model
 {
     protected $connection = 'oracle';
-    protected $table = 'SIAXM_UNICAL_PROD.V_IE_AC_BANCHE';
+
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaxm').'.V_IE_AC_BANCHE';
+    }
 }
