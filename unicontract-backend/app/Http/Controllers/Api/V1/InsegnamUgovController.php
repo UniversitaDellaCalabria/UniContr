@@ -39,9 +39,9 @@ class InsegnamUgovController extends Controller
         $datiUgov = [];
         $message = '';
 
-        $datiUgov = InsegnamUgov::join(config('unical.db_oracle_siaru').'VD_ANAGRAFICA', config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.MATRICOLA', '=', config('unical.db_oracle_siaru').'VD_ANAGRAFICA.MATRICOLA')
+        $datiUgov = InsegnamUgov::join(config('unical.db_oracle_siaru').'.VD_ANAGRAFICA', config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.MATRICOLA', '=', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.MATRICOLA')
             ->where(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.COPER_ID', $coper_id)
-            ->first([config('unical.db_oracle_siaru').'VD_ANAGRAFICA.ID_AB', config('unical.db_oracle_siaru').'VD_ANAGRAFICA.EMAIL', config('unical.db_oracle_siaru').'VD_ANAGRAFICA.E_MAIL', config('unical.db_oracle_siaru').'VD_ANAGRAFICA.E_MAIL_PRIVATA', config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.*']);
+            ->first([config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.ID_AB', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.EMAIL', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL_PRIVATA', config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.*']);
 
         $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ORE_COPER_DET V1')
                     ->where('coper_id','=',$coper_id)
