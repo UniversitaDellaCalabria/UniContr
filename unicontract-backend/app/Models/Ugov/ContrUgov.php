@@ -54,31 +54,31 @@ class ContrUgov extends DGUgov
         )
         ->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_annullamento')
         ->select([
-            config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.id_x_compenso',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.id_dg',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_ini_val',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_fin_val',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_validazione',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.id_ind_sede',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_prot',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_annullamento',
-            config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_adempimenti',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.ti_campo_attivita',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_ins',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_versamenti',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.dt_mod',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.cd_tipo_tass',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.cd_prev_cassa',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.nr_prot',
-            config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.pgverrec',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.cd_attiv_inps',
-            config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.cd_assic_prev',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.cd_tipo_compenso',config('unical.db_oracle_siadg').'V_IE_DG15_X_COMPENSO.cd_adempimento'])
+            config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.id_x_compenso',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.id_dg',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_ini_val',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_fin_val',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_validazione',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.id_ind_sede',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_prot',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_annullamento',
+            config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_adempimenti',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.ti_campo_attivita',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_ins',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_versamenti',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.dt_mod',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.cd_tipo_tass',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.cd_prev_cassa',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.nr_prot',
+            config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.pgverrec',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.cd_attiv_inps',
+            config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.cd_assic_prev',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.cd_tipo_compenso',config('unical.db_oracle_siadg').'.V_IE_DG15_X_COMPENSO.cd_adempimento'])
         ->distinct();
     }
 
     public function relazionirate()
     {
-        return $this->hasMany(RelazioneRateUgov::class, 'id_dg_ref_a', 'id_dg')->whereNull(config('unical.db_oracle_siadg').'V_IE_DG11_R_RATE_COMPENSO.dt_annullamento');
+        return $this->hasMany(RelazioneRateUgov::class, 'id_dg_ref_a', 'id_dg')->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.dt_annullamento');
     }
 
     public function relazioniratecompenso()
     {
         return $this->hasMany(RelazioneRateUgov::class, 'id_dg_ref_a', 'id_dg')
-            ->whereNull(config('unical.db_oracle_siadg').'V_IE_DG11_R_RATE_COMPENSO.dt_annullamento')
-            ->whereNotNull(config('unical.db_oracle_siadg').'V_IE_DG11_R_RATE_COMPENSO.id_dg_ref_b');
+            ->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.dt_annullamento')
+            ->whereNotNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.id_dg_ref_b');
     }
 
 
     public function relazioniratecompensoordinativo()
     {
         return $this->hasMany(RelazioneRateUgov::class, 'id_dg_ref_a', 'id_dg')
-            ->whereNull(config('unical.db_oracle_siadg').'V_IE_DG11_R_RATE_COMPENSO.dt_annullamento')
-            ->whereNotNull(config('unical.db_oracle_siadg').'V_IE_DG11_R_RATE_COMPENSO.id_dg_ref_b')
+            ->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.dt_annullamento')
+            ->whereNotNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.id_dg_ref_b')
             ->has('compenso.ordinativi');
 
     }
@@ -92,7 +92,7 @@ class ContrUgov extends DGUgov
             'id_x_rate',
             'id_dg',
             'id_X_rate'
-        )->whereNull(config('unical.db_oracle_siadg').'V_IE_DG11_R_RATE_COMPENSO.dt_annullamento');
+        )->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.dt_annullamento');
     }
 
 
