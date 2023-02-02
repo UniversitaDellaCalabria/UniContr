@@ -81,6 +81,6 @@ return [
     'ins_iban_ugov' => env('INS_IBAN_UGOV',false),
 
     'db_oracle_siaru' => env('DB_ORACLE_SIARU',''),
-    'db_oracle_siaxn' => env('DB_ORACLE_SIAXM',''),
+    'db_oracle_siaxm' => env('DB_ORACLE_SIAXM',''),
     'db_oracle_siadg' => env('DB_ORACLE_SIADG',''),
 ];
