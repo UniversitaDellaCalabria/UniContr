@@ -127,7 +127,7 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
             'Sesso',
             'Data nascita',
             'Luogo nascita',
-           # 'Cittadinanza',
+            'Cittadinanza',
             'Stato pensionamento',
             'Dipendente di P.A.',
             'Insegnamento',
