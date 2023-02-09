@@ -1,6 +1,7 @@
 @component('mail::message')
-All'Ufficio Amministrazione e Reclutamento Personale Docente<br>
-All'Ufficio Trattamenti Economici e Previdenziali<br>
+All'attenzione di:<br>
+DRU – Area Professori e Ricercatori<br>
+DRU - Ufficio Trattamenti Economici e Previdenziali<br>
 <br>
 Si informa che {{ $pre->user->nameTutorString() }} ha compilato la modulistica precontrattuale relativa al<br>
 contratto di insegnamento di {{ $pre->insegnamento->insegnamentoDescr }}<br>
