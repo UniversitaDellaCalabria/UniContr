@@ -48,39 +48,38 @@ class InsegnamUgovController extends Controller
                 ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
                 ->get();
 
-        if(count($atti)>1){
-            $tipo_atto_des_string = "";
-            $tipo_emitt_des_string = "";
-            $motivo_atto_cod_string = "";
-            $numero_string = "";
-            $data_string = "";
+        $tipo_atto_des_string = "";
+        $tipo_emitt_des_string = "";
+        $motivo_atto_cod_string = "";
+        $numero_string = "";
+        $data_string = "";
 
-            $counter = 0;
+        $counter = 0;
 
-            foreach ($atti as $atto) {
+        foreach ($atti as $atto) {
 
-                $tipo_atto_des_string .= $atto->tipo_atto_des;
-                $tipo_emitt_des_string .= $atto->tipo_emitt_des;
-                $motivo_atto_cod_string .= $atto->motivo_atto_cod;
-                $numero_string .= $atto->numero;
-                $data_string .= $atto->data;
+            $tipo_atto_des_string .= $atto->tipo_atto_des;
+            $tipo_emitt_des_string .= $atto->tipo_emitt_des;
+            $motivo_atto_cod_string .= $atto->motivo_atto_cod;
+            $numero_string .= $atto->numero;
+            $data_string .= $atto->data;
 
-                if ( $counter < count( $atti ) - 1){
-                    $tipo_atto_des_string .= "#";
-                    $tipo_emitt_des_string .= "#";
-                    $motivo_atto_cod_string .= "#";
-                    $numero_string .= "#";
-                    $data_string .= "#";
-                }
-
-                $counter = $counter + 1;
+            if ( $counter < count( $atti ) - 1){
+                $tipo_atto_des_string .= "#";
+                $tipo_emitt_des_string .= "#";
+                $motivo_atto_cod_string .= "#";
+                $numero_string .= "#";
+                $data_string .= "#";
             }
-            $datiUgov['tipo_atto_des'] = $tipo_atto_des_string;
-            $datiUgov['tipo_emitt_des'] = $tipo_emitt_des_string;
-            $datiUgov['motivo_atto_cod'] = $motivo_atto_cod_string;
-            $datiUgov['numero'] = $numero_string;
-            $datiUgov['data'] = $data_string;
+
+            $counter = $counter + 1;
         }
+        $datiUgov['tipo_atto_des'] = $tipo_atto_des_string;
+        $datiUgov['tipo_emitt_des'] = $tipo_emitt_des_string;
+        $datiUgov['motivo_atto_cod'] = $motivo_atto_cod_string;
+        $datiUgov['numero'] = $numero_string;
+        $datiUgov['data'] = $data_string;
+
 
         $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ORE_COPER_DET V1')
                     ->where('coper_id','=',$coper_id)
