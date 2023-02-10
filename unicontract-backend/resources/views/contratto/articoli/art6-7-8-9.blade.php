@@ -35,7 +35,22 @@
 @elseif($pre->naturaRapporto == "PRPR")
 {{-- // / TC006 - TC007 PRESTAZIONE PROFESSIONALE (PARTITA IVA) --}}
 	<p class="normal">
-	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str1']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfettario lordo ammontante a € {{$pre->compenso}}, al netto di IVA e Cassa Previdenza, per come stabilito dal {{$pre->emittente}} nella seduta del {{$pre->dataDelibera}}. Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico, previa validazione del registro elettronico da parte del Direttore del Dipartimento. In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte. =========
+	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str1']}} {{$pre->genere['str5']}}
+    un corrispettivo onnicomprensivo forfettario lordo ammontante a € {{$pre->compenso}},
+    al netto di IVA e Cassa Previdenza, per come stabilito
+
+    @foreach(explode('#', $pre->dataDelibera) as $data)
+        @if(!$loop->first && !$loop->last)
+            e
+        @endif
+        dal {{ $pre->emittente[$loop->index] }} nella seduta del {{$data}}
+    @endforeach
+    .
+
+    Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico,
+    previa validazione del registro elettronico da parte del Direttore del Dipartimento.
+    In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte.
+    =========
 	</p>
 @else
 {{-- // PLAO - PRESTAZIONE DI LAVORO AUTONOMO OCCASIONALE OPPURE ALD - ASSIMILATO A LAVORO DIPENDENTE --}}

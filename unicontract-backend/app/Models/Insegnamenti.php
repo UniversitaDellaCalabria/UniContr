@@ -208,30 +208,42 @@ class Insegnamenti extends Model {
         //Senato Accademico
         //Consiglio di Dipartimento
 
-        if($this->emittente == "Consiglio di Dipartimento") {
-            $tipo_emitt = "Consiglio";
-        } else if ($this->emittente == "Direttore di dipartimento") {
-            $tipo_emitt = "Direttore";
-        }else{
-            $tipo_emitt = $this->emittente;
+        $result = '';
+        $index = 0;
+        $emittenti = $this->emittente.split("#");
+        $tipi = $this->tipo_atto.split("#");
+        $numeri = $this->num_delibera.split("#");
+        $date = $this->data_delibera.split("#");
+
+        foreach($emittenti as $emittente){
+            if($index>0) $result .= " e "
+
+            if($emittente == "Consiglio di Dipartimento") {
+                $tipo_emitt = "Consiglio";
+            } else if ($emittente == "Direttore di dipartimento") {
+                $tipo_emitt = "Direttore";
+            }else{
+                $tipo_emitt = $emittente;
+            }
+
+            //Decreto Direttore
+            //Disposizione Direttore
+            //Delibera
+
+            if ($tipi[index] == "Delibera") {
+                $tipo_atto = "delibera";
+            } else if ($tipi[index] == "Decreto Direttore") {
+                $tipo_atto = "decreto";
+            } else if ($tipi[index] == "Disposizione Direttore") {
+                $tipo_atto = "disposizione";
+            }else{
+                $tipo_atto = $tipi[index];
+            }
+
+            //return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dipartimento;
+            $result .= $tipo_atto." n. ".$numeri[index]." del ". $this->dataDelibera($date[index])." dal ".$tipo_emitt." del ".$this->dip_doc_des;
+            $index ++;
         }
-
-        //Decreto Direttore
-        //Disposizione Direttore
-        //Delibera
-
-        if ($this->tipo_atto == "Delibera") {
-            $tipo_atto = "delibera";
-        } else if ($this->tipo_atto == "Decreto Direttore") {
-            $tipo_atto = "decreto";
-        } else if ($this->tipo_atto == "Disposizione Direttore") {
-            $tipo_atto = "disposizione";
-        }else{
-            $tipo_atto = $this->tipo_atto;
-        }
-
-        //return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dipartimento;
-        return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dip_doc_des;
     }
 
     public function contatore(){
@@ -334,9 +346,9 @@ class Insegnamenti extends Model {
         }
     }
 
-    public function dataDelibera()
+    public function dataDelibera($input)
     {
-        $input = $this->attributes['data_delibera'];
+        //$input = $data || $this->attributes['data_delibera'];
         if($input != null && $input != '00-00-0000') {
             return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format_contratto'));
         }else{
@@ -372,19 +384,19 @@ class Insegnamenti extends Model {
         return "Annuale";
     }
 
-    public function emittenteToString() {
-        if($this->emittente == "Consiglio di Dipartimento") {
-            return "Consiglio";
-        } else if ($this->emittente == "Direttore di dipartimento") {
-            return "Direttore";
-        } else {
-            return $this->emittente;
-        }
-    }
+    //public function emittenteToString() {
+        //if($this->emittente == "Consiglio di Dipartimento") {
+            //return "Consiglio";
+        //} else if ($this->emittente == "Direttore di dipartimento") {
+            //return "Direttore";
+        //} else {
+            //return $this->emittente;
+        //}
+    //}
 
-    public function tipoAttoToString(){
-        return $this->tipo_atto." n. ".$this->num_delibera." del ".$this->dataDelibera();
-    }
+    //public function tipoAttoToString(){
+        //return $this->tipo_atto." n. ".$this->num_delibera." del ".$this->dataDelibera();
+    //}
 
     public function getInsegnamentoDescrAttribute()
     {

@@ -123,14 +123,14 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
         return number_format($this->insegnamento->compenso, 2, ',', '.');
     }
 
-    public function getTipoEmittAttribute()
-    {
-        return $this->insegnamento->emittenteToString();
-    }
-    public function getTipoAttoAttribute()
-    {
-        return $this->insegnamento->tipoAttoToString();
-    }
+    //public function getTipoEmittAttribute()
+    //{
+        //return $this->insegnamento->emittenteToString();
+    //}
+    //public function getTipoAttoAttribute()
+    //{
+        //return $this->insegnamento->tipoAttoToString();
+    //}
 
     public function getEsercizioFinanziarioAttribute()
     {
