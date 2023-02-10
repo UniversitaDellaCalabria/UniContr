@@ -31,6 +31,13 @@ import { IPrecontrStore } from 'src/app/interface/precontrattuale';
 export class InsegnDetailComponent extends BaseComponent {
 
   item: Insegnamento;
+
+  tipo_atto_des_list: string[];
+  tipo_emitt_des_list: string[];
+  motivo_atto_cod_list: string[];
+  numero_list: string[];
+  data_list: string[];
+
   itemUgov: InsegnUgov;
   itemUpdP1: Updp1;
 
@@ -49,11 +56,16 @@ export class InsegnDetailComponent extends BaseComponent {
       (params) => {
         this.isLoading = true;
         this.insegnamentoService.getInsegnamento(+params.get('id')).subscribe(
-          response => { 
+          response => {
             if (!response['success']){
               this.messageService.error(response['message'],true);
             }
-            this.item = response['datiInsegnamento'] 
+            this.item = response['datiInsegnamento'];
+            this.tipo_atto_des_list = response['datiInsegnamento']['tipo_atto'].split('#');
+            this.tipo_emitt_des_list = response['datiInsegnamento']['emittente'].split('#');
+            this.motivo_atto_cod_list = response['datiInsegnamento']['motivo_atto'].split('#');
+            this.numero_list = response['datiInsegnamento']['num_delibera'].split('#');
+            this.data_list = response['datiInsegnamento']['data_delibera'].split('#');
           },
           (error) => {  this.isLoading = false; },
           () => this.isLoading = false
@@ -101,22 +113,22 @@ export class InsegnDetailComponent extends BaseComponent {
     .then((confirmed) => {
       if (confirmed) {
         this.route.paramMap.subscribe(
-          (params) => {        
-            
+          (params) => {
+
             const preStore: IPrecontrStore<any> = {
               insegn_id: insegn_id,
               entity: null,
             };
-            
-            this.updateInsegnamentoFromUgov(preStore);            
-          },        
+
+            this.updateInsegnamentoFromUgov(preStore);
+          },
         );
       }
     });
   }
 
   updateInsegnamentoFromUgov(preStore: IPrecontrStore<any>) {
-    this.isLoading = true;    
+    this.isLoading = true;
     this.insegnamentoService.updateInsegnamentoFromUgov(preStore).subscribe(
       response => {
         this.isLoading=false;
@@ -126,7 +138,7 @@ export class InsegnDetailComponent extends BaseComponent {
           this.messageService.info('Parte 1: Dati relativi all\'insegnamento aggiornati con successo');
         } else {
           this.messageService.error(response['message']);
-        }        
+        }
       },
       (error) => this.isLoading = false,
         () => this.isLoading = false

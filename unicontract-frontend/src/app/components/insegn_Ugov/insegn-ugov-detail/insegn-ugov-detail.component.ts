@@ -51,6 +51,14 @@ export class InsegnUgovDetailComponent extends BaseComponent {
   }
 
   item: InsegnUgov;
+
+  tipo_atto_des_list: string[];
+  tipo_emitt_des_list: string[];
+  motivo_atto_cod_list: string[];
+  numero_list: string[];
+  data_list: string[];
+
+
   private precontr: Precontrattuale;
   private docente: Docente;
   private ruoloDocente: RuoloDocente;
@@ -76,7 +84,14 @@ export class InsegnUgovDetailComponent extends BaseComponent {
       (params) => {
         this.isLoading = true;
         this.insegnUgovService.getInsegnamentoUgov(+params.get('coper_id'), params.get('aa_off_id')).subscribe(
-          response => this.item = response['datiUgov'],
+          response => {
+              this.item = response['datiUgov'];
+              this.tipo_atto_des_list = response['datiUgov']['tipo_atto_des'].split('#');
+              this.tipo_emitt_des_list = response['datiUgov']['tipo_emitt_des'].split('#');
+              this.motivo_atto_cod_list = response['datiUgov']['motivo_atto_cod'].split('#');
+              this.numero_list = response['datiUgov']['numero'].split('#');
+              this.data_list = response['datiUgov']['data'].split('#');
+            },
           (error) => this.handleError(error),
           () => this.complete()
         );
