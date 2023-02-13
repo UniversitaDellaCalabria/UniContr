@@ -145,8 +145,8 @@ use Request;
     <p class="normal">
         Sottoscritto da {{ $pre->user->nameTutorString() }}
         su https://unicontr.unical.it
-        il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y H:i') : $pre->validazioni->dateSubmitToPrint() }}
-        alle {{ $pre->validazioni->hourSubmitToPrint() }}
+        il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y') : $pre->validazioni->dateSubmitToPrint() }}
+        alle {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('H:i') : $pre->validazioni->hourSubmitToPrint() }}
         da IP {{ Request::ip() }}
     </p>
 

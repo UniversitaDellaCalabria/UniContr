@@ -1,9 +1,3 @@
-<?php
-
-use Request;
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,16 +122,13 @@ use Request;
 		<div class="logo" > </div>
 		@include( 'contratto.piao', $pre)
 
-        <br>
-        <br>
         <p class="normal">
             Sottoscritto da {{ $pre->user->nameTutorString() }}
             su https://unicontr.unical.it
-            il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y H:i') : $pre->validazioni->dateSubmitToPrint() }}
+            il {{ $pre->validazioni->dateSubmitToPrint() }}
             alle {{ $pre->validazioni->hourSubmitToPrint() }}
             da IP {{ Request::ip() }}
         </p>
 	</div>
-
 </body>
 </html>
