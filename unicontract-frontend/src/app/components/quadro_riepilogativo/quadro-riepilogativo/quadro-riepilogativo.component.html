@@ -392,16 +392,16 @@
 
   <!--Finestra di input gestione annullamento-->
   <app-riquadro-wrapper *ngIf="gestioneannulamento && !isAnnullato()">
-    <h5 *ngIf="models.tipo_annullamento == 'REVOC'">{{ 'summary_gestione_annulamento_revoca' | translate }}</h5>
-    <h5 *ngIf="models.tipo_annullamento == 'RINU'">{{ 'summary_gestione_annulamento_rinuncia' | translate }}</h5>
-    <h5 *ngIf="models.tipo_annullamento == 'CES_ANT'">{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}</h5>
+    <h5 *ngIf="model.tipo_annullamento == 'REVOC'">{{ 'summary_gestione_annulamento_revoca' | translate }}</h5>
+    <h5 *ngIf="model.tipo_annullamento == 'RINU'">{{ 'summary_gestione_annulamento_rinuncia' | translate }}</h5>
+    <h5 *ngIf="model.tipo_annullamento == 'CES_ANT'">{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}</h5>
     <form [formGroup]="form" *ngIf="items">
       <formly-form [model]="model" [fields]="fields" [form]="form" [options]="options"></formly-form>
     </form>
     <div class="form-footer text-right">
-      <button *ngIf="models.tipo_annullamento == 'REVOC'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_revoca' | translate }}">{{ 'summary_gestione_annulamento_revoca' | translate }}</button>
-      <button *ngIf="models.tipo_annullamento == 'RINU'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_rinuncia' | translate }}">{{ 'summary_gestione_annulamento_rinuncia' | translate }}</button>
-      <button *ngIf="models.tipo_annullamento == 'CES_ANT'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}">{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}</button>
+      <button *ngIf="model.tipo_annullamento == 'REVOC'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_revoca' | translate }}">{{ 'summary_gestione_annulamento_revoca' | translate }}</button>
+      <button *ngIf="model.tipo_annullamento == 'RINU'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_rinuncia' | translate }}">{{ 'summary_gestione_annulamento_rinuncia' | translate }}</button>
+      <button *ngIf="model.tipo_annullamento == 'CES_ANT'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}">{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}</button>
     </div>
   </app-riquadro-wrapper>
 
