@@ -124,19 +124,19 @@ use Request;
 		comunicare tempestivamente eventuali variazioni del contenuto della presente dichiarazione.
 	</p>
 
-	<br>
-
 <!--
 	<p class="normal">
 	Rende, {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y') : $pre->validazioni->dateSubmitToPrint()}} <br>
 	In fede, f.to {{ $pre->user->nameTutorString() }}
 	</p>
 -->
-
+    <br>
+	<br>
     <p class="normal">
         Sottoscritto da {{ $pre->user->nameTutorString() }}
         su https://unicontr.unical.it
-        il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y H:i') : $pre->validazioni->dateSubmitToPrint(true)}}
+        il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y H:i') : $pre->validazioni->dateSubmitToPrint() }}
+        alle {{ $pre->validazioni->hourSubmitToPrint() }}
         da IP {{ Request::ip() }}
     </p>
 

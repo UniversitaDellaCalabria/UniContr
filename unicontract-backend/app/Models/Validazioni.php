@@ -242,10 +242,11 @@ class Validazioni extends Model
     }
 
 
-    public function dateSubmitToPrint($hour=false){
-       $date = Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['date_submit'])->setTimezone(config('unical.timezone'));
-       if($hour)
-          return $date->format('d/m/Y H:i');
-        return $date->format('d/m/Y');
+    public function dateSubmitToPrint(){
+       return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['date_submit'])->setTimezone(config('unical.timezone'))->format('d/m/Y');
+    }
+
+    public function hourSubmitToPrint(){
+       return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['date_submit'])->setTimezone(config('unical.timezone'))->format('H:i');
     }
 }
