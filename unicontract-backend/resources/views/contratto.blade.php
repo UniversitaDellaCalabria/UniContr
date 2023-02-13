@@ -1,3 +1,9 @@
+<?php
+
+use Request;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,6 +127,14 @@
 	<div class="page ">
 		<div class="logo" > </div>
 		@include( 'contratto.piao', $pre)
+
+        <p class="normal">
+            Sottoscritto da {{ $pre->user->nameTutorString() }}
+            su https://unicontr.unical.it
+            il {{ $pre->validazioni->dateSubmitToPrint() }}
+            da IP {{ Request::ip() }}
+        </p>
 	</div>
+
 </body>
 </html>

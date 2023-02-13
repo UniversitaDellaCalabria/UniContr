@@ -1,3 +1,9 @@
+<?php
+
+use Request;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,6 +139,13 @@
 	contenuti anche in atti e documenti amministrativi, effettuato per finalità di pubblicità e trasparenza sul web da soggetti pubblici e da
 	altri enti obbligati (Registro dei provvedimenti n. 243 del 15 maggio 2014).
 	</div>
+
+    <p class="normal">
+        Sottoscritto da {{ $pre->user->nameTutorString() }}
+        su https://unicontr.unical.it
+        il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y H:i') : $pre->validazioni->dateSubmitToPrint()}}
+        da IP {{ Request::ip() }}
+    </p>
 
 </body>
 </html>

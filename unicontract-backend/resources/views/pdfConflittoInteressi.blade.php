@@ -1,3 +1,9 @@
+<?php
+
+use Request;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,8 +107,17 @@
     di incompatibilità sin dal momento del conferimento dell'incarico.</p>
     <br>
 	<br>
+    <!--
     <p>F.to<br>
     <b>{{ $pre->user->nameTutorString() }}</b></p>
+    -->
+
+    <p class="normal">
+        Sottoscritto da {{ $pre->user->nameTutorString() }}
+        su https://unicontr.unical.it
+        il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y H:i') : $pre->validazioni->dateSubmitToPrint()}}
+        da IP {{ Request::ip() }}
+    </p>
 
 </body>
 </html>

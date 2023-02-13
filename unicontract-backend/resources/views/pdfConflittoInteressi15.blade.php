@@ -1,3 +1,9 @@
+<?php
+
+use Request;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,10 +126,19 @@
 
 	<br>
 
+<!--
 	<p class="normal">
 	Rende, {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y') : $pre->validazioni->dateSubmitToPrint()}} <br>
 	In fede, f.to {{ $pre->user->nameTutorString() }}
 	</p>
+-->
+
+    <p class="normal">
+        Sottoscritto da {{ $pre->user->nameTutorString() }}
+        su https://unicontr.unical.it
+        il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y H:i') : $pre->validazioni->dateSubmitToPrint()}}
+        da IP {{ Request::ip() }}
+    </p>
 
 </body>
 </html>
