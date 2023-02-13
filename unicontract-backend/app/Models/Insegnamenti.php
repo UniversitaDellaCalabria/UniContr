@@ -216,7 +216,7 @@ class Insegnamenti extends Model {
         $date = $this->data_delibera.split("#");
 
         foreach($emittenti as $emittente){
-            if($index>0) $result .= " e "
+            if($index>0) $result .= " e ";
 
             if($emittente == "Consiglio di Dipartimento") {
                 $tipo_emitt = "Consiglio";
