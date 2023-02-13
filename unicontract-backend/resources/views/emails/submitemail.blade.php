@@ -1,5 +1,6 @@
 @component('mail::message')
-All'attenzione di:<br>
+All'attenzione, per competenza, di:<br>
+{{ $pre->insegnamento->dipartimento }}<br>
 DRU – Area Professori e Ricercatori<br>
 DRU - Ufficio Trattamenti Economici e Previdenziali<br>
 <br>

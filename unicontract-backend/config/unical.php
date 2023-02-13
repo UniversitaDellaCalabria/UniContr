@@ -65,6 +65,22 @@ return [
     'dispes_report_segreterie' =>  array_map('trim',explode(',',env('DISPES_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
     'disu_report_segreterie' =>  array_map('trim',explode(',',env('DISU_REPORT_SEGRETERIE', 'francesco.filicetti@unical.it'))),
 
+    // Department codes
+    '002014' => 'DiBEST',
+    '002015' => 'CTC',
+    '002022' => 'DiCES',
+    '002025' => 'DESF',
+    '002021' => 'DFSSN',
+    '002016' => 'Fisica',
+    '002018' => 'DInCi',
+    '002020' => 'DIAm',
+    '002017' => 'DIMES',
+    '002019' => 'DIMEG',
+    '002013' => 'DEMACS',
+    '002024' => 'DiScAG',
+    '002026' => 'DiSPeS',
+    '002023' => 'DiSU',
+
     /**
      * Lista email separate da , per notifica di visione accettazione da parte del docente
      */
