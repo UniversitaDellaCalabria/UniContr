@@ -124,13 +124,13 @@
 
         <br>
         <br>
-        <p class="normal">
+        <div class="piepagina">
             Sottoscritto da {{ $pre->user->nameTutorString() }}
             su https://unicontr.unical.it
             il {{ $pre->validazioni->dateSubmitToPrint() }}
             alle {{ $pre->validazioni->hourSubmitToPrint() }}
             da IP {{ Request::ip() }}
-        </p>
+        </div>
 	</div>
 </body>
 </html>

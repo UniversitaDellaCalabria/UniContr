@@ -107,18 +107,20 @@ use Request;
     di incompatibilità sin dal momento del conferimento dell'incarico.</p>
     <br>
 	<br>
-    <!--
+
     <p>F.to<br>
     <b>{{ $pre->user->nameTutorString() }}</b></p>
-    -->
 
-    <p class="normal">
+    <br>
+    <br>
+
+    <div class="piepagina">
         Sottoscritto da {{ $pre->user->nameTutorString() }}
         su https://unicontr.unical.it
         il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y') : $pre->validazioni->dateSubmitToPrint() }}
         alle {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('H:i') : $pre->validazioni->hourSubmitToPrint() }}
         da IP {{ Request::ip() }}
-    </p>
+    </div>
 
 </body>
 </html>
