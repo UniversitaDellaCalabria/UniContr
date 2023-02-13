@@ -131,7 +131,7 @@ use Request;
         <p class="normal">
             Sottoscritto da {{ $pre->user->nameTutorString() }}
             su https://unicontr.unical.it
-            il {{ $pre->validazioni->dateSubmitToPrint() }}
+            il {{ $pre->validazioni->dateSubmitToPrint(true) }}
             da IP {{ Request::ip() }}
         </p>
 	</div>
