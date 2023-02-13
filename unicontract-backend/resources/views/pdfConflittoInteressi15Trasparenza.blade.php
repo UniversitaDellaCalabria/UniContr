@@ -140,15 +140,17 @@ use Request;
 	altri enti obbligati (Registro dei provvedimenti n. 243 del 15 maggio 2014).
 	</div>
 
-    <br>
-	<br>
-    <div class="piepagina">
-        Sottoscritto da {{ $pre->user->nameTutorString() }}
-        su https://unicontr.unical.it
-        il {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('d/m/Y') : $pre->validazioni->dateSubmitToPrint() }}
-        alle {{ $pre->conflittointeressi->updated_at ? $pre->conflittointeressi->updated_at->format('H:i') : $pre->validazioni->hourSubmitToPrint() }}
-        da IP {{ Request::ip() }}
-    </div>
+    @if ($pre->validazioni->isAccepted())
+        <br>
+        <br>
+        <div class="piepagina">
+            Sottoscritto da {{ $pre->user->nameTutorString() }}
+            su https://unicontr.unical.it
+            il {{ $pre->validazioni->dateAcceptToPrint() }}
+            alle {{ $pre->validazioni->hourAcceptToPrint() }}
+            da IP {{ Request::ip() }}
+        </div>
+    @endif
 
 </body>
 </html>

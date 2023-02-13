@@ -122,15 +122,17 @@
 		<div class="logo" > </div>
 		@include( 'contratto.piao', $pre)
 
-        <br>
-        <br>
-        <div class="piepagina">
-            Sottoscritto da {{ $pre->user->nameTutorString() }}
-            su https://unicontr.unical.it
-            il {{ $pre->validazioni->dateSubmitToPrint() }}
-            alle {{ $pre->validazioni->hourSubmitToPrint() }}
-            da IP {{ Request::ip() }}
-        </div>
+        @if ($pre->validazioni->isAccepted())
+            <br>
+            <br>
+            <div class="piepagina">
+                Sottoscritto da {{ $pre->user->nameTutorString() }}
+                su https://unicontr.unical.it
+                il {{ $pre->validazioni->dateAcceptToPrint() }}
+                alle {{ $pre->validazioni->hourAcceptToPrint() }}
+                da IP {{ Request::ip() }}
+            </div>
+        @endif
 	</div>
 </body>
 </html>
