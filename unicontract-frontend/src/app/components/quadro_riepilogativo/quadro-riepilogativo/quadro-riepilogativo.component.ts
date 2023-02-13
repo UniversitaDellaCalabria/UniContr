@@ -603,7 +603,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
         let tipo_annullamento = 'cessazione anticipata';
     }
 
-    const msg = 'Procedere con l\'operazione di ' + tipo_annullamento);
+    const msg = 'Procedere con l\'operazione di ' + tipo_annullamento;
     this.confirmationDialogService.confirm('Conferma', msg)
     .then((confirmed) => {
       if (confirmed) {
