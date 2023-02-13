@@ -145,4 +145,12 @@ export class InsegnDetailComponent extends BaseComponent {
     );
   }
 
+  datoMancante(value: string) {
+    if (value === '') {
+      return 'NULL';
+    } else {
+      return value;
+    }
+  }
+
 }
