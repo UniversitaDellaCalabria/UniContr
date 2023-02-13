@@ -230,18 +230,18 @@ class Insegnamenti extends Model {
             //Disposizione Direttore
             //Delibera
 
-            if ($tipi[index] == "Delibera") {
+            if ($tipi[$index] == "Delibera") {
                 $tipo_atto = "delibera";
-            } else if ($tipi[index] == "Decreto Direttore") {
+            } else if ($tipi[$index] == "Decreto Direttore") {
                 $tipo_atto = "decreto";
-            } else if ($tipi[index] == "Disposizione Direttore") {
+            } else if ($tipi[$index] == "Disposizione Direttore") {
                 $tipo_atto = "disposizione";
             }else{
-                $tipo_atto = $tipi[index];
+                $tipo_atto = $tipi[$index];
             }
 
             //return $tipo_atto." n. ".$this->num_delibera." del ". $this->dataDelibera()." dal ".$tipo_emitt." del ".$this->dipartimento;
-            $result .= $tipo_atto." n. ".$numeri[index]." del ". $this->dataDelibera($date[index])." dal ".$tipo_emitt." del ".$this->dip_doc_des;
+            $result .= $tipo_atto." n. ".$numeri[$index]." del ". $this->dataDelibera($date[$index])." dal ".$tipo_emitt." del ".$this->dip_doc_des;
             $index ++;
         }
     }
