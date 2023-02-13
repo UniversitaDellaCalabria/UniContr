@@ -210,7 +210,7 @@ class Insegnamenti extends Model {
 
         $result = '';
         $index = 0;
-        $emittenti = explode("#", $this->emittente.split);
+        $emittenti = explode("#", $this->emittente);
         $tipi = explode("#", $this->tipo_atto);
         $numeri = explode("#", $this->num_delibera);
         $date = explode("#", $this->data_delibera);
