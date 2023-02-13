@@ -61,11 +61,11 @@ export class InsegnDetailComponent extends BaseComponent {
               this.messageService.error(response['message'],true);
             }
             this.item = response['datiInsegnamento'];
-            if(response['datiInsegnamento']['tipo_atto'])this.tipo_atto_des_list = response['datiInsegnamento']['tipo_atto'].split('#');
-            if(response['datiInsegnamento']['emittente'])this.tipo_emitt_des_list = response['datiInsegnamento']['emittente'].split('#');
-            if(response['datiInsegnamento']['motivo_atto'])this.motivo_atto_cod_list = response['datiInsegnamento']['motivo_atto'].split('#');
-            if(response['datiInsegnamento']['num_delibera'])this.numero_list = response['datiInsegnamento']['num_delibera'].split('#');
-            if(response['datiInsegnamento']['data_delibera'])this.data_list = response['datiInsegnamento']['data_delibera'].split('#');
+            this.tipo_atto_des_list = response['datiInsegnamento']['tipo_atto'] ? response['datiInsegnamento']['tipo_atto'].split('#') : "";
+            this.tipo_emitt_des_list = response['datiInsegnamento']['emittente'] ? response['datiInsegnamento']['emittente'].split('#') : "";
+            this.motivo_atto_cod_list = response['datiInsegnamento']['motivo_atto'] ? response['datiInsegnamento']['motivo_atto'].split('#') : "";
+            this.numero_list = response['datiInsegnamento']['num_delibera'] ? response['datiInsegnamento']['num_delibera'].split('#') : "";
+            this.data_list = response['datiInsegnamento']['data_delibera'] ? response['datiInsegnamento']['data_delibera'].split('#') : "";
           },
           (error) => {  this.isLoading = false; },
           () => this.isLoading = false
