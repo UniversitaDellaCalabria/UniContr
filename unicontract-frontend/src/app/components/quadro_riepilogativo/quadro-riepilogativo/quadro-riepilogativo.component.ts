@@ -593,9 +593,15 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
   }
 
   annullaContratto() {
-      if(this.model.tipo_annullamento=='REVOC') let tipo_annullamento = 'revoca';
-      else if(this.model.tipo_annullamento=='RINU') let tipo_annullamento = 'rinuncia';
-      else if(this.model.tipo_annullamento=='CES_ANT') let tipo_annullamento = 'cessazione anticipata';
+    if(this.model.tipo_annullamento=='REVOC'){
+        let tipo_annullamento = 'revoca';
+    }
+    else if(this.model.tipo_annullamento=='RINU'){
+        let tipo_annullamento = 'rinuncia';
+    }
+    else if(this.model.tipo_annullamento=='CES_ANT'){
+        let tipo_annullamento = 'cessazione anticipata';
+    }
 
     const msg = 'Procedere con l\'operazione di ' + tipo_annullamento);
     this.confirmationDialogService.confirm('Conferma', msg)
