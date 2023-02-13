@@ -593,7 +593,11 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
   }
 
   annullaContratto() {
-    const msg = 'Procedere con l\'operazione di ' + (this.model.tipo_annullamento=='REVOC' ? 'revoca?' : 'rinuncia?');
+      if(this.model.tipo_annullamento=='REVOC') let tipo_annullamento = 'revoca';
+      else if(this.model.tipo_annullamento=='RINU') let tipo_annullamento = 'rinuncia';
+      else if(this.model.tipo_annullamento=='CES_ANT') let tipo_annullamento = 'cessazione anticipata';
+
+    const msg = 'Procedere con l\'operazione di ' + tipo_annullamento);
     this.confirmationDialogService.confirm('Conferma', msg)
     .then((confirmed) => {
       if (confirmed) {
@@ -608,7 +612,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
             this.isLoading = false;
             if (response.success) {
               this.items = {...this.items, ...response.data};
-              this.messageService.info('Operazione di '+(this.model.tipo_annullamento=='REVOC' ? 'revoca' : 'rinuncia')+' terminata con successo');
+              this.messageService.info('Operazione di ' + tipo_annullamento + ' terminata con successo');
             } else {
               this.messageService.error(response.message);
             }

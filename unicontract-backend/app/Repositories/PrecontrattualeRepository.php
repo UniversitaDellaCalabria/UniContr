@@ -298,7 +298,9 @@ class PrecontrattualeRepository extends BaseRepository {
             $msg = '';
             if ($precontr->tipo_annullamento == 'REVOC'){
                 $msg = 'Revoca del contratto';
-            }else{
+            }elseif ($precontr->tipo_annullamento == 'CES_ANT'){
+                $msg = 'Cessazione anticipata';
+            }elseif ($precontr->tipo_annullamento == 'RINU'){
                 $msg = 'Rinuncia';
             }
 
