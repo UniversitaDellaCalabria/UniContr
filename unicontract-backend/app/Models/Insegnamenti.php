@@ -210,10 +210,10 @@ class Insegnamenti extends Model {
 
         $result = '';
         $index = 0;
-        $emittenti = $this->emittente.split("#");
-        $tipi = $this->tipo_atto.split("#");
-        $numeri = $this->num_delibera.split("#");
-        $date = $this->data_delibera.split("#");
+        $emittenti = explode("#", $this->emittente.split);
+        $tipi = explode("#", $this->tipo_atto);
+        $numeri = explode("#", $this->num_delibera);
+        $date = explode("#", $this->data_delibera);
 
         foreach($emittenti as $emittente){
             if($index>0) $result .= " e ";

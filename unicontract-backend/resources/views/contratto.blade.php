@@ -122,6 +122,8 @@
 		<div class="logo" > </div>
 		@include( 'contratto.piao', $pre)
 
+        <br>
+        <br>
         <p class="normal">
             Sottoscritto da {{ $pre->user->nameTutorString() }}
             su https://unicontr.unical.it
