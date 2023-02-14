@@ -56,6 +56,11 @@
     <p style="color: red" class="mb-0">Risulta assente il Dipartimento di afferenza del contrattista. Pertanto, non è possibile procedere con l'operazione di importazione dell'insegnamento.</p>
   </app-riquadro-wrapper>
 
+  <app-riquadro-wrapper *ngIf="!checkAttoData(item.data_ini_att)">
+    <h5 style="color: red">ATTENZIONE</h5>
+    <p style="color: red" class="mb-0">La data di un atto di conferimento è successiva all'inizio delle attività del contratto.</p>
+  </app-riquadro-wrapper>
+
   <form class="form" #f="ngForm" >
     <input type="hidden" name="coper_id" [(ngModel)]="item.coper_id" >
     <input type="hidden" name="ruolo" [(ngModel)]="item.ruolo_doc_cod">
@@ -85,7 +90,7 @@
     <input type="hidden" name="dip_doc_des" [(ngModel)]="item.dip_doc_des">
 
     <div class="form-footer text-right">
-      <button *ngIf="checkEmail(item.email, item.e_mail, item.e_mail_privata) && item.dip_doc_id && item.dip_doc_des && item.dip_doc_cod" class="btn btn-outline-secondary rounded mr-1" (click)="saveIns(f.value, item.nome, item.cognome, item.cod_fis, item.id_ab, email(item.email, item.e_mail, item.e_mail_privata))" title="IMPORTA IL PRESENTE INSEGNAMENTO">IMPORTA</button>
+      <button *ngIf="checkEmail(item.email, item.e_mail, item.e_mail_privata) && item.dip_doc_id && item.dip_doc_des && item.dip_doc_cod && checkAttoData(item.data_ini_att)" class="btn btn-outline-secondary rounded mr-1" (click)="saveIns(f.value, item.nome, item.cognome, item.cod_fis, item.id_ab, email(item.email, item.e_mail, item.e_mail_privata))" title="IMPORTA IL PRESENTE INSEGNAMENTO">IMPORTA</button>
     </div>
 
   </form>

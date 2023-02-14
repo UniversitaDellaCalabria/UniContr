@@ -177,5 +177,16 @@ export class InsegnUgovDetailComponent extends BaseComponent {
     );
   }
 
+  checkAttoData(data_ugov){
+        if(!this.data_list) return false;
+        if(!data_ugov) return false;
+        this.data_list.forEach(function (data) {
+            let d1 = new Date(data);
+            let d2 = new Date(data_ugov);
+            if(d1>d2) return false;
+        });
+        return true;
+    }
+
 
 }
