@@ -222,7 +222,7 @@ class InsegnamUgovController extends Controller
         array_push($parameters['rules'],[
             "operator" => "NotIn",
             "field" => "STATO_COPER_COD",
-            "value" => ['R']
+            "value" => ['R', 'X']
         ]);
 
 

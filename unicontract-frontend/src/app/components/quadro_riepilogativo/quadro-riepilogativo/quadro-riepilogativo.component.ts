@@ -167,7 +167,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
                     type: 'input',
                     readonly: true,
                     placeholder: 'Carica il documento . . . ',
-                    description: 'N.B. Il documento deve essere in formato PDF e PRIVO DI DATI SENSIBILI. Dimensione massima 2MB.',
+                    description: 'N.B. Caricare il documento in formato PDF, compilato utilizzando il format di dichiarazione standard e firmato dal Direttore. Dimensione massima 2MB.',
                     accept: 'application/pdf',
                     maxLength: 255,
                     required: true,

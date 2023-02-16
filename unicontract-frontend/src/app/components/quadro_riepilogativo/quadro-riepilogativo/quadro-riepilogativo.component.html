@@ -206,9 +206,9 @@
             <span class="oi oi-circle-x iconic  pl-2 pb-1 m-1"></span>
         </td>
         <td>{{items.motivazione}}</td>
-        <td *ngIf="items.tipo_annullamento == 'REVOC'">Revoca</td>
+        <td *ngIf="items.tipo_annullamento == 'REVOC'">Non impartita</td>
         <td *ngIf="items.tipo_annullamento == 'RINU'">Rinuncia</td>
-        <td *ngIf="items.tipo_annullamento == 'CES_ANT'">Cessazione anticipata</td>
+        <td *ngIf="items.tipo_annullamento == 'CES_ANT'">Fine anticipata</td>
         <td>{{ 'summary_dipartimentale' | translate }}</td>
         <td>{{items.date_annullamento}}</td>
         <td></td>
@@ -418,7 +418,7 @@
 
   <!--Finestra di upload conflitto interessi dipartimento-->
   <app-riquadro-wrapper *ngIf="toggle_confl_int_dip == 1 && items.flag_confl_int_dip === 0 && !isAnnullato()">
-    <h5>Upload dichiarazione conflitto interessi Dipartimento</h5>
+    <h5>Upload verifica conflitto interessi</h5>
     <form [formGroup]="form" *ngIf="items">
       <formly-form [model]="model" [fields]="fields3" [form]="form" [options]="options"></formly-form>
     </form>
@@ -436,7 +436,7 @@
     <ng-container *ngIf="items.flag_confl_int_dip === 0 && isStepValidazioneAmm() && !isAnnullato()" >
         <button type="button" class="btn btn-outline-secondary rounded mr-1" *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']" (click)="toggleUploadConflIntDip()">
           <span class="oi oi-cloud-upload iconic"></span>
-          <span class="ml-2">Upload dichiarazione conflitto interessi</span>
+          <span class="ml-2">Upload verifica conflitto interessi</span>
         </button>
       </ng-container>
 
@@ -451,7 +451,7 @@
     <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('REVOC')" *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']"
       data-toggle="button" aria-pressed="false" autocomplete="off" >
       <span class="oi oi-ban iconic"></span>
-      <span class="ml-2">Revoca</span>
+      <span class="ml-2">Non impartita</span>
     </button>
   </ng-container>
 
@@ -467,7 +467,7 @@
     <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('CES_ANT')" *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']"
       data-toggle="button" aria-pressed="false" autocomplete="off" >
       <span class="oi oi-ban iconic"></span>
-      <span class="ml-2">Cessazione anticipata</span>
+      <span class="ml-2">Fine anticipata</span>
     </button>
   </ng-container>
 
