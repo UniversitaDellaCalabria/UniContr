@@ -223,6 +223,15 @@ class B1ConflittoIntController extends Controller
 
             $attach['filename'] = 'Dichiarazione '. $pre->user->nameTutorString() .'.pdf';
         }
+        }else if ($kind=='MODELLO_CONFL_INT'){
+            $pdf = PDF::loadView('pdfModelloConflittoInteressiDipartimento.blade', ['pre' => $pre])
+                ->setOption('margin-left','20')
+                ->setOption('margin-right','20')
+                ->setOption('margin-top','30')
+                ->setOption('margin-bottom','20');
+
+            $attach['filename'] = 'Modello_da_firmare.pdf';
+        }
         $attach['filevalue'] =  base64_encode($pdf->output());
 
         return $attach;

@@ -905,30 +905,30 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
       }
 
     annullaConflIntDip() {
-    this.confirmationDialogService.inputConfirm('Conferma', 'Procedere con l\'operazione di annullamento?')
-    .then((confirmed) => {
-      if (confirmed.result) {
-        const data: IPrecontrStore<any> = {
-          insegn_id: this.idins,
-          entity: {
-            note: confirmed.entity
-          }
-        };
+        this.confirmationDialogService.inputConfirm('Conferma', 'Procedere con l\'operazione di annullamento?')
+        .then((confirmed) => {
+          if (confirmed.result) {
+            const data: IPrecontrStore<any> = {
+              insegn_id: this.idins,
+              entity: {
+                note: confirmed.entity
+              }
+            };
 
-        this.isLoading = true;
-        this.summaryService.annullaConflIntDip(data).subscribe(
-          response => {
-            this.isLoading = false;
-            if (response.success) {
-              this.items = {...this.items, ...response.data};
-              this.items['flag_confl_int_dip'] = 0;
-              this.messageService.info('Operazione di annullamento terminata con successo');
-            } else {
-              this.messageService.error(response.message);
-            }
+            this.isLoading = true;
+            this.summaryService.annullaConflIntDip(data).subscribe(
+              response => {
+                this.isLoading = false;
+                if (response.success) {
+                  this.items = {...this.items, ...response.data};
+                  this.items['flag_confl_int_dip'] = 0;
+                  this.messageService.info('Operazione di annullamento terminata con successo');
+                } else {
+                  this.messageService.error(response.message);
+                }
+              }
+            );
           }
-        );
-      }
-    });
-  }
+        });
+    }
 }
