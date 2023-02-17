@@ -592,7 +592,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
     });
   }
 
-  annullaContratto() {
+  annullaContratto(firmato=false) {
     let tipo_annullamento = '';
     if(this.model.tipo_annullamento=='REVOC'){
         tipo_annullamento = 'revoca';
@@ -614,17 +614,33 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
         };
 
         this.isLoading = true;
-        this.summaryService.annullaContratto(data).subscribe(
-          response => {
-            this.isLoading = false;
-            if (response.success) {
-              this.items = {...this.items, ...response.data};
-              this.messageService.info('Operazione di ' + tipo_annullamento + ' terminata con successo');
-            } else {
-              this.messageService.error(response.message);
-            }
-          }
-        );
+
+        if(firmato){
+            this.summaryService.annullaContrattoFirmato(data).subscribe(
+              response => {
+                this.isLoading = false;
+                if (response.success) {
+                  this.items = {...this.items, ...response.data};
+                  this.messageService.info('Operazione di ' + tipo_annullamento + ' terminata con successo');
+                } else {
+                  this.messageService.error(response.message);
+                }
+              }
+            );
+        }
+        else{
+            this.summaryService.annullaContratto(data).subscribe(
+              response => {
+                this.isLoading = false;
+                if (response.success) {
+                  this.items = {...this.items, ...response.data};
+                  this.messageService.info('Operazione di ' + tipo_annullamento + ' terminata con successo');
+                } else {
+                  this.messageService.error(response.message);
+                }
+              }
+            );
+        }
       }
     });
   }

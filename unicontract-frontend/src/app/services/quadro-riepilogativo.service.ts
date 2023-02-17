@@ -82,6 +82,11 @@ export class SummaryService extends CoreSevice {
             .pipe(catchError(this.handleError('annullaContratto', null, false)));
     }
 
+    annullaContrattoFirmato(data) {
+        return this.http.post(AppConstants.baseApiURL + '/precontrattuale/annullacontrattofirmato', data, httpOptions)
+            .pipe(catchError(this.handleError('annullaContrattoFirmato', null, false)));
+    }
+
     rinunciaCompenso(data) {
         return this.http.post(AppConstants.baseApiURL + '/precontrattuale/rinunciacompenso', data, httpOptions)
             .pipe(catchError(this.handleError('rinunciaCompenso', null, false)));

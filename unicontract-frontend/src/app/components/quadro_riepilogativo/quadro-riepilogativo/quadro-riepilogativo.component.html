@@ -399,9 +399,9 @@
       <formly-form [model]="model" [fields]="fields" [form]="form" [options]="options"></formly-form>
     </form>
     <div class="form-footer text-right">
-      <button *ngIf="model.tipo_annullamento == 'REVOC'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_revoca' | translate }}">{{ 'summary_gestione_annulamento_revoca' | translate }}</button>
-      <button *ngIf="model.tipo_annullamento == 'RINU'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_rinuncia' | translate }}">{{ 'summary_gestione_annulamento_rinuncia' | translate }}</button>
-      <button *ngIf="model.tipo_annullamento == 'CES_ANT'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto()" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}">{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}</button>
+      <button *ngIf="model.tipo_annullamento == 'REVOC'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto(items.flag_accept)" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_revoca' | translate }}">{{ 'summary_gestione_annulamento_revoca' | translate }}</button>
+      <button *ngIf="model.tipo_annullamento == 'RINU'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto(1)" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_rinuncia' | translate }}">{{ 'summary_gestione_annulamento_rinuncia' | translate }}</button>
+      <button *ngIf="model.tipo_annullamento == 'CES_ANT'" class="btn btn-sm btn-danger rounded m-1" (click)="annullaContratto(1)" [disabled]="form.invalid" title="{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}">{{ 'summary_gestione_annulamento_cessazione_anticipata' | translate }}</button>
     </div>
   </app-riquadro-wrapper>
 
@@ -447,29 +447,44 @@
     </button>
   </ng-container>
 
-  <ng-container *ngIf="!isAnnullato()">
-    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('REVOC')" *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']"
+    <!-- ANNULLAMENTO -->
+
+
+  <ng-container *ngIf="!isAnnullato() && items.flag_accept === 1">
+    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('REVOC')" *ngxPermissionsOnly="['OP_APPROVAZIONE_ECONOMICA', 'OP_APPROVAZIONE_AMM', 'SUPER-ADMIN']"
       data-toggle="button" aria-pressed="false" autocomplete="off" >
       <span class="oi oi-ban iconic"></span>
       <span class="ml-2">Non impartita</span>
     </button>
   </ng-container>
 
-  <ng-container *ngIf="!isAnnullato()">
-    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('RINU')" *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']"
+  <ng-container *ngIf="!isAnnullato() && items.flag_accept === 0">
+    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('REVOC')" *ngxPermissionsOnly="['OP_DIPARTIMENTALE', 'OP_APPROVAZIONE_ECONOMICA', 'OP_APPROVAZIONE_AMM', 'SUPER-ADMIN']"
+      data-toggle="button" aria-pressed="false" autocomplete="off" >
+      <span class="oi oi-ban iconic"></span>
+      <span class="ml-2">Non impartita</span>
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="!isAnnullato() && items.flag_accept === 1">
+    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('RINU')" *ngxPermissionsOnly="['OP_APPROVAZIONE_ECONOMICA', 'OP_APPROVAZIONE_AMM', 'SUPER-ADMIN']"
       data-toggle="button" aria-pressed="false" autocomplete="off" >
       <span class="oi oi-ban iconic"></span>
       <span class="ml-2">Rinuncia</span>
     </button>
   </ng-container>
 
-  <ng-container *ngIf="!isAnnullato()">
-    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('CES_ANT')" *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']"
+  <ng-container *ngIf="!isAnnullato() && items.flag_accept === 1">
+    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneannulamento('CES_ANT')" *ngxPermissionsOnly="['OP_APPROVAZIONE_ECONOMICA', 'OP_APPROVAZIONE_AMM', 'SUPER-ADMIN']"
       data-toggle="button" aria-pressed="false" autocomplete="off" >
       <span class="oi oi-ban iconic"></span>
       <span class="ml-2">Fine anticipata</span>
     </button>
   </ng-container>
+
+<!-- END ANNULLAMENTO -->
+
+
 
   <div *ngIf="items.flag_submit === 1 && !isValidatoEconomica() && !isAnnullato()">
     <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneInformazioni()" *ngxPermissionsOnly="['OP_APPROVAZIONE_AMM', 'OP_APPROVAZIONE_ECONOMICA', 'SUPER-ADMIN']" title="{{ 'summary_infoemail' | translate }}">

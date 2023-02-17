@@ -279,36 +279,40 @@ class PrecontrattualeRepository extends BaseRepository {
     }
 
 
-    public function annullaContratto(array $data){
+    public function annullaContratto(array $data, bool $must_be_accepted){
         DB::beginTransaction();
         try {
 
             $precontr = Precontrattuale::where('insegn_id', $data['insegn_id'])->first();
-            //se il contratto è in stato 1 (firmato) passi allo stato 3 (annullato con firma)
-            if ($precontr->stato == 1){
-                $precontr->stato = 3;
-            }else{
-                $precontr->stato = 2;
+
+            if($precontr->validazioni->flag_accept == $must_be_accepted){
+
+                //se il contratto è in stato 1 (firmato) passi allo stato 3 (annullato con firma)
+                if ($precontr->stato == 1){
+                    $precontr->stato = 3;
+                }else{
+                    $precontr->stato = 2;
+                }
+
+                $precontr->fill($data['entity']);
+                $precontr->date_annullamento = Carbon::now()->format(config('unical.datetime_format'));
+                $precontr->save();
+
+                $msg = '';
+                if ($precontr->tipo_annullamento == 'REVOC'){
+                    //$msg = 'Revoca del contratto';
+                    $msg = 'Non impartita';
+                }elseif ($precontr->tipo_annullamento == 'CES_ANT'){
+                    $msg = 'Fine anticipata';
+                }elseif ($precontr->tipo_annullamento == 'RINU'){
+                    $msg = 'Rinuncia';
+                }
+
+                $precontr->storyprocess()->save(
+                    PrecontrattualeService::createStoryProcess($msg,
+                    $precontr->insegn_id)
+                );
             }
-
-            $precontr->fill($data['entity']);
-            $precontr->date_annullamento = Carbon::now()->format(config('unical.datetime_format'));
-            $precontr->save();
-
-            $msg = '';
-            if ($precontr->tipo_annullamento == 'REVOC'){
-                //$msg = 'Revoca del contratto';
-                $msg = 'Non impartita';
-            }elseif ($precontr->tipo_annullamento == 'CES_ANT'){
-                $msg = 'Fine anticipata';
-            }elseif ($precontr->tipo_annullamento == 'RINU'){
-                $msg = 'Rinuncia';
-            }
-
-            $precontr->storyprocess()->save(
-                PrecontrattualeService::createStoryProcess($msg,
-                $precontr->insegn_id)
-            );
 
         } catch(\Exception $e) {
 

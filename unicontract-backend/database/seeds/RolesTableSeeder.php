@@ -54,6 +54,7 @@ class RolesTableSeeder extends Seeder
         Permission::create(['name' => 'annullaeconomica precontrattuale']);
         Permission::create(['name' => 'presavisione precontrattuale']);
         Permission::create(['name' => 'annullacontratto precontrattuale']);
+        Permission::create(['name' => 'annullacontratto precontrattuale firmato']);
         Permission::create(['name' => 'rinuncia precontrattuale']);
 
         Permission::create(['name' => 'compila precontrattuale']);
@@ -70,18 +71,36 @@ class RolesTableSeeder extends Seeder
 
         // this can be done as separate statements
         $role = Role::create(['name' => 'viewer']);
-        $role->givePermissionTo(['view contratti', 'view attachments', 'search orgunit contratti', 'search orgunit insegnamenti']);
+        $role->givePermissionTo(['view contratti',
+                                 'view attachments',
+                                 'search orgunit contratti',
+                                 'search orgunit insegnamenti']);
 
         $role = Role::create(['name' => 'op_approvazione'])
             ->givePermissionTo(['search all contratti','search all insegnamenti','update contratti', 'sending infoemail', 'sending firstemail','view attachments']);
 
         $role = Role::create(['name' => 'op_approvazione_amm'])
-            ->givePermissionTo(['search all contratti','search all insegnamenti','update contratti', 'validazioneamm precontrattuale',
-                'annullaamm precontrattuale', 'sending infoemail', 'sending firstemail','view attachments']);
+            ->givePermissionTo(['search all contratti',
+                                'search all insegnamenti',
+                                'update contratti',
+                                'validazioneamm precontrattuale',
+                                'annullaamm precontrattuale',
+                                'sending infoemail',
+                                'sending firstemail',
+                                'view attachments',
+                                'annullacontratto precontrattuale',
+                                'annullacontratto precontrattuale firmato']);
 
         $role = Role::create(['name' => 'op_approvazione_economica'])
-            ->givePermissionTo(['search all contratti','search all insegnamenti','update contratti', 'validazioneeconomica precontrattuale',
-                'annullaeconomica precontrattuale', 'sending infoemail', 'sending firstemail']);
+            ->givePermissionTo(['search all contratti',
+                                'search all insegnamenti',
+                                'update contratti',
+                                'validazioneeconomica precontrattuale',
+                                'annullaeconomica precontrattuale',
+                                'sending infoemail',
+                                'sending firstemail',
+                                'annullacontratto precontrattuale',
+                                'annullacontratto precontrattuale firmato']);
 
         //super admin
         $role = Role::create(['name' => 'super-admin']);
@@ -104,6 +123,7 @@ class RolesTableSeeder extends Seeder
         $role->revokePermissionTo('validazioneamm precontrattuale');
         $role->revokePermissionTo('annullaamm precontrattuale');
         $role->revokePermissionTo('annullaeconomica precontrattuale');
+        $role->revokePermissionTo('annullacontratto precontrattuale firmato');
         $role->revokePermissionTo('search all contratti');
         $role->revokePermissionTo('search all insegnamenti');
 
