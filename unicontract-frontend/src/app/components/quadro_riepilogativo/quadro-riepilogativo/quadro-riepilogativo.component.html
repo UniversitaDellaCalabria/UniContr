@@ -89,7 +89,7 @@
         <td>
           <ng-container *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']">
             <button *ngIf="items.flag_confl_int_dip == 0  && items.flag_upd == 0" type="button" class="btn btn-sm btn-success rounded m-1"
-              title="{{ 'summary_annulla' | translate }} {{ 'summary_val_confl_int_format' | translate }}" (click)="generatePdf(items,'MODELLO_CONFL_INT')">
+              title="{{ 'summary_download' | translate }} {{ 'summary_val_confl_int_format' | translate }}" (click)="generatePdf(items,'MODELLO_CONFL_INT')">
                 {{ 'summary_download' | translate }} {{ 'summary_val_confl_int_format' | translate }}
             </button>
             <button *ngIf="items.flag_confl_int_dip == 1  && items.flag_upd == 0" type="button" class="btn btn-sm btn-danger rounded m-1"

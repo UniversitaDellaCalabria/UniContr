@@ -298,7 +298,7 @@ class DatiSeeder extends Seeder
             'unitaorganizzativa_uo' => '002024',
             'descrizione_uo' => "Dipartimento di Scienze Aziendali e Giuridiche (DiScAG)",
             'strutturainterna_cod_uff' => '2024',
-            'descrizione_uff' => "DIPARTIMENTO DI SCIENZE AZIENDALI E GIURIDICHE",
+            'descrizione_uff' => "DIPARTIMENTO DI SCIENZE AZIENDALI GIURIDICHE",
         ]);
 
         // 002026	Dipartimento di Scienze Politiche e Sociali (DiSPeS)
