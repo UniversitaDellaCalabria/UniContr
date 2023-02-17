@@ -109,6 +109,7 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     Route::post('precontrattuale/presavisioneaccettazione','PrecontrattualeController@presaVisioneAccettazione');
     Route::get('precontrattuale/gettitulusdocumenturl/{id}','PrecontrattualeController@getTitulusDocumentURL');
     Route::post('precontrattuale/annullacontratto','PrecontrattualeController@annullaContratto');
+    Route::post('precontrattuale/annullacontrattouffici','PrecontrattualeController@annullaContrattoUffici');
     Route::post('precontrattuale/annullacontrattofirmato','PrecontrattualeController@annullaContrattoFirmato');
     Route::post('precontrattuale/rinunciacompenso','PrecontrattualeController@rinunciaCompenso');
     Route::post('precontrattuale/annullarinuncia','PrecontrattualeController@annullaRinuncia');

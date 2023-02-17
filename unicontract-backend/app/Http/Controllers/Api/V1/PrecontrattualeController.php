@@ -868,7 +868,28 @@ class PrecontrattualeController extends Controller
         //allegare la delibera
 
         $postData = $request->except('id', '_method');
-        $data = $this->repo->annullaContratto($postData, false);
+        $data = $this->repo->annullaContratto($postData, 0);
+
+        return compact('data', 'message', 'success');
+    }
+
+    public function annullaContrattoUffici(Request $request){
+        $success = true;
+        $message = '';
+
+        if (!Auth::user()->hasPermissionTo('annullacontratto precontrattuale uffici')) {
+            abort(403, trans('global.utente_non_autorizzato'));
+        }
+
+        //1--firmato
+        //2--annullato prima firma
+        //3--annullato dopo firma
+
+        //se il contratto è firmato non si può annullare o almento ... occorre
+        //allegare la delibera
+
+        $postData = $request->except('id', '_method');
+        $data = $this->repo->annullaContratto($postData, 2);
 
         return compact('data', 'message', 'success');
     }
@@ -889,7 +910,7 @@ class PrecontrattualeController extends Controller
         //allegare la delibera
 
         $postData = $request->except('id', '_method');
-        $data = $this->repo->annullaContratto($postData, true);
+        $data = $this->repo->annullaContratto($postData, 1);
 
         return compact('data', 'message', 'success');
     }

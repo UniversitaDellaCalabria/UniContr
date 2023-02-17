@@ -54,6 +54,7 @@ class RolesTableSeeder extends Seeder
         Permission::create(['name' => 'annullaeconomica precontrattuale']);
         Permission::create(['name' => 'presavisione precontrattuale']);
         Permission::create(['name' => 'annullacontratto precontrattuale']);
+        Permission::create(['name' => 'annullacontratto precontrattuale uffici']);
         Permission::create(['name' => 'annullacontratto precontrattuale firmato']);
         Permission::create(['name' => 'rinuncia precontrattuale']);
 
@@ -89,7 +90,9 @@ class RolesTableSeeder extends Seeder
                                 'sending firstemail',
                                 'view attachments',
                                 'annullacontratto precontrattuale',
-                                'annullacontratto precontrattuale firmato']);
+                                'annullacontratto precontrattuale uffici',
+                                'annullacontratto precontrattuale firmato',
+                                'rinuncia precontrattuale']);
 
         $role = Role::create(['name' => 'op_approvazione_economica'])
             ->givePermissionTo(['search all contratti',
@@ -99,8 +102,9 @@ class RolesTableSeeder extends Seeder
                                 'annullaeconomica precontrattuale',
                                 'sending infoemail',
                                 'sending firstemail',
-                                'annullacontratto precontrattuale',
-                                'annullacontratto precontrattuale firmato']);
+                                'annullacontratto precontrattuale uffici',
+                                'annullacontratto precontrattuale firmato',
+                                'rinuncia precontrattuale']);
 
         //super admin
         $role = Role::create(['name' => 'super-admin']);
@@ -123,9 +127,11 @@ class RolesTableSeeder extends Seeder
         $role->revokePermissionTo('validazioneamm precontrattuale');
         $role->revokePermissionTo('annullaamm precontrattuale');
         $role->revokePermissionTo('annullaeconomica precontrattuale');
+        $role->revokePermissionTo('annullaeconomica precontrattuale uffici');
         $role->revokePermissionTo('annullacontratto precontrattuale firmato');
         $role->revokePermissionTo('search all contratti');
         $role->revokePermissionTo('search all insegnamenti');
+        $role->revokePermissionTo('rinuncia precontrattuale');
 
 
         $this->command->info('created roles');

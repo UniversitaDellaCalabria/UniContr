@@ -279,13 +279,13 @@ class PrecontrattualeRepository extends BaseRepository {
     }
 
 
-    public function annullaContratto(array $data, bool $must_be_accepted){
+    public function annullaContratto(array $data, int $calling_code){
         DB::beginTransaction();
         try {
 
             $precontr = Precontrattuale::where('insegn_id', $data['insegn_id'])->first();
 
-            if($precontr->validazioni->flag_accept == $must_be_accepted){
+            if($calling_code == 2 || $precontr->validazioni->flag_accept == $calling_code){
 
                 //se il contratto è in stato 1 (firmato) passi allo stato 3 (annullato con firma)
                 if ($precontr->stato == 1){
