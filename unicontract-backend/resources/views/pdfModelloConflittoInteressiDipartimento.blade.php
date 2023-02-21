@@ -13,8 +13,8 @@ VISTO l’art. 53 D. Lgs. n. 165/2001, come modificato dalla legge n. 190/2012, 
 </p>
 
 <p class="normal">
-VISTO il curriculum, nonché la dichiarazione di assenza di conflitto di interessi resa, ai sensi dell’art. 53, comma 14, del D. Lgs. n. 165/2001, da {{$pre->genere['str5']} in relazione al seguente incarico:<br>
-Incarico di insegnamento {{$pre->insegnamentoDescr}} - SSD {{$pre->settore}} - Corso di {{$pre->tipoCorsoDes}} in {{$pre->cdl}} - Anno di corso {{$pre->annoCorso}} - Semestre {{$pre->periodo}} - per {{$pre->ore}} ore complessive ({{$pre->oreDesc}}) - A.A. {{$pre->aa}}
+VISTO il curriculum, nonché la dichiarazione di assenza di conflitto di interessi resa, ai sensi dell’art. 53, comma 14, del D. Lgs. n. 165/2001, da {{ $pre->genere['str5'] }} in relazione al seguente incarico:<br>
+Incarico di insegnamento {{ $pre->insegnamentoDescr }} - SSD {{ $pre->settore }} - Corso di {{ $pre->tipoCorsoDes }} in {{ $pre->cdl }} - Anno di corso {{ $pre->annoCorso }} - Semestre {{ $pre->periodo }} - per {{ $pre->ore }} ore complessive ({{ $pre->oreDesc }}) - A.A. {{$pre->aa}}
 <br>
 stabilito con {{ $pre->insegnamento->deliberaString() }}
 </p>
