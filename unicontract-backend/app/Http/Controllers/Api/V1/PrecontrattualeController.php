@@ -299,7 +299,8 @@ class PrecontrattualeController extends Controller
             }
 
             //verificare la data di conferimento
-            if (!$request->insegnamento['data_delibera']){
+            //if (!$request->insegnamento['data_delibera']){
+            if (!explode("#", $request->insegnamento['data_delibera'])[0]){
                 $message = 'Insegnamento non importabile: data conferimento non inserita';
                 $success = false;
                 return compact('data', 'message', 'success');
