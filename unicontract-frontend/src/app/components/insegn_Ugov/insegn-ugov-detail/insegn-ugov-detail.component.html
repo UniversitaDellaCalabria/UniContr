@@ -24,13 +24,14 @@
     <div *ngFor="let atto of tipo_atto_des_list; index as i">
         <app-list-item label="{{ '00_int12' | translate }}" value="{{ datoMancante(tipo_atto_des_list[i]) | uppercase }} NUM. {{ datoMancante(numero_list[i]) }} DEL {{ datoMancante(data_list[i]) | toDateObj | date: 'dd-MM-yyyy'}}"></app-list-item>
         <app-list-item label="{{ '00_int13' | translate }}" value="{{ datoMancante(tipo_emitt_des_list[i]) | uppercase }}"></app-list-item>
-        <app-list-item label="{{ '00_int14' | translate }}" value="{{ datoMancante(tools.tipoConferimento(motivo_atto_cod_list[i])) }}"></app-list-item>
+        <!--<app-list-item label="{{ '00_int14' | translate }}" value="{{ datoMancante(tools.tipoConferimento(motivo_atto_cod_list[i])) }}"></app-list-item>-->
         <br>
     </div>
 
 <!--
     <app-list-item label="{{ '00_int14' | translate }}" value="{{ datoMancante(tools.tipoConferimento(item.motivo_atto_cod)) }}"></app-list-item>
 -->
+    <app-list-item label="{{ '00_int14' | translate }}" value="{{ datoMancante(tools.tipoConferimento(motivo_atto_cod_list[0])) }}"></app-list-item>
     <app-list-item label="{{ '00_int17' | translate }}" value="{{ datoMancante(item.ruolo_doc_des | uppercase) }}"></app-list-item>
 
 

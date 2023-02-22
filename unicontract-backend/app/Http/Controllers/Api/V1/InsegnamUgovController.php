@@ -60,20 +60,25 @@ class InsegnamUgovController extends Controller
 
             $tipo_atto_des_string .= $atto->tipo_atto_des;
             $tipo_emitt_des_string .= $atto->tipo_emitt_des;
-            $motivo_atto_cod_string .= $atto->motivo_atto_cod;
+            // $motivo_atto_cod_string .= $atto->motivo_atto_cod;
             $numero_string .= $atto->numero;
             $data_string .= $atto->data;
+
+            if ( $counter == 0){
+                $motivo_atto_cod_string = $atto->motivo_atto_cod;
+            }
 
             if ( $counter < count( $atti ) - 1){
                 $tipo_atto_des_string .= "#";
                 $tipo_emitt_des_string .= "#";
-                $motivo_atto_cod_string .= "#";
+                // $motivo_atto_cod_string .= "#";
                 $numero_string .= "#";
                 $data_string .= "#";
             }
 
             $counter = $counter + 1;
         }
+
         $datiUgov['tipo_atto_des'] = $tipo_atto_des_string;
         $datiUgov['tipo_emitt_des'] = $tipo_emitt_des_string;
         $datiUgov['motivo_atto_cod'] = $motivo_atto_cod_string;
