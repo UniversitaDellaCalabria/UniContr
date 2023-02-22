@@ -45,6 +45,10 @@ class InsegnamUgovController extends Controller
 
         $atti = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ATTI A1')
                 ->where('coper_id','=',$coper_id)
+                ->where(function($query) {
+                    $query->where('tipo_atto_des','=','Delibera')
+                          ->orWhere('tipo_atto_des','=','Disposizione Direttore');
+                })
                 ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
                 ->orderBy('data', 'desc')
                 ->get();
@@ -58,7 +62,6 @@ class InsegnamUgovController extends Controller
         $counter = 0;
 
         foreach ($atti as $atto) {
-
             $tipo_atto_des_string .= $atto->tipo_atto_des;
             $tipo_emitt_des_string .= $atto->tipo_emitt_des;
             // $motivo_atto_cod_string .= $atto->motivo_atto_cod;
