@@ -46,6 +46,7 @@ class InsegnamUgovController extends Controller
         $atti = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ATTI A1')
                 ->where('coper_id','=',$coper_id)
                 ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
+                ->orderBy('data', 'desc')
                 ->get();
 
         $tipo_atto_des_string = "";
