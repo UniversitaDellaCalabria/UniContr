@@ -4,7 +4,7 @@ Alla Segreteria del Magnifico Rettore<br>
 Si informa che {{ $pre->user->nameTutorString() }} ha preso visione e accettato il contratto di Insegnamento<br>
 di {{ $pre->insegnamento->insegnamentoDescr }} (anno accademico {{$pre->aa}}),<br>
 erogato dal {{ $pre->insegnamento->dipartimento }},<br>
-presso il {{ $pre->insegnamento->dip_doc_des }}.<br>
+attribuito dal {{ $pre->insegnamento->dip_doc_des }}.<br>
 <br>
 <br>
 Pertanto, il contratto è pronto per la firma digitale, da apporre collegandosi ad
