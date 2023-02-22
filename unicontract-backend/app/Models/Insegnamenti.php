@@ -423,7 +423,7 @@ class Insegnamenti extends Model {
     public function giorniDeliberaAOggi(){
         if ($this->attributes['data_delibera']){
             //$datetime1 = Carbon::createFromFormat('Y-m-d', $this->attributes['data_delibera']);
-            $datetime1 = Carbon::createFromFormat('Y-m-d', explode("#", $this->attributes['data_delibera'])[0]);
+            $datetime1 = Carbon::createFromFormat('Y-m-d H:i:s', explode("#", $this->attributes['data_delibera'])[0])->format('Y-m-d');
             $datetime2 = Carbon::now();
             $diff_in_days  = $datetime1->diffInDays($datetime2);
             return $diff_in_days;
