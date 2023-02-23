@@ -48,8 +48,11 @@
     </p>
     <br>
     <p class="normal">
-    VISTO il curriculum, nonché la dichiarazione di assenza di conflitto di interessi resa, ai sensi dell’art. 53, comma 14, del D. Lgs. n. 165/2001, da {{ $pre->genere['str5'] }} in relazione al seguente incarico:<br>
+    VISTO il curriculum, nonché la dichiarazione di assenza di conflitto di interessi resa, ai sensi dell’art. 53, comma 14, del D. Lgs. n. 165/2001, da {{ $pre->genere['str5'] }} in relazione al seguente incarico:
+    <br>
+    <br>
     Incarico di insegnamento {{ $pre->insegnamentoDescr }} - SSD {{ $pre->settore }} - Corso di {{ $pre->tipoCorsoDes }} in {{ $pre->cdl }} - Anno di corso {{ $pre->annoCorso }} - Semestre {{ $pre->periodo }} - per {{ $pre->ore }} ore complessive ({{ $pre->oreDesc }}) - A.A. {{$pre->aa}}
+    <br>
     <br>
     stabilito con {{ $pre->insegnamento->deliberaString() }}
     </p>
