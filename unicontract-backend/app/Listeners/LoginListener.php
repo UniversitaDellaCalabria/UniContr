@@ -34,7 +34,7 @@ class LoginListener
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param object $event
      * @return void
      */
     public function handle(Saml2LoginEvent $event)
@@ -71,39 +71,42 @@ class LoginListener
         $user->parseAttributes($attributesName);
 
         $userData = new \App\User;
-        try{
+        try {
             Log::info('dati');
             Log::info('email [' . $user->email[0] . ']');
             Log::info('displayName [' . $user->displayName[0] . ']');
-            Log::info('ruolo [' . $user->ruolo[0] . ']');
+            Log::info('ruolo [' . @$user->ruolo[0] . ']');
             $userData->id = $user->getUserId();
             $userData->attributes = $user->getAttributes();
             $userData->name = $user->displayName[0];
             $userData->email = $user->email[0];
             Log::info('email [' . $userData->email . ']');
-            $userData->ruolo = $user->ruolo[0];
-            Log::info('ruolo [' . $userData->ruolo . ']');
+            $userData->spidCode = @$userData->attributes['spidCode'][0];
+            Log::info('spidCode [' . @$userData->attributes['spidCode'][0] . ']');
+            $userData->ruolo = @$user->ruolo[0];
+            Log::info('ruolo [' . @$userData->ruolo . ']');
             $userData->eduPersonScopedAffiliation = $user->eduPersonScopedAffiliation;
-            $userData->password =Hash::make($user->codiceFiscale[0]);
+            $userData->password = Hash::make($user->codiceFiscale[0]);
             $userData->assertion = $user->getRawSamlAssertion();
             $userData->cf = $user->codiceFiscale[0];
-        }catch(Exception $e){
+        } catch (Exception $e) {
             Log::info('Errore metadati utente passati dall\'idp');
             $handler = new Handler(Container::getInstance());
             $handler->report($e);
-            Log::info('Utente non autorizzato: '.$userData->email.' '.$userData->ruolo);
-            abort(401,  trans('global.utente_non_autorizzato'));
+            Log::info('Utente non autorizzato: ' . $userData->email . ' ' . $userData->ruolo);
+            abort(401, trans('global.utente_non_autorizzato'));
         }
 
+        $userData['email'] = 'francesco.filicetti@unical.it'; // dev user
         //check if email already exists and fetch user
         $laravelUser = \App\User::where('email', $userData['email'])->first();
         Log::info('laravel user [' . $laravelUser . ']');
         //ulteriore verifica attraverso il codice fiscale
-        if ($laravelUser===null){
+        if ($laravelUser === null) {
             $laravelUser = \App\User::where('cf', $userData['cf'])->first();
-            if ($laravelUser !== null ){
+            if ($laravelUser !== null) {
                 //aggiornare email
-                if (Str::contains(strtolower($userData['email']),'@unical.it')){
+                if (Str::contains(strtolower($userData['email']), '@unical.it')) {
                     $laravelUser->email = $userData['email'];
                     $laravelUser->save();
                     Log::info('Aggiornata email laravel user [' . $laravelUser->name . ']');
@@ -111,11 +114,10 @@ class LoginListener
             }
         }
 
-        try{
+        try {
             //if email doesn't exist, create new user
-            if($laravelUser === null)
-            {
-                Log::info('inserisci utente [' . $userData->name . ' '. $userData->email . ' '.$user->codiceFiscale[0].' ]');
+            if ($laravelUser === null) {
+                Log::info('inserisci utente [' . $userData->name . ' ' . $userData->email . ' ' . $user->codiceFiscale[0] . ' ]');
                 $laravelUser = new \App\User;
                 $laravelUser->name = $userData['name'];
                 $laravelUser->email = $userData['email'];
@@ -123,25 +125,24 @@ class LoginListener
                 //Per ulteriore controllo memorizza anche il codice fiscale
                 $laravelUser->cf = $user->codiceFiscale[0];
 
-                Log::info('istanza utente [' . $laravelUser->name . ' '. $laravelUser->email . ' ]');
+                Log::info('istanza utente [' . $laravelUser->name . ' ' . $laravelUser->email . ' ]');
                 //va determinato il ruolo da assegnare 1) leggerlo da file id configurazione, 2) ruolo di default
                 $service = new LoginService();
                 Log::info('istanza service');
                 $data = null;
-                if ($userData['ruolo'] && Ruolo::isRuoloDocente($userData['ruolo'])){
+                if ($userData['ruolo'] && Ruolo::isRuoloDocente($userData['ruolo'])) {
                     $data = $service->findDocenteData($userData->email);
-                }else{
+                } else {
                     $data = $service->findUserRoleAndData($userData->email);
                 }
 
-                Log::info('ruoli [' . implode(';',$data['ruoli']) . ']');
+                Log::info('ruoli [' . implode(';', $data['ruoli']) . ']');
 
-                if ($data){
+                if ($data) {
                     $laravelUser->v_ie_ru_personale_id_ab = $data['id_ab'];
                     $laravelUser->save();
                     $laravelUser->assignRole($data['ruoli']);
                 }
-
             }
 
         } catch (\Exception $e) {
@@ -149,8 +150,24 @@ class LoginListener
             $handler = new Handler(Container::getInstance());
             $handler->report($e);
 
-            Log::info('Utente non autorizzato: '.$userData->email.' '.$userData->ruolo);
-            abort(401,  trans('global.utente_non_autorizzato'));
+            Log::info('Utente non autorizzato: ' . $userData->email . ' ' . $userData->ruolo);
+            abort(401, trans('global.utente_non_autorizzato'));
+        }
+
+        if ($userData->spidCode != null) {
+            // assegno ruolo spidCode
+            $laravelUser->givePermissionTo('spid-code');
+        } else {
+            // elimina ruolo spidCode
+            if ($laravelUser->can('spid-code')) {
+                $laravelUser->revokePermissionTo('spid-code');
+            }
+        }
+
+        $permsLocal = [];
+        $perms = $laravelUser->getAllPermissions();
+        foreach ($perms as $perm) {
+            $permsLocal[] = $perm['name'];
         }
 
         // Here we save the received nameId and sessionIndex needed later for the LogoutRequest

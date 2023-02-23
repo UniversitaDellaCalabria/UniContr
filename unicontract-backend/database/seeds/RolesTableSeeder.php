@@ -62,6 +62,8 @@ class RolesTableSeeder extends Seeder
         Permission::create(['name' => 'uploadconflintdip precontrattuale']);
         Permission::create(['name' => 'annullaconflintdip precontrattuale']);
 
+        // SPID
+        Permission::create(['name' => 'spid-code']);
 
         // create roles and assign created permissions
         $role = Role::create(['name' => 'op_docente'])
