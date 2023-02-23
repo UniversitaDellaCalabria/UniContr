@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Docente;
 use App\Precontrattuale;
+use App\PrecontrattualePerGenerazione;
 use App\Models\B1ConflittoInteressi;
 use PDF;
 use App\Attachment;
