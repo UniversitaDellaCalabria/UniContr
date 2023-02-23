@@ -244,6 +244,7 @@ class Insegnamenti extends Model {
             $result .= $tipo_atto." n. ".$numeri[$index]." del ". $this->dataDelibera($date[$index])." dal ".$tipo_emitt." del ".$this->dip_doc_des;
             $index ++;
         }
+        return $result;
     }
 
     public function contatore(){

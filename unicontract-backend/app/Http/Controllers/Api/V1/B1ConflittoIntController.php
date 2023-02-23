@@ -193,9 +193,14 @@ class B1ConflittoIntController extends Controller
     {
         $conflitto = B1ConflittoInteressi::findOrFail($id);
 
-        $pre = Precontrattuale::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])
-            ->where('b1_confl_interessi_id',$id)->first();
-
+        if($kind=='MODELLO_CONFL_INT'){
+            $pre = PrecontrattualePerGenerazione::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])
+                ->where('b1_confl_interessi_id',$id)->first();
+        }
+        else {
+            $pre = Precontrattuale::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])
+                ->where('b1_confl_interessi_id',$id)->first();
+        }
         $attach = null;
 
         if ($kind=='CONFL_INT_15_TRASP'){
