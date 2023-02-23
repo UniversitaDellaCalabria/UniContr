@@ -350,7 +350,7 @@ class Insegnamenti extends Model {
     {
         //$input = $data || $this->attributes['data_delibera'];
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format_contratto'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->format(config('unical.date_format_contratto'));
         }else{
             return '';
         }
