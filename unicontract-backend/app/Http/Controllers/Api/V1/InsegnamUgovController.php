@@ -39,9 +39,14 @@ class InsegnamUgovController extends Controller
         $datiUgov = [];
         $message = '';
 
-        $datiUgov = InsegnamUgov::join(config('unical.db_oracle_siaru').'.VD_ANAGRAFICA', config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.MATRICOLA', '=', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.MATRICOLA')
+        $datiUgov = InsegnamUgov::join(config('unical.db_oracle_siaru').'.VD_ANAGRAFICA',
+                                       config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.MATRICOLA', '=', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.MATRICOLA')
             ->where(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.COPER_ID', $coper_id)
-            ->first([config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.ID_AB', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.EMAIL', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL_PRIVATA', config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.*']);
+            ->first([config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.ID_AB',
+                     config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.EMAIL',
+                     config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL',
+                     config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL_PRIVATA',
+                     config('unical.db_oracle_siaxm').'.V_IE_DI_COPER.*']);
 
         $atti = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ATTI A1')
                 ->where('coper_id','=',$coper_id)
@@ -113,6 +118,20 @@ class InsegnamUgovController extends Controller
         $datiUgov['ore_desc'] = $ore_desc_string;
 
         $datiUgov['contatore_insegnamenti'] = InsegnamUgovController::contatoreInsegnamenti($coper_id);
+
+        // PATCH per email istituzionale
+        if($datiUgov['id_ab']) {
+            $email = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
+                    ->where('ID_AB','=',$datiUgov['id_ab'])
+                    ->where('CD_TIPO_CONT','=','EMAIL')
+                    ->orderBy('PRG_PRIORITA', 'desc')
+                    ->get();
+            if($email[0] && $email[0]->contatto){
+                Log::info("Email istituzionale recuperata: ".$email[0]->contatto);
+                $datiUgov['email'] = $email[0]->contatto;
+            }
+        }
+
 
         $success = true;
         return compact('datiUgov', 'message', 'success');
