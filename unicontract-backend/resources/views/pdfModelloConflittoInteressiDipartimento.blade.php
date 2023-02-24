@@ -38,7 +38,7 @@
     </p>
     <br>
     <p class="normal">
-    Il/La sottoscritto/a ___________________________________________
+    Il/La sottoscritto/a {{ $nome_direttore }}
     in qualità di Direttore del Dipartimento di {{$pre->dipartimento}}
     dell'Università della Calabria
     </p>
