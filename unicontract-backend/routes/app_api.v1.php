@@ -145,6 +145,7 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
 
     // B.1 CONFLITTO INTERESSI
     Route::get('conflitto/generatepdf/{id}/{kind}','B1ConflittoIntController@generatePDF');
+    Route::get('conflitto/generatepdf/{id}/{kind}/{other}','B1ConflittoIntController@generatePDF');
     Route::get('conflitto/{id}', 'B1ConflittoIntController@index');
     Route::post('conflitto', 'B1ConflittoIntController@store');
     Route::get('conflitto/details/{id}', 'B1ConflittoIntController@show');

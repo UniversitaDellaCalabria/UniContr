@@ -20,11 +20,11 @@ export class B1ConflittoDetailsComponent extends BaseComponent {
               private router: Router,
               private b1ConflittolService: B1ConflittoService,
               public messageService: MessageService,
-              public tools: InsegnamTools,              
+              public tools: InsegnamTools,
               public goto: RouteMetods) { super(messageService); }
 
   // tslint:disable-next-line:use-life-cycle-interface
-  ngOnInit() {    
+  ngOnInit() {
     this.route.paramMap.subscribe(
       (params) => {
         this.isLoading = true;

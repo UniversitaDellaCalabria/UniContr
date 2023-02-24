@@ -190,7 +190,7 @@ class B1ConflittoIntController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function generatePDF($id,$kind)
+    public function generatePDF($id,$kind,$other=null)
     {
         $conflitto = B1ConflittoInteressi::findOrFail($id);
 
@@ -229,7 +229,8 @@ class B1ConflittoIntController extends Controller
 
             $attach['filename'] = 'Dichiarazione '. $pre->user->nameTutorString() .'.pdf';
         }else if ($kind=='MODELLO_CONFL_INT'){
-            $pdf = PDF::loadView('pdfModelloConflittoInteressiDipartimento', ['pre' => $pre])
+            $other = base64_decode($other);
+            $pdf = PDF::loadView('pdfModelloConflittoInteressiDipartimento', ['pre' => $pre, 'nome_direttore' => $other])
                 ->setOption('margin-left','20')
                 ->setOption('margin-right','20')
                 ->setOption('margin-top','30')

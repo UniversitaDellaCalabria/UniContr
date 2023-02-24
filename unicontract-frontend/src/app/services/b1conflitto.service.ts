@@ -35,8 +35,10 @@ export class B1ConflittoService extends CoreSevice {
     return this.http.post(this._baseURL + '/' + idB1, conflitto).pipe(catchError(this.handleError('updateConflitto', null, false)));
   }
 
-  generatePdf(id, kind): Observable<any>{    
-    return this.http.get( this._baseURL  + '/generatepdf/'+id+'/'+kind)
+  generatePdf(id, kind, other=null): Observable<any>{
+    let relative_url = '/generatepdf/'+id+'/'+kind;
+    if(btoa) relative_url = relative_url + '/' + btoa(other);
+    return this.http.get( this._baseURL  + relative_url)
       .pipe(catchError(this.handleError('generatePdf', null, false)));
   }
 
