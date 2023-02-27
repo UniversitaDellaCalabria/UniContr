@@ -379,7 +379,7 @@ class PrecontrattualeController extends Controller
             }
 
             //verificare che al docente sia associata una email istituzionale
-            if ($request->docente['email'] && !Str::contains(strtolower($request->docente['email']),'@unical.it')){
+            if ($request->docente['email'] && !Str::contains(strtolower($request->docente['email']), config('unical.valid_email_domains'))){
                 $data = null;
                 $message = 'Insegnamento non importabile: al docente '.$request->docente['name'].' non è associata una email istituzionale';
                 $success = false;
@@ -741,7 +741,7 @@ class PrecontrattualeController extends Controller
         }
 
         $pre = Precontrattuale::with(['user'])->where('insegn_id',$request->insegn_id)->first();
-        if ($pre && $pre->user->email && !Str::contains($pre->user->email,'@unical.it')){
+        if ($pre && $pre->user->email && !Str::contains($pre->user->email, config('unical.valid_email_domains'))){
             $data = null;
             $message = 'A '.$pre->user->nameTutorString().' non è associata una email istituzionale';
             $success = false;

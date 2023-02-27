@@ -103,7 +103,7 @@ class LoginListener
             $laravelUser = \App\User::where('cf', $userData['cf'])->first();
             if ($laravelUser !== null ){
                 //aggiornare email
-                if (Str::contains(strtolower($userData['email']),'@unical.it')){
+                if (Str::contains(strtolower($userData['email']), config('unical.valid_email_domains'))){
                     $laravelUser->email = $userData['email'];
                     $laravelUser->save();
                     Log::info('Aggiornata email laravel user [' . $laravelUser->name . ']');

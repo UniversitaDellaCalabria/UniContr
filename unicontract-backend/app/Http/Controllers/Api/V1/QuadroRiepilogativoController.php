@@ -160,9 +160,9 @@ class QuadroRiepilogativoController extends Controller
 
         $pre = Pre::with(['user'])->where('insegn_id',$request->insegn_id)->first();
 
-        if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email),'@unical.it')){
+        if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email), config('unical.valid_email_domains'))){
             $email = $pre->user->anagraficaugov()->first()->e_mail;
-            if ($email && Str::contains(strtolower($email),'@unical.it')){
+            if ($email && Str::contains(strtolower($email), config('unical.valid_email_domains'))){
                 //aggiornare email utente
                 $pre->user->email = $email;
                 $pre->user->save();
