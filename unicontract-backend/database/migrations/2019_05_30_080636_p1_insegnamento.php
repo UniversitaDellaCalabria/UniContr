@@ -34,8 +34,8 @@ class P1Insegnamento extends Migration
             $table->string('tipo_contratto', 10)->nullable();
             $table->string('tipo_atto', 255)->nullable();
             $table->string('emittente', 255)->nullable();
-            $table->string('motivo_atto', 30)->nullable();
-            $table->string('num_delibera', 30)->nullable();
+            $table->string('motivo_atto', 255)->nullable();
+            $table->string('num_delibera', 255)->nullable();
             //$table->date('data_delibera')->nullable();
             $table->string('data_delibera')->nullable();
             $table->string('cod_insegnamento', 20)->nullable();
