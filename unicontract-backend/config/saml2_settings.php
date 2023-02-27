@@ -142,8 +142,6 @@ return $settings = array(
         // 'certFingerprint' => '',
     ),
 
-
-
     /***
      *
      *  OneLogin advanced settings
