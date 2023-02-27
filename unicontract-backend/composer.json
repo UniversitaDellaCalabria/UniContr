@@ -31,7 +31,8 @@
         "spatie/array-to-xml": "^2.8",
         "spatie/laravel-permission": "^2.12",
         "tymon/jwt-auth": "^1.0.0",
-        "yajra/laravel-oci8": "5.7.*"
+        "yajra/laravel-oci8": "5.7.*",
+        "globalcitizen/php-iban": "4.2.1"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
