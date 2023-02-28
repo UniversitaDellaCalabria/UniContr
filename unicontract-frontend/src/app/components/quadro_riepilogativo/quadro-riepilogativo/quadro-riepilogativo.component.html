@@ -524,11 +524,15 @@
       <span class="oi oi-document iconic"></span>
       <span class="ml-2">Visualizza contratto</span>
     </button>
-    <button type="button" [disabled]='!visualizzatoContratto'  [ngClass]="(!visualizzatoContratto)? 'btn btn-outline-secondary rounded mr-2' : 'btn btn-warning rounded mr-2'" *ngxPermissionsOnly="['OP_DOCENTE','SUPER-ADMIN']"
-      title="{{ 'summary_title5' | translate }}" (click)="presaVisione()">
-      <span class="oi oi-thumb-up iconic"></span>
-      <span class="ml-2">Presa visione</span>
-    </button>
+
+    <ng-container *ngxPermissionsOnly="['SPID-CODE','SUPER-ADMIN']">
+      <button type="button" [disabled]='!visualizzatoContratto'  [ngClass]="(!visualizzatoContratto)? 'btn btn-outline-secondary rounded mr-2' : 'btn btn-warning rounded mr-2'" *ngxPermissionsOnly="['OP_DOCENTE','SUPER-ADMIN']"
+        title="{{ 'summary_title5' | translate }}" (click)="presaVisione()">
+        <span class="oi oi-thumb-up iconic"></span>
+        <span class="ml-2">Presa visione</span>
+      </button>
+    </ng-container>
+
   </ng-container>
 
 </div>
