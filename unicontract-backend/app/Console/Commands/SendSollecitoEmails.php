@@ -92,7 +92,8 @@ class SendSollecitoEmails extends Command
                     if ($gg<0){
                         //'insegnamento.data_delibera' a oggi
                         $datetime1 =  $pre->insegnamento->created_at != null ?
-                            $pre->insegnamento->created_at : Carbon::createFromFormat('Y-m-d',  $pre->insegnamento->data_delibera);
+                            //$pre->insegnamento->created_at : Carbon::createFromFormat('Y-m-d',  $pre->insegnamento->data_delibera);
+                            $pre->insegnamento->created_at : Carbon::createFromFormat('Y-m-d H:i:s',  explode("#", $pre->insegnamento->data_delibera)[0])->format('Y-m-d');
                         $datetime2 = Carbon::now();
                         $gg  = $datetime1->diffInDays($datetime2);
                     }

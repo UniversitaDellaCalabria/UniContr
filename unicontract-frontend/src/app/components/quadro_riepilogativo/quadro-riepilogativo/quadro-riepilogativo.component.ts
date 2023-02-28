@@ -38,6 +38,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
   toggle_confl_int_dip: boolean = false;
   story: StoryProcess;
   datiCont: any = null;
+  nome_direttore: String = null;
 
   _visualizzaContratto: boolean = false;
   get visualizzatoContratto() : boolean {
@@ -429,9 +430,9 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
     );
   }
 
-  generatePdf(item, kind) {
+  generatePdf(item, kind, other=null) {
     // implementare api
-    this.b1ConflittolService.generatePdf(item.b1_confl_interessi_id, kind).subscribe(file => {
+    this.b1ConflittolService.generatePdf(item.b1_confl_interessi_id, kind, other).subscribe(file => {
         if (file.filevalue) {
           const blob = new Blob([decode(file.filevalue)]);
           saveAs(blob, file.filename);

@@ -244,6 +244,7 @@ class Insegnamenti extends Model {
             $result .= $tipo_atto." n. ".$numeri[$index]." del ". $this->dataDelibera($date[$index])." dal ".$tipo_emitt." del ".$this->dip_doc_des;
             $index ++;
         }
+        return $result;
     }
 
     public function contatore(){
@@ -350,7 +351,7 @@ class Insegnamenti extends Model {
     {
         //$input = $data || $this->attributes['data_delibera'];
         if($input != null && $input != '00-00-0000') {
-            return Carbon::createFromFormat('Y-m-d', $input)->format(config('unical.date_format_contratto'));
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->format(config('unical.date_format_contratto'));
         }else{
             return '';
         }
@@ -422,7 +423,8 @@ class Insegnamenti extends Model {
 
     public function giorniDeliberaAOggi(){
         if ($this->attributes['data_delibera']){
-            $datetime1 = Carbon::createFromFormat('Y-m-d', $this->attributes['data_delibera']);
+            //$datetime1 = Carbon::createFromFormat('Y-m-d', $this->attributes['data_delibera']);
+            $datetime1 = Carbon::createFromFormat('Y-m-d H:i:s', explode("#", $this->attributes['data_delibera'])[0])->format('Y-m-d');
             $datetime2 = Carbon::now();
             $diff_in_days  = $datetime1->diffInDays($datetime2);
             return $diff_in_days;

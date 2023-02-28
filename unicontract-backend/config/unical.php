@@ -99,4 +99,6 @@ return [
     'db_oracle_siaru' => env('DB_ORACLE_SIARU',''),
     'db_oracle_siaxm' => env('DB_ORACLE_SIAXM',''),
     'db_oracle_siadg' => env('DB_ORACLE_SIADG',''),
+
+    'valid_email_domains' => explode(',', env('VALID_EMAIL_DOMAINS', '@unical.it,@mat.unical.it,@dimes.unical.it,@deis.unical.it,@fis.unical.it'))
 ];

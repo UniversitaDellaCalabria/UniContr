@@ -299,8 +299,47 @@ class PrecontrattualeController extends Controller
             }
 
             //verificare la data di conferimento
-            if (!$request->insegnamento['data_delibera']){
+            //if (!$request->insegnamento['data_delibera']){
+            if (!explode("#", $request->insegnamento['data_delibera'])[0]){
                 $message = 'Insegnamento non importabile: data conferimento non inserita';
+                $success = false;
+                return compact('data', 'message', 'success');
+            }
+
+            //verificare che tutte le date di conferimento
+            //non siano successive alla data di inizio attività
+            $date_atti = explode("#", $request->insegnamento['data_delibera']);
+            $atto_precedente = false;
+            foreach($date_atti as $data_atto){
+                //if(!$data_atto){
+                    //$message = "Insegnamento non importabile: ci sono atti di conferimento senza data";
+                    //$success = false;
+                    //return compact('data', 'message', 'success');
+                //}
+                $datetimeIni = Carbon::createFromFormat(config('unical.date_format'), $request->insegnamento['data_ini_contr']);
+                $data_atto_date = Carbon::createFromFormat('Y-m-d H:i:s', $data_atto)->format('Y-m-d');
+                if($data_atto_date <= $datetimeIni){
+                    $atto_precedente = true;
+                    break;
+                }
+            }
+            if(!$atto_precedente){
+                $message = "Insegnamento non importabile: nessun atto di conferimento prodotto prima della data di inizio del contratto.";
+                $success = false;
+                return compact('data', 'message', 'success');
+            }
+
+            //verificare che tra gli atti ci sia almeno una Delibera
+            $tipi_atti = explode("#", $request->insegnamento['tipo_atto']);
+            $delibera_found = false;
+            foreach($tipi_atti as $tipo_atto){
+                if($tipo_atto == "Delibera"){
+                    $delibera_found = true;
+                    break;
+                }
+            }
+            if(!$delibera_found){
+                $message = "Insegnamento non importabile: nessuna delibera di conferimento incarico.";
                 $success = false;
                 return compact('data', 'message', 'success');
             }
@@ -340,7 +379,7 @@ class PrecontrattualeController extends Controller
             }
 
             //verificare che al docente sia associata una email istituzionale
-            if ($request->docente['email'] && !Str::contains(strtolower($request->docente['email']),'@unical.it')){
+            if ($request->docente['email'] && !Str::contains(strtolower($request->docente['email']), config('unical.valid_email_domains'))){
                 $data = null;
                 $message = 'Insegnamento non importabile: al docente '.$request->docente['name'].' non è associata una email istituzionale';
                 $success = false;
@@ -702,7 +741,7 @@ class PrecontrattualeController extends Controller
         }
 
         $pre = Precontrattuale::with(['user'])->where('insegn_id',$request->insegn_id)->first();
-        if ($pre && $pre->user->email && !Str::contains($pre->user->email,'@unical.it')){
+        if ($pre && $pre->user->email && !Str::contains($pre->user->email, config('unical.valid_email_domains'))){
             $data = null;
             $message = 'A '.$pre->user->nameTutorString().' non è associata una email istituzionale';
             $success = false;

@@ -4,7 +4,7 @@ Gentile {{ $pre->user->nameTutorString() }},<br>
 con riferimento all'incarico di insegnamento di<br>
 {{ $pre->insegnamento->insegnamentoDescr }} (anno accademico {{$pre->aa}}),<br>
 erogato dal {{ $pre->insegnamento->dipartimento }},<br>
-presso il {{ $pre->insegnamento->dip_doc_des }}<br>
+attribuito dal {{ $pre->insegnamento->dip_doc_des }}<br>
 dell'Università della Calabria,<br>
 La informiamo che la modulistica precontrattuale da Lei compilata<br>
 è stata verificata e validata dagli uffici competenti, pertanto<br>

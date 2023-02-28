@@ -88,8 +88,12 @@
         <td>{{ items.date_confl_int_dip }}</td>
         <td>
           <ng-container *ngxPermissionsOnly="['OP_DIPARTIMENTALE','SUPER-ADMIN']">
-            <button *ngIf="items.flag_confl_int_dip == 0  && items.flag_upd == 0" type="button" class="btn btn-sm btn-success rounded m-1"
-              title="{{ 'summary_download' | translate }} {{ 'summary_val_confl_int_format' | translate }}" (click)="generatePdf(items,'MODELLO_CONFL_INT')">
+            <div *ngIf="items.flag_confl_int_dip == 0  && items.flag_upd == 0 && (nome_direttore == null || nome_direttore == '')">
+                <span style="color: red">Inserisci il nome del direttore del Dipartimento e scarica la dichiarazione da firmare</span>
+            </div>
+            <input *ngIf="items.flag_confl_int_dip == 0  && items.flag_upd == 0" [(ngModel)]="nome_direttore" type="text">
+            <button *ngIf="items.flag_confl_int_dip == 0  && items.flag_upd == 0 && nome_direttore" type="button" class="btn btn-sm btn-success rounded m-1"
+              title="{{ 'summary_download' | translate }} {{ 'summary_val_confl_int_format' | translate }}" (click)="generatePdf(items,'MODELLO_CONFL_INT', nome_direttore)">
                 {{ 'summary_download' | translate }} {{ 'summary_val_confl_int_format' | translate }}
             </button>
             <button *ngIf="items.flag_confl_int_dip == 1  && items.flag_upd == 0" type="button" class="btn btn-sm btn-danger rounded m-1"

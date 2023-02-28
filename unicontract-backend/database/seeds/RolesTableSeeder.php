@@ -132,7 +132,7 @@ class RolesTableSeeder extends Seeder
         $role->revokePermissionTo('validazioneamm precontrattuale');
         $role->revokePermissionTo('annullaamm precontrattuale');
         $role->revokePermissionTo('annullaeconomica precontrattuale');
-        $role->revokePermissionTo('annullaeconomica precontrattuale uffici');
+        $role->revokePermissionTo('annullacontratto precontrattuale uffici');
         $role->revokePermissionTo('annullacontratto precontrattuale firmato');
         $role->revokePermissionTo('search all contratti');
         $role->revokePermissionTo('search all insegnamenti');

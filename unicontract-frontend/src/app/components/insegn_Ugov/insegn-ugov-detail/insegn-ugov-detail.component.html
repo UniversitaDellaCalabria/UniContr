@@ -24,13 +24,14 @@
     <div *ngFor="let atto of tipo_atto_des_list; index as i">
         <app-list-item label="{{ '00_int12' | translate }}" value="{{ datoMancante(tipo_atto_des_list[i]) | uppercase }} NUM. {{ datoMancante(numero_list[i]) }} DEL {{ datoMancante(data_list[i]) | toDateObj | date: 'dd-MM-yyyy'}}"></app-list-item>
         <app-list-item label="{{ '00_int13' | translate }}" value="{{ datoMancante(tipo_emitt_des_list[i]) | uppercase }}"></app-list-item>
-        <app-list-item label="{{ '00_int14' | translate }}" value="{{ datoMancante(tools.tipoConferimento(motivo_atto_cod_list[i])) }}"></app-list-item>
+        <!--<app-list-item label="{{ '00_int14' | translate }}" value="{{ datoMancante(tools.tipoConferimento(motivo_atto_cod_list[i])) }}"></app-list-item>-->
         <br>
     </div>
 
 <!--
     <app-list-item label="{{ '00_int14' | translate }}" value="{{ datoMancante(tools.tipoConferimento(item.motivo_atto_cod)) }}"></app-list-item>
 -->
+    <app-list-item label="{{ '00_int14' | translate }}" value="{{ datoMancante(tools.tipoConferimento(motivo_atto_cod_list[0])) }}"></app-list-item>
     <app-list-item label="{{ '00_int17' | translate }}" value="{{ datoMancante(item.ruolo_doc_des | uppercase) }}"></app-list-item>
 
 
@@ -56,9 +57,14 @@
     <p style="color: red" class="mb-0">Risulta assente il Dipartimento di afferenza del contrattista. Pertanto, non è possibile procedere con l'operazione di importazione dell'insegnamento.</p>
   </app-riquadro-wrapper>
 
-  <app-riquadro-wrapper *ngIf="!checkAttoData(item.data_ini_att)">
+  <app-riquadro-wrapper *ngIf="!checkAttoData(item.data_ini_inc)">
     <h5 style="color: red">ATTENZIONE</h5>
-    <p style="color: red" class="mb-0">La data di un atto di conferimento è successiva all'inizio delle attività del contratto.</p>
+    <p style="color: red" class="mb-0">Nessun atto di conferimento prodotto prima della data di inizio del contratto.</p>
+  </app-riquadro-wrapper>
+
+  <app-riquadro-wrapper *ngIf="!checkAttoTipo()">
+    <h5 style="color: red">ATTENZIONE</h5>
+    <p style="color: red" class="mb-0">Nessuna delibera di conferimento incarico.</p>
   </app-riquadro-wrapper>
 
   <form class="form" #f="ngForm" >
@@ -90,7 +96,7 @@
     <input type="hidden" name="dip_doc_des" [(ngModel)]="item.dip_doc_des">
 
     <div class="form-footer text-right">
-      <button *ngIf="checkEmail(item.email, item.e_mail, item.e_mail_privata) && item.dip_doc_id && item.dip_doc_des && item.dip_doc_cod && checkAttoData(item.data_ini_att)" class="btn btn-outline-secondary rounded mr-1" (click)="saveIns(f.value, item.nome, item.cognome, item.cod_fis, item.id_ab, email(item.email, item.e_mail, item.e_mail_privata))" title="IMPORTA IL PRESENTE INSEGNAMENTO">IMPORTA</button>
+      <button *ngIf="checkEmail(item.email, item.e_mail, item.e_mail_privata) && item.dip_doc_id && item.dip_doc_des && item.dip_doc_cod && checkAttoData(item.data_ini_inc) && checkAttoTipo()" class="btn btn-outline-secondary rounded mr-1" (click)="saveIns(f.value, item.nome, item.cognome, item.cod_fis, item.id_ab, email(item.email, item.e_mail, item.e_mail_privata))" title="IMPORTA IL PRESENTE INSEGNAMENTO">IMPORTA</button>
     </div>
 
   </form>

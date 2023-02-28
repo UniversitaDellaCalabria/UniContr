@@ -1,9 +1,3 @@
-<?php
-
-use Request;
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,7 +133,7 @@ use Request;
             su https://unicontr.unical.it
             il {{ $pre->validazioni->dateAcceptToPrint() }}
             alle {{ $pre->validazioni->hourAcceptToPrint() }}
-            da IP {{ Request::ip() }}
+            da IP {{ \Request::ip() }}
         </div>
     @endif
 

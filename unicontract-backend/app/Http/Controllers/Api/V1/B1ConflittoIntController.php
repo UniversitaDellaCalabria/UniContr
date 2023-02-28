@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Docente;
 use App\Precontrattuale;
+use App\PrecontrattualePerGenerazione;
 use App\Models\B1ConflittoInteressi;
 use PDF;
 use App\Attachment;
@@ -189,13 +190,18 @@ class B1ConflittoIntController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function generatePDF($id,$kind)
+    public function generatePDF($id,$kind,$other=null)
     {
         $conflitto = B1ConflittoInteressi::findOrFail($id);
 
-        $pre = Precontrattuale::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])
-            ->where('b1_confl_interessi_id',$id)->first();
-
+        if($kind=='MODELLO_CONFL_INT'){
+            $pre = PrecontrattualePerGenerazione::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])
+                ->where('b1_confl_interessi_id',$id)->first();
+        }
+        else {
+            $pre = Precontrattuale::with(['anagrafica','user','validazioni','insegnamento','conflittointeressi.cariche','conflittointeressi.incarichi'])
+                ->where('b1_confl_interessi_id',$id)->first();
+        }
         $attach = null;
 
         if ($kind=='CONFL_INT_15_TRASP'){
@@ -223,7 +229,8 @@ class B1ConflittoIntController extends Controller
 
             $attach['filename'] = 'Dichiarazione '. $pre->user->nameTutorString() .'.pdf';
         }else if ($kind=='MODELLO_CONFL_INT'){
-            $pdf = PDF::loadView('pdfModelloConflittoInteressiDipartimento', ['pre' => $pre])
+            $other = base64_decode($other);
+            $pdf = PDF::loadView('pdfModelloConflittoInteressiDipartimento', ['pre' => $pre, 'nome_direttore' => $other])
                 ->setOption('margin-left','20')
                 ->setOption('margin-right','20')
                 ->setOption('margin-top','30')
