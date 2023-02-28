@@ -11,7 +11,7 @@ Le ricordiamo che la modulistica precontrattuale da Lei compilata<br>
 La invitiamo a prendere visione del contratto in tutte le sue parti<br>
 e a confermare la sua accettazione **il più presto possibile**<br>
 collegandosi di nuovo alla piattaforma UniContr<br>
-utilizzando le credenziali SPID <a href="https://www.spid.gov.it/cos-e-spid/come-attivare-spid/le-pa-per-attivare-spid/">qui come ottenere SPID</a>;
+utilizzando le credenziali SPID <a href="https://www.spid.gov.it/cos-e-spid/come-attivare-spid">qui come ottenere SPID</a>;
 
 
 @component('mail::button', ['url' => $urlUniContr])

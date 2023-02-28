@@ -21,7 +21,7 @@ che dovrà pertanto solo verificare e aggiornare ove necessario.<br>
 <br>
 La informiamo che per la successiva accettazione del contratto<br>
 dovrà accedere al sistema con le credenziali SPID
-<href="https://www.spid.gov.it/cos-e-spid/come-attivare-spid/le-pa-per-attivare-spid/">qui come ottenere SPID</a>
+<href="https://www.spid.gov.it/cos-e-spid/come-attivare-spid">qui come ottenere SPID</a>
 <br>
 <br>
 Per eventuali informazioni o richieste di chiarimento,<br>
