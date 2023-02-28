@@ -14,3 +14,4 @@ saml.key
 saml.crt
 sp.key
 sp.crt
+composer.phar
