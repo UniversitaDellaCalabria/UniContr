@@ -167,8 +167,11 @@
           <span *ngIf="items.flag_accept === 1">{{ 'summary_txt8' | translate }}</span>
         </td>
         <td>
+          <!--
           <span *ngIf="items.flag_accept === 0">{{ 'summary_txt9' | translate }}</span>
           <span *ngIf="items.flag_accept === 1">{{ items.nome | titlecase }} {{ items.cognome | titlecase }}</span>
+          -->
+          {{ items.nome | titlecase }} {{ items.cognome | titlecase }}
         </td>
         <td>{{ items.date_accept }}</td>
         <td></td>
@@ -529,14 +532,24 @@
       <span class="ml-2">Visualizza contratto</span>
     </button>
 
-    <ng-container *ngxPermissionsOnly="['SPID-CODE','SUPER-ADMIN']">
-      <button type="button" [disabled]='!visualizzatoContratto'  [ngClass]="(!visualizzatoContratto)? 'btn btn-outline-secondary rounded mr-2' : 'btn btn-warning rounded mr-2'" *ngxPermissionsOnly="['OP_DOCENTE','SUPER-ADMIN']"
-        title="{{ 'summary_title5' | translate }}" (click)="presaVisione()">
-        <span class="oi oi-thumb-up iconic"></span>
-        <span class="ml-2">Presa visione</span>
-      </button>
-    </ng-container>
 
+    <ng-container *ngxPermissionsOnly="['OP_DOCENTE','SUPER-ADMIN']">
+        <ng-container *ngxPermissionsOnly="['SPID-CODE','SUPER-ADMIN']">
+          <button type="button" [disabled]='!visualizzatoContratto' [ngClass]="(!visualizzatoContratto)? 'btn btn-outline-secondary rounded mr-2' : 'btn btn-success rounded mr-2'"
+            title="{{ 'summary_title5' | translate }}" (click)="presaVisione()">
+            <span class="oi oi-thumb-up iconic" [ngClass]="(!visualizzatoContratto)? '' : 'text-white'"></span>
+            <span class="ml-2">Presa visione</span>
+          </button>
+        </ng-container>
+
+        <ng-container *ngxPermissionsExcept="['SPID-CODE','SUPER-ADMIN']">
+            <button type="button" class="btn btn-info rounded mr-2"
+                title="Accedi con SPID per confermare">
+                <span class="oi oi-ban text-white iconic"></span>
+                <span class="ml-2">Accedi con SPID per confermare</span>
+              </button>
+        </ng-container>
+    </ng-container>
   </ng-container>
 
 </div>
