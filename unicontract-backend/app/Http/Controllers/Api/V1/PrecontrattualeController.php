@@ -778,7 +778,7 @@ class PrecontrattualeController extends Controller
 
     public function presaVisioneAccettazione(Request $request){
 
-        if (!Auth::user()->hasPermissionTo(['presavisione precontrattuale','spid-code'])) {
+        if (!Auth::user()->hasPermissionTo(['presavisione precontrattuale','view spid'])) {
             abort(403, trans('global.utente_non_autorizzato'));
         }
 

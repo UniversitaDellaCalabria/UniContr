@@ -7,7 +7,10 @@
     "repositories": [
         {
             "type": "path",
-            "url": "./packages/aacotroneo/laravel-saml2"
+            "url": "./packages/aacotroneo/laravel-saml2",
+            "options": {
+                "symlink": true
+            }
         }],
     "require": {
         "php": "^7.1.3",

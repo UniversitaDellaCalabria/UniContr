@@ -97,7 +97,6 @@ class LoginListener
             abort(401, trans('global.utente_non_autorizzato'));
         }
 
-        $userData['email'] = 'francesco.filicetti@unical.it'; // dev user
         //check if email already exists and fetch user
         $laravelUser = \App\User::where('email', $userData['email'])->first();
         Log::info('laravel user [' . $laravelUser . ']');
@@ -155,19 +154,13 @@ class LoginListener
         }
 
         if ($userData->spidCode != null) {
-            // assegno ruolo spidCode
-            $laravelUser->givePermissionTo('spid-code');
+            // assegno ruolo SPID
+            $laravelUser->assignRole('spid-code');
         } else {
-            // elimina ruolo spidCode
-            if ($laravelUser->can('spid-code')) {
-                $laravelUser->revokePermissionTo('spid-code');
+            // elimina ruolo SPID
+            if ($laravelUser->hasRole('spid-code')) {
+                $laravelUser->removeRole('spid-code');
             }
-        }
-
-        $permsLocal = [];
-        $perms = $laravelUser->getAllPermissions();
-        foreach ($perms as $perm) {
-            $permsLocal[] = $perm['name'];
         }
 
         // Here we save the received nameId and sessionIndex needed later for the LogoutRequest
