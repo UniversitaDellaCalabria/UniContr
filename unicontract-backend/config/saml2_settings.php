@@ -78,7 +78,7 @@ return $settings = array(
 
     // Service Provider Data that we are deploying
     'sp' => array(
-        
+
         // Specifies constraints on the name identifier to be used to
         // represent the requested subject.
         // Take a look on lib/Saml2/Constants.php to see the NameIdFormat supported
@@ -108,7 +108,7 @@ return $settings = array(
             // URL Location where the <Response> from the IdP will be returned,
             // using HTTP-Redirect binding.
             // Leave blank to use the 'saml_sls' route
-            'url' => '',        
+            'url' => '',
         ),
     ),
 
@@ -121,12 +121,10 @@ return $settings = array(
         'singleSignOnService' => array(
                 // URL Target of the IdP where the SP will send the Authentication Request Message,
                 // using HTTP-Redirect binding.
-                //'url' => $idp_host . 'idp/profile/SAML2/Redirect/SSO',
-                // 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-                //'url' => $idp_host. 'Saml2/sso/post',
-                'url' => $idp_host. 'idp/sso/redirect'
+                'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+                'url' => $idp_host . env('SAML2_IDP_SIGN_ON_URL')
             // HTTP-POST binding only
-            
+
         ),
         // SLO endpoint info of the IdP.
         'singleLogoutService' => array(
@@ -143,8 +141,6 @@ return $settings = array(
          */
         // 'certFingerprint' => '',
     ),
-
-
 
     /***
      *
@@ -163,7 +159,7 @@ return $settings = array(
 
         // Indicates whether the <samlp:AuthnRequest> messages sent by this SP
         // will be signed.              [The Metadata of the SP will offer this info]
-        'authnRequestsSigned' => false,
+        'authnRequestsSigned' => true,
 
         // Indicates whether the <samlp:logoutRequest> messages sent by this SP
         // will be signed.
@@ -179,7 +175,7 @@ return $settings = array(
                                                     certFileName => 'metadata.crt'
                                                 )
         */
-        'signMetadata' => false,
+        'signMetadata' => true,
 
 
         /** signatures and encryptions required **/
@@ -190,7 +186,7 @@ return $settings = array(
 
         // Indicates a requirement for the <saml:Assertion> elements received by
         // this SP to be signed.        [The Metadata of the SP will offer this info]
-        'wantAssertionsSigned' => false,
+        'wantAssertionsSigned' => true,
 
         // Indicates a requirement for the NameID received by
         // this SP to be encrypted.
@@ -201,7 +197,7 @@ return $settings = array(
         // Set to false and no AuthContext will be sent in the AuthNRequest,
         // Set true or don't present thi parameter and you will get an AuthContext 'exact' 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport'
         // Set an array with the possible auth context values: array ('urn:oasis:names:tc:SAML:2.0:ac:classes:Password', 'urn:oasis:names:tc:SAML:2.0:ac:classes:X509'),
-        'requestedAuthnContext' => false,        
+        'requestedAuthnContext' => false,
 
           //'signatureAlgorithm' => 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
         'signatureAlgorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
@@ -225,9 +221,14 @@ return $settings = array(
     // Organization information template, the info in en_US lang is recomended, add more if required
     'organization' => array(
         'en-US' => array(
-            'name' => 'Name',
-            'displayname' => 'Display Name',
-            'url' => 'http://url'
+            'name' => 'Unical',
+            'displayname' => 'Unical',
+            'url' => 'https://www.unical.it'
+        ),
+        'it-IT' => array(
+            'name' => 'Unical',
+            'displayname' => 'Unical',
+            'url' => 'https://www.unical.it'
         ),
     ),
 
@@ -316,7 +317,7 @@ return $settings = array(
 
     // Service Provider Data that we are deploying
     'sp' => array(
-        
+
         // Specifies constraints on the name identifier to be used to
         // represent the requested subject.
         // Take a look on lib/Saml2/Constants.php to see the NameIdFormat supported
@@ -346,7 +347,7 @@ return $settings = array(
             // URL Location where the <Response> from the IdP will be returned,
             // using HTTP-Redirect binding.
             // Leave blank to use the 'saml_sls' route
-            'url' => '',        
+            'url' => '',
         ),
     ),
 
@@ -360,7 +361,7 @@ return $settings = array(
             // URL Target of the IdP where the SP will send the Authentication Request Message,
             // using HTTP-Redirect binding.
             'url' => $idp_host.'sso', //. 'idp/profile/SAML2/Redirect/SSO',
-            
+
         ),
         // SLO endpoint info of the IdP.
         'singleLogoutService' => array(
@@ -435,7 +436,7 @@ return $settings = array(
         // Set to false and no AuthContext will be sent in the AuthNRequest,
         // Set true or don't present thi parameter and you will get an AuthContext 'exact' 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport'
         // Set an array with the possible auth context values: array ('urn:oasis:names:tc:SAML:2.0:ac:classes:Password', 'urn:oasis:names:tc:SAML:2.0:ac:classes:X509'),
-        'requestedAuthnContext' => false,        
+        'requestedAuthnContext' => false,
 
           //'signatureAlgorithm' => 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
         'signatureAlgorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',

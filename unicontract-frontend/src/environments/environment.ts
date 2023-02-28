@@ -10,4 +10,3 @@ export const environment = {
   blacklistedRoutes: ['localhost:4200/auth/'],
   documentation: ''
 };
-
