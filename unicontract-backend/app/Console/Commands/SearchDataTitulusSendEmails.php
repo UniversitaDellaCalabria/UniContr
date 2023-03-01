@@ -96,7 +96,7 @@ class SearchDataTitulusSendEmails extends Command
                     //aggiornamento tabella titulus ref
                     $ref->num_protocollo = $num_prot;
                     if($data_prot && $data_prot != ""){
-                        $ref->data_protocollo = substr($data_prot,0,4)."-"substr($data_prot,4,2)."-".substr($data_prot,6,2);
+                        $ref->data_protocollo = substr($data_prot,0,4)."-".substr($data_prot,4,2)."-".substr($data_prot,6,2);
                     }
                     else { $ref->data_protocollo = ""; }
                     $ref->num_repertorio = $repertorio;
