@@ -14,6 +14,7 @@ use App\Precontrattuale;
 use App\Service\PrecontrattualeService;
 use App\Audit;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Auth;
 class AnagraficaController extends Controller
@@ -66,8 +67,20 @@ class AnagraficaController extends Controller
 
             $dati['copy'] = $copy;
             $dati['metadata'] = ['stato_civile' =>Anagrafica::statoCivileLista($dati->sesso)];
-            $success = true;
 
+            if($dati['id_ab']) {
+                $email = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
+                        ->where('ID_AB','=',$dati['id_ab'])
+                        ->where('CD_TIPO_CONT','=','EMAIL')
+                        ->orderBy('PRG_PRIORITA', 'desc')
+                        ->get();
+                if($email[0] && $email[0]->contatto){
+                    Log::info("Email istituzionale recuperata: ".$email[0]->contatto);
+                    $dati['email'] = $email[0]->contatto;
+                }
+            }
+
+            $success = true;
 
         return compact('dati', 'message', 'success');
     }
