@@ -36,12 +36,13 @@ class FirmaEmail extends Mailable
      * @return $this
      */
     public function build()
-    {        
-        return $this->subject("Avvenuta accettazione contratto di insegnamento ".$this->pre->user->nameTutorString())     
+    {
+        return $this->subject("Avvenuta accettazione contratto di insegnamento ".$this->pre->user->nameTutorString())
         ->markdown('emails.firmaemail')->with([
-            'pre' => $this->pre,     
-            'urlUniContr' => url("https://titulus-uniurb.cineca.it/xway/application/xdocway/engine/xdocway.jsp?verbo=queryplain&codammaoo=UNURCLE&query=%5B%2F%2F%40physdoc%5D%3D".$this->pre->titulusref->physdoc),      
-        ]);    
-        
+            'pre' => $this->pre,
+            //'urlUniContr' => url("https://titulus-uniurb.cineca.it/xway/application/xdocway/engine/xdocway.jsp?verbo=queryplain&codammaoo=UNURCLE&query=%5B%2F%2F%40physdoc%5D%3D".$this->pre->titulusref->physdoc),
+            'urlUniContr' => url("https://".config('titulus.host')."/fe/#/documento/".$this->pre->titulusref->nrecord),
+        ]);
+
     }
 }
