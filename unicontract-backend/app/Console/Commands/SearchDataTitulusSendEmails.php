@@ -50,29 +50,30 @@ class SearchDataTitulusSendEmails extends Command
     public function handle()
     {
 
-        Log::info('Esecuzione comando [ SearchDataTitulusSendEmails ]');    
+        Log::info('Esecuzione comando [ SearchDataTitulusSendEmails ]');
 
         $refs = TitulusRef::where('num_repertorio','=','')->orWhereNull('num_repertorio')->get();
         $response = null;
         foreach ($refs as $ref) {
 
             try{
-                $sc = new SoapControllerTitulus(new SoapWrapper);                            
-                $response = $sc->loadDocument($ref->physdoc,false);    
-                Log::info('Risposta loadDocument [ SearchDataTitulusSendEmails ] [' . $response . ']');   
-                $obj = simplexml_load_string($response);    
-                $document = $obj->Document;    
+                $sc = new SoapControllerTitulus(new SoapWrapper);
+                $response = $sc->loadDocument($ref->physdoc,false);
+                Log::info('Risposta loadDocument [ SearchDataTitulusSendEmails ] [' . $response . ']');
+                $obj = simplexml_load_string($response);
+                $document = $obj->Document;
                 $doc = $document->doc;
-            
+
                 $num_prot = (string)$doc['num_prot'];
-                $repertorio = (string)$doc->repertorio['numero'];  
+                $data_prot = (string)$doc['data_prot'];
+                $repertorio = (string)$doc->repertorio['numero'];
                 $bozza = (string)$doc['bozza'];
-                $signed = true;    
+                $signed = true;
 
                 $file = null;
 
                 if($repertorio != '') {
-                           
+
                     foreach ($doc->files->children('xw',true) as $file) {
                         // downloading file
                         $file == null;
@@ -81,19 +82,23 @@ class SearchDataTitulusSendEmails extends Command
                             foreach ($file->children('xw',true) as $internalfile) {
                                 $signed = (string) $internalfile->attributes()->signed;
                                 if ($signed == 'true'){
-                                    $fileId = (string) $internalfile->attributes()->name;                    
-                                    $file =  $sc->getAttachment($fileId);                                                            
+                                    $fileId = (string) $internalfile->attributes()->name;
+                                    $file =  $sc->getAttachment($fileId);
                                 }
                             }
-                        } 
+                        }
                         if ($file==null){
-                            $fileId = (string) $file->attributes()->name;   
+                            $fileId = (string) $file->attributes()->name;
                             $file =  $sc->getAttachment($fileId);
-                        }                                                               
+                        }
                     }
-                    
-                    //aggiornamento tabella titulus ref 
+
+                    //aggiornamento tabella titulus ref
                     $ref->num_protocollo = $num_prot;
+                    if($data_prot && $data_prot != ""){
+                        $ref->data_protocollo = substr($data_prot,0,4)."-"substr($data_prot,4,2)."-".substr($data_prot,6,2);
+                    }
+                    else { $ref->data_protocollo = ""; }
                     $ref->num_repertorio = $repertorio;
                     $ref->bozza = 'no'; //$bozza;
                     $ref->signed = $signed == 'true' ? true : false;
@@ -105,23 +110,23 @@ class SearchDataTitulusSendEmails extends Command
 
                     //invio email al docente
                     EmailService::sendEmailContratto($ref->insegn_id, $file->content,  $ref->physdoc.'_contratto_di_insegnamento.pdf');
-                
-                    Log::info('Contratto firmato [ SearchDataTitulusSendEmails ] [ insegn_id =' . $ref->insegn_id . '] 
-                        [ id =' . $pre->id . '] [ repertorio='. $repertorio.']');  
-                                
+
+                    Log::info('Contratto firmato [ SearchDataTitulusSendEmails ] [ insegn_id =' . $ref->insegn_id . ']
+                        [ id =' . $pre->id . '] [ repertorio='. $repertorio.']');
+
                 }
-                
+
             } catch (\Exception $e) {
-                Log::info('Errore [ SearchDataTitulusSendEmails ] [ insegn_id =' . $ref->insegn_id . ']'); 
-                if ($response) 
-                    Log::info($response);                            
+                Log::info('Errore [ SearchDataTitulusSendEmails ] [ insegn_id =' . $ref->insegn_id . ']');
+                if ($response)
+                    Log::info($response);
                 $handler = new Handler(Container::getInstance());
                 $handler->report($e);
             }
 
         }
-        
+
     }
 
-  
+
 }

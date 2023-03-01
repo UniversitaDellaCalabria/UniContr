@@ -19,8 +19,9 @@ class TableTitulusRef extends Migration
             $table->string('physdoc');
             $table->string('nrecord');
             $table->string('num_protocollo')->nullable();
+            $table->string('data_protocollo')->nullable();
             $table->string('num_repertorio')->nullable();
-            $table->enum('bozza', ['si','no'])->nullable();   
+            $table->enum('bozza', ['si','no'])->nullable();
             $table->boolean('signed')->default(0);
             $table->timestamps();
         });

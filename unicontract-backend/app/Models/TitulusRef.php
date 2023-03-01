@@ -11,7 +11,8 @@ class TitulusRef extends Model
         'physdoc',
         'nrecord',
         'num_protocollo',
-        'num_repertorio',        
+        'data_protocollo',
+        'num_repertorio',
         'bozza',
         'signed'
     ];
