@@ -596,7 +596,8 @@ export class AnagraficaDetailsComponent extends BaseComponent {
               },
               expressionProperties: {
                 'templateOptions.readonly': (model: any, formState: any, field: FormlyFieldConfig) => {
-                  return (model.email !== '*@unical.it');
+                  //return (model.email !== '*@unical.it');
+                  return true;
                 },
               }
             },
