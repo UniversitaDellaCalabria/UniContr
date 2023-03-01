@@ -233,7 +233,7 @@ class PrecontrattualeService implements ApplicationService
         $doc->addRepertorio('CONTRDO','Contratti di docenza');
 
         //TODO epigrafe insegnamento
-        $doc->oggetto = 'Contratto di insegnamento '.$pre->insegnamento->insegnamento; //almeno 30 caratteri
+        $doc->oggetto = 'Contratto di insegnamento '.$pre->insegnamento->insegnamento.' a '.$pre->user->cognome.' '.$pre->user->nome ; //almeno 30 caratteri
         //$doc->addClassifCod('07/16');
         $doc->addAllegato('0 - nessun allegato');
         $doc->addVoceIndice('UNICONTR - Contratto docente');
