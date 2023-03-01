@@ -137,6 +137,7 @@ class RolesTableSeeder extends Seeder
         $role->revokePermissionTo('search all contratti');
         $role->revokePermissionTo('search all insegnamenti');
         $role->revokePermissionTo('rinuncia precontrattuale');
+        $role->revokePermissionTo('view spid');
 
 
         $this->command->info('created roles');
