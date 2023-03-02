@@ -83,7 +83,12 @@ class RolesTableSeeder extends Seeder
                                  'search orgunit insegnamenti']);
 
         $role = Role::create(['name' => 'op_approvazione'])
-            ->givePermissionTo(['search all contratti','search all insegnamenti','update contratti', 'sending infoemail', 'sending firstemail','view attachments']);
+            ->givePermissionTo(['search all contratti',
+                                'search all insegnamenti',
+                                'update contratti',
+                                'sending infoemail',
+                                'sending firstemail',
+                                'view attachments']);
 
         $role = Role::create(['name' => 'op_approvazione_amm'])
             ->givePermissionTo(['search all contratti',
