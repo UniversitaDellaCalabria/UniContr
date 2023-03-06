@@ -107,7 +107,7 @@ class PrecontrattualeService implements ApplicationService
         }
         $pdf->setOption('enable-local-file-access',true);
         $pdf->setOption('load-error-handling','ignore');
-        $pdf->setOption('margin-top','44');
+        $pdf->setOption('margin-top','25');
         $pdf->setOption('margin-right','30');
         $pdf->setOption('margin-bottom','25');
         $pdf->setPaper('a4');
@@ -536,7 +536,7 @@ class PrecontrattualeService implements ApplicationService
         $pdf = PDF::loadView($view, ['pre' => $pre, 'type'=>$type]);
         $pdf->setOption('enable-local-file-access',true);
         $pdf->setOption('load-error-handling','ignore');
-        $pdf->setOption('margin-top','44');
+        $pdf->setOption('margin-top','25');
         $pdf->setOption('margin-right','30');
         $pdf->setOption('margin-bottom','25');
         $pdf->setPaper('a4');

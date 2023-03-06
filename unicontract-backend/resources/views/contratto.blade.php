@@ -68,12 +68,24 @@
       font-family: Arial, Helvetica, sans-serif;
       text-align: left;
 	  }
+
+    .logo{
+           background-image: url("https://{{ Request::getHost() }}/public/img/logo_unical.png");
+           background-size: contain;
+           background-repeat: no-repeat;
+           background-position: center;
+           width: 100%;
+           height: 200px;
+    }
+
 	</style>
 </head>
 <body class="@if ($type=='CONTR_BOZZA') bozza @endif">
 
 
 	<div class="page">
+
+    <div class="logo" >     </div>
 
 	<h4>UNIVERSITA' DELLA CALABRIA</h4>
 
