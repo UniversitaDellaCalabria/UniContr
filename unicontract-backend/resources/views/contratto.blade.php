@@ -128,8 +128,8 @@
             <div class="piepagina">
                 Sottoscritto da {{ $pre->user->nameTutorString() }}
                 su https://unicontr.unical.it
-                il {{ now()->toDateTimeString('m/d/Y') }}
-                alle {{ now()->toDateTimeString('HH:ii') }}
+                il {{ Carbon::now()->setTimezone(config('unical.timezone'))->format('d/m/Y') }}
+                alle {{ Carbon::now()->setTimezone(config('unical.timezone'))->format('H:i') }}
                 da IP {{ Request::ip() }}
             </div>
         @endif
