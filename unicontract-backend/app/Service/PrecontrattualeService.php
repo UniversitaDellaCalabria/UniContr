@@ -95,8 +95,8 @@ class PrecontrattualeService implements ApplicationService
 
 
 
-    public static function makePdfForContratto($pre, $type){
-        $pdf = PDF::loadView('contratto', ['pre' => $pre, 'type'=>$type]);
+    public static function makePdfForContratto($pre, $type, $show_sign=false){
+        $pdf = PDF::loadView('contratto', ['pre' => $pre, 'type'=>$type, 'show_sign'=>$show_sign]);
         if (App::environment(['local'])) {
             //con il javasctipt - something whent wrong in locale WINDOWS
             $header = View::make('contratto.headerlocal');
@@ -184,7 +184,7 @@ class PrecontrattualeService implements ApplicationService
 
         $sc = new SoapControllerTitulus(new SoapWrapper);
 
-        $pdf = PrecontrattualeService::makePdfForContratto($pre, 'CONTR_FIRMA');
+        $pdf = PrecontrattualeService::makePdfForContratto($pre, 'CONTR_FIRMA', true);
 
         $attachment = null;
         $attachment['filename'] = 'Contratto'. $pre->user->nameTutorString() .'.pdf';
