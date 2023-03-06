@@ -84,12 +84,12 @@ return [
     /**
      * Lista email separate da , per notifica di visione accettazione da parte del docente
      */
-    'firma_direttore_email' => explode(',',env('FIRMA_DIRETTORE_EMAIL',  'daniela.pisani@unical.it,paola.cordiale@unical.it,silvia.pagano@unical.it,egidio.cario@unical.it')),
+    'firma_direttore_email' => explode(',',env('FIRMA_DIRETTORE_EMAIL',  'roberto.elmo@unical.it, francesco.filicetti@unical.it, giuseppe.rossi@unical.it')),
 
      /**
      * Lista email separate da , per notifica compilazione terminata da parte del docente
      */
-    'cmu_email' => explode(',',env('CMU_EMAIL',  'unicontract@unical.it, amministrazione.reclutamento.pdoc@unical.it,daniela.pisani@unical.it')),
+    'cmu_email' => explode(',',env('CMU_EMAIL',  'daniela.pisani@unical.it,paola.cordiale@unical.it,silvia.pagano@unical.it,egidio.cario@unical.it')),
 
     /**
      * Inserire nuovi IBAN in Ugov
