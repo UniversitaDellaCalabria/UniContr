@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, NgModule, LOCALE_ID, Input } from '@angular/core';
@@ -100,31 +101,35 @@ export class InsegnUgovDetailComponent extends BaseComponent {
   }
 
   email(email: string, e_mail: string, e_mail_privata: string) {
-    let value = '';
-    if (email === '%@unical.it%') {
-      value = email;
-    } else if (e_mail === '%@unical.it%') {
-      value = e_mail;
-    } else if (email !== '%@unical.it%') {
-      value = email;
-    } else if (e_mail !== '%@unical.it%') {
-      value = e_mail;
-    } else if (e_mail_privata !== '') {
-      value = e_mail_privata;
+    let domains = environment.valid_email_domains;
+    for(let i=0;i<domains.length;i++){
+        if (email.toLowerCase() === '%'+domains[i]+'%') {
+          return email;
+        } else if (e_mail.toLowerCase() === '%'+domains[i]+'%') {
+          return e_mail;
+        } else if (email.toLowerCase() !== '%'+domains[i]+'%') {
+          return email;
+        } else if (e_mail.toLowerCase() !== '%'+domains[i]+'%') {
+          return e_mail;
+        } else if (e_mail_privata !== '') {
+          return e_mail_privata;
+        }
     }
-    return value;
+    return '';
   }
 
   checkEmail(email: string, e_mail: string, e_mail_privata: string) {
-    let value = false;
-    if (email !== null && email.toLowerCase().includes('@unical.it')) {
-        value = true;
-    } else if (e_mail !== null && e_mail.toLowerCase().includes('@unical.it')) {
-        value = true;
-    } else if (e_mail_privata !== null && e_mail_privata.toLowerCase().includes('@unical.it')) {
-        value = true;
+    let domains = environment.valid_email_domains;
+    for(let i=0;i<domains.length;i++){
+        if (email !== null && email.toLowerCase().includes(domains[i])) {
+            return true;
+        } else if (e_mail !== null && e_mail.toLowerCase().includes(domains[i])) {
+            return true;
+        } else if (e_mail_privata !== null && e_mail_privata.toLowerCase().includes(domains[i])) {
+            return true;
+        }
     }
-    return value;
+    return false;
   }
 
   datoMancante(value: string) {
