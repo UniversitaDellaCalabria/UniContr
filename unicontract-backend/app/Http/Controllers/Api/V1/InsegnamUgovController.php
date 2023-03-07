@@ -132,6 +132,10 @@ class InsegnamUgovController extends Controller
             }
         }
 
+        // PATCH - Cessazione anticipata
+        if($datiUgov['data_rinuncia']) {
+            $datiUgov['data_fine_contratto'] = explode(" ", $datiUgov['data_rinuncia'])[0];
+        }
 
         $success = true;
         return compact('datiUgov', 'message', 'success');

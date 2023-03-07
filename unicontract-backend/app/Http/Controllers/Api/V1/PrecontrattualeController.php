@@ -124,7 +124,12 @@ class PrecontrattualeController extends Controller
             ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
                 'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
                 'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id',
-                'tipo_corso_des', 'anno_corso', 'dip_doc_cod', 'dip_doc_des']);
+                'tipo_corso_des', 'anno_corso', 'dip_doc_cod', 'dip_doc_des', 'data_rinuncia']);
+
+        // PATCH data rinuncia
+        if($insegnamentoUgov['data_rinuncia']){
+            $insegnamentoUgov['data_fine_contratto'] = explode(" ", $insegnamentoUgov['data_rinuncia'])[0];
+        }
 
         $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ORE_COPER_DET V1')
                     ->where('coper_id','=',$precontr->insegnamento->coper_id)

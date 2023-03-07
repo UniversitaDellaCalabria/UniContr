@@ -193,10 +193,14 @@ class InsegnamentiController extends Controller
             ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
                     'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des',
                     'tipo_emitt_des', 'numero', 'data', 'tipo_corso_des', 'anno_corso',
-                    'dip_doc_cod', 'dip_doc_des']);
+                    'dip_doc_cod', 'dip_doc_des', 'data_rinuncia']);
 
+        // PATCH - Cessazione anticipata
+        if($datiUgov['data_rinuncia']) {
+            $datiUgov['data_fine_contratto'] = explode(" ", $datiUgov['data_rinuncia'])[0];
+        }
 
-            $success = true;
+        $success = true;
         return compact('datiUgov', 'message', 'success');
     }
 
