@@ -126,7 +126,7 @@ class InsegnamUgovController extends Controller
                     ->where('CD_TIPO_CONT','=','EMAIL')
                     ->orderBy('PRG_PRIORITA', 'desc')
                     ->get();
-            if($email && $email[0] && $email[0]->contatto){
+            if(isset($email[0]) && $email[0]->contatto){
                 Log::info("Email istituzionale recuperata: ".$email[0]->contatto);
                 $datiUgov['email'] = $email[0]->contatto;
             }
