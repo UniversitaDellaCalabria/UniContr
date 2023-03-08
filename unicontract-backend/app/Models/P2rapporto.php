@@ -56,7 +56,7 @@ class P2rapporto extends Model {
 
         if ($this->natura_rapporto){
             if ($this->natura_rapporto === 'PRPR') {
-                return 'Prestazione Professionale';
+                return 'Prestazione Professionale (Partita IVA)';
             } else if ($this->natura_rapporto === 'COCOCO') {
                 return 'Collaborazione di Natura Autonoma';
             } else if ($this->natura_rapporto === 'PLAO') {

@@ -137,7 +137,8 @@ export class InsegnamTools {
 
   descrizioneRapporto(value: string) {
     if (value === 'PRPR') {
-      return 'Per possessori di Partita IVA utilizzabile ai fini del contratto';
+      //return 'Per possessori di Partita IVA utilizzabile ai fini del contratto';
+      return 'Per possessori di partita IVA nell\'ambito professionale coerente con l\'insegnamento';
     } else if (value === 'PLAO') {
         return 'Artt. 2222 e ss. del Codice Civile';
     } else if (value === 'PTG') {
