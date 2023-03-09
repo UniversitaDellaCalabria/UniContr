@@ -15,7 +15,7 @@ class P1Insegnamento extends Migration
     {
         Schema::create('p1_insegnamento', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('coper_id')->unsigned()->nullable();
+            $table->integer('coper_id')->unsigned()->nullable()->index();
             $table->string('ruolo', 4)->nullable();
             $table->string('insegnamento', 255)->nullable();
             $table->string('settore', 255)->nullable();
