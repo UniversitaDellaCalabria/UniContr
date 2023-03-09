@@ -157,7 +157,7 @@ class EmailService implements ApplicationService
         if (App::environment(['local','preprod'])) {
             Mail::to(Auth::user())->send($email);
         } else {
-            $dip_code = config($pre->insegnamento->dip_doc_cod);
+            $dip_code = $pre->insegnamento->dip_doc_cod;
             $dip_label = config('unical.'.$dip_code);
             //['unicontract@uniurb.it','amministrazione.reclutamento.pdoc@uniurb.it']
             Mail::to(config('unical.cmu_email'))
