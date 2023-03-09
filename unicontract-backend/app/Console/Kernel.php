@@ -18,8 +18,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\SearchDataTitulusSendEmails::class, 
-        Commands\SendReportEmails::class,        
+        Commands\SearchDataTitulusSendEmails::class,
+        Commands\SendReportEmails::class,
         Commands\SendSollecitoEmails::class,
         Commands\BackupDatabase::class,
         Commands\SearchData::class
@@ -32,11 +32,11 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule)
-    {        
+    {
         //Europe/Rome
-        $schedule->command(SearchDataTitulusSendEmails::class, [])->timezone('Europe/Rome')->dailyAt('14:00');
-        $schedule->command(SendReportEmails::class, [])->timezone('Europe/Rome')->monthlyOn(10,'8:00');
-        $schedule->command(SendSollecitoEmails::class, [])->timezone('Europe/Rome')->monthlyOn(10,'8:00');
+        $schedule->command(SearchDataTitulusSendEmails::class, [])->timezone('Europe/Rome')->everyFiveMinutes();
+        $schedule->command(SendReportEmails::class, [])->timezone('Europe/Rome')->monthlyOn(1,'8:00');
+        $schedule->command(SendSollecitoEmails::class, [])->timezone('Europe/Rome')->monthlyOn(1,'8:00');
     }
 
     /**
