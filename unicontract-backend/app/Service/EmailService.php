@@ -152,15 +152,16 @@ class EmailService implements ApplicationService
     }
 
     public static function sendEmailCMU($pre){
-        $dip = config($pre->insegnamento->dip_doc_cod);
         $email = new SubmitEmail($pre);
         //uni_users.email
         if (App::environment(['local','preprod'])) {
             Mail::to(Auth::user())->send($email);
         } else {
+            $dip_code = config($pre->insegnamento->dip_doc_cod);
+            $dip_label = config('unical.'$dip_code);
             //['unicontract@uniurb.it','amministrazione.reclutamento.pdoc@uniurb.it']
             Mail::to(config('unical.cmu_email'))
-                ->cc(config('unical.'.strtolower($dip).'_report_segreterie'))
+                ->cc(config('unical.'.strtolower($dip_label).'_report_segreterie'))
                 ->bcc(config('unical.administrator_email'))->send($email);
         }
 
