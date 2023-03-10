@@ -84,7 +84,7 @@ return [
     /**
      * Lista email separate da , per notifica di visione accettazione da parte del docente
      */
-    'firma_direttore_email' => explode(',',env('FIRMA_DIRETTORE_EMAIL',  'roberto.elmo@unical.it, francesco.filicetti@unical.it, giuseppe.rossi@unical.it')),
+    'firma_direttore_email' => explode(',',env('FIRMA_DIRETTORE_EMAIL',  'roberto.elmo@unical.it,giuseppe.rossi@unical.it')),
 
      /**
      * Lista email separate da , per notifica compilazione terminata da parte del docente
