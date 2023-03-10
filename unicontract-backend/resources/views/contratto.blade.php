@@ -70,7 +70,7 @@
 	  }
 
     .logo{
-           background-image: url("https://{{ Request::getHost() }}/public/img/logo_unical.png");
+           background-image: url("https://raw.githubusercontent.com/UniversitaDellaCalabria/UniContr/master/unicontract-backend/public/img/logo_unical.png");
            background-size: contain;
            background-repeat: no-repeat;
            background-position: center;
