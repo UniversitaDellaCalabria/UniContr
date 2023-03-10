@@ -72,5 +72,11 @@
      <p class="normal">
      Il Direttore del Dipartimento
      </p>
+
+     <br>
+     <br>
+     <div class="piepagina">
+        Documento firmato digitalmente ai sensi del Codice dell'Amministrazione Digitale e norme ad esso connesse
+     </div>
     </body>
 </html>
