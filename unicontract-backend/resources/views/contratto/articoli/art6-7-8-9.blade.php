@@ -43,7 +43,8 @@
         @if(!$loop->first && !$loop->last)
             e
         @endif
-        dal {{ $pre->emittente[$loop->index] }} nella seduta del {{$data}}
+        dal {{ explode('#', $pre->emittente)[$loop->index] }}
+        nella seduta del {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y') }}
     @endforeach
     .
 
