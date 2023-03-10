@@ -20,7 +20,7 @@ class P1Insegnamento extends Migration
             $table->string('insegnamento', 255)->nullable();
             $table->string('settore', 255)->nullable();
             $table->string('cod_settore', 50)->nullable();
-            $table->integer('cfu')->unsigned()->nullable();
+            $table->float('cfu', 4, 2)->unsigned()->nullable();
             $table->integer('ore')->unsigned()->nullable();
             $table->string('ore_desc', 255)->nullable();
             $table->string('cdl', 255)->nullable();
