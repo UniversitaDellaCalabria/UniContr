@@ -19,5 +19,5 @@
 	@else
 		**** TIPOLOGIA DI CONTRATTO NON PREVISTA ****
 	@endif
-	valevole esclusivamente per l’<b>A.A. {{$pre->aa}}</b>.======================
+	valevole esclusivamente per l’<b>A.A. {{$pre->aa}}</b>.
 </p>

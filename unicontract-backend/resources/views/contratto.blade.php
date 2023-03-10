@@ -101,11 +101,11 @@
     </p>
     <br>
     <p class="normal">
-    Il Rettore Nicola Leone
+    {{$pre->genere['str0']}} {{$pre->genere['str5']}} {{ $pre->user->nameTutorString() }}
     </p>
     <br>
     <p class="normal">
-    {{$pre->genere['str0']}} {{$pre->genere['str5']}} {{ $pre->user->nameTutorString() }}
+    Il Rettore Nicola Leone
     </p>
     <br>
     <br>

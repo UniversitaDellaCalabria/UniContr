@@ -173,7 +173,7 @@ class Anagrafica extends Model
         }
 
         return "residente a ".$this->comune_residenza." (".$this->provincia_residenza.") - ".$this->cap_residenza." in ".$this->indirizzo_residenza.
-                ($this->civico_residenza ? " n. ".$this->civico_residenza : '').", d'ora in poi denominat".$str2." ".$str1.",";
+                ($this->civico_residenza ? " n. ".$this->civico_residenza : '').", d'ora in poi denominat".$str2." ".$str1;
     }
 
     public function datiResidenzaReport(){
