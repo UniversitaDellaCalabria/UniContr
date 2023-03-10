@@ -68,7 +68,16 @@
 @elseif($pre->naturaRapporto == "COCOCO")
 {{-- // TC006 / TC007 - COLLABORAZIONE DI NATURA AUTONOMA --}}
 	<p class="normal">
-	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str4']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfetario lordo ammontante a € {{$pre->compenso}}, al netto degli oneri a carico dell’Amministrazione, per come stabilito dal {{$pre->emittente}} nella seduta del {{$pre->dataDelibera}}. Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico, previa validazione del registro elettronico da parte del Direttore del Dipartimento. In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte.
+	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str4']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfetario lordo ammontante a € {{$pre->compenso}}, al netto degli oneri a carico dell’Amministrazione,
+    per come stabilito dal
+    @foreach(explode('#', $pre->dataDelibera) as $data)
+        @if(!$loop->first && !$loop->last)
+            e
+        @endif
+        dal {{ explode('#', $pre->emittente)[$loop->index] }}
+        nella seduta del {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y') }}
+    @endforeach
+    Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico, previa validazione del registro elettronico da parte del Direttore del Dipartimento. In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte.
 	</p>
 @elseif($pre->naturaRapporto == "PRPR")
 {{-- // / TC006 - TC007 PRESTAZIONE PROFESSIONALE (PARTITA IVA) --}}
