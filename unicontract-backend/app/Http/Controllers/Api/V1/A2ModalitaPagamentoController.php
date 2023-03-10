@@ -113,7 +113,7 @@ class A2ModalitaPagamentoController extends Controller
             }
             $dati['copy'] = $copy;
 
-            $precontr = Precontrattuale::where('docente_id', $id_ab)->orderBy('id','desc')->first();
+            $precontr = Precontrattuale::where('docente_id', $id_ab)->where('insegn_id', $insegn_id)->orderBy('id','desc')->first();
             $natura_rapport = P2rapporto::where('id', $precontr->p2_natura_rapporto_id)->first();
 
             $dati['natura_rapporto'] = $natura_rapport->natura_rapporto;
