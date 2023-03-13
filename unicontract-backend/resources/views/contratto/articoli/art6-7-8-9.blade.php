@@ -69,7 +69,7 @@
 {{-- // TC006 / TC007 - COLLABORAZIONE DI NATURA AUTONOMA --}}
 	<p class="normal">
 	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str4']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfetario lordo ammontante a € {{$pre->compenso}}, al netto degli oneri a carico dell’Amministrazione,
-    per come stabilito dal
+    per come stabilito
     @foreach(explode('#', $pre->dataDelibera) as $data)
         @if(!$loop->first && !$loop->last)
             e
