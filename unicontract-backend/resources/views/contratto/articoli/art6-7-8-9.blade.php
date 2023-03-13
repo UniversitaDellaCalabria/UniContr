@@ -35,7 +35,7 @@
 @elseif($pre->naturaRapporto == "PRPR")
 {{-- // / TC006 - TC007 PRESTAZIONE PROFESSIONALE (PARTITA IVA) --}}
 	<p class="normal">
-	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str1']}} {{$pre->genere['str5']}}
+	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str4']}} {{$pre->genere['str5']}}
     un corrispettivo onnicomprensivo forfettario lordo ammontante a € {{$pre->compenso}},
     al netto di IVA e Cassa Previdenza, per come stabilito
 
