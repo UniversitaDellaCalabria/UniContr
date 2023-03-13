@@ -147,9 +147,9 @@ class Anagrafica extends Model
     //senza CF
     public function datiAnagraficaString(){
         if($this->sesso == 'M' ) {
-            return "nato a ".ucwords(strtolower($this->comune_nascita))." (".$this->provincia_nascita."), il ".$this->dataNascitaContr;
+            return "nato a ".ucwords(strtolower($this->comune_nascita))." (".$this->provincia_nascita.") il ".$this->dataNascitaContr;
         } else {
-            return "nata a ".ucwords(strtolower($this->comune_nascita))." (".$this->provincia_nascita."), il ".$this->dataNascitaContr;
+            return "nata a ".ucwords(strtolower($this->comune_nascita))." (".$this->provincia_nascita.") il ".$this->dataNascitaContr;
         }
     }
 
