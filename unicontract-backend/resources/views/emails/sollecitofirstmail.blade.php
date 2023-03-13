@@ -15,6 +15,9 @@ necessaria alla definizione del contratto:
 Compilazione modulistica precontrattuale
 @endcomponent
 
+Per informazioni consulti la <a href="https://docs.google.com/presentation/d/1h4gPSJ25iWZsELcp6UdFzpNTLs3tgpudUjuHX03RC6Y/edit?usp=sharing">Guida alla Compilazione</a>
+<br>
+<br>
 Nel caso avesse in precedenza compilato la modulistica per altre docenze,<br>
 troverà le informazioni da Lei già inserite in passato,<br>
 che dovrà pertanto solo verificare e aggiornare ove necessario.<br>

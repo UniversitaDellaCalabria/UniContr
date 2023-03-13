@@ -97,7 +97,7 @@ export const ROUTES: RouteInfo[] = [
     permissions: [],
     submenu: [
       {
-        path: 'https://docs.google.com/document/d/1UioNHVdc1lIAP1okcrhjR6CXKtzHuhVBIhg26Js6yqg/edit?usp=sharing',
+        path: 'https://docs.google.com/presentation/d/1h4gPSJ25iWZsELcp6UdFzpNTLs3tgpudUjuHX03RC6Y/edit?usp=sharing',
         title: 'FAQ per la compilazione',
         icon: '',
         class: '',
