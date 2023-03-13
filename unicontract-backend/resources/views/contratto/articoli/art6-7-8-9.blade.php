@@ -40,7 +40,7 @@
     al netto di IVA e Cassa Previdenza, per come stabilito
 
     @foreach(explode('#', $pre->dataDelibera) as $data)
-        @if(!$loop->first && !$loop->last)
+        @if(!$loop->first)
             e
         @endif
         dal {{ explode('#', $pre->emittente)[$loop->index] }}
@@ -71,7 +71,7 @@
 	Per l’incarico conferito, viene riconosciuto {{$pre->genere['str4']}} {{$pre->genere['str5']}} un corrispettivo onnicomprensivo forfetario lordo ammontante a € {{$pre->compenso}}, al netto degli oneri a carico dell’Amministrazione,
     per come stabilito
     @foreach(explode('#', $pre->dataDelibera) as $data)
-        @if(!$loop->first && !$loop->last)
+        @if(!$loop->first)
             e
         @endif
         dal {{ explode('#', $pre->emittente)[$loop->index] }}

@@ -23,7 +23,7 @@ nelle sedute
 @endif
 
 @foreach(explode('#', $pre->dataDelibera) as $data)
-    @if(!$loop->first && !$loop->last)
+    @if(!$loop->first)
         e
     @endif
     del {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y') }}
