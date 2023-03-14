@@ -55,7 +55,7 @@ class InsegnamUgovController extends Controller
                           ->orWhere('tipo_atto_des','=','Disposizione Direttore');
                 })
                 ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
-                ->orderBy('data', 'desc')
+                ->orderBy('data', 'asc')
                 ->get();
 
         $tipo_atto_des_string = "";
