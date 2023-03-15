@@ -321,7 +321,7 @@ class PrecontrattualeController extends Controller
                     //$success = false;
                     //return compact('data', 'message', 'success');
                 //}
-                $datetimeIni = Carbon::createFromFormat(config('unical.date_format'), $request->insegnamento['data_ini_contr']);
+                $datetimeIni = Carbon::createFromFormat('d-m-Y', $request->insegnamento['data_ini_contr']);
                 $data_atto_date = Carbon::createFromFormat('Y-m-d H:i:s', $data_atto)->format('Y-m-d');
                 if($data_atto_date <= $datetimeIni){
                     $atto_precedente = true;
