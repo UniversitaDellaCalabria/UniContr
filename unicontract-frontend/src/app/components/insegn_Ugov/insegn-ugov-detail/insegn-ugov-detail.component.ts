@@ -185,14 +185,15 @@ export class InsegnUgovDetailComponent extends BaseComponent {
   checkAttoData(data_ugov){
         if(!this.data_list) return false;
         if(!data_ugov) return false;
+        let atto_precedente = false;
         let data_ugov_array = data_ugov.split("-");
         let new_data_ugov = data_ugov_array[2] + "-" + data_ugov_array[1] + "-" + data_ugov_array[0];
         this.data_list.forEach(function (data) {
             let d1 = new Date(data);
             let d2 = new Date(new_data_ugov);
-            if(d1<=d2) return true;
+            if(d1<=d2) atto_precedente = true;
         });
-        return false;
+        return atto_precedente;
     }
 
   checkAttoTipo(){
