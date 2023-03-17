@@ -47,7 +47,7 @@
         @endif
         del {{ explode('#', $pre->emittente)[$loop->index] }}
         @if(explode('#', $pre->numDelibera)[$loop->index] != '' && strtolower(explode('#', $pre->numDelibera)[$loop->index]) != 'null')
-        (n. {{ explode('#', $pre->numDelibera)[$loop->index] }})
+        n. {{ explode('#', $pre->numDelibera)[$loop->index] }}
         @endif
         del {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y') }}
     @endforeach
@@ -85,7 +85,7 @@
         @endif
         del {{ explode('#', $pre->emittente)[$loop->index] }}
         @if(explode('#', $pre->numDelibera)[$loop->index] != '' && strtolower(explode('#', $pre->numDelibera)[$loop->index]) != 'null')
-        (n. {{ explode('#', $pre->numDelibera)[$loop->index] }})
+        n. {{ explode('#', $pre->numDelibera)[$loop->index] }}
         @endif
         del {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y') }}
     @endforeach
