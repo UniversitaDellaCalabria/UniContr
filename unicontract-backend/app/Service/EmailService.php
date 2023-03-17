@@ -64,8 +64,12 @@ class EmailService implements ApplicationService
             if (App::environment(['local','preprod'])) {
                 Mail::to(config('unical.administrator_email'))->send($email);
             } else {
+                $cc = config('unical.cmu_email');
+                if($pre->anagrafica->email_privata)
+                    array_push($cc, $pre->anagrafica->email_privata);
+
                 Mail::to($pre->user)
-                    ->cc($pre->anagrafica->email_privata ?: [])
+                    ->cc($cc)
                     ->bcc(config('unical.administrator_email'))
                     ->send($email);
             }
