@@ -16,19 +16,20 @@ con inizio contratto {{$pre->dataDa}} e termine contratto {{$pre->dataA}}.
 <p class="normal">
 La prestazione d’opera intellettuale, stabilita
 
-@if(count(explode('#', $pre->dataDelibera)) == 1)
-nella seduta
-@else
-nelle sedute
-@endif
+negli atti
 
 @foreach(explode('#', $pre->dataDelibera) as $data)
     @if(!$loop->first)
         e
     @endif
+    del {{ explode('#', $pre->emittente)[$loop->index] }}
+    @if(explode('#', $pre->numDelibera)[$loop->index] != '' && explode('#', $pre->numDelibera)[$loop->index].toLowerCase() != 'null')
+    (n. explode('#', $pre->numDelibera)[$loop->index])
+    @endif
     del {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y') }}
-    dal {{ explode('#', $pre->emittente)[$loop->index] }}
 @endforeach
+
+del $pre->dipDocDes.
 
 del {{$pre->dipDocDes}},
 in seguito indicato Dipartimento,

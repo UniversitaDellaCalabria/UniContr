@@ -321,6 +321,10 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
     {
         return $this->insegnamento->data_delibera;
     }
+    public function getNumDeliberaAttribute()
+    {
+        return $this->insegnamento->num_delibera;
+    }
     public function getEmittenteAttribute()
     {
         return $this->insegnamento->emittente;
