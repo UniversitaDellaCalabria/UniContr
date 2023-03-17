@@ -47,12 +47,12 @@
         @endif
         del {{ explode('#', $pre->emittente)[$loop->index] }}
         @if(explode('#', $pre->numDelibera)[$loop->index] != '' && strtolower(explode('#', $pre->numDelibera)[$loop->index]) != 'null')
-        (n. explode('#', $pre->numDelibera)[$loop->index])
+        (n. {{ explode('#', $pre->numDelibera)[$loop->index] }})
         @endif
         del {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y') }}
     @endforeach
 
-    del $pre->dipDocDes.
+    del {{ $pre->dipDocDes }}.
 
     Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico,
     previa validazione del registro elettronico da parte del Direttore del Dipartimento.
@@ -85,12 +85,12 @@
         @endif
         del {{ explode('#', $pre->emittente)[$loop->index] }}
         @if(explode('#', $pre->numDelibera)[$loop->index] != '' && strtolower(explode('#', $pre->numDelibera)[$loop->index]) != 'null')
-        (n. explode('#', $pre->numDelibera)[$loop->index])
+        (n. {{ explode('#', $pre->numDelibera)[$loop->index] }})
         @endif
         del {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y') }}
     @endforeach
 
-    del $pre->dipDocDes.
+    del {{ $pre->dipDocDes }}.
 
     Il pagamento del corrispettivo sarà effettuato al termine dell’anno accademico, previa validazione del registro elettronico da parte del Direttore del Dipartimento. In ogni caso, la misura del corrispettivo sarà rapportata al numero di ore effettivamente svolte.
 	</p>
