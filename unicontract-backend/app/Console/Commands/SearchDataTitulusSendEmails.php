@@ -74,12 +74,12 @@ class SearchDataTitulusSendEmails extends Command
 
                 if($repertorio != '') {
 
-                    foreach ($doc->files->children('xw',true) as $file) {
+                    foreach (array_reverse($doc->files->children('xw',true)) as $file) {
                         // downloading file
                         $file == null;
                         $signed = (string) $file->attributes()->signed;
                         if ($signed == 'false'){
-                            foreach ($file->children('xw',true) as $internalfile) {
+                            foreach (array_reverse($file->children('xw',true)) as $internalfile) {
                                 $signed = (string) $internalfile->attributes()->signed;
                                 if ($signed == 'true'){
                                     $fileId = (string) $internalfile->attributes()->name;
