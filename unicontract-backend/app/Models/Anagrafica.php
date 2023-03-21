@@ -233,16 +233,16 @@ class Anagrafica extends Model
             [ 'key'=> 'C', 'value' => __('global.C_coniugato',  [ 's'=> Anagrafica::genderTranslate($sex) ]) ],
             [ 'key'=> 'D', 'value'=> __('global.D_divorziato',  [ 's'=> Anagrafica::genderTranslate($sex) ]) ],
             [ 'key'=> 'L', 'value'=> __('global.L_libero',  [ 's'=> Anagrafica::genderTranslate($sex) ]) ],
-            [ 'key'=> 'N', 'value'=> trans_choice('global.N_celibe', $sex === 'F' ? 1 :0)], // pipe
+            [ 'key'=> 'N', 'value'=> trans_choice('global.N_celibe', $sex === 'F' ? 'F':'M')], // pipe
 
-            [ 'key'=> 'R', 'value'=> trans_choice('global.R_celibefigli', $sex === 'F' ? 1 :0) ], // pipe
+            [ 'key'=> 'R', 'value'=> trans_choice('global.R_celibefigli', $sex === 'F' ? 'F':'M') ], // pipe
             [ 'key'=> 'S', 'value'=> __('global.S_separato',  [ 's'=> Anagrafica::genderTranslate($sex) ]) ],
             [ 'key'=> 'T', 'value'=> __('global.T_configliriconosciuti') ],
 
             [ 'key'=> 'U', 'value'=> __('global.U_configliacarico') ],
             [ 'key'=> 'V', 'value'=> __('global.V_vedovo',  [ 's'=> Anagrafica::genderTranslate($sex) ]) ],
 
-            [ 'key'=> 'W', 'value'=> trans_choice('global.W_celibeconfigli', $sex === 'F' ? 1 :0) ], // pipe
+            [ 'key'=> 'W', 'value'=> trans_choice('global.W_celibeconfigli', $sex === 'F' ? 'F':'M') ], // pipe
 
             [ 'key'=> 'X', 'value'=> __('global.X_separatoconfigli',  [ 's'=> Anagrafica::genderTranslate($sex) ]) ],
 
