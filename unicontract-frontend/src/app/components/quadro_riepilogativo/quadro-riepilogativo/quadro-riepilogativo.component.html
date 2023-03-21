@@ -187,10 +187,12 @@
         <td>{{ 'summary_firma' | translate }}</td>
         <td>
           <span *ngIf="items.stato === 0 || items.stato === 2">{{ 'summary_inattesafirma' | translate }}</span>
-          <span *ngIf="items.stato === 1">{{ 'summary_firmato' | translate }}</span>
+          <span *ngIf="items.stato === 1">
+              {{ 'summary_firmato' | translate }} (n. <b>{{ items.num_protocollo }})</b>
+            </span>
         </td>
         <td>{{ 'summary_segr' | translate }}</td>
-        <td> </td>
+        <td>{{ items.data_protocollo }}</td>
         <td></td>
       </tr>
 
