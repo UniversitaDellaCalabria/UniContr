@@ -8,10 +8,16 @@ use App\Http\Controllers\Api\V1\QueryBuilder;
 
 class Ruolo extends Model
 {
-    protected $connection = 'oracle';    
+    protected $connection = 'oracle';
 
-    public $table = 'V_RUOLI';
-    public $primaryKey = 'RUOLO';
+    //public $table = 'V_RUOLI';
+    public $table;
+    public function __construct()
+    {
+       $this->table = config('unical.db_oracle_siaxm').'.V_IE_DI_RUOLI';
+    }
+    //public $primaryKey = 'RUOLO';
+    public $primaryKey = 'CD_RUOLO';
 
     const DOCENTITYPE = array(9,1,11);
     const PTATYPE = array(3);
@@ -19,18 +25,18 @@ class Ruolo extends Model
     const DOCRUOLO = array('SD','AS','LS','PA','PO','SC','RU');
 
     public static function isRuoloDocente($ruolo){
-       return in_array($ruolo, self::DOCRUOLO); 
+       return in_array($ruolo, self::DOCRUOLO);
     }
      // Allow for camelCased attribute access
      public function getAttribute($key)
      {
         return parent::getAttribute(snake_case($key));
      }
- 
+
      public function setAttribute($key, $value)
      {
         return parent::setAttribute(snake_case($key), $value);
-     }     
+     }
 
      public function isDocente()
      {
