@@ -74,12 +74,12 @@ class SearchDataTitulusSendEmails extends Command
 
                 if($repertorio != '') {
 
-                    foreach (array_reverse($doc->files->children('xw',true)) as $file) {
+                    foreach ($doc->files->children('xw',true) as $file) {
                         // downloading file
                         $file == null;
                         $signed = (string) $file->attributes()->signed;
                         if ($signed == 'false'){
-                            foreach (array_reverse($file->children('xw',true)) as $internalfile) {
+                            foreach ($file->children('xw',true) as $internalfile) {
                                 $signed = (string) $internalfile->attributes()->signed;
                                 if ($signed == 'true'){
                                     $fileId = (string) $internalfile->attributes()->name;
@@ -87,10 +87,10 @@ class SearchDataTitulusSendEmails extends Command
                                 }
                             }
                         }
-                        if ($file==null){
-                            $fileId = (string) $file->attributes()->name;
-                            $file =  $sc->getAttachment($fileId);
-                        }
+                        //if ($file==null){
+                        $fileId = (string) $file->attributes()->name;
+                        $file =  $sc->getAttachment($fileId);
+                        //}
                     }
 
                     //aggiornamento tabella titulus ref
