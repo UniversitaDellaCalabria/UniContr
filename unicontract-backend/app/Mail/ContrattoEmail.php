@@ -43,7 +43,7 @@ class ContrattoEmail extends Mailable
         return $this->subject("Contratto di insegnamento UniCal")
             ->markdown('emails.contrattomail')->with([
                 'pre' => $this->pre,
-                'titulus' => TitulusRef::where('insegn_id',$pre->insegn_id)->orderBy('created_at', 'desc')->first()
+                'titulus' => TitulusRef::where('insegn_id',$this->pre->insegn_id)->orderBy('created_at', 'desc')->first()
             ])
             ->attachData($this->document, $this->documentName, [
                 'mime' => 'application/pdf',
