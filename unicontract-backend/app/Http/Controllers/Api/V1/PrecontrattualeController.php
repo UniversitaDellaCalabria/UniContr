@@ -746,7 +746,7 @@ class PrecontrattualeController extends Controller
         }
 
         $pre = Precontrattuale::with(['user'])->where('insegn_id',$request->insegn_id)->first();
-        if ($pre && $pre->user->email && !Str::contains($pre->user->email, config('unical.valid_email_domains'))){
+        if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email), config('unical.valid_email_domains'))){
             $data = null;
             $message = 'A '.$pre->user->nameTutorString().' non è associata una email istituzionale';
             $success = false;
