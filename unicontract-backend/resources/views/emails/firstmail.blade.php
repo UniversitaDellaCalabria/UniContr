@@ -7,7 +7,8 @@ erogato dal {{ $pre->insegnamento->dipartimento }},<br>
 attribuito dal {{ $pre->insegnamento->dip_doc_des }}<br>
 dell'Università della Calabria,<br>
 La invitiamo a collegarsi il più presto possibile alla piattaforma UniContr<br>
-per la compilazione online della modulistica precontrattuale necessaria<br>
+utilizzando le credenziali di Ateneo (credenziali del sistema S.O.L.Di. - <a href="https://www.unical.it/servizi-ict/servizi-digitali-per-il-personale/credenziali-di-ateneo/">qui come ottenerle</a>)<br>
+per completare la compilazione online entro 3 GIORNI della modulistica precontrattuale necessaria<br>
 alla definizione del contratto:
 
 @component('mail::button', ['url' => $urlUniContr])
