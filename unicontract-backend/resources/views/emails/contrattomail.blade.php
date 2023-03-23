@@ -12,8 +12,8 @@ Le inviamo, in allegato, il contratto sottoscritto digitalmente dal Magnifico Re
 @if($titulus)
 <br>
 <br>
-Numero di protocollo: $titulus->num_protocollo<br>
-Data protocollo: $titulus->data_protocollo
+Numero di protocollo: {{ $titulus->num_protocollo }}<br>
+Data protocollo: {{ $titulus->data_protocollo }}
 <br>
 <br>
 @endif
