@@ -1,6 +1,6 @@
 @component('mail::message')
 All'attenzione, per competenza, di:<br>
-{{ $pre->insegnamento->dipartimento }}<br>
+{{ $pre->insegnamento->dip_doc_des }}<br>
 DRU – Area Professori e Ricercatori<br>
 DRU - Ufficio Trattamenti Economici e Previdenziali<br>
 <br>
