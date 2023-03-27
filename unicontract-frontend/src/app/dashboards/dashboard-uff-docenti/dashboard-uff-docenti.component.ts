@@ -15,13 +15,14 @@ export class DashboardUffDocentiComponent implements OnInit {
   constructor(public service: DashboardService, private datePipe: DatePipe) { }
 
   ngOnInit() {
-    const today = this.datePipe.transform(Date.now(), 'dd-MM-yyyy');       
-    this.querycontrattidavalidare.rules = [        
+    const today = this.datePipe.transform(Date.now(), 'dd-MM-yyyy');
+    this.querycontrattidavalidare.rules = [
        { field: "validazioni.flag_submit", operator: "=", value: 1, type: "" },
-       { field: "validazioni.flag_upd", operator: "=", value: 0, type: "" },             
-       { field: "stato", operator: "=", value: 0, type: "" }   
-    ];     
-             
+       { field: "validazioni.flag_upd", operator: "=", value: 0, type: "" },
+       { field: "stato", operator: "=", value: 0, type: "" },
+       { field: "validazioniflag_confl_int_dip", operator: "=", value: 1, type: "" },
+    ];
+
   }
 
 }
