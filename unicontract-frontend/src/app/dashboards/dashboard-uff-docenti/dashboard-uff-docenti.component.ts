@@ -20,7 +20,7 @@ export class DashboardUffDocentiComponent implements OnInit {
        { field: "validazioni.flag_submit", operator: "=", value: 1, type: "" },
        { field: "validazioni.flag_upd", operator: "=", value: 0, type: "" },
        { field: "stato", operator: "=", value: 0, type: "" },
-       { field: "validazioniflag_confl_int_dip", operator: "=", value: 1, type: "" },
+       { field: "validazioni.flag_confl_int_dip", operator: "=", value: 1, type: "" },
     ];
 
   }
