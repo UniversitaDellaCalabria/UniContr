@@ -61,7 +61,7 @@ return [
     'dimes_report_segreterie' =>  array_map('trim',explode(',',env('DIMES_REPORT_SEGRETERIE', 'ilaria.gallo@unical.it,lucia.pullano@dimes.unical.it,a.soloperto@unical.it'))),
     'dimeg_report_segreterie' =>  array_map('trim',explode(',',env('DIMEG_REPORT_SEGRETERIE', 'assunta.greco@unical.it,samantha.salmena@unical.it,maria_rosa.taccone@unical.it'))),
     'demacs_report_segreterie' =>  array_map('trim',explode(',',env('DEMACS_REPORT_SEGRETERIE', 'gianluca.tricoli@unical.it,irene.santoro@unical.it'))),
-    'discag_report_segreterie' =>  array_map('trim',explode(',',env('DISCAG_REPORT_SEGRETERIE', 'maria.assalone@unical.it,francesco.greco70@unical.it,rosetta.miracco@unical.it,ruggero.vetere@unical.it'))),
+    'discag_report_segreterie' =>  array_map('trim',explode(',',env('DISCAG_REPORT_SEGRETERIE', 'maria.assalone@unical.it,marco.colacino@unical.it,rosetta.miracco@unical.it,ruggero.vetere@unical.it'))),
     'dispes_report_segreterie' =>  array_map('trim',explode(',',env('DISPES_REPORT_SEGRETERIE', 'pierluigi.fucilla@unical.it,santina.orlando@unical.it,pietrina.zolo@unical.it'))),
     'disu_report_segreterie' =>  array_map('trim',explode(',',env('DISU_REPORT_SEGRETERIE', 'orfeo.massara@unical.it,luigi.attento@unical.it,alessandro.sole@unical.it'))),
 
