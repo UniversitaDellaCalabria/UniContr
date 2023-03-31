@@ -203,7 +203,7 @@ class PrecontrattualeController extends Controller
         }
 
         // PATCH per email istituzionale
-        if($datiUgov['id_ab']) {
+        if($insegnamentoUgov['id_ab']) {
             $email = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
                     ->where('ID_AB','=',$insegnamentoUgov['id_ab'])
                     ->where('CD_TIPO_CONT','=','EMAIL')
