@@ -1267,7 +1267,7 @@ class PrecontrattualeController extends Controller
                 );
             }else{
                 $data = null;
-                $message = "Il documento risulta già caricato o altre validazioni impediscono l'uplpoad";
+                $message = "Il documento risulta già caricato o altre validazioni impediscono l'upload";
                 $success = false;
             }
         }

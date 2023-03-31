@@ -67,8 +67,16 @@ class QuadroRiepilogativoController extends Controller
 
 
             $pre = Pre::with(['attachments','user.attachments','anagrafica.audit','a2modalitapagamento.audit'])->where('insegn_id', $id)->first();
-            $datiGenerali['attachments'] = $pre->attachments ?: [];
-            $datiGenerali['userattachments'] = $pre->user ? ($pre->user->attachments ?: []) : [];
+            $datiGenerali['attachments'] = [];
+            if($pre->attachments){
+                $datiGenerali['attachments'] = $pre->attachments->sortByDesc('id');
+            }
+            $datiGenerali['userattachments'] = [];
+            if($pre->user && $pre->user->attachments){
+                $datiGenerali['userattachments'] = $pre->user->attachments->sortByDesc('id');
+            }
+            #$datiGenerali['attachments'] = $pre->attachments ?: [];
+            #$datiGenerali['userattachments'] = $pre->user ? ($pre->user->attachments ?: []) : [];
             if ($pre->a2modalitapagamento){
                     $datiGenerali['a2modalitapagamentoaudit'] = $pre->a2modalitapagamento->audit()->whereIn('id',
                     $pre->a2modalitapagamento->audit()->selectRaw('max(`id`)')->groupBy('field_name')->get()
