@@ -69,11 +69,11 @@ class QuadroRiepilogativoController extends Controller
             $pre = Pre::with(['attachments','user.attachments','anagrafica.audit','a2modalitapagamento.audit'])->where('insegn_id', $id)->first();
             $datiGenerali['attachments'] = [];
             if($pre->attachments){
-                $datiGenerali['attachments'] = $pre->attachments->sortByDesc('id');
+                $datiGenerali['attachments'] = $pre->attachments->sortByDesc('id')->values();
             }
             $datiGenerali['userattachments'] = [];
             if($pre->user && $pre->user->attachments){
-                $datiGenerali['userattachments'] = $pre->user->attachments->sortByDesc('id');
+                $datiGenerali['userattachments'] = $pre->user->attachments->sortByDesc('id')->values();
             }
             #$datiGenerali['attachments'] = $pre->attachments ?: [];
             #$datiGenerali['userattachments'] = $pre->user ? ($pre->user->attachments ?: []) : [];
