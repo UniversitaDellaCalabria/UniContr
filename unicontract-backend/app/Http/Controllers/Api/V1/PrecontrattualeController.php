@@ -131,6 +131,54 @@ class PrecontrattualeController extends Controller
             $insegnamentoUgov['data_fine_contratto'] = explode(" ", $insegnamentoUgov['data_rinuncia'])[0];
         }
 
+
+        $atti = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ATTI A1')
+                ->where('coper_id','=',$precontr->insegnamento->coper_id)
+                ->where(function($query) {
+                    $query->where('tipo_atto_des','=','Delibera')
+                          ->orWhere('tipo_atto_des','=','Disposizione Direttore');
+                })
+                ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
+                ->orderBy('data', 'asc')
+                ->get();
+
+        $tipo_atto_des_string = "";
+        $tipo_emitt_des_string = "";
+        $motivo_atto_cod_string = "";
+        $numero_string = "";
+        $data_string = "";
+
+        $counter = 0;
+
+        foreach ($atti as $atto) {
+            $tipo_atto_des_string .= $atto->tipo_atto_des;
+            $tipo_emitt_des_string .= $atto->tipo_emitt_des;
+            // $motivo_atto_cod_string .= $atto->motivo_atto_cod;
+            $numero_string .= $atto->numero;
+            $data_string .= $atto->data;
+
+            if ( $counter == 0){
+                $motivo_atto_cod_string = $atto->motivo_atto_cod;
+            }
+
+            if ( $counter < count( $atti ) - 1){
+                $tipo_atto_des_string .= "#";
+                $tipo_emitt_des_string .= "#";
+                // $motivo_atto_cod_string .= "#";
+                $numero_string .= "#";
+                $data_string .= "#";
+            }
+
+            $counter = $counter + 1;
+        }
+
+        $insegnamentoUgov['tipo_atto_des'] = $tipo_atto_des_string;
+        $insegnamentoUgov['tipo_emitt_des'] = $tipo_emitt_des_string;
+        $insegnamentoUgov['motivo_atto_cod'] = $motivo_atto_cod_string;
+        $insegnamentoUgov['numero'] = $numero_string;
+        $insegnamentoUgov['data'] = $data_string;
+
+
         $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ORE_COPER_DET V1')
                     ->where('coper_id','=',$precontr->insegnamento->coper_id)
                     ->select('tipo_att_did_cod','ore','compenso_calc')
@@ -153,6 +201,25 @@ class PrecontrattualeController extends Controller
         if($insegnamentoUgov['compenso'] == 0){
             $insegnamentoUgov['compenso'] = $compenso_calcolato;
         }
+
+        // PATCH per email istituzionale
+        if($datiUgov['id_ab']) {
+            $email = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
+                    ->where('ID_AB','=',$insegnamentoUgov['id_ab'])
+                    ->where('CD_TIPO_CONT','=','EMAIL')
+                    ->orderBy('PRG_PRIORITA', 'desc')
+                    ->get();
+            if(isset($email[0]) && $email[0]->contatto){
+                Log::info("Email istituzionale recuperata: ".$email[0]->contatto);
+                $insegnamentoUgov['email'] = $email[0]->contatto;
+            }
+        }
+
+        // PATCH - Cessazione anticipata
+        if($insegnamentoUgov['data_rinuncia']) {
+            $insegnamentoUgov['data_fine_contratto'] = explode(" ", $insegnamentoUgov['data_rinuncia'])[0];
+        }
+
 
         //verificare la data di conferimento
         if (!$insegnamentoUgov->motivo_atto_cod){

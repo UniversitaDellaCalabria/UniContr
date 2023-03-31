@@ -51,7 +51,7 @@
     VISTO il curriculum, nonché la dichiarazione di assenza di conflitto di interessi resa, ai sensi dell’art. 53, comma 14, del D. Lgs. n. 165/2001, da {{ $pre->user->nameTutorString() }} in relazione al seguente incarico:
     <br>
     <br>
-    Incarico di insegnamento {{ $pre->insegnamentoDescr }} - SSD {{ $pre->settore }} - Corso di {{ $pre->tipoCorsoDes }} in {{ $pre->cdl }} - Anno di corso {{ $pre->annoCorso }}, {{ $pre->ciclo }}, {{ $pre->periodo }} - per {{ $pre->ore }} ore complessive ({{ $pre->oreDesc }}) - A.A. {{$pre->aa}}
+    Incarico di insegnamento {{ $pre->insegnamentoDescr }} - SSD {{ $pre->settore }} - Corso di {{ $pre->tipoCorsoDes }} in {{ $pre->cdl }} - Anno di corso {{ $pre->annoCorso }}, {{ $pre->ciclo }}, {{ $pre->periodo }} - per {{ $pre->ore }} ore complessive {{ $pre->oreDesc }} - A.A. {{$pre->aa}}
     <br>
     <br>
     stabilito con {{ $pre->insegnamento->deliberaString() }}
