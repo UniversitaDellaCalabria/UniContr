@@ -30,8 +30,8 @@ export class B4RappPaComponent extends BaseComponent {
   private precontr: Updb4;
   idins: number;
   update: boolean = true;
-  adapter = new NgbStringAdapter();      
-  
+  adapter = new NgbStringAdapter();
+
   rapps: Array<Object> = [
     {rapp: 'TIND', name: this.translateService.instant('b4_txt2')},
     {rapp: 'TDET', name: this.translateService.instant('b4_txt3')},
@@ -60,7 +60,7 @@ export class B4RappPaComponent extends BaseComponent {
   };
 
   fieldsPubbAmm: FormlyFieldConfig[] = [
-    {                    
+    {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
@@ -105,17 +105,17 @@ export class B4RappPaComponent extends BaseComponent {
               const form = field.formControl;
               field.formControl.valueChanges.pipe(
                 takeUntil(this.onDestroy$),
-                tap(val => {      
+                tap(val => {
                   if (field.formControl.valid){
                     let al_giorno = field.parent.fieldGroup.find(x => x.key == 'al_giorno');
-                    al_giorno.templateOptions.datepickerOptions.minDate = this.adapter.fromModel(val); 
-                    this.cdr.detectChanges();       
+                    al_giorno.templateOptions.datepickerOptions.minDate = this.adapter.fromModel(val);
+                    this.cdr.detectChanges();
                     //console.warn(field,field.formControl.valid, val)
-                  }                                       
+                  }
                 }),
               ).subscribe();
             },
-          }  
+          }
         },
         {
           key: 'al_giorno',
@@ -127,7 +127,7 @@ export class B4RappPaComponent extends BaseComponent {
             // minDate: this.model.dal_giorno
           },
           hideExpression: (model: any, formState: any) => {
-            if (this.model.tipo_rapporto !== 'TDET') {
+            if (this.model.tipo_rapporto !== 'TDET' && this.model.tipo_rapporto !== 'ASP') {
               return true;
             }
             return false;
@@ -135,7 +135,7 @@ export class B4RappPaComponent extends BaseComponent {
         },
       ]
     },
-    
+
     // DATI DELLA P.A.
     {
       fieldGroupClassName: 'row',
@@ -298,7 +298,7 @@ export class B4RappPaComponent extends BaseComponent {
   ];
 
   //attività professionale
-  fields2: FormlyFieldConfig[] = [    
+  fields2: FormlyFieldConfig[] = [
     {
       fieldGroup: [
         {
@@ -342,7 +342,7 @@ export class B4RappPaComponent extends BaseComponent {
         label: ''
       },
       expressionProperties: {
-        'templateOptions.label': () => this.translateService.instant('b4_txt8', { s: ControlUtils.genderTranslate(this.items.sesso) }), 
+        'templateOptions.label': () => this.translateService.instant('b4_txt8', { s: ControlUtils.genderTranslate(this.items.sesso) }),
       }
     },
     {
@@ -386,7 +386,7 @@ export class B4RappPaComponent extends BaseComponent {
                 key: 'attachmenttype_codice',
                 type: 'input',
                 defaultValue: 'AUT_PA',
-               
+
                 templateOptions: {
                   type: 'hidden',
                   //label: 'Tipo documento',
@@ -439,18 +439,18 @@ export class B4RappPaComponent extends BaseComponent {
                 key: 'filevalue',
                 type: 'input',
                 templateOptions: {
-                  type: 'hidden'        
+                  type: 'hidden'
                 },
               },
               {
                 key: 'id',
                 type: 'input',
                 templateOptions: {
-                  type: 'hidden'        
+                  type: 'hidden'
                 },
               },
             ],
-          },               
+          },
           ],
         },
       },
@@ -458,7 +458,7 @@ export class B4RappPaComponent extends BaseComponent {
 
   fields: FormlyFieldConfig[] = [
     {
-      //wrappers: ['riquadro'], 
+      //wrappers: ['riquadro'],
       fieldGroup: [
           //scelta tempo pieno o parziale
           {
@@ -496,9 +496,9 @@ export class B4RappPaComponent extends BaseComponent {
                   }
                   return false;
                 },
-              },    
+              },
             ],
-          },  
+          },
           {
             fieldGroup: [
               {
@@ -547,7 +547,7 @@ export class B4RappPaComponent extends BaseComponent {
                         if (c.value.length > 1) {
                           return false;
                         }
-                      } 
+                      }
                       return true;
                     },
                     message: (error, field: FormlyFieldConfig) => `Regime di lavoro a tempo pieno inserire un solo rapporto di lavoro con Pubblica Amministrazione`,
@@ -568,13 +568,13 @@ export class B4RappPaComponent extends BaseComponent {
               public messageService: MessageService,
               private rapportoPAService: B4RappPAService,
               private precontrattualeService: PrecontrattualeService,
-              protected translateService: TranslateService,              
+              protected translateService: TranslateService,
               public tools: InsegnamTools,
               private cdr: ChangeDetectorRef) { super(messageService); }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-  
+
     this.route.paramMap.subscribe(
       (params) => {
         if (!params.get('upd')) {
@@ -582,10 +582,10 @@ export class B4RappPaComponent extends BaseComponent {
           this.isLoading = true;
           this.rapportoPAService.getPrecontr(+params.get('id')).subscribe(
             response => {
-                          
+
               // se esiste una copia locale utilizzo quella
               let copy = response['datiPrecontrattuale']['copy'];
-              if (copy) {              
+              if (copy) {
                 this.model = response['datiPrecontrattuale']['copy'];
                 if (this.model.attachments && this.model.attachments.length === 0) {
                   this.model.attachments = [
@@ -644,11 +644,11 @@ export class B4RappPaComponent extends BaseComponent {
         this.isLoading = false;
         if (response['success']) {
           this.messageService.info('Quadro B.4: Rapporto di lavoro con la P.A. creato con successo');
-          const data = response['datiRappPA'];         
+          const data = response['datiRappPA'];
           this.router.navigate(['home/rapppa/details', data.id]);
         } else {
           this.messageService.error(response['message']);
-        }        
+        }
       }
     );
   }
@@ -661,7 +661,7 @@ export class B4RappPaComponent extends BaseComponent {
           this.messageService.info('Quadro B.4: Rapporto di lavoro con la P.A. aggiornato con successo');
         } else {
           this.messageService.error(response['message']);
-        }        
+        }
         this.router.navigate(['home/rapppa/details', idB4]);
       }
     );
