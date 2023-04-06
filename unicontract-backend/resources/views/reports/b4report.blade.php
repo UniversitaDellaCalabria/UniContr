@@ -33,9 +33,9 @@
     } --}}
     @if($pre->b4rapportopa->tipo_rapporto == 'ASP')
         @if($item->al_giorno)
-        <div> - {{__('global.b4_txt1b')  }} {{$item->denominazione_pa }} {{__('global.b4_txt4')  }} {{__('global.b4_txt23')  }} {{$item->dal_giorno }} {{__('global.b4_txt24')  }} {{$item->al_giorno }}</div>
+        <div> - {{__('global.b4_txt1b')  }} {{$item->denominazione_pa }} {{__('global.b4_txt4')  }} {{__('global.b4_txt23')  }} {{$item->dal_giorno }} {{__('global.b4_txt24')  }} {{$item->al_giorno }}.</div>
         @else
-        <div> - {{__('global.b4_txt1b')  }} {{$item->denominazione_pa }} {{__('global.b4_txt4')  }} {{__('global.b4_txt25')  }} {{$item->dal_giorno }}</div>
+        <div> - {{__('global.b4_txt1b')  }} {{$item->denominazione_pa }} {{__('global.b4_txt4')  }} {{__('global.b4_txt25')  }} {{$item->dal_giorno }}.</div>
         @endif
     @endif
 
