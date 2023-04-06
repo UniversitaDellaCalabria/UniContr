@@ -1,6 +1,6 @@
 <ngx-loading [show]="isLoading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
 <div class="container-fluid" *ngIf="items" >
-  <app-intestazione *ngIf="items" [item]="items" [dettagli]="true"></app-intestazione>  
+  <app-intestazione *ngIf="items" [item]="items" [dettagli]="true"></app-intestazione>
 
   <app-riquadro-wrapper *ngIf="items">
     <h5>{{ 'b4_txt22' | translate }}</h5>
@@ -18,12 +18,15 @@
           </div>
       </div>
       <div *ngIf="items.tipo_rapporto === 'ASP'" class="row" >
-        <div class="col">
+        <div class="col" *ngIf="!item.al_giorno">
           {{ 'b4_txt1b' | translate }} {{ item.denominazione_pa }} {{ 'b4_txt4' | translate }} {{ 'b4_txt25' | translate }} {{ item.dal_giorno }}.
+        </div>
+        <div class="col" *ngIf="item.al_giorno">
+          {{ 'b4_txt1b' | translate }} {{ item.denominazione_pa }} {{ 'b4_txt4' | translate }} {{ 'b4_txt23' | translate }} {{ item.dal_giorno }} {{ 'b4_txt24' | translate }} {{ item.al_giorno }}.
         </div>
       </div>
 
-    
+
       <!-- ANAGRAFE DELLE PRESTAZIONI -->
       <div class="row">
         <div class="col">{{ 'b4_txt9' | translate }}</div>
@@ -75,7 +78,7 @@
       </div>
     </div>
 
-    <div class="row">      
+    <div class="row">
       <div class="col" *ngIf="items.attivita_professionale === 0">
           <span class="oi oi-check iconic ml-1 mr-2"></span>non {{ 'b4_txt7' | translate }}
       </div>
@@ -95,8 +98,8 @@
   </app-riquadro-wrapper>
 
   <app-riquadro-wrapper *ngIf="items && items.attachments && items.attachments.length > 0">
-    <h5>{{ 'b4_txt26' | translate }}</h5>            
-      <table class="row" *ngFor="let attach of items.attachments; first as isFirst" >          
+    <h5>{{ 'b4_txt26' | translate }}</h5>
+      <table class="row" *ngFor="let attach of items.attachments; first as isFirst" >
         <tr>
           <td style="width: 30px; padding-left: 10px;">
             <span class="oi oi-paperclip iconic"></span>
@@ -105,13 +108,13 @@
             <a href="javascript:void(0)" (click)="download(attach.id)" title="">{{ 'b4_download_autorizzazione' | translate }}</a>
           </td>
         </tr>
-      </table>                 
+      </table>
   </app-riquadro-wrapper>
 
-  <div class="form-footer text-right" *ngIf="items"> 
+  <div class="form-footer text-right" *ngIf="items">
     <app-barra-comandi *ngIf="items" [item]="items" [type]="'B4'"></app-barra-comandi>
-    
-    
+
+
     <app-termina-button [item]="items" *ngIf="items.validazioni.flag_submit === 0 && tools.termina(items) === true" (update)="isLoadingChange($event)"></app-termina-button>
   </div>
 </div>
