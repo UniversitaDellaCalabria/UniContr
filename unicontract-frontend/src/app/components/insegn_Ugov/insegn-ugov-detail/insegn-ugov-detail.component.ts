@@ -107,13 +107,10 @@ export class InsegnUgovDetailComponent extends BaseComponent {
           return email;
         } else if (e_mail.toLowerCase().endsWith(domains[i])) {
           return e_mail;
-        } else if (email.toLowerCase().endsWith(domains[i])) {
-          return email;
-        } else if (e_mail.toLowerCase().endsWith(domains[i])) {
-          return e_mail;
-        } else if (e_mail_privata !== '') {
-          return e_mail_privata;
         }
+    }
+    if (e_mail_privata !== '') {
+        return e_mail_privata;
     }
     return '';
   }
