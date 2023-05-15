@@ -793,7 +793,7 @@ class PrecontrattualeController extends Controller
         }
 
 
-        if ($pre->a2modalitapagamento->modality == 'ACIC'){
+        if ($pre->a2modalitapagamento->modality == 'ACIC' && $pre->p2naturarapporto->natura_rapporto != 'PTG'){
             $iban = new IBAN($pre->a2modalitapagamento->iban);
             if (!$iban->Verify()){
                 $data = [];

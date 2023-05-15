@@ -433,8 +433,8 @@ class PrecontrattualeService implements ApplicationService
             $valid->save();
 
             //aggiornamento modalità di pagamento verso ugov
-            $pre = Precontrattuale::with(['user','a2modalitapagamento'])->where('insegn_id',$insegn_id)->first();
-            if ($pre->a2modalitapagamento->modality == 'ACIC'){
+            $pre = Precontrattuale::with(['user','a2modalitapagamento','p2naturarapporto'])->where('insegn_id',$insegn_id)->first();
+            if ($pre->a2modalitapagamento->modality == 'ACIC' && $pre->p2naturarapporto->natura_rapporto != 'PTG'){
                 $result = PrecontrattualeService::inserimentoIbanUgov(
                     $pre->a2modalitapagamento->iban,
                     $pre->user->v_ie_ru_personale_id_ab,
