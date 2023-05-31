@@ -35,6 +35,7 @@ export class ListaInsegnamentiUgovComponent extends BaseComponent {
   errorMessage: string;
 
   years: Array<Object> = [
+    {year: '2023', name: '2023 / 2024'},
     {year: '2022', name: '2022 / 2023'},
     {year: '2021', name: '2021 / 2022'},
     {year: '2020', name: '2020 / 2021'},
