@@ -361,7 +361,18 @@ class Precontrattuale extends Model {
     public function getCurrentStateAttribute(){
         if ($this->validazioni){
             if ($this->stato == 2 || $this->stato == 3){
-                return "Annullata";
+                if($this->tipo_annullamento == 'REVOC'){
+                    return "Non impartita";
+                }
+                elseif($this->tipo_annullamento == 'RINU'){
+                    return "Rinuncia";
+                }
+                elseif($this->tipo_annullamento == 'CES_ANT'){
+                    return "Fine anticipata";
+                }
+                else{
+                    return "Annullata";
+                }
             }
             if ($this->stato == 1){
                 return "Contratto firmato dalle controparti";
