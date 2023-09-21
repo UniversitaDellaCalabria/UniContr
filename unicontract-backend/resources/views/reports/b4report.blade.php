@@ -80,6 +80,13 @@ Si dichiara altresì di: <br>
     - essere @if($pre->anagrafica->sesso == 'M') iscritto @else iscritta @endif al seguente albo professionale: {{$pre->b4rapportopa->descrizione_albo}} <br>
 @endif
 
+@if($pre->b4rapportopa->rilascio_autorizzazione == 1)
+    - che l’incarico conferito rientra nei casi previsti dall’art. 53, comma 6, lettera f-bis) del Decreto Legislativo n. 165/2001 e, pertanto, non è soggetto al rilascio di autorizzazione"
+@endif
+
+@if($pre->b4rapportopa->no_conflitto_interessi == 1)
+    - di adempiere, comunque, gli obblighi di comunicazione richiesti dall’Amministrazione di appartenenza, in relazione allo svolgimento dell’incarico (valutazione in merito all’insussistenza di situazioni di incompatibilità/inconferibilità/conflitto di interessi)"
+@endif
 <br>
 
 <p class="piepagina">

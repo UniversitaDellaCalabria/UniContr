@@ -79,6 +79,8 @@ return [
     "b4_txt26"=> "Allegati",
     "b4_txt27"=> "Autorizzazione P.A. di appartenenza",
     "b4_txt28"=> "N.B. L’incarico di docenza non necessita dell’autorizzazione da parte della Pubblica Amministrazione di appartenenza ai sensi dell’art. 53 del D.Lgs. 165/2001, come modificato dall’art. 2, comma 13-quinquies, lettera b del D.Lgs. 101/2013, convertito con modificazioni dalla Legge 125/2013.",
+    "b4_txt29" : "che l’incarico conferito rientra nei casi previsti dall’art. 53, comma 6, lettera f-bis) del Decreto Legislativo n. 165/2001 e, pertanto, non è soggetto al rilascio di autorizzazione;",
+    "b4_txt30" : "di adempiere, comunque, gli obblighi di comunicazione richiesti dall’Amministrazione di appartenenza, in relazione allo svolgimento dell’incarico (valutazione in merito all’insussistenza di situazioni di incompatibilità/inconferibilità/conflitto di interessi).",
     "b4_download_autorizzazione"=> "Autorizzazione della Pubblica Amministrazione di appartenenza",
     "b4_int_pa"=> "Dati relativi alla Pubblica Amministrazione",
 

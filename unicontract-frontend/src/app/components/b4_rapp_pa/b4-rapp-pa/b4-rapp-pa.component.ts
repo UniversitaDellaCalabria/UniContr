@@ -363,7 +363,27 @@ export class B4RappPaComponent extends BaseComponent {
           },
         }
       ]
-    }
+    },
+    {
+      key: 'rilascio_autorizzazione',
+      type: 'checkbox',
+      defaultValue: false,
+      templateOptions: {
+        required: true,
+        translate: true,
+        label: 'b4_txt29'
+      }
+    },
+    {
+      key: 'no_conflitto_interessi',
+      type: 'checkbox',
+      defaultValue: false,
+      templateOptions: {
+        required: true,
+        translate: true,
+        label: 'b4_txt30'
+      }
+    },
   ];
 
   // Allegati

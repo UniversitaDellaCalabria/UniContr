@@ -95,6 +95,18 @@
           <span class="oi oi-check iconic ml-1 mr-2"></span>{{ 'b4_txt8b' | translate : {'s': items.sesso=='M' ? 'o' : 'a'} }} {{ items.descrizione_albo }}
       </div>
     </div>
+
+    <div class="row">
+      <div class="col" *ngIf="items.rilascio_autorizzazione === 1">
+          <span class="oi oi-check iconic ml-1 mr-2"></span>{{ 'b4_txt29' | translate }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col" *ngIf="items.no_conflitto_interessi === 1">
+          <span class="oi oi-check iconic ml-1 mr-2"></span>{{ 'b4_txt30' | translate }}
+      </div>
+    </div>
   </app-riquadro-wrapper>
 
   <app-riquadro-wrapper *ngIf="items && items.attachments && items.attachments.length > 0">
