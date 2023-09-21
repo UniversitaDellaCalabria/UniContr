@@ -15,12 +15,14 @@ class B4RappPubblAmm extends Migration
     {
         Schema::create('b4_rapp_pubbl_amm', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo_rapporto', 4)->nullable(); 
+            $table->string('tipo_rapporto', 4)->nullable();
             $table->boolean('tempo_pieno')->default(0);
             $table->boolean('iscrizione_albo')->default(0);
             $table->string('descrizione_albo')->nullable();
             $table->boolean('attivita_professionale')->default(0);
             $table->string('descrizione_attivita')->nullable();
+            $table->boolean('rilascio_autorizzazione')->default(0);
+            $table->boolean('no_conflitto_interessi')->default(0);
             $table->timestamps();
         });
     }

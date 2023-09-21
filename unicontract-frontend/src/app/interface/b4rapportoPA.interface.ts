@@ -6,4 +6,6 @@ export interface B4RapportoPAInterface {
     descrizione_albo: string;
     attivita_professionale: boolean;
     descrizione_attivita: string;
+    rilascio_autorizzazione: boolean;
+    no_conflitto_interessi: boolean;
 }

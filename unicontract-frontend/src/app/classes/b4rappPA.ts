@@ -8,6 +8,8 @@ export class B4RapportoPA implements B4RapportoPAInterface {
     descrizione_albo: string;
     attivita_professionale: boolean;
     descrizione_attivita: string;
+    rilascio_autorizzazione: boolean;
+    no_conflitto_interessi: booleam;
     sesso?: string;
 
     constructor() {
@@ -18,5 +20,7 @@ export class B4RapportoPA implements B4RapportoPAInterface {
         this.descrizione_albo = '';
         this.attivita_professionale = false;
         this.descrizione_attivita = '';
+        this.rilascio_autorizzazione = false;
+        this.no_conflitto_interessi = false;
     }
 }

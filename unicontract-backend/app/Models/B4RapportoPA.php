@@ -17,7 +17,9 @@ class B4RapportoPA extends Model
         'iscrizione_albo',
         'descrizione_albo',
         'attivita_professionale',
-        'descrizione_attivita'
+        'descrizione_attivita',
+        'rilascio_autorizzazione',
+        'no_conflitto_interessi'
     ];
 
     public function pubblamm()
@@ -26,7 +28,7 @@ class B4RapportoPA extends Model
     }
 
     public function precontrattuale()
-    {        
+    {
         return $this->hasOne(Precontrattuale::class,'b4_rapp_pubbl_amm_id','id');
     }
 
