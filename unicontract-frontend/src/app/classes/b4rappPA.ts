@@ -9,7 +9,7 @@ export class B4RapportoPA implements B4RapportoPAInterface {
     attivita_professionale: boolean;
     descrizione_attivita: string;
     rilascio_autorizzazione: boolean;
-    no_conflitto_interessi: booleam;
+    no_conflitto_interessi: boolean;
     sesso?: string;
 
     constructor() {
