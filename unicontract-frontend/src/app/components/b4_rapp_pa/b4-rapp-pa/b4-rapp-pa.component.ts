@@ -10,7 +10,7 @@ import { Updb4 } from './../../../classes/precontrattuale';
 import { B4RapportoPA } from './../../../classes/b4rappPA';
 import { B4RappPAService } from './../../../services/b4rappPA.service';
 
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { encode, decode } from 'base64-arraybuffer';
 import ControlUtils from 'src/app/shared/dynamic-form/control-utils';
@@ -372,7 +372,10 @@ export class B4RappPaComponent extends BaseComponent {
         required: true,
         translate: true,
         label: 'b4_txt29'
-      }
+      },
+      validators: {
+        validation: [Validators.requiredTrue],
+      },
     },
     {
       key: 'no_conflitto_interessi',
@@ -382,7 +385,10 @@ export class B4RappPaComponent extends BaseComponent {
         required: true,
         translate: true,
         label: 'b4_txt30'
-      }
+      },
+      validators: {
+        validation: [Validators.requiredTrue],
+      },
     },
   ];
 
