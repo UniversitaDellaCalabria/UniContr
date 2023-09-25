@@ -148,6 +148,9 @@ export class B4RappPaComponent extends BaseComponent {
             required: true,
             translate: true,
             label: 'b4_txt10'
+          },
+          validation: {
+            show: true
           }
         },
         {
@@ -193,6 +196,9 @@ export class B4RappPaComponent extends BaseComponent {
             required: true,
             translate: true,
             label: 'b4_txt13'
+          },
+          validation: {
+            show: true
           }
         },
         {
@@ -202,6 +208,9 @@ export class B4RappPaComponent extends BaseComponent {
           templateOptions: {
             translate: true,
             label: 'b4_txt14'
+          },
+          validation: {
+            show: true
           }
         }
       ]
@@ -217,6 +226,9 @@ export class B4RappPaComponent extends BaseComponent {
             required: true,
             translate: true,
             label: 'b4_txt15'
+          },
+          validation: {
+            show: true
           }
         },
         {
@@ -231,6 +243,9 @@ export class B4RappPaComponent extends BaseComponent {
             minLength: 2,
             maxLength: 2,
             pattern: /^[A-Z]{2}$/
+          },
+          validation: {
+            show: true
           }
         },
         {
@@ -244,6 +259,9 @@ export class B4RappPaComponent extends BaseComponent {
             minLength: 5,
             maxLength: 5,
             pattern: /^[0-9]{5}$/
+          },
+          validation: {
+            show: true
           }
         }
       ]
@@ -376,6 +394,9 @@ export class B4RappPaComponent extends BaseComponent {
       validators: {
         validation: [Validators.requiredTrue],
       },
+      validation: {
+        show: true
+      }
     },
     {
       key: 'no_conflitto_interessi',
@@ -389,6 +410,9 @@ export class B4RappPaComponent extends BaseComponent {
       validators: {
         validation: [Validators.requiredTrue],
       },
+      validation: {
+        show: true
+      }
     },
   ];
 
