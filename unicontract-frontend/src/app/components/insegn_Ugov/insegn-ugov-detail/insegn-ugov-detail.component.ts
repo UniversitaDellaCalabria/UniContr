@@ -103,13 +103,13 @@ export class InsegnUgovDetailComponent extends BaseComponent {
   email(email: string, e_mail: string, e_mail_privata: string) {
     let domains = environment.valid_email_domains;
     for(let i=0;i<domains.length;i++){
-        if (email.toLowerCase().endsWith(domains[i])) {
+        if (email !== null && email.toLowerCase().endsWith(domains[i])) {
           return email;
-        } else if (e_mail.toLowerCase().endsWith(domains[i])) {
+        } else if (e_mail !== null && e_mail.toLowerCase().endsWith(domains[i])) {
           return e_mail;
         }
     }
-    if (e_mail_privata !== '') {
+    if (e_mail_privata !== null && e_mail_privata !== '') {
         return e_mail_privata;
     }
     return '';
