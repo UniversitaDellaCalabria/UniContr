@@ -212,6 +212,16 @@ export const ROUTES: RouteInfo[] = [
     ],
   },
 
+  {
+    path: 'https://ticket.unical.it/tickets/new/1/540/',
+    title: 'Attivazione email Unical',
+    icon: 'icon-Email',
+    class: '',
+    extralink: false,
+    external_url: true,
+    submenu: [],
+    permissions: [],
+  },
 
   {
     path: '',
