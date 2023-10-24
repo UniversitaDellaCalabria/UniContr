@@ -226,7 +226,15 @@
         <td *ngIf="items.tipo_annullamento == 'REVOC'">Non impartita</td>
         <td *ngIf="items.tipo_annullamento == 'RINU'">Rinuncia</td>
         <td *ngIf="items.tipo_annullamento == 'CES_ANT'">Fine anticipata</td>
-        <td>{{ 'summary_upd' | translate }} / {{ 'summary_amm' | translate }}</td>
+        <td *ngIf="items.tipo_annullamento == 'RINU' && items.flag_accept == 0">
+            {{ 'summary_dipartimentale' | translate }}
+        </td>
+        <td *ngIf="items.tipo_annullamento == 'RINU' && items.flag_accept != 0">
+            {{ 'summary_upd' | translate }} / {{ 'summary_amm' | translate }}
+        </td>
+        <td *ngIf="items.tipo_annullamento != 'RINU'">
+            {{ 'summary_upd' | translate }} / {{ 'summary_amm' | translate }}
+        </td>
         <td>{{items.date_annullamento}}</td>
         <td></td>
       </tr>
