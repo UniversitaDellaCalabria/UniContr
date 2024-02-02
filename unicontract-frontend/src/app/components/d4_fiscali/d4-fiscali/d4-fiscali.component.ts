@@ -83,7 +83,7 @@ export class D4FiscaliComponent extends BaseComponent {
           template: '<p><b>' + this.translateService.instant('d4_nota1') + '</b><br>'
           + this.translateService.instant('d4_nota1_2023') + '<br>'
           + this.translateService.instant('d4_nota2_2023') + '<br>'
-          + this.translateService.instant('d4_nota3_2023') + '</p>'
+          + this.translateService.instant('d4_nota3_2023') + '</p>',
           className: 'col-auto'
         }
       ]
