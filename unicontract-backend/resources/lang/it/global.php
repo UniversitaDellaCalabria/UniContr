@@ -223,6 +223,9 @@ return [
     "d4_nota6_2022" => "- l'aliquota IRPEF del 43% riguarda i contribuenti con un reddito superiore a € 50.000,00",
     "d4_nota6"=>"- l'aliquota IRPEF del 41% riguarda i contribuenti con un reddito compreso tra € 55.000,01 e € 75.000,00",
     "d4_nota7"=>"- l'aliquota IRPEF del 43% riguarda i contribuenti con un reddito superiore a € 75.000,00",
+    "d4_nota1_2023" => "- l'aliquota IRPEF del 23% riguarda i contribuenti con un reddito fino a €28.000,00",
+    "d4_nota2_2023" => "- l'aliquota IRPEF del 35% riguarda i contribuenti con un reddito compreso tra €28.000,01 e €50.000,00",
+    "d4_nota3_2023" => "- l'aliquota IRPEF del 43% riguarda i contribuenti con un reddito superiore a €50.000,00",
     "d4_nota8"=>"Nota informativa",
 
     "d4_intest4" => "applicare le detrazioni fiscali previste dal D.L. 5 febbraio 2020, n. 3 convertito con modificazioni dalla L. 2 aprile 2020, n. 21.",

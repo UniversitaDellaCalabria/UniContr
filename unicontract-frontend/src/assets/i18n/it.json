@@ -516,14 +516,22 @@
     "d4_txt7b" : "applicare sui redditi percepiti nel periodo di imposta (anno {{anno}}) le detrazioni fiscali previste dal D.Lgs 66/2014 (Bonus Renzi) valido fino al 30/06/2020",
     "d4_nota1" : "Nota bene:",
     "d4_nota2" : "Si precisa che il reddito complessivo sarà preso in considerazione solo in fase di conguaglio fiscale",
+
     "d4_nota3" : "- l'aliquota IRPEF del 23% riguarda i contribuenti con un reddito compreso tra € 0,00 e € 15.000,00",
     "d4_nota4" : "- l'aliquota IRPEF del 27% riguarda i contribuenti con un reddito compreso tra € 15.000,01 e € 28.000,00",
     "d4_nota5" : "- l'aliquota IRPEF del 38% riguarda i contribuenti con un reddito compreso tra € 28.000,01 e € 55.000,00",
+
     "d4_nota4_2022" : "- l'aliquota IRPEF del 25% riguarda i contribuenti con un reddito compreso tra € 15.000,01 e € 28.000,00",
     "d4_nota5_2022" : "- l'aliquota IRPEF del 35% riguarda i contribuenti con un reddito compreso tra € 28.000,01 e € 50.000,00",
     "d4_nota6_2022" : "- l'aliquota IRPEF del 43% riguarda i contribuenti con un reddito superiore a € 50.000,00",
+
     "d4_nota6" : "- l'aliquota IRPEF del 41% riguarda i contribuenti con un reddito compreso tra € 55.000,01 e € 75.000,00",
     "d4_nota7" : "- l'aliquota IRPEF del 43% riguarda i contribuenti con un reddito superiore a € 75.000,00",
+
+    "d4_nota1_2023": "- l'aliquota IRPEF del 23% riguarda i contribuenti con un reddito fino a €28.000,00",
+    "d4_nota2_2023": "- l'aliquota IRPEF del 35% riguarda i contribuenti con un reddito compreso tra €28.000,01 e €50.000,00",
+    "d4_nota3_2023": "- l'aliquota IRPEF del 43% riguarda i contribuenti con un reddito superiore a €50.000,00",
+
     "d4_nota8" : "Nota informativa",
 
     "d4_intest4" : "applicare le detrazioni fiscali previste dal D.L. 5 febbraio 2020, n. 3 convertito con modificazioni dalla L. 2 aprile 2020, n. 21.",

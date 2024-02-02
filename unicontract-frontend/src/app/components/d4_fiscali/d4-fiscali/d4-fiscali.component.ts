@@ -81,11 +81,9 @@ export class D4FiscaliComponent extends BaseComponent {
         {
           //Modifiche _2022 dovute alla modifica delle aliquote fiscali Legge bilancio 2022
           template: '<p><b>' + this.translateService.instant('d4_nota1') + '</b><br>'
-          + this.translateService.instant('d4_nota3') + '<br>'
-          + this.translateService.instant('d4_nota4_2022') + '<br>'
-          + this.translateService.instant('d4_nota5_2022') + '<br>'
-          + this.translateService.instant('d4_nota6_2022') + '</p>',
-          //+ this.translateService.instant('d4_nota7') + '</p>',
+          + this.translateService.instant('d4_nota1_2023') + '<br>'
+          + this.translateService.instant('d4_nota2_2023') + '<br>'
+          + this.translateService.instant('d4_nota3_2023') + '</p>'
           className: 'col-auto'
         }
       ]
