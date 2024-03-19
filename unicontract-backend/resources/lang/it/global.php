@@ -205,6 +205,8 @@ return [
     "d4_intest3"=>"applicare le detrazioni fiscali D.Lgs. 66/2014 (Bonus Renzi) valido fino al 30/06/2020",
     "d4_premessa"=>"Ai fini fiscali si richiede di:",
     "d4_txt1"=>"aliquota IRPEF pari al",
+    "d4_txt1b"=>"applicare l'aliquota IRPEF sui redditi percepiti pari al",
+    "d4_txt1c"=>"applicare l'aliquota IRPEF a scaglioni",
     "d4_label"=>"aliquota IRPEF da applicare sui redditi percepiti",
     "d4_txt2"=>"non usufruire delle detrazioni fiscali per redditi assimilati a redditi da lavoro dipendente",
     "d4_txt3"=>"applicare le detrazioni nel periodo di imposta (anno :anno)",

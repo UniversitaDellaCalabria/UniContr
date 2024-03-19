@@ -34,7 +34,7 @@ export class D4FiscaliComponent extends BaseComponent {
   // Legge di bilancio 2022 cambio delle aliquote fiscali commentante quelle modifiche e eliminate
   aliquote: Array<Object> = [
     {aliquota: '23', name: '23 %'},
-    {aliquota: '25', name: '25 %'},
+    //{aliquota: '25', name: '25 %'},
     //{aliquota: '27', name: '27 %'},
     {aliquota: '35', name: '35 %'},
     //{aliquota: '38', name: '38 %'},
@@ -59,6 +59,22 @@ export class D4FiscaliComponent extends BaseComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
+          type: 'checkbox',
+          key: 'flag_aliquota_irpef_scaglioni',
+          className: 'custom-switch pl-4 pr-2 pt-1',
+          defaultValue: false,
+          templateOptions: {
+            label: 'd4_txt1c',
+            translate: true,
+            required: false,
+          },
+        },
+      ]
+    },
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
           key: 'percentuale_aliquota_irpef',
           type: 'select',
           className: 'col-md-3',
@@ -73,7 +89,10 @@ export class D4FiscaliComponent extends BaseComponent {
             description: this.translateService.instant('d4_label'),
           }
         }
-      ]
+      ],
+      hideExpression: (model, formstate) => {
+        return (this.model.flag_aliquota_irpef_scaglioni === 1 || this.model.flag_aliquota_irpef_scaglioni === true);
+      }
     },
     {
       fieldGroupClassName: 'row',
@@ -85,8 +104,11 @@ export class D4FiscaliComponent extends BaseComponent {
           + this.translateService.instant('d4_nota2_2023') + '<br>'
           + this.translateService.instant('d4_nota3_2023') + '</p>',
           className: 'col-auto'
-        }
-      ]
+        },
+      ],
+      hideExpression: (model, formstate) => {
+        return (this.model.flag_aliquota_irpef_scaglioni === 1 || this.model.flag_aliquota_irpef_scaglioni === true);
+      }
     }
   ];
 

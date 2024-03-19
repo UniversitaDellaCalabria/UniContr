@@ -96,7 +96,7 @@ class PrecontrattualeExport implements FromCollection, WithMapping, WithHeadings
                 ?  __('global.'.$precontr->d2inail->posizione_previdenziale) : '',
 
             ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali
-                ?  $precontr->d4fiscali->percentuale_aliquota_irpef.' %': '',
+                ?  ($precontr->d4fiscali->flag_aliquota_irpef_scaglioni == 1 ? 'a scaglioni' : $precontr->d4fiscali->percentuale_aliquota_irpef.' %') : '',
             ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali
                 ?  ($precontr->d4fiscali->flag_detrazioni == 0 ? 'no' : 'si') : '',
             ($precontr->p2naturarapporto && $precontr->p2naturarapporto->natura_rapporto === 'COCOCO') && $precontr->d4fiscali && !is_null($precontr->d4fiscali->flag_bonus_renzi)

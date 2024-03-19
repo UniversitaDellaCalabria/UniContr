@@ -14,7 +14,8 @@ class D4Fiscali extends Migration
     public function up()
     {
         Schema::create('d4_fiscali', function (Blueprint $table) {
-            $table->increments('id');            
+            $table->increments('id');
+            $table->boolean('flag_aliquota_irpef_scaglioni')->default(0);
             $table->string('percentuale_aliquota_irpef', 3)->nullable();
             $table->boolean('flag_detrazioni')->default(0);
             $table->string('detrazioni', 3)->nullable();

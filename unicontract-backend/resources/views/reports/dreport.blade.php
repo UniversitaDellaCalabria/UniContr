@@ -152,7 +152,11 @@
 <p class="normal">
     Ai fini fiscali si richiede di: <br>
 
+@if($pre->d4fiscali->flag_aliquota_irpef_scaglioni==1)
+- applicare l'aliquota IRPEF a scaglioni
+@else
 - applicare l'aliquota IRPEF sui redditi percepiti pari al {{ $pre->d4fiscali->percentuale_aliquota_irpef }}% <br>
+@endif
 
 @if($pre->d4fiscali->flag_detrazioni==1)
     - {{__('global.d4_txt3', ['anno'=> $pre->insegnamento->anno_contribuzione ])}} {{__('global.d4_txt4') }}

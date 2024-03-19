@@ -9,6 +9,7 @@ class D4_fiscali extends Model
 {
     protected $table = 'd4_fiscali';
     protected $fillable = [
+        'flag_aliquota_irpef_scaglioni',
         'percentuale_aliquota_irpef',
         'flag_detrazioni',
         'detrazioni',
@@ -21,7 +22,7 @@ class D4_fiscali extends Model
     ];
 
     public function precontrattuale()
-    {        
+    {
         return $this->hasOne(Precontrattuale::class,'d4_fiscali_id','id');
     }
 

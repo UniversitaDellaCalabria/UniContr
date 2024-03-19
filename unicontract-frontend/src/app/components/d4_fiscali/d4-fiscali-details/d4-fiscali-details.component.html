@@ -7,7 +7,12 @@
     <div class="row">
       <div class="col">
         <span class="oi oi-check iconic pl-1 pr-2"></span>
-        {{ 'd4_txt1b' | translate }} {{ items.percentuale_aliquota_irpef }} %
+        <span *ngIf="items.flag_aliquota_irpef_scaglioni === 1">
+            {{ 'd4_txt1c' | translate }}
+        </span>
+        <span *ngIf="items.flag_aliquota_irpef_scaglioni === 0">
+            {{ 'd4_txt1b' | translate }} {{ items.percentuale_aliquota_irpef }} %
+        </span>
       </div>
     </div>
 
