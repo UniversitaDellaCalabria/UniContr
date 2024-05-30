@@ -52,7 +52,8 @@ class InsegnamUgovController extends Controller
                 ->where('coper_id','=',$coper_id)
                 ->where(function($query) {
                     $query->where('tipo_atto_des','=','Delibera')
-                          ->orWhere('tipo_atto_des','=','Disposizione Direttore');
+                          ->orWhere('tipo_atto_des','=','Disposizione Direttore')
+                          ->orWhere('tipo_atto_des','=','Decreto Direttore');
                 })
                 ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
                 ->orderBy('data', 'asc')

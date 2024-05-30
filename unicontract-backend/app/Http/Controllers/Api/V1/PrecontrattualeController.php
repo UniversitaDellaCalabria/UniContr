@@ -136,7 +136,8 @@ class PrecontrattualeController extends Controller
                 ->where('coper_id','=',$precontr->insegnamento->coper_id)
                 ->where(function($query) {
                     $query->where('tipo_atto_des','=','Delibera')
-                          ->orWhere('tipo_atto_des','=','Disposizione Direttore');
+                          ->orWhere('tipo_atto_des','=','Disposizione Direttore')
+                          ->orWhere('tipo_atto_des','=','Decreto Direttore');
                 })
                 ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
                 ->orderBy('data', 'asc')
@@ -405,7 +406,7 @@ class PrecontrattualeController extends Controller
             $tipi_atti = explode("#", $request->insegnamento['tipo_atto']);
             $delibera_found = false;
             foreach($tipi_atti as $tipo_atto){
-                if($tipo_atto == "Delibera"){
+                if($tipo_atto == "Delibera" || $tipo_atto == "Decreto Direttore" || $tipo_atto == "Disposizione Direttore"){
                     $delibera_found = true;
                     break;
                 }

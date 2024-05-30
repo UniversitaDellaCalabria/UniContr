@@ -197,7 +197,8 @@ export class InsegnUgovDetailComponent extends BaseComponent {
         if(!this.tipo_atto_des_list) return false;
         let delibera_found = false;
         this.tipo_atto_des_list.forEach(function (data) {
-            if(data == "Delibera") delibera_found = true;
+            if(data == "Delibera" || data == "Diposizione Direttore" || data == "Decreto Direttore")
+                delibera_found = true;
         });
         return delibera_found;
     }
