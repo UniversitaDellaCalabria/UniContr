@@ -292,29 +292,69 @@ class InsegnamUgovController extends Controller
 
             //aggiungere filtro per unitaorganizzativa_uo
             $uo = Auth::user()->unitaorganizzativa();
+            $sede = Auth::user()->sede();
 
-            if ($uo == null) {
+            if ($uo == null && $sede == null) {
                 abort(403, trans('global.utente_non_autorizzato'));
             }
 
-            if ($uo->isPlesso()){
-                //filtro per unitaorganizzativa dell'utente di inserimento (plesso)
+            // check uo
+            if ($sede == null) {
+                if ($uo->isPlesso()){
+                    //filtro per unitaorganizzativa dell'utente di inserimento (plesso)
+                    array_push($parameters['rules'],[
+                        "operator" => "In",
+                        //"field" => "dip_cod",
+                        "field" => "dip_doc_cod",
+                        "value" => $uo->dipartimenti()
+                    ]);
+                } else {
+                    //ad un afferente al dipartimento filtro per dipartimento
+                    array_push($parameters['rules'],[
+                        "operator" => "=",
+                        //"field" => "dip_cod",
+                        "field" => "dip_doc_cod",
+                        "value" => $uo->uo
+                    ]);
+                }
+            }
+
+            // check sede
+            else if ($uo == null) {
+                if ($sede->isPlesso()){
+                    //filtro per unitaorganizzativa dell'utente di inserimento (plesso)
+                    array_push($parameters['rules'],[
+                        "operator" => "In",
+                        //"field" => "dip_cod",
+                        "field" => "dip_doc_cod",
+                        "value" => $sede->dipartimenti()
+                    ]);
+                } else {
+                    //ad un afferente al dipartimento filtro per dipartimento
+                    array_push($parameters['rules'],[
+                        "operator" => "=",
+                        //"field" => "dip_cod",
+                        "field" => "dip_doc_cod",
+                        "value" => $sede->uo
+                    ]);
+                }
+            }
+
+            // check entrambi
+            else {
+                if ($uo->isPlesso()) $lista = $uo->dipartimenti();
+                else $lista = array($uo->uo);
+
+                if ($sede->isPlesso()) $lista = array_merge($lista, $sede->dipartimenti());
+                else array_push($lista, $sede->uo);
+
                 array_push($parameters['rules'],[
                     "operator" => "In",
                     //"field" => "dip_cod",
                     "field" => "dip_doc_cod",
-                    "value" => $uo->dipartimenti()
-                ]);
-            } else {
-                //ad un afferente al dipartimento filtro per dipartimento
-                array_push($parameters['rules'],[
-                    "operator" => "=",
-                    //"field" => "dip_cod",
-                    "field" => "dip_doc_cod",
-                    "value" => $uo->uo
+                    "value" => $lista
                 ]);
             }
-
         }
 
 

@@ -28,22 +28,47 @@ class OwnerMiddleware
                 }else{
                     //aggiungere filtro per unitaorganizzativa_uo
                     $uo = Auth::user()->unitaorganizzativa();
+                    $sede = Auth::user()->sede();
 
-                    if ($uo == null) {
+                    $uo_flag = true;
+                    $sede_flag = true;
+
+                    if ($uo == null && $sede == null) {
                         abort(403, trans('global.utente_non_autorizzato'));
                     }
 
-                    if ($uo->isPlesso()){
-                        //if (!(in_array($pre->insegnamento->dip_cod,$uo->dipartimenti()))){
-                        if (!(in_array($pre->insegnamento->dip_doc_cod,$uo->dipartimenti()))){
-                            abort(403, trans('global.utente_non_autorizzato'));
-                        }
+                    if ($uo != null) {
+                        if ($uo->isPlesso()){
+                            //if (!(in_array($pre->insegnamento->dip_cod,$uo->dipartimenti()))){
+                            if (!(in_array($pre->insegnamento->dip_doc_cod,$uo->dipartimenti()))){
+                                $uo_flag = false;
+                            }
 
-                    } else {
-                        //if ($pre->insegnamento->dip_cod != $uo->uo){
-                        if ($pre->insegnamento->dip_doc_cod != $uo->uo){
-                            abort(403, trans('global.utente_non_autorizzato'));
+                        } else {
+                            //if ($pre->insegnamento->dip_cod != $uo->uo){
+                            if ($pre->insegnamento->dip_doc_cod != $uo->uo){
+                                $uo_flag = false;
+                            }
                         }
+                    }
+
+                    if ($sede != null) {
+                        if ($sede->isPlesso()){
+                            //if (!(in_array($pre->insegnamento->dip_cod,$uo->dipartimenti()))){
+                            if (!(in_array($pre->insegnamento->dip_doc_cod,$sede->dipartimenti()))){
+                                $sede_flag = false;
+                            }
+
+                        } else {
+                            //if ($pre->insegnamento->dip_cod != $uo->uo){
+                            if ($pre->insegnamento->dip_doc_cod != $sede->uo){
+                                $sede_flag = false;
+                            }
+                        }
+                    }
+
+                    if (!$uo_flag && !$sede_flag) {
+                        abort(403, trans('global.utente_non_autorizzato'));
                     }
                 }
             }

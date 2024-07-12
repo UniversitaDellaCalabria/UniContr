@@ -184,6 +184,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->personaleRespons()->first()->cd_csa;
     }
 
+    public function sede()
+    {
+        $p = $this->personaleRelation()->first();
+        if ($p){
+            return $p->sedeRelation()->first();
+        }
+    }
+
     public function unitaOrganizzativa()
     {
         $p = $this->personaleRelation()->first();

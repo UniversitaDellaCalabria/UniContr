@@ -109,8 +109,8 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       templateOptions: {
         label: 'Dipartimento insegnamento',
         options: [
-          //  { key: '005019', value: this.translateService.instant('005019_disb') },
-          //  { key: '004919', value: this.translateService.instant('004919_dispea')},
+          // { key: '005019', value: this.translateService.instant('005019_disb') },
+          // { key: '004919', value: this.translateService.instant('004919_dispea') },
           // { key: '004419', value: this.translateService.instant('004419_digiur') },
           // { key: '004940', value: this.translateService.instant('004940_discui') },
           // { key: '005579', value: this.translateService.instant('005579_discui') },
@@ -140,8 +140,8 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       templateOptions: {
         label: 'Dipartimento afferenza docente',
         options: [
-          //  { key: '005019', value: this.translateService.instant('005019_disb') },
-          //  { key: '004919', value: this.translateService.instant('004919_dispea')},
+          // { key: '005019', value: this.translateService.instant('005019_disb') },
+          // { key: '004919', value: this.translateService.instant('004919_dispea') },
           // { key: '004419', value: this.translateService.instant('004419_digiur') },
           // { key: '004940', value: this.translateService.instant('004940_discui') },
           // { key: '005579', value: this.translateService.instant('005579_discui') },

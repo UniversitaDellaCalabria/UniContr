@@ -46,11 +46,23 @@ class Personale extends Model
         return $this->belongsTo(Ruolo::class,'cd_ruolo','ruolo');
     }
 
+    public function sedeRelation()
+    {
+        return Cache::remember($this->cacheKey() . ':sede', 60 * 24 * 20, function () {
+            return $this->sede()->get();
+        });
+    }
+
     public function unitaRelation()
     {
         return Cache::remember($this->cacheKey() . ':unitaorganizzativa', 60 * 24 * 20, function () {
             return $this->unita()->get();
         });
+    }
+
+    public function sede()
+    {
+        return $this.belongsTo(UnitaOrganizzativa::class,'sede','uo');
     }
 
     public function unita()
