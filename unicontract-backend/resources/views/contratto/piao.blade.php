@@ -1,6 +1,6 @@
-<h4>Piano Integrato delle Attività e Organizzazione PIAO 2022-2024</h4>
+<h4>Piano Integrato delle Attività e Organizzazione PIAO 2024-2026</h4>
 <p class="normal">
-<a href="https://unical.portaleamministrazionetrasparente.it/archivio19_regolamenti_0_3258.html">download PIAO 2023-2025 </a>
+<a href="https://unical.it/media/medias/2024/piao_2024_2026.pdf">download PIAO 2024-2026 </a>
 </p>
 
 <p class="normal">
@@ -29,13 +29,13 @@ Di seguito si riporta il <b>sommario</b> del documento
 2.2 Performance
 <p>
 <p class="normal">
-2.2.1 Performance istituzionale 
+2.2.1 Performance istituzionale
 <p>
 <p class="normal">
 2.2.2 Performance organizzativa
 <p>
 <p class="normal">
-2.2.3 Performance individuale 
+2.2.3 Performance individuale
 <p>
 <p class="normal">
 2.3 Rischi corruttivi e trasparenza
@@ -44,25 +44,25 @@ Di seguito si riporta il <b>sommario</b> del documento
 2.3.1 Considerazioni preliminari sul contesto esterno
 <p>
 <p class="normal">
-2.3.2 Stato di attuazione del PTPCT 2021-2023 quali baseline per la programmazione delle attività 
+2.3.2 Stato di attuazione del PTPCT 2021-2023 quali baseline per la programmazione delle attività
 <p>
 <p class="normal">
-2.3.3 Programmazione attività di prevenzione della corruzione 
+2.3.3 Programmazione attività di prevenzione della corruzione
 <p>
 <p class="normal">
 2.3.4 Attuazione graduale del processo di gestione del rischio
 <p>
 <p class="normal">
-2.3.5 Supporto tecnico e metodologico per lo svolgimento della gestione del rischio 
+2.3.5 Supporto tecnico e metodologico per lo svolgimento della gestione del rischio
 <p>
 <p class="normal">
 2.3.6 Programmazione di attività connesse con l’attuazione della trasparenza
 <p>
 <p class="normal">
-2.3.7 Programmazione informatizzata delle attività di monitoraggio 
+2.3.7 Programmazione informatizzata delle attività di monitoraggio
 <p>
 <p class="normal">
-2.3.8 Programmazione formazione obbligatoria anticorruzione 
+2.3.8 Programmazione formazione obbligatoria anticorruzione
 <p>
 
 <p class="normal">
@@ -72,13 +72,13 @@ Di seguito si riporta il <b>sommario</b> del documento
 3.1 Organizzazione
 <p>
 <p class="normal">
-3.1.1 Struttura organizzativa 
+3.1.1 Struttura organizzativa
 <p>
 <p class="normal">
 3.1.2 Lavoro agile
 <p>
 <p class="normal">
-3.2 Piano triennale dei fabbisogni di personale 
+3.2 Piano triennale dei fabbisogni di personale
 <p>
 <p class="normal">
 3.2.1 Consistenza del personale
@@ -90,7 +90,7 @@ Di seguito si riporta il <b>sommario</b> del documento
 3.2.3 Strategia di copertura del fabbisogno
 <p>
 <p class="normal">
-3.3 Formazione del personale 
+3.3 Formazione del personale
 <p>
 
 <p class="normal">
@@ -100,7 +100,7 @@ Di seguito si riporta il <b>sommario</b> del documento
 4.1 Rilevazione soddisfazione utenti
 <p>
 <p class="normal">
-4.2 Sintesi azioni di monitoraggio 
+4.2 Sintesi azioni di monitoraggio
 <p>
 
 <p class="normal">
