@@ -62,7 +62,7 @@ class Personale extends Model
 
     public function sede()
     {
-        return $this.belongsTo(UnitaOrganizzativa::class,'sede','uo');
+        return $this->belongsTo(UnitaOrganizzativa::class,'sede','uo');
     }
 
     public function unita()
