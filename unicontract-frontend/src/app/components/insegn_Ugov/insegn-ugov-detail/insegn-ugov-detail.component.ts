@@ -195,12 +195,11 @@ export class InsegnUgovDetailComponent extends BaseComponent {
 
   checkAttoTipo(){
         if(!this.tipo_atto_des_list) return false;
-        let delibera_found = false;
         this.tipo_atto_des_list.forEach(function (data) {
-            if(data == "Delibera" || data == "Diposizione Direttore" || data == "Decreto Direttore")
-                delibera_found = true;
+            if(data == "Delibera" || data == "Disposizione Direttore" || data == "Decreto Direttore")
+                return true;
         });
-        return delibera_found;
+        return false;
     }
 
 
