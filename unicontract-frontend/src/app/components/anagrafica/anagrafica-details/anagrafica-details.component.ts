@@ -712,7 +712,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
                     type: 'input',
                     readonly: true,
                     placeholder: 'Carica il documento . . . ',
-                    description: 'N.B. Il Curriculum Vitae da caricare deve essere lo stesso utilizzato per la fase concorsuale, in formato PDF e PRIVO DI DATI SENSIBILI. Dimensione massima 2MB.',
+                    description: 'N.B. Il CV da caricare dovrà essere in formato europeo, privo di dati sensibili e in formato PDF, possibilmente lo stesso o con gli stessi contenuti utilizzati per la fase concorsuale. Dimensione massima 2MB.',
                     accept: 'application/pdf',
                     maxLength: 255,
                     required: true,
