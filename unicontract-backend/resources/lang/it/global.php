@@ -149,7 +149,7 @@ return [
     "d1_premessa"=>"Ai sensi dell'art. 2, comma 26, della Legge 335/1995 e successive modificazioni si dichiara di:",
     "d1_txt1"=>"essere esclusi dall'obbligo contributivo INPS Gestione Separata, INPGI Gestione Separata, in quanto:",
     "d1_txt1not"=>"non essere esclusi dall'obbligo contributivo INPS Gestione Separata",
-    "d1_txt2"=>"si è superato per il corrente anno solare il massimale di reddito annuo imponibile di € 113.520,00  (massimale contributivo INPS)",
+    "d1_txt2"=>"si è superato per il corrente anno solare il massimale di reddito annuo imponibile di € 119.650,00 (massimale contributivo INPS)",
     "d1_txt3"=>"alla data del 1° aprile 1996 o del 30 giugno 1996 si erano già compiuti 65 anni di età e ci si è avvalsi della facoltà di non iscriversi alla Gestione Separata (ex art. 4, comma 1, lettera a, del D.M. 282/1996)",
     "d1_txt4"=>"alla data del 1° aprile 1996 o del 30 giugno 1996 si erano già compiuti 60 anni di età e ci si è avvalsi della facoltà, al compimento del 65° anno, di richiedere la cancellazione dalla Gestione Separata INPS pur proseguendo nell'attività lavorativa (ex art. 4, comma 1, lettera b, del D.M. 282/1996)",
     "d1_txt5"=>"essere iscritti alla Gestione Separata:",
