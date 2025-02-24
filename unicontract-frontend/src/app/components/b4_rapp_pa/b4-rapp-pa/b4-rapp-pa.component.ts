@@ -391,12 +391,12 @@ export class B4RappPaComponent extends BaseComponent {
         translate: true,
         label: 'b4_txt29'
       },
-      validators: {
-        validation: [Validators.requiredTrue],
-      },
-      validation: {
-        show: true
-      }
+      //validators: {
+        //validation: [Validators.requiredTrue],
+      //},
+      //validation: {
+        //show: true
+      //}
     },
     {
       key: 'no_conflitto_interessi',
@@ -407,12 +407,12 @@ export class B4RappPaComponent extends BaseComponent {
         translate: true,
         label: 'b4_txt30'
       },
-      validators: {
-        validation: [Validators.requiredTrue],
-      },
-      validation: {
-        show: true
-      }
+      //validators: {
+        //validation: [Validators.requiredTrue],
+      //},
+      //validation: {
+        //show: true
+      //}
     },
   ];
 
