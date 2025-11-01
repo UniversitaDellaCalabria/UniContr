@@ -105,7 +105,7 @@
     </p>
     <br>
     <p class="normal">
-    Il Rettore Nicola Leone
+    Il Rettore Gianluigi Greco
     </p>
     <br>
     <br>

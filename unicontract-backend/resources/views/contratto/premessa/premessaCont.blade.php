@@ -3,7 +3,7 @@
 </p>
 <h4>tra</h4>
 <p class="normal">
-	la stessa Università della Calabria, Codice Fiscale 80003950781, in seguito indicata Università, rappresentata legalmente dal <b>Prof. Nicola LEONE</b>, nato a Diamante (CS) il 28.02.1963, Rettore pro-tempore, domiciliato per la sua carica presso l’Università
+	la stessa Università della Calabria, Codice Fiscale 80003950781, in seguito indicata Università, rappresentata legalmente dal <b>Prof. Gianluigi GRECO</b>, nato a Cosenza il 28.10.1977, Rettore pro-tempore, domiciliato per la sua carica presso l’Università
 </p>
 <h4>e</h4>
 <p class="normal">
