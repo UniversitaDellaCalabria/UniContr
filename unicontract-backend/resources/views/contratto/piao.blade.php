@@ -10,7 +10,7 @@ Di seguito si riporta il <b>sommario</b> del documento
 </p>
 
 <p class="normal">
-<b>SEZIONE 1 - PRESENTAZIONE DELL’ENTE </b>
+<b>SEZIONE 1 - PRESENTAZIONE DELL’ENTE</b>
 <p>
 <p class="normal">
 1.1 Introduzione
@@ -18,9 +18,12 @@ Di seguito si riporta il <b>sommario</b> del documento
 <p class="normal">
 1.2 Ateneo in cifre
 <p>
+<p class="normal">
+1.3 Il Sistema di Assicurazione della Qualità
+<p>
 
 <p class="normal">
-<b>SEZIONE 2 - VALORE PUBBLICO, PERFORMANCE E ANTICORRUZIONE </b>
+<b>SEZIONE 2 - VALORE PUBBLICO, PERFORMANCE E ANTICORRUZIONE</b>
 <p>
 <p class="normal">
 2.1 Valore Pubblico
@@ -38,31 +41,22 @@ Di seguito si riporta il <b>sommario</b> del documento
 2.2.3 Performance individuale
 <p>
 <p class="normal">
+2.2.4 Azioni per le pari opportunità – Piano delle Azioni Positive
+<p>
+<p class="normal">
 2.3 Rischi corruttivi e trasparenza
 <p>
 <p class="normal">
-2.3.1 Considerazioni preliminari sul contesto esterno
+2.3.1 Stato di attuazione delle previsioni di cui alla Sezione anticorruzione e trasparenza - PIAO 23-25
 <p>
 <p class="normal">
-2.3.2 Stato di attuazione del PTPCT 2021-2023 quali baseline per la programmazione delle attività
+2.3.2 Considerazioni sul contesto esterno
 <p>
 <p class="normal">
-2.3.3 Programmazione attività di prevenzione della corruzione
+2.3.3 Previsioni PNA 2023 Obiettivi strategici e misure programmate
 <p>
 <p class="normal">
-2.3.4 Attuazione graduale del processo di gestione del rischio
-<p>
-<p class="normal">
-2.3.5 Supporto tecnico e metodologico per lo svolgimento della gestione del rischio
-<p>
-<p class="normal">
-2.3.6 Programmazione di attività connesse con l’attuazione della trasparenza
-<p>
-<p class="normal">
-2.3.7 Programmazione informatizzata delle attività di monitoraggio
-<p>
-<p class="normal">
-2.3.8 Programmazione formazione obbligatoria anticorruzione
+2.3.4 Programmazione di attività connesse con l’attuazione della trasparenza
 <p>
 
 <p class="normal">
@@ -72,22 +66,7 @@ Di seguito si riporta il <b>sommario</b> del documento
 3.1 Organizzazione
 <p>
 <p class="normal">
-3.1.1 Struttura organizzativa
-<p>
-<p class="normal">
-3.1.2 Lavoro agile
-<p>
-<p class="normal">
 3.2 Piano triennale dei fabbisogni di personale
-<p>
-<p class="normal">
-3.2.1 Consistenza del personale
-<p>
-<p class="normal">
-3.2.2 Programmazione strategica del personale
-<p>
-<p class="normal">
-3.2.3 Strategia di copertura del fabbisogno
 <p>
 <p class="normal">
 3.3 Formazione del personale
@@ -104,9 +83,11 @@ Di seguito si riporta il <b>sommario</b> del documento
 <p>
 
 <p class="normal">
-<b>ALLEGATO - MAPPA DEGLI OBIETTIVI DI PERFORMANCE ORGANIZZATIVA</b>
+<b>ALLEGATO 1 - MAPPA DEGLI OBIETTIVI DI PERFORMANCE ORGANIZZATIVA</b>
 <p>
-
 <p class="normal">
-<b>ALLEGATO - INTERVENTI FORMATIVI</b>
+<b>ALLEGATO 2 - PIANO DEI CORSI DI FORMAZIONE PER I DIRIGENTI E IL PERSONALE TECNICO-AMMINISTRATIVO</b>
+<p>
+<p class="normal">
+<b>ALLEGATO 3 - RELAZIONE SUI RISULTATI DELLA RILEVAZIONE DEI FABBISOGNI FORMATIVI (2024)</b>
 <p>
