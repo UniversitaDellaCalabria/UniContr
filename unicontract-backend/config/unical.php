@@ -89,7 +89,7 @@ return [
      /**
      * Lista email separate da , per notifica compilazione terminata da parte del docente
      */
-    'cmu_email' => explode(',',env('CMU_EMAIL',  'daniela.pisani@unical.it,silvia.pagano@unical.it,egidio.cario@unical.it,selene.cucunato@unical.it,eleonora.mancini@unical.it,loretta.servidio@unical.it')),
+    'cmu_email' => explode(',',env('CMU_EMAIL',  'silvia.pagano@unical.it,egidio.cario@unical.it,selene.cucunato@unical.it,eleonora.mancini@unical.it,loretta.servidio@unical.it')),
 
     /**
      * Inserire nuovi IBAN in Ugov
