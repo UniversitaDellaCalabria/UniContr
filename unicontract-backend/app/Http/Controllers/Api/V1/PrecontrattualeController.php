@@ -279,6 +279,8 @@ class PrecontrattualeController extends Controller
 
         //verificare i cfu
         //se c'è la p2 e
+        
+        /**
         if ($precontr->p2naturarapporto != null){
             //natura_rapporto == COCOCO e isDidatticaIntegrativa() o isAltaQualificazione()
             //e il numero di ore scende sotto le 15 -> ERRORE
@@ -305,6 +307,7 @@ class PrecontrattualeController extends Controller
             }
 
         }
+        **/
 
         if ($insegnamentoUgov->motivo_atto_cod=='CONF_INC'){
             $value = Cache::pull('counter_'.$insegnamentoUgov->coper_id);

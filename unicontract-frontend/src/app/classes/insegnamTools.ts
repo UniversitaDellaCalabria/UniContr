@@ -151,14 +151,15 @@ export class InsegnamTools {
   controlloCNA(tipo, ore) {
     if (tipo === 'CONTC' || tipo === 'CONTU' || tipo === 'TC007') {
         return true;
-    } else if ((tipo === 'INTC' || tipo === 'INTU' || tipo === 'INTXU'  || tipo === 'INTXC') && ore > 15) {
+    } else if ((tipo === 'INTC' || tipo === 'INTU' || tipo === 'INTXU'  || tipo === 'INTXC')) { //&& ore > 15) {
         return true;
     } else if ((tipo === 'ALTQG' ||
                 tipo === 'ALTQC' ||
                 tipo === 'ALTQU' ||
                 tipo === 'TC004' ||
                 tipo === 'TC005' ||
-                tipo === 'TC006') && ore > 15) {
+                tipo === 'TC006')) {
+                //tipo === 'TC006') && ore > 15) {
         return true;
     } else {
         return false;
@@ -168,14 +169,15 @@ export class InsegnamTools {
   controlloPLAO(tipo, ore) {
     if (tipo === 'SUPPU' || tipo === 'SUPPC') {
         return true;
-    } else if ((tipo === 'INTC' || tipo === 'INTU' || tipo === 'INTXU'  || tipo === 'INTXC') && ore <= 15) {
+    } else if ((tipo === 'INTC' || tipo === 'INTU' || tipo === 'INTXU'  || tipo === 'INTXC')){ //&& ore <= 15) {
         return true;
     } else if ((tipo === 'ALTQG' ||
                 tipo === 'ALTQC' ||
                 tipo === 'ALTQU' ||
                 tipo === 'TC004' ||
                 tipo === 'TC005' ||
-                tipo === 'TC006') && ore <= 15) {
+                tipo === 'TC006')) {
+                //tipo === 'TC006') && ore <= 15) {
         return true;
     } else {
         return false;
