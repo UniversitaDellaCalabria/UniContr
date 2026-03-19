@@ -1,5 +1,7 @@
 <?php
 
+// GDA OK
+
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
@@ -7,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Precontrattuale;
 use Carbon\Carbon;
 use App\Models\Validazioni;
-use App\Http\Controllers\Api\V1\InsegnamUgovController;
+//~ use App\Http\Controllers\Api\V1\InsegnamUgovController;
+use App\Http\Controllers\Api\V1\InsegnamGDAController;
 use App\Service\UtilService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
@@ -75,7 +78,7 @@ class Insegnamenti extends Model {
         }
     }
 
-    //per data da ugov
+    //per data da GDA
     public function setDataIniContratto($input)
     {
         if($input != '') {
@@ -153,50 +156,27 @@ class Insegnamenti extends Model {
         return $this->hasOne(Precontrattuale::class,'insegn_id','id');
     }
 
-    public function setDataFromUgov(InsegnamUgov $insegnamentoUgov){
+    public function setDataFromGDA(InsegnamGDA $insegnamentoGDA){
 
-        $this->compenso = $insegnamentoUgov->compenso;
-        $this->data_delibera =$insegnamentoUgov->data;
-        $this->cfu = $insegnamentoUgov->coper_peso;
-        $this->setDataFineContratto($insegnamentoUgov->data_fine_contratto);
-        $this->setDataIniContratto($insegnamentoUgov->data_ini_contratto);
-        $this->emittente = $insegnamentoUgov->tipo_emitt_des;
-        $this->motivo_atto = $insegnamentoUgov->motivo_atto_cod;
-        $this->num_delibera = $insegnamentoUgov->numero;
-        $this->ore = $insegnamentoUgov->ore;
-        $this->ore_desc = $insegnamentoUgov->ore_desc;
-        $this->tipo_atto = $insegnamentoUgov->tipo_atto_des;
-        $this->tipo_contratto = $insegnamentoUgov->tipo_coper_cod;
-        $this->ciclo = $insegnamentoUgov->des_tipo_ciclo;
-        $this->settore = $insegnamentoUgov->sett_des;
-        $this->cod_settore = $insegnamentoUgov->sett_cod;
-        $this->tipo_corso_des = $insegnamentoUgov->tipo_corso_des;
-        $this->anno_corso = $insegnamentoUgov->anno_corso;
-        $this->dip_doc_cod = $insegnamentoUgov->dip_doc_cod;
-        $this->dip_doc_des = $insegnamentoUgov->dip_doc_des;
-
-        // <input type="hidden" name="coper_id" [(ngModel)]="item.coper_id" >
-        // <input type="hidden" name="ruolo" [(ngModel)]="item.ruolo_doc_cod">
-        // <input type="hidden" name="insegnamento" [(ngModel)]="item.af_gen_des">
-        // <input type="hidden" name="settore" [(ngModel)]="item.sett_des">
-        // <input type="hidden" name="cod_settore" [(ngModel)]="item.sett_cod">
-        // <input type="hidden" name="cfu" [(ngModel)]="item.coper_peso">
-        // <input type="hidden" name="ore" [(ngModel)]="item.ore">
-        // <input type="hidden" name="cdl" [(ngModel)]="item.nome_cds">
-        // <input type="hidden" name="data_ini_contr" [(ngModel)]="item.data_ini_contratto">
-        // <input type="hidden" name="data_fine_contr" [(ngModel)]="item.data_fine_contratto">
-        // <input type="hidden" name="ciclo" [(ngModel)]="item.des_tipo_ciclo">
-        // <input type="hidden" name="aa" [(ngModel)]="item.aa_off_id">
-        // <input type="hidden" name="dipartimento" [(ngModel)]="item.dip_des">
-        // <input type="hidden" name="compenso" [(ngModel)]="item.compenso">
-        // <input type="hidden" name="tipo_contratto" [(ngModel)]="item.tipo_coper_cod">
-        // <input type="hidden" name="tipo_atto" [(ngModel)]="item.tipo_atto_des">
-        // <input type="hidden" name="emittente" [(ngModel)]="item.tipo_emitt_des">
-        // <input type="hidden" name="motivo_atto" [(ngModel)]="item.motivo_atto_cod">
-        // <input type="hidden" name="num_delibera" [(ngModel)]="item.numero">
-        // <input type="hidden" name="data_delibera" [(ngModel)]="item.data">
-        // <input type="hidden" name="cod_insegnamento" [(ngModel)]="item.af_gen_cod">
-        // <input type="hidden" name="dip_cod" [(ngModel)]="item.dip_cod">
+        $this->compenso = $insegnamentoGDA->compenso;
+        $this->data_delibera =$insegnamentoGDA->data_atto;
+        $this->cfu = $insegnamentoGDA->coper_peso; // GDA todo // cfu?
+        $this->setDataFineContratto($insegnamentoGDA->data_fine_contratto);
+        $this->setDataIniContratto($insegnamentoGDA->data_inizio_contratto);
+        $this->emittente = $insegnamentoGDA->tipo_emittente_desc_ita;
+        $this->motivo_atto = $insegnamentoGDA->motivo_atto_cod;
+        $this->num_delibera = $insegnamentoGDA->numero;
+        $this->ore = $insegnamentoGDA->ore;
+        $this->ore_desc = $insegnamentoGDA->ore_desc; // GDA todo // ??
+        $this->tipo_atto = $insegnamentoGDA->tipo_atto_desc_ita;
+        $this->tipo_contratto = $insegnamentoGDA->tipo_coper_cod;
+        $this->ciclo = $insegnamentoGDA->tipo_periodo_did_desc_ita;
+        $this->settore = $insegnamentoGDA->sett_des; // GDA todo // ??
+        $this->cod_settore = $insegnamentoGDA->sett_cod; // GDA todo // ??
+        $this->tipo_corso_des = $insegnamentoGDA->tipo_corso_desc_ita;
+        $this->anno_corso = $insegnamentoGDA->anno_corso; // GDA todo // from ODS_L1_MOD_PDS_OFF ?
+        $this->dip_doc_cod = $insegnamentoGDA->doc_aff_org;
+        $this->dip_doc_des = $insegnamentoGDA->doc_aff_org_ita;
     }
 
 
@@ -249,11 +229,11 @@ class Insegnamenti extends Model {
 
     public function contatore(){
 
-        //return InsegnamUgovController::contatoreInsegnamenti($this->coper_id);
+        //return InsegnamGDAController::contatoreInsegnamenti($this->coper_id);
 
         $coper_id = $this->coper_id;
         $value = Cache::remember('counter_'.$coper_id, 60, function () use($coper_id) {
-            return InsegnamUgovController::contatoreInsegnamenti($coper_id);
+            return InsegnamGDAController::contatoreInsegnamenti($coper_id);
         });
 
         return $value;

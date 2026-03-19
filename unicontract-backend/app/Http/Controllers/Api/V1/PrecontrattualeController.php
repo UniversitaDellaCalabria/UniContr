@@ -1,5 +1,7 @@
 <?php
 
+// GDA con riserva (cerca "GDA todo")
+
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
@@ -17,7 +19,8 @@ use Illuminate\Support\Str;
 use App\Service\TitulusHelper;
 use App\Exports\PrecontrattualeExport;
 use Illuminate\Support\Facades\Log;
-use App\Models\InsegnamUgov;
+//use App\Models\InsegnamUgov;
+use App\Models\InsegnamGDA;
 use PHP_IBAN\IBAN;
 use Illuminate\Support\Facades\Cache;
 use App\Exceptions\Handler;
@@ -96,7 +99,7 @@ class PrecontrattualeController extends Controller
     }
 
 
-    public function updateInsegnamentoFromUgov(Request $request){
+    public function updateInsegnamentoFromGDA(Request $request){
         $data = [];
         $success = true;
         $message = '';
@@ -119,19 +122,39 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        //leggere da ugov insegnamento ...
-        $insegnamentoUgov = InsegnamUgov::where('COPER_ID', $precontr->insegnamento->coper_id)
-            ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
-                'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
-                'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id',
-                'tipo_corso_des', 'anno_corso', 'dip_doc_cod', 'dip_doc_des', 'data_rinuncia']);
+        //leggere da GDA insegnamento ...
+        $insegnamentoGDA = InsegnamGDA::where('COPER_ID', $precontr->insegnamento->coper_id)
+            ->first([
+                'coper_id',
+                'tipo_coper_cod',
+                'data_inizio_contratto',
+                'data_fine_contratto',
+                'coper_peso', // GDA todo // non c'è su gda
+                'ore',
+                'compenso',
+                'motivo_atto_cod',
+                'tipo_atto_desc_ita',
+                'tipo_emittente_desc_ita',
+                'numero_atto',
+                'data_atto',
+                'tipo_periodo_did_desc_ita',
+                'sett_des', // GDA todo // boh?
+                'sett_cod', // GDA todo // boh?
+                'af_radice_id', // GDA todo // boh?
+                'tipo_corso_desc_ita',
+                'anno_corso', // GDA todo // da GDAIE_UNICAL_PROD.ODS_L1_MOD_PDS_OFF b
+                'doc_aff_org',
+                'doc_aff_org_ita',
+                'data_rinuncia'
+            ]);
 
         // PATCH data rinuncia
-        if($insegnamentoUgov['data_rinuncia']){
-            $insegnamentoUgov['data_fine_contratto'] = explode(" ", $insegnamentoUgov['data_rinuncia'])[0];
+        if($insegnamentoGDA['data_rinuncia']){
+            $insegnamentoGDA['data_fine_contratto'] = explode(" ", $insegnamentoGDA['data_rinuncia'])[0];
         }
 
-
+        // GDA todo
+        // mancano gli atti
         $atti = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ATTI A1')
                 ->where('coper_id','=',$precontr->insegnamento->coper_id)
                 ->where(function($query) {
@@ -173,16 +196,16 @@ class PrecontrattualeController extends Controller
             $counter = $counter + 1;
         }
 
-        $insegnamentoUgov['tipo_atto_des'] = $tipo_atto_des_string;
-        $insegnamentoUgov['tipo_emitt_des'] = $tipo_emitt_des_string;
-        $insegnamentoUgov['motivo_atto_cod'] = $motivo_atto_cod_string;
-        $insegnamentoUgov['numero'] = $numero_string;
-        $insegnamentoUgov['data'] = $data_string;
+        $insegnamentoGDA['tipo_atto_des'] = $tipo_atto_des_string;
+        $insegnamentoGDA['tipo_emitt_des'] = $tipo_emitt_des_string;
+        $insegnamentoGDA['motivo_atto_cod'] = $motivo_atto_cod_string;
+        $insegnamentoGDA['numero'] = $numero_string;
+        $insegnamentoGDA['data'] = $data_string;
+        // fine atti
 
-
-        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ORE_COPER_DET V1')
+        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER V1')
                     ->where('coper_id','=',$precontr->insegnamento->coper_id)
-                    ->select('tipo_att_did_cod','ore','compenso_calc')
+                    ->select('tipo_att_did_cod','ore','compenso_calcolato')
                     ->get();
 
         $ore_desc_string = "";
@@ -195,61 +218,61 @@ class PrecontrattualeController extends Controller
             $ore_desc_string .=")";
 
             if($single_desc->compenso_calc != null)
-                $compenso_calcolato += $single_desc->compenso_calc;
+                $compenso_calcolato += $single_desc->compenso_calcolato;
         }
 
-        $insegnamentoUgov['ore_desc'] = $ore_desc_string;
-        if($insegnamentoUgov['compenso'] == 0){
-            $insegnamentoUgov['compenso'] = $compenso_calcolato;
+        $insegnamentoGDA['ore_desc'] = $ore_desc_string;
+        if($insegnamentoGDA['compenso'] == 0){
+            $insegnamentoGDA['compenso'] = $compenso_calcolato;
         }
 
         // PATCH per email istituzionale
-        if($insegnamentoUgov['id_ab']) {
+        if($insegnamentoGDA['id_ab']) {
             $email = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
-                    ->where('ID_AB','=',$insegnamentoUgov['id_ab'])
+                    ->where('ID_AB','=',$insegnamentoGDA['id_ab'])
                     ->where('CD_TIPO_CONT','=','EMAIL')
                     ->orderBy('PRG_PRIORITA', 'desc')
                     ->get();
             if(isset($email[0]) && $email[0]->contatto){
                 Log::info("Email istituzionale recuperata: ".$email[0]->contatto);
-                $insegnamentoUgov['email'] = $email[0]->contatto;
+                $insegnamentoGDA['email'] = $email[0]->contatto;
             }
         }
 
         // PATCH - Cessazione anticipata
-        if($insegnamentoUgov['data_rinuncia']) {
-            $insegnamentoUgov['data_fine_contratto'] = explode(" ", $insegnamentoUgov['data_rinuncia'])[0];
+        if($insegnamentoGDA['data_rinuncia']) {
+            $insegnamentoGDA['data_fine_contratto'] = explode(" ", $insegnamentoGDA['data_rinuncia'])[0];
         }
 
 
         //verificare la data di conferimento
-        if (!$insegnamentoUgov->motivo_atto_cod){
+        if (!$insegnamentoGDA->motivo_atto_cod){
             $message = 'Insegnamento non aggiornabile: motivo atto non inserito';
             $success = false;
             return compact('data', 'message', 'success');
         }
 
         //verificare motivo atto non supportato
-        if ($insegnamentoUgov->motivo_atto_cod && !in_array($insegnamentoUgov->motivo_atto_cod, ['BAN_INC','APPR_INC','CONF_INC', 'PROP_INC'])){
+        if ($insegnamentoGDA->motivo_atto_cod && !in_array($insegnamentoGDA->motivo_atto_cod, ['BAN_INC','APPR_INC','CONF_INC', 'PROP_INC'])){
             $message = 'Insegnamento non aggiornabile: motivo atto non supportato';
             $success = false;
             return compact('data', 'message', 'success');
         }
 
         //verificare la data di conferimento
-        if (!$insegnamentoUgov->data){
+        if (!$insegnamentoGDA->data_conferimento_incarico){
             $message = 'Insegnamento non aggiornabile: data conferimento non inserita';
             $success = false;
             return compact('data', 'message', 'success');
         }
 
-        if ($insegnamentoUgov->data_ini_contratto > $insegnamentoUgov->data_fine_contratto){
+        if ($insegnamentoGDA->data_inizio_contratto > $insegnamentoGDA->data_fine_contratto){
             $message = 'Insegnamento non aggiornabile: data di fine insegnamento antecedente alla data di inizio';
             $success = false;
             return compact('data', 'message', 'success');
         }
 
-        if (($insegnamentoUgov->motivo_atto=='APPR_INC' || $insegnamentoUgov->motivo_atto=='PROP_INC') && !in_array($insegnamentoUgov->tipo_contratto, ['ALTQG',
+        if (($insegnamentoGDA->motivo_atto_cod=='APPR_INC' || $insegnamentoGDA->motivo_atto_cod=='PROP_INC') && !in_array($insegnamentoGDA->tipo_coper_cod, ['ALTQG',
                                                                                                         'ALTQC',
                                                                                                         'ALTQU',
                                                                                                         'TC004',
@@ -262,7 +285,7 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        if ($insegnamentoUgov->motivo_atto=='BAN_INC' && !in_array($insegnamentoUgov->tipo_contratto, ['CONTC',
+        if ($insegnamentoGDA->motivo_atto_cod=='BAN_INC' && !in_array($insegnamentoGDA->tipo_coper_cod, ['CONTC',
                                                                                                        'CONTU',
                                                                                                        'INTC',
                                                                                                        'INTU',
@@ -277,54 +300,17 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        //verificare i cfu
-        //se c'è la p2 e
-        
-        /**
-        if ($precontr->p2naturarapporto != null){
-            //natura_rapporto == COCOCO e isDidatticaIntegrativa() o isAltaQualificazione()
-            //e il numero di ore scende sotto le 15 -> ERRORE
-            if ($precontr->p2naturarapporto->natura_rapporto == 'COCOCO'
-                && ($precontr->isDidatticaIntegrativa() || $precontr->isAltaQualificazione())){
-                //controllo le ore
-                if ($insegnamentoUgov->ore <= 15){
-                    $message = 'Insegnamento non aggiornabile: numero ore incompatibile con la scelta della natura del rapporto';
-                    $success = false;
-                    return compact('data', 'message', 'success');
-                }
-            }
-
-            //natura_rapporto == PLAO e isDidatticaIntegrativa() o isAltaQualificazione()
-            //e il numero di ore sale sopra le 15 -> ERRORE
-            if ($precontr->p2naturarapporto->natura_rapporto == 'PLAO'
-                && ($precontr->isDidatticaIntegrativa() || $precontr->isAltaQualificazione())){
-                //controllo le ore
-                if ($insegnamentoUgov->ore > 15){
-                    $message = 'Insegnamento non aggiornabile: numero ore incompatibile con la scelta della natura del rapporto';
-                    $success = false;
-                    return compact('data', 'message', 'success');
-                }
-            }
-
-        }
-        **/
-
-        if ($insegnamentoUgov->motivo_atto_cod=='CONF_INC'){
-            $value = Cache::pull('counter_'.$insegnamentoUgov->coper_id);
-            $contatore = InsegnamUgovController::contatoreInsegnamenti($insegnamentoUgov->coper_id, false);
+        if ($insegnamentoGDA->motivo_atto_cod=='CONF_INC'){
+            $value = Cache::pull('counter_'.$insegnamentoGDA->coper_id);
+            $contatore = InsegnamGDAController::contatoreInsegnamenti($insegnamentoGDA->coper_id, false);
             if ($contatore == 0){
-                Log::info('Contatore a 0 - Importato contratto [ coper_id =' . $insegnamentoUgov->coper_id . '] [contatore insegnamenti = '.$contatore);
+                Log::info('Contatore a 0 - Importato contratto [ coper_id =' . $insegnamentoGDA->coper_id . '] [contatore insegnamenti = '.$contatore);
                 $handler = new Handler(Container::getInstance());
-                $handler->report(new Exception('Aggiornato contratto con contatore a 0  [ coper_id =' . $insegnamentoUgov->coper_id . ']'));
-
-                // $data = null;
-                // $message = 'Insegnamento non importabile come RINNOVO CONTRATTO: non ci sono precedenti insegnamenti corrispondenti';
-                // $success = false;
-                // return compact('data', 'message', 'success');
+                $handler->report(new Exception('Aggiornato contratto con contatore a 0  [ coper_id =' . $insegnamentoGDA->coper_id . ']'));
             }
         }
 
-        $precontr->insegnamento->setDataFromUgov($insegnamentoUgov);
+        $precontr->insegnamento->setDataFromGDA($insegnamentoGDA); // GDA todo
 
         $precontr->insegnamento->save();
 
@@ -482,31 +468,8 @@ class PrecontrattualeController extends Controller
                 return compact('data', 'message', 'success');
             }
 
-            // if ($request->insegnamento['motivo_atto']=='CONF_INC' && !in_array($request->insegnamento['tipo_contratto'], ['CONTC', 'CONTU', 'INTC', 'INTU', 'INTXU', 'INTXC', 'SUPPU', 'SUPPC'])){
-            //     //verifico che nel passato il PRIMO in ordine decrescente dei contratti sia un 'BAN_INC'
-            //     $datiUgov = self::queryFirstMotivoAttoCod($coper_id, ['APPR_INC', 'BAN_INC']);
-            //     if ($dataUgov == null || $dataUgov->motivo_atto_cod_inizio != 'BAN_INC'){
-            //         $data = null;
-            //         $message = 'Insegnamento non importabile: rinnovo con tipologia di contratto non coerente il primo conferimento';
-            //         $success = false;
-            //         return compact('data', 'message', 'success');
-            //     }
-            // }
-
-            // if ($request->insegnamento['motivo_atto']=='CONF_INC' && !in_array($request->insegnamento['tipo_contratto'], ['ALTQG','ALTQC','ALTQU'])){
-            //     //verifico che nel passato iL PRIMO in ordine decrescente dei contratti sia un 'APPR_INC'
-            //     //verifico che nel passato il PRIMO in ordine decrescente dei contratti sia un 'BAN_INC'
-            //     $datiUgov = self::queryFirstMotivoAttoCod($coper_id, ['APPR_INC', 'BAN_INC']);
-            //     if ($dataUgov == null || $dataUgov->motivo_atto_cod_inizio != 'APPR_INC'){
-            //         $data = null;
-            //         $message = 'Insegnamento non importabile: rinnovo con tipologia di contratto non coerente il primo conferimento';
-            //         $success = false;
-            //         return compact('data', 'message', 'success');
-            //     }
-            // }
-
             if ($request->insegnamento['motivo_atto']=='CONF_INC'){
-                $contatore = InsegnamUgovController::contatoreInsegnamenti($request->insegnamento['coper_id'], false);
+                $contatore = InsegnamGDAController::contatoreInsegnamenti($request->insegnamento['coper_id'], false);
                 if ($contatore == 0){
                     Log::info('Contatore a 0 - Importato contratto [ coper_id =' . $request->insegnamento['coper_id'] . '] [contatore insegnamenti = '.$contatore);
                     $handler = new Handler(Container::getInstance());
@@ -632,10 +595,10 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        $insegnamentoUgov = InsegnamUgov::where('COPER_ID', $pre->insegnamento->coper_id)->first();
-        if ($insegnamentoUgov == null){
+        $insegnamentoGDA = InsegnamGDA::where('COPER_ID', $pre->insegnamento->coper_id)->first();
+        if ($insegnamentoGDA == null){
             $data = [];
-            $message = trans('global.aggiornamento_non_consentito').': il codice di copertura di questo insegnamento è stato eliminato da Ugov didattica, rimuovere la precontrattuale';
+            $message = trans('global.aggiornamento_non_consentito').': il codice di copertura di questo insegnamento è stato eliminato da GDA didattica, rimuovere la precontrattuale';
             $success = false;
             return compact('data', 'message', 'success');
         }
@@ -781,10 +744,10 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        $insegnamentoUgov = InsegnamUgov::where('COPER_ID', $pre->insegnamento->coper_id)->first();
-        if ($insegnamentoUgov == null){
+        $insegnamentoGDA = InsegnamGDA::where('COPER_ID', $pre->insegnamento->coper_id)->first();
+        if ($insegnamentoGDA == null){
             $data = [];
-            $message = trans('global.aggiornamento_non_consentito').': il codice di copertura di questo insegnamento è stato eliminato da Ugov didattica, rimuovere la precontrattuale';
+            $message = trans('global.aggiornamento_non_consentito').': il codice di copertura di questo insegnamento è stato eliminato da GDA didattica, rimuovere la precontrattuale';
             $success = false;
             return compact('data', 'message', 'success');
         }
@@ -946,8 +909,8 @@ class PrecontrattualeController extends Controller
             return compact('data', 'message', 'success');
         }
 
-        $insegnamentoUgov = InsegnamUgov::where('COPER_ID', $pre->insegnamento->coper_id)->first();
-        if ($insegnamentoUgov == null){
+        $insegnamentoGDA = InsegnamGDA::where('COPER_ID', $pre->insegnamento->coper_id)->first();
+        if ($insegnamentoGDA == null){
             $data = [];
             $message = trans('global.aggiornamento_non_consentito').': il codice di copertura di questo insegnamento è stato eliminato contattare la sua segreteria didattica';
             $success = false;

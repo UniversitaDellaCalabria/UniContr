@@ -74,7 +74,6 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
     permissions: ['OP_DIPARTIMENTALE','OP_DOCENTE','ADMIN','SUPER-ADMIN','OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA'],
   },
-
   {
     path: 'lista-contrugov-query',
     title: 'Ricerca in contabilità',
@@ -85,7 +84,6 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
     permissions: ['OP_APPROVAZIONE_ECONOMICA','SUPER-ADMIN'],
   },
-
   // Supporto
   {
     path: '',

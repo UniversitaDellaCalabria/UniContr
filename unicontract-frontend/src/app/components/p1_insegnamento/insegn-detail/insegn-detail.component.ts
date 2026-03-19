@@ -120,16 +120,16 @@ export class InsegnDetailComponent extends BaseComponent {
               entity: null,
             };
 
-            this.updateInsegnamentoFromUgov(preStore);
+            this.updateInsegnamentoFromGDA(preStore);
           },
         );
       }
     });
   }
 
-  updateInsegnamentoFromUgov(preStore: IPrecontrStore<any>) {
+  updateInsegnamentoFromGDA(preStore: IPrecontrStore<any>) {
     this.isLoading = true;
-    this.insegnamentoService.updateInsegnamentoFromUgov(preStore).subscribe(
+    this.insegnamentoService.updateInsegnamentoFromGDA(preStore).subscribe(
       response => {
         this.isLoading=false;
         if (response['success']) {

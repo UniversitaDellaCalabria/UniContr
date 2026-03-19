@@ -60,7 +60,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       }
     },
     {
-      key: 'nome',
+      key: 'doc_nome',
       type: 'string',
       templateOptions: {
         label: 'Nome',
@@ -69,7 +69,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       }
     },
     {
-      key: 'cognome',
+      key: 'doc_cognome',
       type: 'string',
       templateOptions: {
         label: 'Cognome',
@@ -88,7 +88,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       }
     },
     {
-      key: 'af_gen_des',
+      key: 'ana_af_desc_ita',
       type: 'string',
       templateOptions: {
         label: 'Insegnamento',
@@ -96,7 +96,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       }
     },
     // {
-    //   key: 'dip_des',
+    //   key: 'dip_desc_ita',
     //   type: 'string',
     //   templateOptions: {
     //     label: 'Dipartimento',
@@ -135,7 +135,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       }
     },
     {
-      key: 'dip_doc_cod',
+      key: 'doc_aff_org',
       type: 'select',
       templateOptions: {
         label: 'Dipartimento afferenza docente',
@@ -166,7 +166,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       }
     },
     // {
-    //   key: 'data_ini_contratto',
+    //   key: 'data_inizio_contratto',
     //   type: 'date',
     //   templateOptions: {
     //     label: 'Data inizio',
@@ -236,12 +236,12 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
         columns: [
           { name: '#', prop: 'coper_id', wrapper: 'value', width: 80, maxWidth: 100 },
           { name: 'Dipartimento insegnamento', prop: 'dip_cod', wrapper: 'value', cellTemplate: this.tooltipCellTemplate, width: 50, maxWidth: 120 },
-          { name: 'Dipartimento afferenza docente', prop: 'dip_doc_cod', wrapper: 'value', cellTemplate: this.tooltipCellTemplate, width: 50, maxWidth: 120 },
-          { name: 'Cognome', prop: 'cognome', pipe: new TitleCasePipe(), width: 100, maxWidth: 100 },
-          { name: 'Nome', prop: 'nome', pipe: new TitleCasePipe(), width: 100, maxWidth: 100 },
-          { name: 'Inizio', prop: 'data_ini_contratto',  wrapper: 'value', width: 80, maxWidth: 150, type: 'date'},
+          { name: 'Dipartimento afferenza docente', prop: 'doc_aff_org', wrapper: 'value', cellTemplate: this.tooltipCellTemplate, width: 50, maxWidth: 120 },
+          { name: 'Cognome', prop: 'doc_cognome', pipe: new TitleCasePipe(), width: 100, maxWidth: 100 },
+          { name: 'Nome', prop: 'doc_nome', pipe: new TitleCasePipe(), width: 100, maxWidth: 100 },
+          { name: 'Inizio', prop: 'data_inizio_contratto',  wrapper: 'value', width: 80, maxWidth: 150, type: 'date'},
           { name: 'Fine', prop: 'data_fine_contratto', wrapper: 'value',  width: 80, maxWidth: 150, type: 'date'},
-          { name: 'Insegnamento', prop: 'af_gen_des', wrapper: 'value', minWidth:400, width: 400},
+          { name: 'Insegnamento', prop: 'ana_af_desc_ita', wrapper: 'value', minWidth:400, width: 400},
           { name: 'Motivo Atto', prop: 'motivo_atto_cod', wrapper: 'value', pipe: this.translate, minWidth: 100, maxWidth: 150},
           { name: '', prop: 'coper_id',  minWidth: 120, cellTemplate: this.seleziona },
         ]

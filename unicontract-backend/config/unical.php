@@ -100,5 +100,13 @@ return [
     'db_oracle_siaxm' => env('DB_ORACLE_SIAXM',''),
     'db_oracle_siadg' => env('DB_ORACLE_SIADG',''),
 
-    'valid_email_domains' => explode(',', env('VALID_EMAIL_DOMAINS', '@unical.it,@mat.unical.it,@dimes.unical.it,@deis.unical.it,@fis.unical.it'))
+    'valid_email_domains' => explode(',', env('VALID_EMAIL_DOMAINS', '@unical.it,@mat.unical.it,@dimes.unical.it,@deis.unical.it,@fis.unical.it')),
+
+    /** GDA upgrade */
+    
+    'db_oracle_gdaie' => env('DB_ORACLE_GDAIE', ''),
+    
+    'cineca_gda_api_base' => env('CINECA_GDA_API_BASE', 'https://bff.gda.cineca.it/api/'),
+    'cineca_gda_api_programmazione' => env('CINECA_GDA_API_PROGRAMMAZIONE', 'programmazione/v1/unical/'),
+    'cineca_gda_api_copertura' => env('CINECA_GDA_API_COPERTURA', 'coperture/erogata/'),
 ];

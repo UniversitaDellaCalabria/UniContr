@@ -1,5 +1,7 @@
 <?php
 
+// GDA OK
+
 use Illuminate\Http\Request;
 
 /*
@@ -68,13 +70,21 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
 
     // INSEGNAMENTO UGOV
     //Route::resource('copertura/{aa_off_id}', 'InsegnamUgovController', ['parameters' => ['{aa_off_id}' => 'anno']]);
-    Route::get('copertura/anno/{anno}', 'InsegnamUgovController@index');
-    Route::get('copertura/{coper_id}', 'InsegnamUgovController@show');
-    Route::get('copertura/{coper_id}/contatore/{cf}', 'InsegnamUgovController@contatoreInsegnamenti');
-    Route::post('copertura/query','InsegnamUgovController@query');
-    Route::get('copertura/reload/{coper_id}', 'InsegnamentiController@refreshUgovData');
+    
+    //~ Route::get('copertura/anno/{anno}', 'InsegnamUgovController@index');
+    //~ Route::get('copertura/{coper_id}', 'InsegnamUgovController@show');
+    //~ Route::get('copertura/{coper_id}/contatore/{cf}', 'InsegnamUgovController@contatoreInsegnamenti');
+    //~ Route::post('copertura/query','InsegnamUgovController@query');
+    //~ Route::get('copertura/reload/{coper_id}', 'InsegnamentiController@refreshUgovData');
 
-    //CONTR UGOV
+    // GDA
+    Route::get('copertura/anno/{anno}', 'InsegnamGDAController@index');
+    Route::get('copertura/{coper_id}', 'InsegnamGDAController@show');
+    Route::get('copertura/{coper_id}/contatore/{cf}', 'InsegnamGDAController@contatoreInsegnamenti');
+    Route::post('copertura/query','InsegnamGDAController@query');
+    Route::get('copertura/reload/{coper_id}', 'InsegnamentiController@refreshGDAData');
+
+    //CONTR UGOV - OK GDA
     Route::post('contrugov/query','ContrUgovController@query');
     Route::post('contrugov/export','ContrUgovController@export');
     Route::post('contrugov/exportxls','ContrUgovController@exportxls');
@@ -115,7 +125,8 @@ Route::group(['middleware' => ['cors','auth:api','log'], 'namespace'=>'Api\V1'],
     Route::post('precontrattuale/annullarinuncia','PrecontrattualeController@annullaRinuncia');
     Route::post('precontrattuale/export','PrecontrattualeController@export');
     Route::post('precontrattuale/exportxls','PrecontrattualeController@exportxls');
-    Route::post('precontrattuale/updateinsegnamentofromugov', 'PrecontrattualeController@updateInsegnamentoFromUgov');
+    //~ Route::post('precontrattuale/updateinsegnamentofromugov', 'PrecontrattualeController@updateInsegnamentoFromUgov');
+    Route::post('precontrattuale/updateinsegnamentofromgda', 'PrecontrattualeController@updateInsegnamentoFromGDA');
     Route::get('precontrattuale/downloadcontrattofirmato/{id}', 'PrecontrattualeController@downloadContrattoFirmato');
     Route::post('precontrattuale/uploadconflintdip','PrecontrattualeController@uploadConflIntDip');
     Route::post('precontrattuale/annullaconflintdip','PrecontrattualeController@annullaConflIntDip');

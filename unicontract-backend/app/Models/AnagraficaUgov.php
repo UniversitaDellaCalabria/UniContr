@@ -1,10 +1,13 @@
 <?php
 
+// GDA OK
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\RappParentelaUgov;
-use App\Models\InsegnamUgov;
+//~ use App\Models\InsegnamUgov;
+use App\Models\InsegnamGDA;
 
 class AnagraficaUgov extends Model
 {
@@ -23,7 +26,7 @@ class AnagraficaUgov extends Model
     ];
 
     public function ugovIns() {
-        return $this->hasMany(InsegnamUgov:: class, 'MATRICOLA', 'MATRICOLA');
+        return $this->hasMany(InsegnamGDA:: class, 'MATRICOLA', 'MATRICOLA');
     }
 
     // restituisce un persona cercandola dalla sua email

@@ -1,34 +1,34 @@
 export interface InsegnUgovInterface {
     coper_id: number;
-    dip_des: string;
-    nome_cds: string;
+    dip_desc_ita: string;
+    cds_desc_ita: string;
     aa_off_id: string;
-    af_gen_cod: string;
-    af_gen_des: string;
-    sett_cod: string;
-    sett_des: string;
+    ana_af_cod: string;
+    ana_af_desc_ita: string;
+    sett_cod: string; // GDA todo
+    sett_des: string; // GDA todo
     peso: string;
-    des_tipo_ciclo: string;
-    matricola: string;
-    cognome: string;
-    nome: string;
-    sesso: string;
-    cod_fis: string;
-    ruolo_doc_cod: string;
-    coper_peso: string;
+    tipo_periodo_did_desc_ita: string;
+    doc_matricola: string;
+    doc_cognome: string;
+    doc_nome: string;
+    sesso: string; // GDA todo
+    cod_fis: string; // GDA todo
+    doc_ruolo: string;
+    coper_peso: string; // GDA todo
     ore: number;
-    ore_desc: string;
-    data_ini_contratto: string;
+    ore_desc: string; // GDA todo
+    data_inizio_contratto: string;
     data_fine_contratto: string;
     compenso: string;
     tipo_coper_cod: string;
-    tipo_atto_des: string;
-    tipo_emitt_des: string;
+    tipo_atto_desc_ita: string;
+    tipo_emittente_desc_ita: string;
     motivo_atto_cod: string;
-    numero: string;
-    data: string;
-    tipo_corso_des: string;
+    numero_atto: string;
+    data_atto: string;
+    tipo_corso_desc_ita: string;
     anno_corso: string;
-    dip_doc_cod: string;
-    dip_doc_des: string;
+    doc_aff_org: string;
+    doc_aff_org_ita: string;
 }

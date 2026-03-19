@@ -1,5 +1,7 @@
 <?php
 
+// GDA OK
+
 namespace App\Http\Controllers\Api\V1;
 
 use App;
@@ -134,7 +136,7 @@ class InsegnamentiController extends Controller
             if ($datiInsegnamento['motivo_atto']=='CONF_INC'){
                 try{
                     $datiInsegnamento['contatore_insegnamenti'] = Cache::remember('counter_'.$datiInsegnamento['coper_id'], 1, function () use($datiInsegnamento) {
-                        return InsegnamUgovController::contatoreInsegnamenti($datiInsegnamento['coper_id']);
+                        return InsegnamGDAController::contatoreInsegnamenti($datiInsegnamento['coper_id']);
                     });
                 } catch (\Exception $e) {
                     Log::error($e);

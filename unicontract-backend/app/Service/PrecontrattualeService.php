@@ -1,5 +1,7 @@
 <?php
 
+// GDA OK
+
 namespace App\Service;
 
 use App;
@@ -7,7 +9,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Insegnamenti;
-use App\InsegnamUgov;
+//~ use App\InsegnamUgov;
 use App\User;
 use App\Precontrattuale;
 use App\PrecontrattualePerGenerazione;

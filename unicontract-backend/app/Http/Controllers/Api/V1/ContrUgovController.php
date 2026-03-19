@@ -1,10 +1,12 @@
 <?php
 
+// GDA OK
+
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\InsegnamUgov;
+//~ use App\Models\InsegnamUgov;
 use App\Models\Ugov\ContrUgov;
 use App\Precontrattuale;
 use Illuminate\Support\Collection;
