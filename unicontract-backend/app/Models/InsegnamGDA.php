@@ -17,7 +17,30 @@ class InsegnamGDA extends Model
        $this->table = config('unical.db_oracle_gdaie').'.ODS_L2_COPER';
     }
 
+    // GDA join per recuperare dati non più presenti nella vista della copertura
+    //~ protected static function booted()
+    //~ {
+        //~ static::addGlobalScope('gdaJoin', function ($builder) {
+            //~ $db = config('unical.db_oracle_gdaie') . '.';
 
+            //~ $builder->select('ODS_L2_COPER.*') // Prendi tutto dalla principale
+                // Aggiungi solo le colonne che ti servono dalle altre 5 tabelle
+                //~ ->addSelect([
+                    //'t2.COD_FISC',
+                    //~ 't3.descrizione_settore',
+                    //~ 't4.nome_polo',
+                    //~ 't5.codice_facolta',
+                    //~ 't6.stato_insegnamento'
+                //~ ])
+                // Esegui le 5 Join
+                //~ ->leftJoin($db . 'ODS_L2_UP2_DOCENTI as t2', 'ODS_L2_COPER.DOC_MATRICOLA', '=', 't2.MATRICOLA');
+                //~ ->leftJoin($db . 'TABELLA_SETTORI as t3', 'ODS_L2_COPER.id_settore', '=', 't3.id')
+                //~ ->leftJoin($db . 'TABELLA_POLI as t4', 'ODS_L2_COPER.id_polo', '=', 't4.id')
+                //~ ->leftJoin($db . 'TABELLA_FACOLTA as t5', 'ODS_L2_COPER.id_facolta', '=', 't5.id')
+                //~ ->leftJoin($db . 'TABELLA_STATI as t6', 'ODS_L2_COPER.id_stato', '=', 't6.id');
+        //~ });
+    //~ }
+    
     protected $casts = [
         'data_inizio_contratto' => 'date:d-m-Y',
         'data_fine_contratto' => 'date:d-m-Y',

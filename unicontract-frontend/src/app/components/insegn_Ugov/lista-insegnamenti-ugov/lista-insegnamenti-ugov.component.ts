@@ -87,7 +87,7 @@ export class ListaInsegnamentiUgovComponent extends BaseComponent {
   }
 
   filtraInsegnamentiTutor(searchString: string) {
-    return this.insegnUgov.filter(item => item.cod_fis === searchString);
+    return this.insegnUgov.filter(item => item.cod_fisc === searchString);
   }
 
   numRecord() {

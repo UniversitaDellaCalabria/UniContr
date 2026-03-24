@@ -86,12 +86,12 @@ export class InsegnUgovDetailComponent extends BaseComponent {
         this.isLoading = true;
         this.insegnUgovService.getInsegnamentoUgov(+params.get('coper_id'), params.get('aa_off_id')).subscribe(
           response => {
-              this.item = response['datiUgov'];
-              this.tipo_atto_des_list = response['datiUgov']['tipo_atto_desc_ita'] ? response['datiUgov']['tipo_atto_desc_ita'].split('#') : "";
-              this.tipo_emitt_des_list = response['datiUgov']['tipo_emittente_desc_ita'] ? response['datiUgov']['tipo_emittente_desc_ita'].split('#') : "";
-              this.motivo_atto_cod_list = response['datiUgov']['motivo_atto_cod'] ? response['datiUgov']['motivo_atto_cod'].split('#') : "";
-              this.numero_list = response['datiUgov']['numero_atto'] ? response['datiUgov']['numero_atto'].split('#') : "";
-              this.data_list = response['datiUgov']['data_atto'] ? response['datiUgov']['data_atto'].split('#') : "";
+              this.item = response['datiGDA'];
+              this.tipo_atto_des_list = response['datiGDA']['tipo_atto_desc_ita'] ? response['datiGDA']['tipo_atto_desc_ita'].split('#') : "";
+              this.tipo_emitt_des_list = response['datiGDA']['tipo_emittente_desc_ita'] ? response['datiGDA']['tipo_emittente_desc_ita'].split('#') : "";
+              this.motivo_atto_cod_list = response['datiGDA']['motivo_atto_cod'] ? response['datiGDA']['motivo_atto_cod'].split('#') : "";
+              this.numero_list = response['datiGDA']['numero_atto'] ? response['datiGDA']['numero_atto'].split('#') : "";
+              this.data_list = response['datiGDA']['data_atto'] ? response['datiGDA']['data_atto'].split('#') : "";
             },
           (error) => this.handleError(error),
           () => this.complete()

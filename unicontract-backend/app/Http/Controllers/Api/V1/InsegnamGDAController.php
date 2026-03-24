@@ -43,24 +43,51 @@ class InsegnamGDAController extends Controller
 
         $datiGDA = InsegnamGDA::join(config('unical.db_oracle_siaru').'.VD_ANAGRAFICA',
                                      config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_MATRICOLA', '=', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.MATRICOLA')
+                                     
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.COPER_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.MODULI_PDS_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.MODULI_PDS_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.ANA_MOD_SETT_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.ANA_MOD_SETT_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_COD')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_MATRICOLA', '=', config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.MATRICOLA')
+                   
             ->where(config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', $coper_id)
-            ->first([config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.ID_AB',
-                     config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.EMAIL',
-                     config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL',
-                     config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL_PRIVATA',
-                     config('unical.db_oracle_gdaie').'.ODS_L2_COPER.*']);
+            ->first([
+                config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.ID_AB',
+                config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.EMAIL',
+                config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL',
+                config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.E_MAIL_PRIVATA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.*',
+                config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.ANNO_CORSO',
+                config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.COD_FISC',
+                config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.GENDER_COD'
+            ]);
 
         // GDA todo
         // Questi non ci sono in GDA
-        $atti = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ATTI A1')
-                ->where('coper_id','=',$coper_id)
+        $atti = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI A1')
+                ->where('COPER_ID','=',$coper_id)
                 ->where(function($query) {
-                    $query->where('tipo_atto_des','=','Delibera')
-                          ->orWhere('tipo_atto_des','=','Disposizione Direttore')
-                          ->orWhere('tipo_atto_des','=','Decreto Direttore');
+                    //~ $query->where('tipo_atto_des','=','Delibera')
+                          //~ ->orWhere('tipo_atto_des','=','Disposizione Direttore')
+                          //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
+                    $query->where('TIPO_ATTO_COD','=','DEL')
+                          ->orWhere('TIPO_ATTO_COD','=','DD');
+                          //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
                 })
-                ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
-                ->orderBy('data', 'asc')
+                //~ ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
+                ->select('TIPO_ATTO_COD','TIPO_EMITTENTE_COD','MOTIVO_ATTO_COD','NUMERO_PROVVEDIMENTO','DATA_PROVVEDIMENTO')
+                ->orderBy('DATA_PROVVEDIMENTO', 'asc')
                 ->get();
 
         $tipo_atto_des_string = "";
@@ -72,11 +99,13 @@ class InsegnamGDAController extends Controller
         $counter = 0;
 
         foreach ($atti as $atto) {
-            $tipo_atto_des_string .= $atto->tipo_atto_des;
-            $tipo_emitt_des_string .= $atto->tipo_emitt_des;
+            //~ $tipo_atto_des_string .= $atto->tipo_atto_des;
+            $tipo_atto_des_string .= $atto->tipo_atto_cod;
+            //~ $tipo_emitt_des_string .= $atto->tipo_emitt_des;
+            $tipo_emitt_des_string .= $atto->tipo_emittente_cod;
             // $motivo_atto_cod_string .= $atto->motivo_atto_cod;
-            $numero_string .= $atto->numero;
-            $data_string .= $atto->data;
+            $numero_string .= $atto->numero_provvedimento;
+            $data_string .= $atto->data_provvedimento;
 
             if ( $counter == 0){
                 $motivo_atto_cod_string = $atto->motivo_atto_cod;
@@ -155,28 +184,47 @@ class InsegnamGDAController extends Controller
         //leggere da ugov insegnamento ...
 
         // GDA todo
-        $insegnamentoGDA = InsegnamGDA::where('COPER_ID', $coper_id)
+        $insegnamentoGDA = InsegnamGDA::where(config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', $coper_id)
+        
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.COPER_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.MODULI_PDS_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.MODULI_PDS_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.ANA_MOD_SETT_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.ANA_MOD_SETT_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_COD')
+
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_MATRICOLA', '=', config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.MATRICOLA')
+                     
             ->first([
-                'coper_id',
-                'tipo_coper_cod',
-                'data_inizio_contratto',
-                'data_fine_contratto',
-                'coper_peso', // GDA todo // non c'è su gda
-                'ore',
-                'compenso',
-                'motivo_atto_cod',
-                'tipo_atto_desc_ita',
-                'tipo_emittente_desc_ita',
-                'numero_atto',
-                'data_atto',
-                'tipo_periodo_did_desc_ita',
-                'sett_des', // GDA todo // boh?
-                'sett_cod', // GDA todo // boh?
-                'af_radice_id', // GDA todo // boh?
-                'tipo_corso_desc_ita',
-                'anno_corso', // GDA todo // da GDAIE_UNICAL_PROD.ODS_L1_MOD_PDS_OFF b
-                'doc_aff_org',
-                'doc_aff_org_ita'
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_COPER_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_INIZIO_CONTRATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_FINE_CONTRATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.CFU', // GDA todo // COPER_PESO non c'è su gda MA DOVREBBE ESSERE CFU
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.ORE',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COMPENSO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.MOTIVO_ATTO_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_ATTO_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_EMITTENTE_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.NUMERO_ATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_ATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_PERIODO_DID_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_DESC_ITA',// GDA todo
+                config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', // GDA todo
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.AF_OFF_ID', // GDA todo // AF_RADICE_ID boh? // AF_OFF_ID??
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_CORSO_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.ANNO_CORSO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_AFF_ORG',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_AFF_ORG_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_RINUNCIA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.COD_FISC',
+                config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.GENDER_COD'
             ]);
 
         $tipo_coper_cod = $insegnamentoGDA->tipo_coper_cod;
@@ -207,18 +255,20 @@ class InsegnamGDAController extends Controller
 
         // GDA todo
         if ($datiGDA){
-            $result = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) use($coper_id){
+            $result = DB::connection('oracle')
+                ->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')
+                ->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) use($coper_id){
                 $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
                      ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                      ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
-                     ->on('V2.cod_fis','=','V1.cod_fis'); // GDA todo // manca il "cod_fis"
-            })->where('V1.COPER_ID','=',$coper_id)->where('V2.data_inizio_contratto','<',$datiUgov->data_contratto_corrente)
+                     ->on('V2.DOC_ID_AB','=','V1.DOC_ID_AB'); // GDA todo // manca il "cod_fis"
+            })->where('V1.COPER_ID','=',$coper_id)->where('V2.data_inizio_contratto','<',$datiGDA->data_contratto_corrente)
             ->where('V2.data_inizio_contratto','>=',$datiGDA->ultima_nuova_attribuzione)
             ->distinct()
             ->select(
                 'V1.coper_id',
                 'V2.motivo_atto_cod',
-                'V2.aa_id', // GDA todo // boh?
+                'V2.aa_off_id', // GDA todo // boh?
                 'V2.data_inizio_att_dida',
                 'V2.ana_af_cod',
                 'V1.sede_id',
@@ -236,11 +286,13 @@ class InsegnamGDAController extends Controller
                 //NON c'è il BAN_INC o APPR_INC conto tutti i contratti CONF_INC PRESENTI escludendo il presente
                 //è un caso di errore quindi ritorno 0
                 //è impostato un rinnovo ma non vengono trovati i dati per il rinnovo
-                $count = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) use($coper_id){
+                $count = DB::connection('oracle')
+                    ->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')
+                    ->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) use($coper_id){
                     $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
                         ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                         ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
-                        ->on('V2.cod_fis','=','V1.cod_fis') // GDA todo // manca il "cod_fis"
+                        ->on('V2.DOC_ID_AB','=','V1.DOC_ID_AB') // GDA todo // manca il "cod_fis"
                         ->on('V2.data_inizio_contratto','<','V1.data_inizio_contratto');
                 })->where('V1.COPER_ID','=',$coper_id)->where('V2.motivo_atto_cod','=','CONF_INC')->count();
                 return $count;
@@ -256,7 +308,7 @@ class InsegnamGDAController extends Controller
             $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                  ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
-                 ->on('V2.cod_fis','=','V1.cod_fis') // GDA todo // manca il "cod_fis"
+                 ->on('V2.DOC_ID_AB','=','V1.DOC_ID_AB') // GDA todo // manca il "cod_fis"
                  ->on('V2.data_inizio_contratto','<','V1.data_inizio_contratto');
         })
         ->whereIn('V2.motivo_atto_cod',$motivo_atto_cod_array)
@@ -264,7 +316,7 @@ class InsegnamGDAController extends Controller
         ->select('V2.data_inizio_contratto as ultima_nuova_attribuzione','V1.data_inizio_contratto as data_contratto_corrente','V2.motivo_atto_cod as motivo_atto_cod_inizio')
         ->orderBy('V2.data_inizio_contratto', 'DESC')->first();
 
-        return $datiUgov;
+        return $datiGDA;
     }
 
     public function query(Request $request){

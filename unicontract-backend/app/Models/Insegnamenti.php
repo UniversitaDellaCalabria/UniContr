@@ -160,18 +160,18 @@ class Insegnamenti extends Model {
 
         $this->compenso = $insegnamentoGDA->compenso;
         $this->data_delibera =$insegnamentoGDA->data_atto;
-        $this->cfu = $insegnamentoGDA->coper_peso; // GDA todo // cfu?
+        $this->cfu = $insegnamentoGDA->cfu; // GDA todo // cfu?
         $this->setDataFineContratto($insegnamentoGDA->data_fine_contratto);
         $this->setDataIniContratto($insegnamentoGDA->data_inizio_contratto);
         $this->emittente = $insegnamentoGDA->tipo_emittente_desc_ita;
         $this->motivo_atto = $insegnamentoGDA->motivo_atto_cod;
-        $this->num_delibera = $insegnamentoGDA->numero;
+        $this->num_delibera = $insegnamentoGDA->numero_atto;
         $this->ore = $insegnamentoGDA->ore;
         $this->ore_desc = $insegnamentoGDA->ore_desc; // GDA todo // ??
         $this->tipo_atto = $insegnamentoGDA->tipo_atto_desc_ita;
         $this->tipo_contratto = $insegnamentoGDA->tipo_coper_cod;
         $this->ciclo = $insegnamentoGDA->tipo_periodo_did_desc_ita;
-        $this->settore = $insegnamentoGDA->sett_des; // GDA todo // ??
+        $this->settore = $insegnamentoGDA->sett_desc_ita; // GDA todo // ??
         $this->cod_settore = $insegnamentoGDA->sett_cod; // GDA todo // ??
         $this->tipo_corso_des = $insegnamentoGDA->tipo_corso_desc_ita;
         $this->anno_corso = $insegnamentoGDA->anno_corso; // GDA todo // from ODS_L1_MOD_PDS_OFF ?

@@ -123,30 +123,49 @@ class PrecontrattualeController extends Controller
         }
 
         //leggere da GDA insegnamento ...
-        $insegnamentoGDA = InsegnamGDA::where('COPER_ID', $precontr->insegnamento->coper_id)
+        $insegnamentoGDA = InsegnamGDA::where(config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', $precontr->insegnamento->coper_id)
+
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.COPER_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.MODULI_PDS_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.MODULI_PDS_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.ANA_MOD_SETT_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.ANA_MOD_SETT_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_COD')
+
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_MATRICOLA', '=', config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.MATRICOLA')
+
             ->first([
-                'coper_id',
-                'tipo_coper_cod',
-                'data_inizio_contratto',
-                'data_fine_contratto',
-                'coper_peso', // GDA todo // non c'è su gda
-                'ore',
-                'compenso',
-                'motivo_atto_cod',
-                'tipo_atto_desc_ita',
-                'tipo_emittente_desc_ita',
-                'numero_atto',
-                'data_atto',
-                'tipo_periodo_did_desc_ita',
-                'sett_des', // GDA todo // boh?
-                'sett_cod', // GDA todo // boh?
-                'af_radice_id', // GDA todo // boh?
-                'tipo_corso_desc_ita',
-                'anno_corso', // GDA todo // da GDAIE_UNICAL_PROD.ODS_L1_MOD_PDS_OFF b
-                'doc_aff_org',
-                'doc_aff_org_ita',
-                'data_rinuncia'
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_COPER_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_INIZIO_CONTRATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_FINE_CONTRATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.CFU', // GDA todo // COPER_PESO non c'è su gda MA DOVREBBE ESSERE CFU
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.ORE',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COMPENSO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.MOTIVO_ATTO_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_ATTO_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_EMITTENTE_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.NUMERO_ATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_ATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_PERIODO_DID_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_DESC_ITA',// GDA todo
+                config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', // GDA todo
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.AF_OFF_ID', // GDA todo // AF_RADICE_ID boh? // AF_OFF_ID??
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_CORSO_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.ANNO_CORSO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_AFF_ORG',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_AFF_ORG_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_RINUNCIA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.COD_FISC',
+                config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.GENDER_COD'
             ]);
+            
 
         // PATCH data rinuncia
         if($insegnamentoGDA['data_rinuncia']){
@@ -155,15 +174,19 @@ class PrecontrattualeController extends Controller
 
         // GDA todo
         // mancano gli atti
-        $atti = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ATTI A1')
+        $atti = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI A1')
                 ->where('coper_id','=',$precontr->insegnamento->coper_id)
                 ->where(function($query) {
-                    $query->where('tipo_atto_des','=','Delibera')
-                          ->orWhere('tipo_atto_des','=','Disposizione Direttore')
-                          ->orWhere('tipo_atto_des','=','Decreto Direttore');
+                    //~ $query->where('tipo_atto_des','=','Delibera')
+                          //~ ->orWhere('tipo_atto_des','=','Disposizione Direttore')
+                          //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
+                    $query->where('TIPO_ATTO_COD','=','DEL')
+                          ->orWhere('TIPO_ATTO_COD','=','DD');
+                          //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
                 })
-                ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
-                ->orderBy('data', 'asc')
+                //~ ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
+                ->select('TIPO_ATTO_COD','TIPO_EMITTENTE_COD','MOTIVO_ATTO_COD','NUMERO_PROVVEDIMENTO','DATA_PROVVEDIMENTO')
+                ->orderBy('DATA_PROVVEDIMENTO', 'asc')
                 ->get();
 
         $tipo_atto_des_string = "";
@@ -175,11 +198,13 @@ class PrecontrattualeController extends Controller
         $counter = 0;
 
         foreach ($atti as $atto) {
-            $tipo_atto_des_string .= $atto->tipo_atto_des;
-            $tipo_emitt_des_string .= $atto->tipo_emitt_des;
+            //~ $tipo_atto_des_string .= $atto->tipo_atto_des;
+            $tipo_atto_des_string .= $atto->tipo_atto_cod;
+            //~ $tipo_emitt_des_string .= $atto->tipo_emitt_des;
+            $tipo_emitt_des_string .= $atto->tipo_emittente_cod;
             // $motivo_atto_cod_string .= $atto->motivo_atto_cod;
-            $numero_string .= $atto->numero;
-            $data_string .= $atto->data;
+            $numero_string .= $atto->numero_provvedimento;
+            $data_string .= $atto->data_provvedimento;
 
             if ( $counter == 0){
                 $motivo_atto_cod_string = $atto->motivo_atto_cod;
@@ -217,7 +242,7 @@ class PrecontrattualeController extends Controller
             $ore_desc_string .=$single_desc->ore;
             $ore_desc_string .=")";
 
-            if($single_desc->compenso_calc != null)
+            if($single_desc->compenso_calcolato != null)
                 $compenso_calcolato += $single_desc->compenso_calcolato;
         }
 
@@ -484,9 +509,9 @@ class PrecontrattualeController extends Controller
                 }
             }
 
-            $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_ORE_COPER_DET V1')
+            $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER V1')
                     ->where('coper_id','=',$request->insegnamento['coper_id'])
-                    ->select('tipo_att_did_cod','ore','compenso_calc')
+                    ->select('tipo_att_did_cod','ore','compenso_calcolato')
                     ->get();
             $ore_desc_string = "";
             $compenso_calcolato = 0;
@@ -497,8 +522,8 @@ class PrecontrattualeController extends Controller
                 $ore_desc_string .=$single_desc->ore;
                 $ore_desc_string .=")";
 
-                if($single_desc->compenso_calc != null)
-                    $compenso_calcolato += $single_desc->compenso_calc;
+                if($single_desc->compenso_calcolato != null)
+                    $compenso_calcolato += $single_desc->compenso_calcolato;
             }
 
             $message = '';

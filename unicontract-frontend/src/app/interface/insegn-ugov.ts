@@ -6,14 +6,14 @@ export interface InsegnUgovInterface {
     ana_af_cod: string;
     ana_af_desc_ita: string;
     sett_cod: string; // GDA todo
-    sett_des: string; // GDA todo
+    sett_desc_ita: string; // GDA todo
     peso: string;
     tipo_periodo_did_desc_ita: string;
     doc_matricola: string;
     doc_cognome: string;
     doc_nome: string;
-    sesso: string; // GDA todo
-    cod_fis: string; // GDA todo
+    gender_cod: string; // GDA todo
+    cod_fisc: string; // GDA todo
     doc_ruolo: string;
     coper_peso: string; // GDA todo
     ore: number;
