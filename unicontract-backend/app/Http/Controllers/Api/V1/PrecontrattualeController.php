@@ -171,21 +171,35 @@ class PrecontrattualeController extends Controller
             $insegnamentoGDA['data_fine_contratto'] = explode(" ", $insegnamentoGDA['data_rinuncia'])[0];
         }
 
-        // GDA todo
-        // mancano gli atti
-        $atti = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI A1')
-                ->where('coper_id','=',$precontr->insegnamento->coper_id)
+        // GDA
+        $atti = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI')
+
+                ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO.TIPO_ATTO_COD')
+                   
+                ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_EMITTENTE_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_COD')
+                   
+                ->where(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.COPER_ID','=',$precontr->insegnamento->coper_id)
                 ->where(function($query) {
                     //~ $query->where('tipo_atto_des','=','Delibera')
                           //~ ->orWhere('tipo_atto_des','=','Disposizione Direttore')
                           //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
-                    $query->where('TIPO_ATTO_COD','=','DEL')
-                          ->orWhere('TIPO_ATTO_COD','=','DD');
+                    $query->where(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD','=','DEL')
+                          ->orWhere(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD','=','DD');
                           //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
                 })
                 //~ ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
-                ->select('TIPO_ATTO_COD','TIPO_EMITTENTE_COD','MOTIVO_ATTO_COD','NUMERO_PROVVEDIMENTO','DATA_PROVVEDIMENTO')
-                ->orderBy('DATA_PROVVEDIMENTO', 'asc')
+                ->select(
+                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD',
+                    config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO.TIPO_ATTO_DESC_ITA',
+                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_EMITTENTE_COD',
+                    config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_DESC_ITA',
+                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.MOTIVO_ATTO_COD',
+                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.NUMERO_PROVVEDIMENTO',
+                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.DATA_PROVVEDIMENTO'
+                )
+                ->orderBy(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.DATA_PROVVEDIMENTO', 'asc')
                 ->get();
 
         $tipo_atto_des_string = "";
@@ -198,9 +212,9 @@ class PrecontrattualeController extends Controller
 
         foreach ($atti as $atto) {
             //~ $tipo_atto_des_string .= $atto->tipo_atto_des;
-            $tipo_atto_des_string .= $atto->tipo_atto_cod;
+            $tipo_atto_des_string .= $atto->tipo_atto_desc_ita;
             //~ $tipo_emitt_des_string .= $atto->tipo_emitt_des;
-            $tipo_emitt_des_string .= $atto->tipo_emittente_cod;
+            $tipo_emitt_des_string .= $atto->tipo_emittente_desc_ita;
             // $motivo_atto_cod_string .= $atto->motivo_atto_cod;
             $numero_string .= $atto->numero_provvedimento;
             $data_string .= $atto->data_provvedimento;
@@ -220,11 +234,11 @@ class PrecontrattualeController extends Controller
             $counter = $counter + 1;
         }
 
-        $insegnamentoGDA['tipo_atto_des'] = $tipo_atto_des_string;
-        $insegnamentoGDA['tipo_emitt_des'] = $tipo_emitt_des_string;
-        $insegnamentoGDA['motivo_atto_cod'] = $motivo_atto_cod_string;
-        $insegnamentoGDA['numero'] = $numero_string;
-        $insegnamentoGDA['data'] = $data_string;
+        $datiGDA['tipo_atto_des'] = $tipo_atto_des_string;
+        $datiGDA['tipo_emitt_des'] = $tipo_emitt_des_string;
+        $datiGDA['motivo_atto_cod'] = $motivo_atto_cod_string;
+        $datiGDA['numero'] = $numero_string;
+        $datiGDA['data'] = $data_string;
         // fine atti
 
         $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER V1')
