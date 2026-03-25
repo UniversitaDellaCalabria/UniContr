@@ -6,13 +6,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MycurrencyPipe } from './../../../shared/pipe/custom.currencypipe';
 import { InsegnamTools } from './../../../classes/insegnamTools';
 
-import { InsegnUgov } from './../../../classes/insegn-ugov';
+import { InsegnGDA } from './../../../classes/insegn-gda';
 import { Insegnamento } from './../../../classes/insegnamento';
 import { Precontrattuale } from './../../../classes/precontrattuale';
 import { Docente } from './../../../classes/docente';
 import { RuoloDocente } from './../../../classes/ruoloDocente';
 
-import { InsegnUgovService } from './../../../services/insegn-ugov.service';
+import { InsegnGDAService } from './../../../services/insegn-gda.service';
 import { InsegnamentoService } from './../../../services/insegnamento.service';
 import { PrecontrattualeService } from './../../../services/precontrattuale.service';
 import { MessageService, BaseComponent } from './../../../shared';
@@ -24,10 +24,10 @@ import { StoryProcess } from './../../../classes/storyProcess';
 import { TitleCasePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-insegn-ugov-detail',
-  templateUrl: './insegn-ugov-detail.component.html',
+  selector: 'app-insegn-gda-detail',
+  templateUrl: './insegn-gda-detail.component.html',
   styleUrls: [
-    './insegn-ugov-detail.component.css'
+    './insegn-gda-detail.component.css'
   ]
 })
 
@@ -38,7 +38,7 @@ import { TitleCasePipe } from '@angular/common';
   }]
 })
 
-export class InsegnUgovDetailComponent extends BaseComponent {
+export class InsegnGDADetailComponent extends BaseComponent {
 
   private __ins: Insegnamento;
 
@@ -51,7 +51,7 @@ export class InsegnUgovDetailComponent extends BaseComponent {
     return this.__ins;
   }
 
-  item: InsegnUgov;
+  item: InsegnGDA;
 
   tipo_atto_des_list: string[];
   tipo_emitt_des_list: string[];
@@ -70,7 +70,7 @@ export class InsegnUgovDetailComponent extends BaseComponent {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private insegnUgovService: InsegnUgovService,
+              private insegnGDAService: InsegnGDAService,
               private insegnamentoService: InsegnamentoService,
               private precontrattualeService: PrecontrattualeService,
               private docenteService: DocenteService,
@@ -84,7 +84,7 @@ export class InsegnUgovDetailComponent extends BaseComponent {
     this.route.paramMap.subscribe(
       (params) => {
         this.isLoading = true;
-        this.insegnUgovService.getInsegnamentoUgov(+params.get('coper_id'), params.get('aa_off_id')).subscribe(
+        this.insegnGDAService.getInsegnamentoGDA(+params.get('coper_id'), params.get('aa_off_id')).subscribe(
           response => {
               this.item = response['datiGDA'];
               this.tipo_atto_des_list = response['datiGDA']['tipo_atto_desc_ita'] ? response['datiGDA']['tipo_atto_desc_ita'].split('#') : "";
@@ -179,15 +179,15 @@ export class InsegnUgovDetailComponent extends BaseComponent {
     );
   }
 
-  checkAttoData(data_ugov){
+  checkAttoData(data_gda){
         if(!this.data_list) return false;
-        if(!data_ugov) return false;
+        if(!data_gda) return false;
         let atto_precedente = false;
-        let data_ugov_array = data_ugov.split("-");
-        let new_data_ugov = data_ugov_array[2] + "-" + data_ugov_array[1] + "-" + data_ugov_array[0];
+        let data_gda_array = data_gda.split("-");
+        let new_data_gda = data_gda_array[2] + "-" + data_gda_array[1] + "-" + data_gda_array[0];
         this.data_list.forEach(function (data) {
             let d1 = new Date(data);
-            let d2 = new Date(new_data_ugov);
+            let d2 = new Date(new_data_gda);
             if(d1<=d2) atto_precedente = true;
         });
         return atto_precedente;

@@ -35,10 +35,10 @@ import { InsegnFormComponent } from './components/p1_insegnamento/insegn-form/in
 import { InsegnamTools } from './classes/insegnamTools';
 import { RouteMetods } from './classes/routeMetods';
 
-import { InsegnUgovService } from './services/insegn-ugov.service';
-import { ListaInsegnamentiUgovComponent } from './components/insegn_Ugov/lista-insegnamenti-ugov/lista-insegnamenti-ugov.component';
-import { InsegnamentoUgovComponent } from './components/insegn_Ugov/insegnamento-ugov/insegnamento-ugov.component';
-import { InsegnUgovDetailComponent } from './components/insegn_Ugov/insegn-ugov-detail/insegn-ugov-detail.component';
+import { InsegnGDAService } from './services/insegn-gda.service';
+import { ListaInsegnamentiGDAComponent } from './components/insegn_GDA/lista-insegnamenti-gda/lista-insegnamenti-gda.component';
+import { InsegnamentoGDAComponent } from './components/insegn_GDA/insegnamento-gda/insegnamento-gda.component';
+import { InsegnGDADetailComponent } from './components/insegn_GDA/insegn-gda-detail/insegn-gda-detail.component';
 
 import { DocenteService } from './services/docente.service';
 import { RuoloDocenteService } from './services/ruoloDocente.service';
@@ -205,8 +205,8 @@ import { IntestazioneComponent } from './components/intestazione/intestazione.co
 import { SalvaAnnullaButtonComponent } from './components/barra-comandi/salva-annulla-button/salva-annulla-button.component';
 import { MappingUfficioTitulus } from './components/mapping/mappingufficio.component';
 import { MappingUfficiTitulus } from './components/mapping/mappinguffici.component';
-import { ListaContrugovQueryComponent } from './components/p1_insegnamento/lista-contrugov-query/lista-contrugov-query.component';
-import { ContrUgovService } from './services/contr-ugov.service';
+import { ListaContrgdaQueryComponent } from './components/p1_insegnamento/lista-contrgda-query/lista-contrgda-query.component';
+import { ContrGDAService } from './services/contr-gda.service';
 import { MyMissingTranslationHandler } from './shared/MyMissingTranslationHandler';
 import { LogAttivitaComponent } from './components/user/logattivita.component';
 import { LogAttivitaService } from './services/logattivita.service';
@@ -254,9 +254,9 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     InsegnamentoComponent,
     InsegnDetailComponent,
     InsegnFormComponent,
-    ListaInsegnamentiUgovComponent,
-    InsegnamentoUgovComponent,
-    InsegnUgovDetailComponent,
+    ListaInsegnamentiGDAComponent,
+    InsegnamentoGDAComponent,
+    InsegnGDADetailComponent,
     P2PosizioneInsComponent,
     P2DetailsComponent,
     HomeComponent,
@@ -289,7 +289,7 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     B3RappStudioUnivDetailsComponent,
     ListaInsegnQueryComponent,
     ListaPrecontrQueryComponent,
-    ListaContrugovQueryComponent,
+    ListaContrgdaQueryComponent,
     B4RappPaComponent,
     B4RappPaDetailsComponent,
     B5StatoPensionComponent,
@@ -392,8 +392,8 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
     AuthGuard,
     LoginActivate,
     InsegnamentoService,
-    InsegnUgovService,
-    ContrUgovService,
+    InsegnGDAService,
+    ContrGDAService,
     P2rapportoService,
     PrecontrattualeService,
     ValidazioneService,

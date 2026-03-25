@@ -1,4 +1,4 @@
-export interface InsegnUgovInterface {
+export interface InsegnGDAInterface {
     coper_id: number;
     dip_desc_ita: string;
     cds_desc_ita: string;

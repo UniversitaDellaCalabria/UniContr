@@ -9,8 +9,8 @@ import { HomeComponent } from '../home/home.component';
 import { ListaInsegnComponent } from '../components/p1_insegnamento/lista-insegn/lista-insegn.component';
 import { InsegnDetailComponent } from '../components/p1_insegnamento/insegn-detail/insegn-detail.component';
 import { InsegnFormComponent } from '../components/p1_insegnamento/insegn-form/insegn-form.component';
-import { ListaInsegnamentiUgovComponent } from './../components/insegn_Ugov/lista-insegnamenti-ugov/lista-insegnamenti-ugov.component';
-import { InsegnUgovDetailComponent } from './../components/insegn_Ugov/insegn-ugov-detail/insegn-ugov-detail.component';
+import { ListaInsegnamentiGDAComponent } from './../components/insegn_GDA/lista-insegnamenti-gda/lista-insegnamenti-gda.component';
+import { InsegnGDADetailComponent } from './../components/insegn_GDA/insegn-gda-detail/insegn-gda-detail.component';
 import { P2PosizioneInsComponent } from './../components/p2_posizione/p2-posizione-ins/p2-posizione-ins.component';
 import { P2DetailsComponent } from './../components/p2_posizione/p2-details/p2-details.component';
 import { AnagraficaDetailsComponent } from './../components/anagrafica/anagrafica-details/anagrafica-details.component';
@@ -83,7 +83,7 @@ import { LinkEsterniComponent } from '../components/link-esterni/link-esterni.co
 import { EmailListComponent } from '../components/email_list/email-list/email-list.component';
 import { MappingUfficiTitulus } from '../components/mapping/mappinguffici.component';
 import { MappingUfficioTitulus } from '../components/mapping/mappingufficio.component';
-import { ListaContrugovQueryComponent } from '../components/p1_insegnamento/lista-contrugov-query/lista-contrugov-query.component';
+import { ListaContrgdaQueryComponent } from '../components/p1_insegnamento/lista-contrgda-query/lista-contrgda-query.component';
 import { LogAttivitaComponent } from '../components/user/logattivita.component';
 
 
@@ -113,8 +113,8 @@ const routes: Routes = [
         loadChildren: '../dashboards/dashboard.module#DashboardModule'
       },
       {
-        path: 'copertura-ugov',
-        component: ListaInsegnamentiUgovComponent, canActivate: [AuthGuard],
+        path: 'copertura-gda',
+        component: ListaInsegnamentiGDAComponent, canActivate: [AuthGuard],
         data: {
           title: 'Seleziona insegnamento',
           urls: [
@@ -125,13 +125,13 @@ const routes: Routes = [
       },
 
       {
-        path: 'ugov-insegn-detail/:coper_id/:aa_off_id',
-        component: InsegnUgovDetailComponent, canActivate: [AuthGuard], pathMatch: 'full',
+        path: 'gda-insegn-detail/:coper_id/:aa_off_id',
+        component: InsegnGDADetailComponent, canActivate: [AuthGuard], pathMatch: 'full',
         data: {
           title: 'Importazione insegnamento',
           urls: [
             { title: 'Home', url: '/home' },
-            { title: 'Lista insegnamenti', url: '/home/copertura-ugov' },
+            { title: 'Lista insegnamenti', url: '/home/copertura-gda' },
             { title: 'Import insegnamento' }
           ]
         }
@@ -162,8 +162,8 @@ const routes: Routes = [
       },
 
       {
-        path: 'lista-contrugov-query',
-        component: ListaContrugovQueryComponent, canActivate: [AuthGuard],
+        path: 'lista-contrgda-query',
+        component: ListaContrgdaQueryComponent, canActivate: [AuthGuard],
         data: {
           title: 'Ricerca stato contratti in contabilità',
           urls: [

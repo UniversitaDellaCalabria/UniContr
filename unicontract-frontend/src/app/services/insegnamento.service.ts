@@ -3,7 +3,7 @@ import { Insegnamento } from './../classes/insegnamento';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { InsegnamentoInterface, UpdateP1 } from './../interface/insegnamento';
-import { InsegnUgovInterface } from './../interface/insegn-ugov';
+import { InsegnGDAInterface } from './../interface/insegn-gda';
 import { environment } from '../../environments/environment';
 import { AppConstants } from 'src/app/app-constants';
 import { AuthService } from '../core';

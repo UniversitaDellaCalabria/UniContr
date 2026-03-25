@@ -55,7 +55,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: 'lista-insegn-query', //'copertura-ugov',
+    path: 'lista-insegn-query', //'copertura-gda',
     title: 'Nuovo contratto',
     icon: 'icon-File',
     class: '',
@@ -75,7 +75,7 @@ export const ROUTES: RouteInfo[] = [
     permissions: ['OP_DIPARTIMENTALE','OP_DOCENTE','ADMIN','SUPER-ADMIN','OP_APPROVAZIONE_AMM','OP_APPROVAZIONE_ECONOMICA'],
   },
   {
-    path: 'lista-contrugov-query',
+    path: 'lista-contrgda-query',
     title: 'Ricerca in contabilità',
     icon: 'icon-File-Search',
     class: '',

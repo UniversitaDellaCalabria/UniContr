@@ -7,15 +7,15 @@ import { PrecontrattualeService } from 'src/app/services/precontrattuale.service
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MyTranslatePipe } from 'src/app/shared/pipe/custom.translatepipe';
-import { ContrUgovService } from 'src/app/services/contr-ugov.service';
+import { ContrGDAService } from 'src/app/services/contr-gda.service';
 import { annoAccademicoCorrente } from 'src/app/shared/dynamic-form/utils';
 
 @Component({
-  selector: 'app-list-contrugov-query',
+  selector: 'app-list-contrgda-query',
   templateUrl: '../../../shared/base-component/base-research.component.html',
   styles: []
 })
-export class ListaContrugovQueryComponent extends BaseResearchComponent {
+export class ListaContrgdaQueryComponent extends BaseResearchComponent {
   enabledExport = false;
   translate: MyTranslatePipe;
 
@@ -225,7 +225,7 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
   resultMetadata: FormlyFieldConfig[];
   @ViewChild('tooltip') tooltipCellTemplate: TemplateRef<any>;
 
-  constructor(protected service: ContrUgovService, router: Router, route: ActivatedRoute, private translateService: TranslateService) {
+  constructor(protected service: ContrGDAService, router: Router, route: ActivatedRoute, private translateService: TranslateService) {
     super(router, route);
     this.enabledExport = true;
     this.enableNew=false;
@@ -233,7 +233,7 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
     // this.routeAbsolutePath = 'home/detail-insegn';
     this.routeAbsolutePath = 'home/summary';
     this.translate = new MyTranslatePipe(translateService);
-    this.prefix = 'contrugov';
+    this.prefix = 'contrgda';
 
     this.initRule();
 
@@ -264,7 +264,7 @@ export class ListaContrugovQueryComponent extends BaseResearchComponent {
       templateOptions: {
         headerHeight: 50,
         footerHeight: 50,
-        label: 'Risultati Contratti Ugov',
+        label: 'Risultati Contratti GDA',
         columnMode: 'force',
         scrollbarH: true,
         page: new Page(25),

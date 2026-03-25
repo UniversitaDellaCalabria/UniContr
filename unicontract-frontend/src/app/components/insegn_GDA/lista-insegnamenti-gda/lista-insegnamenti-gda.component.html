@@ -12,7 +12,7 @@
       <label style="margin-top: 10px;" for="nominativo">Nominativo docente</label>
       <select class="form-control" style="width: 50%" name="nominativo" id="nominativo" [(ngModel)]="searchTermTutor" required >
         <option value=""></option>
-        <option *ngFor="let item of insegnUgov | unique_name" value="{{ item.cod_fisc }}" >{{ item.doc_cognome }} {{ item.doc_nome }}</option>
+        <option *ngFor="let item of insegnGDA | unique_name" value="{{ item.cod_fisc }}" >{{ item.doc_cognome }} {{ item.doc_nome }}</option>
       </select>
     </div>
   </app-riquadro-wrapper>
@@ -22,7 +22,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col" style="vertical-align: middle; padding: 7px;">Codice UGOV</th>
+          <th scope="col" style="vertical-align: middle; padding: 7px;">Codice GDA</th>
           <th scope="col" style="vertical-align: middle; padding: 7px;">{{ '00_int16' | translate }}</th>       
           <th scope="col" style="vertical-align: middle; padding: 7px;">{{ '00_int2' | translate }}</th>
           <th scope="col" style="vertical-align: middle; padding: 7px;">{{ '00_int14' | translate }}</th>
@@ -30,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr app-insegnamento-ugov *ngFor="let items of filteredInsegn" [insegn-ugov] = "items" ></tr>
+        <tr app-insegnamento-gda *ngFor="let items of filteredInsegn" [insegn-gda] = "items" ></tr>
       </tbody>
     </table>
   </app-riquadro-wrapper>

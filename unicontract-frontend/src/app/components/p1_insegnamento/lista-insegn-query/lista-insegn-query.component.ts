@@ -5,7 +5,7 @@ import { BaseResearchComponent } from 'src/app/shared/base-component/base-resear
 import { FormlyFieldConfig, FormlyTemplateOptions } from '@ngx-formly/core';
 import { Page } from 'src/app/shared/lookup/page';
 import { DatePipe, TitleCasePipe } from '@angular/common';
-import { InsegnUgovService } from 'src/app/services/insegn-ugov.service';
+import { InsegnGDAService } from 'src/app/services/insegn-gda.service';
 import { MyTranslatePipe } from 'src/app/shared/pipe/custom.translatepipe';
 import { TranslateService } from '@ngx-translate/core';
 import { NoRowsOverlayComponent } from 'ag-grid-community/dist/lib/rendering/overlays/noRowsOverlayComponent';
@@ -191,7 +191,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
     min: 1
   };
 
-  constructor(protected service: InsegnUgovService, router: Router, route: ActivatedRoute, private translateService: TranslateService) {
+  constructor(protected service: InsegnGDAService, router: Router, route: ActivatedRoute, private translateService: TranslateService) {
     super(router, route);
     this.enableNew = false;
     this.routeAbsolutePath = 'home/detail-insegn';
@@ -267,7 +267,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
 
   rowSelection(row) {
     this.setStorageResult();
-    this.router.navigate(['home/ugov-insegn-detail', row.coper_id, row.aa_off_id]);
+    this.router.navigate(['home/gda-insegn-detail', row.coper_id, row.aa_off_id]);
   }
 
 

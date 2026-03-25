@@ -24,10 +24,10 @@ export class LinkEsterniComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       (params) => {
-        if (params.get('val') === 'ugovdidattica') {
-          this.routeLgUgovDidattica();
-        } else if (params.get('val') === 'ugovcompensi') {
-          this.routeLgUgovCompensi();
+        if (params.get('val') === 'gdadidattica') {
+          this.routeLgGDADidattica();
+        } else if (params.get('val') === 'gdacompensi') {
+          this.routeLgGDACompensi();
         } else if (params.get('val') === 'precontreditabile') {
           this.routePrecontrEditabile();
         } else if (params.get('val') === 'compilazione') {
@@ -68,14 +68,14 @@ export class LinkEsterniComponent implements OnInit {
 
 
 
-  routeLgUgovDidattica() {
+  routeLgGDADidattica() {
     this.isLoading = true;
-    this.pdfSrc = location.origin + environment.baseHref + 'assets/documents/lgocd_ugov_didattica.pdf';
+    this.pdfSrc = location.origin + environment.baseHref + 'assets/documents/lgocd_gda_didattica.pdf';
   }
 
-  routeLgUgovCompensi() {
+  routeLgGDACompensi() {
     this.isLoading = true;
-    this.pdfSrc = location.origin + environment.baseHref + 'assets/documents/lgocd_ugov_compensi.pdf';
+    this.pdfSrc = location.origin + environment.baseHref + 'assets/documents/lgocd_gda_compensi.pdf';
   }
 
   routePrecontrEditabile() {

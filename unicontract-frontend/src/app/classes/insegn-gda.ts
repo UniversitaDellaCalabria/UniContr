@@ -1,6 +1,6 @@
-import { InsegnUgovInterface } from './../interface/insegn-ugov';
+import { InsegnGDAInterface } from './../interface/insegn-gda';
 
-export class InsegnUgov implements InsegnUgovInterface {
+export class InsegnGDA implements InsegnGDAInterface {
     coper_id: number;
     dip_desc_ita: string;
     cds_desc_ita: string;

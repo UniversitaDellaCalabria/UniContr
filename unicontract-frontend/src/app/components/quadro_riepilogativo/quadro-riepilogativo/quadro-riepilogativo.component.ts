@@ -824,7 +824,7 @@ export class QuadroRiepilogativoComponent extends BaseComponent {
     );
   }
 
-  getUgovIddg(coper_id) {
+  getGDAIddg(coper_id) {
     // let iddg = null;
     this.summaryService.getIddg(coper_id).subscribe(
       response => {

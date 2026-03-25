@@ -1,28 +1,28 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { InsegnUgov } from './../../../classes/insegn-ugov';
-import { InsegnUgovService } from './../../../services/insegn-ugov.service';
+import { InsegnGDA } from './../../../classes/insegn-gda';
+import { InsegnGDAService } from './../../../services/insegn-gda.service';
 import { UniqueName } from './../../../shared/pipe/unique-name';
 import { UniqueYear } from './../../../shared/pipe/unique-year';
 import { BaseComponent } from 'src/app/shared/base-component/base.component';
 import { MessageService } from 'src/app/shared/message.service';
 
 @Component({
-  selector: 'app-lista-insegnamenti-ugov',
-  templateUrl: './lista-insegnamenti-ugov.component.html',
-  styleUrls: ['./lista-insegnamenti-ugov.component.css']
+  selector: 'app-lista-insegnamenti-gda',
+  templateUrl: './lista-insegnamenti-gda.component.html',
+  styleUrls: ['./lista-insegnamenti-gda.component.css']
 })
-export class ListaInsegnamentiUgovComponent extends BaseComponent {
+export class ListaInsegnamentiGDAComponent extends BaseComponent {
 
-  constructor(private service: InsegnUgovService,
+  constructor(private service: InsegnGDAService,
               private router: Router,
               private route: ActivatedRoute,
               messageService: MessageService) {
                 super(messageService)
                }
 
-  insegnUgov: InsegnUgov[] = [];
-  filteredInsegn: InsegnUgov[] = [];
+  insegnGDA: InsegnGDA[] = [];
+  filteredInsegn: InsegnGDA[] = [];
 
   private _searchTermTutor: string;
 
@@ -53,9 +53,9 @@ export class ListaInsegnamentiUgovComponent extends BaseComponent {
         const aa_off_id = param.get('aa_off_id');
         if (aa_off_id) {
           this.isLoading = true;
-          this.service.getListaInsegnamentiUgov(aa_off_id).subscribe(
-            response => this.insegnUgov = response['lista'],
-            () => this.filteredInsegn = this.insegnUgov,
+          this.service.getListaInsegnamentiGDA(aa_off_id).subscribe(
+            response => this.insegnGDA = response['lista'],
+            () => this.filteredInsegn = this.insegnGDA,
             () => this.isLoading = false
           );
         }
@@ -66,12 +66,12 @@ export class ListaInsegnamentiUgovComponent extends BaseComponent {
   onChange(year) {
     if (year) {
       this.isLoading = true;
-      this.service.getListaInsegnamentiUgov(year).subscribe(
+      this.service.getListaInsegnamentiGDA(year).subscribe(
         response => {
           this.searchTermTutor = null;
-          this.insegnUgov = response['lista'];
+          this.insegnGDA = response['lista'];
         },
-        () => this.filteredInsegn = this.insegnUgov,
+        () => this.filteredInsegn = this.insegnGDA,
         () => this.isLoading = false
       );
     }
@@ -87,7 +87,7 @@ export class ListaInsegnamentiUgovComponent extends BaseComponent {
   }
 
   filtraInsegnamentiTutor(searchString: string) {
-    return this.insegnUgov.filter(item => item.cod_fisc === searchString);
+    return this.insegnGDA.filter(item => item.cod_fisc === searchString);
   }
 
   numRecord() {

@@ -1,7 +1,0 @@
-<td class="align-middle p-1">{{ ugov.coper_id }}</td>
-<td class="align-middle p-1">{{ ugov.data_inizio_contratto }} - {{ ugov.data_fine_contratto }}</td>
-<td class="align-middle p-1">{{ (ugov.ana_af_desc_ita.length > 70) ? (ugov.ana_af_desc_ita | slice:0:70) + ' . . .' : ugov.ana_af_desc_ita  }}</td>
-<td class="align-middle p-1">{{ tools.tipoConferimento(ugov.motivo_atto_cod) }}</td>
-<td class="align-middle text-right p-1" >
-    <button type="button" class="btn btn-outline-primary" (click)="showInsegnUgovDetail()" >SELEZIONA</button>
-</td>

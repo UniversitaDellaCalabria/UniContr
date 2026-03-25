@@ -1,7 +1,7 @@
 import { FormlyTemplateOptions } from '@ngx-formly/core';
 import { UserComponent } from '../../user/user.component';
 import { Insegnamento, Updp1 } from '../../../classes/insegnamento';
-import { InsegnUgov } from '../../../classes/insegn-ugov';
+import { InsegnGDA } from '../../../classes/insegn-gda';
 import { InsegnamentoService } from '../../../services/insegnamento.service';
 import { Component, OnInit, Output, EventEmitter, NgModule, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { MycurrencyPipe } from './../../../shared/pipe/custom.currencypipe';
 import { RouteMetods } from './../../../classes/routeMetods';
 import { MessageService, BaseComponent } from './../../../shared';
 import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog/confirmation-dialog.service';
-import { InsegnUgovService } from '../../../services/insegn-ugov.service';
+import { InsegnGDAService } from '../../../services/insegn-gda.service';
 import { IPrecontrStore } from 'src/app/interface/precontrattuale';
 
 @Component({
@@ -38,13 +38,13 @@ export class InsegnDetailComponent extends BaseComponent {
   numero_list: string[];
   data_list: string[];
 
-  itemUgov: InsegnUgov;
+  itemUgov: InsegnGDA;
   itemUpdP1: Updp1;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private insegnamentoService: InsegnamentoService,
-              private ugovService: InsegnUgovService,
+              private gdaService: InsegnGDAService,
               public messageService: MessageService,
               public confirmationDialogService: ConfirmationDialogService,
               private tools: InsegnamTools,

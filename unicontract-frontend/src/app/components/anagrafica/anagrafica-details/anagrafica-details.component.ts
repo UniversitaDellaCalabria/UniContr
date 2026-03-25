@@ -831,7 +831,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
           );
         } else {
           this.update = false;
-          // UGOV
+          // GDA
           // this.isLoading = true;
           this.anagraficaService.getAnagrafica(params.get('id_ab')).subscribe(
             response => {
@@ -845,7 +845,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
                 this.originalValue = JSON.parse(JSON.stringify(response['dati']['copy']));
                 // Object.keys(copy).forEach(key=>this.item[key]=copy[key]);
               } else {
-                // valori che arrivano da ugov
+                // valori che arrivano da gda
                 this.resp = response['dati'];
                 this.item = Anagrafica.toLocalAnagrafica(this.resp);
                 this.originalValue = Anagrafica.toLocalAnagrafica(this.resp);
