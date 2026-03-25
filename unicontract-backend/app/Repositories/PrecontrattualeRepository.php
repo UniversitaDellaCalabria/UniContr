@@ -39,7 +39,7 @@ class PrecontrattualeRepository extends BaseRepository {
     public function newPrecontrImportInsegnamento(array $data, string $ore_desc, float $compenso_calcolato){
         DB::beginTransaction();
         try {
-            // IMPORTAZIONE NUOVO INSEGNAMENTO DA UGOV
+            // IMPORTAZIONE NUOVO INSEGNAMENTO DA GDA
             $insegn = new Insegnamenti();
             $insegn->fill($data['insegnamento']);
             $insegn->ore_desc = $ore_desc;

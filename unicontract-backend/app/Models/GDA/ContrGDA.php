@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Ugov;
+namespace App\Models\GDA;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class ContrUgov extends DGUgov
+class ContrUgov extends DGGDA
 {
     protected $connection = 'oracle';
 
@@ -33,20 +33,20 @@ class ContrUgov extends DGUgov
 
     public function relazioni()
     {
-        return $this->hasMany(RelazioniDgUgov::class, 'id_dg_1', 'id_dg');
+        return $this->hasMany(RelazioniDgGDA::class, 'id_dg_1', 'id_dg');
     }
 
 
     public function compensirel()
     {
-        return $this->hasMany(RelazioniDgUgov::class, 'id_dg_1','id_dg')->distinti();
+        return $this->hasMany(RelazioniDgGDA::class, 'id_dg_1','id_dg')->distinti();
     }
 
     public function compensi()
     {
         return $this->hasManyThrough(
-            CompensoUgov::class,
-            RelazioniDgUgov::class,
+            CompensoGDA::class,
+            RelazioniDgGDA::class,
             'id_dg_1',
             'id_dg',
             'id_dg',
@@ -63,12 +63,12 @@ class ContrUgov extends DGUgov
 
     public function relazionirate()
     {
-        return $this->hasMany(RelazioneRateUgov::class, 'id_dg_ref_a', 'id_dg')->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.dt_annullamento');
+        return $this->hasMany(RelazioneRateGDA::class, 'id_dg_ref_a', 'id_dg')->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.dt_annullamento');
     }
 
     public function relazioniratecompenso()
     {
-        return $this->hasMany(RelazioneRateUgov::class, 'id_dg_ref_a', 'id_dg')
+        return $this->hasMany(RelazioneRateGDA::class, 'id_dg_ref_a', 'id_dg')
             ->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.dt_annullamento')
             ->whereNotNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.id_dg_ref_b');
     }
@@ -76,7 +76,7 @@ class ContrUgov extends DGUgov
 
     public function relazioniratecompensoordinativo()
     {
-        return $this->hasMany(RelazioneRateUgov::class, 'id_dg_ref_a', 'id_dg')
+        return $this->hasMany(RelazioneRateGDA::class, 'id_dg_ref_a', 'id_dg')
             ->whereNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.dt_annullamento')
             ->whereNotNull(config('unical.db_oracle_siadg').'.V_IE_DG11_R_RATE_COMPENSO.id_dg_ref_b')
             ->has('compenso.ordinativi');
@@ -86,8 +86,8 @@ class ContrUgov extends DGUgov
 
     public function rate(){
         return $this->hasManyThrough(
-            RataUgov::class,
-            RelazioneRateUgov::class,
+            RataGDA::class,
+            RelazioneRateGDA::class,
             'id_dg_ref_a',
             'id_x_rate',
             'id_dg',

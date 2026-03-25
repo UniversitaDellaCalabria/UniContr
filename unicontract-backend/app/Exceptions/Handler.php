@@ -82,8 +82,8 @@ class Handler extends ExceptionHandler
         //message:"ORA-12170: TNS:Connect timeout occurred"
         if ($exception instanceof Oci8Exception){
             Log::error($exception);
-            $response = response()->json(['message' => "Sottosistema Ugov in manutenzione"], 500);
-            $response->setStatusCode(500, "Sottosistema Ugov in manutenzione");
+            $response = response()->json(['message' => "Sottosistema GDA in manutenzione"], 500);
+            $response->setStatusCode(500, "Sottosistema GDA in manutenzione");
             return $response;
         }
 

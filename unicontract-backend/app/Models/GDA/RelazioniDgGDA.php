@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Ugov;
+namespace App\Models\GDA;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RelazioniDgUgov extends Model
+class RelazioniDgGDA extends Model
 {
     protected $connection = 'oracle';
 
@@ -22,6 +22,6 @@ class RelazioniDgUgov extends Model
 
     public function compenso()
     {
-        return $this->belongsTo(CompensoUgov::class, 'ID_DG_2', 'ID_DG');
+        return $this->belongsTo(CompensoGDA::class, 'ID_DG_2', 'ID_DG');
     }
 }

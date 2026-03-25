@@ -19,7 +19,6 @@ use Illuminate\Support\Str;
 use App\Service\TitulusHelper;
 use App\Exports\PrecontrattualeExport;
 use Illuminate\Support\Facades\Log;
-//use App\Models\InsegnamUgov;
 use App\Models\InsegnamGDA;
 use PHP_IBAN\IBAN;
 use Illuminate\Support\Facades\Cache;

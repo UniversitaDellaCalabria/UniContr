@@ -18,7 +18,7 @@ class CreateMappingUffici extends Migration
         Schema::create('mappinguffici', function (Blueprint $table) {
             $table->increments('id');                
 
-            //riferimento ugov vista_org_attiva uo
+            //riferimento GDA vista_org_attiva uo
             $table->string('unitaorganizzativa_uo', 20)->unique();                
             $table->string('descrizione_uo',255);            
 

@@ -5,6 +5,9 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+
+// GDA è importante replicare questa classe? i suoi metodi non sono mai usati (vedi sotto)
+//~ use App\Models\InsegnamSegmentiUgov;
 use App\Models\InsegnamSegmentiUgov;
 
 class InsegnamGDA extends Model
@@ -58,7 +61,7 @@ class InsegnamGDA extends Model
     //~ }
 
     //~ public function segmenti() {
-        //~ return $this->hasMany(InsegnamSegmentiUgov::class, 'af_radice_id', 'af_radice_id')->Seg();
+        //~ return $this->hasMany(InsegnamSegmentiGDA::class, 'af_radice_id', 'af_radice_id')->Seg();
     //~ }
 
     //~ public function getSettDesAttribute($value){

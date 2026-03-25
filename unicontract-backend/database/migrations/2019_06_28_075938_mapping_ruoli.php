@@ -18,7 +18,7 @@ class MappingRuoli extends Migration
         Schema::create('mappingruoli', function (Blueprint $table) use ($tableNames) {
             $table->increments('id');  
             $table->timestamps();
-            //riferimento ugov vista_org_attiva uo
+            //riferimento GDA vista_org_attiva uo
             $table->string('unitaorganizzativa_uo', 20)->nullable();
             $table->string('descrizione_uo',255)->nullable();        
 

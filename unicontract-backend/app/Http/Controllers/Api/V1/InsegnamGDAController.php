@@ -181,7 +181,7 @@ class InsegnamGDAController extends Controller
         //se il motivo atto è un contratto di alta qualificazione ... $this->tipoContr == 'ALTQG' || $this->tipoContr == 'ALTQC' || $this->tipoContr == 'ALTQU';
         //allora vado a cercare il APPR_INC
         $count = 0;
-        //leggere da ugov insegnamento ...
+        //leggere da gda insegnamento ...
 
         // GDA todo
         $insegnamentoGDA = InsegnamGDA::where(config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', $coper_id)

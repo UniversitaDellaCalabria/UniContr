@@ -4,7 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class InsegnamSegmentiUgov extends Model
+class InsegnamSegmentiGDA extends Model
 {
     protected $connection = 'oracle';        
     protected $table = 'v_ie_di_af';     

@@ -9,7 +9,6 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Insegnamenti;
-//~ use App\InsegnamUgov;
 use App\User;
 use App\Precontrattuale;
 use App\PrecontrattualePerGenerazione;
@@ -44,8 +43,8 @@ class EmailService implements ApplicationService
                     ->cc($pre->anagrafica->email_privata ?: [])
                     ->bcc(config('unical.administrator_email'))->send($email);
             }else{
-                //leggo email privata da ugov (non esiste ancora l'anagrafica locale)
-                $anagrafica = $pre->user->anagraficaugov()->first();
+                //leggo email privata da gda (non esiste ancora l'anagrafica locale)
+                $anagrafica = $pre->user->anagraficagda()->first();
                 Mail::to($pre->user)
                     ->cc($anagrafica->e_mail_privata ?: [])
                     ->bcc(config('unical.administrator_email'))->send($email);

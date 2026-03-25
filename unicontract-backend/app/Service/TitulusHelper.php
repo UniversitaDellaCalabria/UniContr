@@ -32,7 +32,7 @@ class TitulusHelper
     */
     public static function addRPA($element, $userid = null){
         $pers = null;
-        //lettura responsabile da ugov
+        //lettura responsabile da GDA
         if ($userid){
             $pers =  User::find($userid)->personaleRespons()->first();
         }else{

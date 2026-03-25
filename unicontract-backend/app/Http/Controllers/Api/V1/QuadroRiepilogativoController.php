@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Precontrattuale;
-use App\Models\Ugov\ContrUgov;
-use App\Models\Ugov\RelazioniDgUgov;
+use App\Models\GDA\ContrGDA;
+use App\Models\GDA\RelazioniDgGDA;
 use App\Precontrattuale as Pre;
 use App\User;
 use Auth;
@@ -174,7 +174,7 @@ class QuadroRiepilogativoController extends Controller
         $pre = Pre::with(['user'])->where('insegn_id',$request->insegn_id)->first();
 
         if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email), config('unical.valid_email_domains'))){
-            $email = $pre->user->anagraficaugov()->first()->e_mail;
+            $email = $pre->user->anagraficagda()->first()->e_mail;
             if ($email && Str::contains(strtolower($email), config('unical.valid_email_domains'))){
                 //aggiornare email utente
                 $pre->user->email = $email;
@@ -208,7 +208,7 @@ class QuadroRiepilogativoController extends Controller
             //$rel = ContrUgov::with(['relazioni'])->where('ID_SIADI', $coper_id)->first();
             // $datiCont['relazioni'] = $rel->relazioni;
 
-            $datiCont = ContrUgov::with(['compensi','rate','compensi.ordinativi'])->where('id_siadi', $coper_id)->first(['id_x_contr','id_dg','id_siadi','num_rate','fl_gratuito','costo_totale']);
+            $datiCont = ContrGDA::with(['compensi','rate','compensi.ordinativi'])->where('id_siadi', $coper_id)->first(['id_x_contr','id_dg','id_siadi','num_rate','fl_gratuito','costo_totale']);
 
             $success = true;
 

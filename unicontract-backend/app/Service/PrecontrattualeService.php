@@ -9,7 +9,6 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Insegnamenti;
-//~ use App\InsegnamUgov;
 use App\User;
 use App\Precontrattuale;
 use App\PrecontrattualePerGenerazione;
@@ -434,19 +433,19 @@ class PrecontrattualeService implements ApplicationService
 
             $valid->save();
 
-            //aggiornamento modalità di pagamento verso ugov
+            //aggiornamento modalità di pagamento verso gda
             $pre = Precontrattuale::with(['user','a2modalitapagamento','p2naturarapporto'])->where('insegn_id',$insegn_id)->first();
             if ($pre->a2modalitapagamento->modality == 'ACIC' && $pre->p2naturarapporto->natura_rapporto != 'PTG'){
-                $result = PrecontrattualeService::inserimentoIbanUgov(
+                $result = PrecontrattualeService::inserimentoIbanGDA(
                     $pre->a2modalitapagamento->iban,
                     $pre->user->v_ie_ru_personale_id_ab,
                     $pre->user->cf,
                     $pre->a2modalitapagamento->intestazione
                 );
                 if ($result){
-                    $msg = $msg.'Inserito Iban in Ugov';
+                    $msg = $msg.'Inserito Iban in GDA';
                     $pre->storyprocess()->save(
-                        PrecontrattualeService::createStoryProcess('Validazione economica: Inserito Iban in Ugov '.$pre->a2modalitapagamento->iban,
+                        PrecontrattualeService::createStoryProcess('Validazione economica: Inserito Iban in GDA '.$pre->a2modalitapagamento->iban,
                         $pre->insegn_id)
                     );
                 }
@@ -465,7 +464,7 @@ class PrecontrattualeService implements ApplicationService
         return $data;
     }
 
-    public static function esisteIbanUgov($myiban, $id_ab, $cf){
+    public static function esisteIbanGDA($myiban, $id_ab, $cf){
 
         $iban = new IBAN($myiban);
         $mf_iban = $iban->MachineFormat();
@@ -490,13 +489,13 @@ class PrecontrattualeService implements ApplicationService
         if (count($hasMyIBAN) == 0){
             return false;
         }
-        Log::info('Iban Ugov esistente [ iban =' . $myiban . ']');
+        Log::info('Iban GDA esistente [ iban =' . $myiban . ']');
         return true;
     }
 
-    public static function inserimentoIbanUgov($myiban, $id_ab, $cf, $intestazione){
+    public static function inserimentoIbanGDA($myiban, $id_ab, $cf, $intestazione){
         $iban = new IBAN($myiban);
-        if (!PrecontrattualeService::esisteIbanUgov($myiban,$id_ab, $cf)){
+        if (!PrecontrattualeService::esisteIbanGDA($myiban,$id_ab, $cf)){
             if (!$iban->Verify()){
                 throw new Exception("Errore: IBAN non corretto");
             }
@@ -526,7 +525,7 @@ class PrecontrattualeService implements ApplicationService
             $response = $sc->inserisciCoordPagamento($id_ab, null, $cf, $wsdtoPagamento);
 
             if ($response->idCoordPagamento){
-                Log::info('Inserimento Iban Ugov [ idCoordPagamento =' . $response->idCoordPagamento . ']');
+                Log::info('Inserimento Iban GDA [ idCoordPagamento =' . $response->idCoordPagamento . ']');
             }
             return $response;
         }

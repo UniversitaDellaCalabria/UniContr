@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Precontrattuale;
 use Carbon\Carbon;
 use App\Models\Validazioni;
-//~ use App\Http\Controllers\Api\V1\InsegnamUgovController;
 use App\Http\Controllers\Api\V1\InsegnamGDAController;
 use App\Service\UtilService;
 use Illuminate\Support\Facades\Log;
@@ -116,7 +115,7 @@ class Insegnamenti extends Model {
         }
     }
 
-    //per data da ugov
+    //per data da GDA
     public function setDataFineContratto($input)
     {
         if($input != '') {

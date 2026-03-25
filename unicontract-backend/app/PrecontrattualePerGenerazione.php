@@ -208,7 +208,7 @@ class PrecontrattualePerGenerazione extends Precontrattuale {
         $counter = $this->insegnamento->contatore(); //contatore_insegnamenti($cod_insegnam, $cf);
 
         //nel caso il contatore sia 0 ma è stato importato come RINNOVO
-        //significa che il sistema su Ugov non è coerente per eventuali delibere di rinnovo
+        //significa che il sistema su GDA non è coerente per eventuali delibere di rinnovo
         //UniContr lo considera rinnovo
         if($counter == 1){
             return [

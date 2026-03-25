@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\AnagraficaUgov;
+use App\Models\AnagraficaGDA;
 use App\Models\Anagrafica;
 use App\Models\Docente;
-use App\Models\RappParentelaUgov;
+use App\Models\RappParentelaGDA;
 use App\Repositories\AnagraficaRepository;
 use App\User;
 use App\Precontrattuale;
@@ -32,7 +32,7 @@ class AnagraficaController extends Controller
         $dati = [];
         $message = '';
 
-            $dati = AnagraficaUgov::leftJoin(config('unical.db_oracle_siaru').'.FAM_ANAGRAFICA', function($join) {
+            $dati = AnagraficaGDA::leftJoin(config('unical.db_oracle_siaru').'.FAM_ANAGRAFICA', function($join) {
                 $join->on(config('unical.db_oracle_siaru').'.FAM_ANAGRAFICA.MATRICOLA', '=', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.MATRICOLA')
                 ->where(config('unical.db_oracle_siaru').'.FAM_ANAGRAFICA.RAP_PARENTELA', '=', 'CG');
             })

@@ -8,10 +8,10 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Service\UtilService;
-use App\Models\Ugov\ContrUgov;
+use App\Models\GDA\ContrGDA;
 use App\Http\Controllers\Api\V1\QueryBuilderForceInsensitive;
 
-class ContrUgovExport implements FromCollection, WithMapping, WithHeadings
+class ContrGDAExport implements FromCollection, WithMapping, WithHeadings
 {
 
     use Exportable;
@@ -33,7 +33,7 @@ class ContrUgovExport implements FromCollection, WithMapping, WithHeadings
         $this->findparam->limit = 10000;
         $this->findparam->page = null;
         
-        $paginator =  (new QueryBuilderForceInsensitive(new ContrUgov, $this->request,  $this->findparam))->build()->paginate();
+        $paginator =  (new QueryBuilderForceInsensitive(new ContrGDA, $this->request,  $this->findparam))->build()->paginate();
         $collection = collect($paginator->items());
        
         $page = 1;
@@ -44,7 +44,7 @@ class ContrUgovExport implements FromCollection, WithMapping, WithHeadings
 
             $this->findparam->page = $page;
             
-            $p = (new QueryBuilderForceInsensitive(new ContrUgov, $this->request,  $this->findparam))->build()->paginate();   
+            $p = (new QueryBuilderForceInsensitive(new ContrGDA, $this->request,  $this->findparam))->build()->paginate();   
             $collection = $collection->concat($p->items());
         }
 

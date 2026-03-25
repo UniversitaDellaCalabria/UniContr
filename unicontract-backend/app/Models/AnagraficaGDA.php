@@ -5,11 +5,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\RappParentelaUgov;
-//~ use App\Models\InsegnamUgov;
+use App\Models\RappParentelaGDA;
 use App\Models\InsegnamGDA;
 
-class AnagraficaUgov extends Model
+class AnagraficaGDA extends Model
 {
     protected $connection = 'oracle';
 
@@ -25,7 +24,7 @@ class AnagraficaUgov extends Model
         'data_nasc' => 'datetime:d-m-Y',
     ];
 
-    public function ugovIns() {
+    public function gdaIns() {
         return $this->hasMany(InsegnamGDA:: class, 'MATRICOLA', 'MATRICOLA');
     }
 

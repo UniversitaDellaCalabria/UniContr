@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Ugov;
+namespace App\Models\GDA;
 
 use Illuminate\Database\Eloquent\Model;
 
-abstract class DGUgov extends Model
+abstract class DGGDA extends Model
 {
     protected $connection = 'oracle';        
 
@@ -25,7 +25,7 @@ abstract class DGUgov extends Model
 
     public function datibase()
     {
-        return $this->hasOne(DatiBaseDGUgov::class, 'id_dg', 'id_dg')
+        return $this->hasOne(DatiBaseDGGDA::class, 'id_dg', 'id_dg')
                     ->select('id_dg','stato_dg','anno_rif','ds_dg','num_registrazione','dt_registrazione','dt_annullamento','nome_tipo_dg');
                     
     }

@@ -9,7 +9,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Insegnamenti;
-use App\Models\InsegnamUgov;
+use App\Models\InsegnamGDA;
 use App\User;
 use App\Precontrattuale;
 use App\Mail\FirstEmail;
@@ -187,25 +187,6 @@ class InsegnamentiController extends Controller
         return compact('datiInsegnamento', 'message', 'success');
     }
 
-    //deprecato per updateInsegnamentoFromUgov
-    public function refreshUgovData(Request $request, $coper_id) {
-        $datiUgov = [];
-        $message = '';
-        $datiUgov = InsegnamUgov::where('COPER_ID', $coper_id)
-            ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
-                    'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des',
-                    'tipo_emitt_des', 'numero', 'data', 'tipo_corso_des', 'anno_corso',
-                    'dip_doc_cod', 'dip_doc_des', 'data_rinuncia']);
-
-        // PATCH - Cessazione anticipata
-        if($datiUgov['data_rinuncia']) {
-            $datiUgov['data_fine_contratto'] = explode(" ", $datiUgov['data_rinuncia'])[0];
-        }
-
-        $success = true;
-        return compact('datiUgov', 'message', 'success');
-    }
-
     //deprecato
     public function updateP1(Request $request, $insegn_id)
     {
@@ -269,7 +250,7 @@ class InsegnamentiController extends Controller
 
 
         if ($pre && $pre->user->email && !Str::contains(strtolower($pre->user->email), config('unical.valid_email_domains'))){
-            $email = $pre->user->anagraficaugov()->first()->e_mail;
+            $email = $pre->user->anagraficagda()->first()->e_mail;
             if ($email && Str::contains(strtolower($email), config('unical.valid_email_domains'))){
                 //aggiornare email utente
                 $pre->user->email = $email;

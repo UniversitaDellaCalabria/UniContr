@@ -15,7 +15,7 @@ use App\Soap\Request\AttachmentBean;
 use App\Precontrattuale;
 use App\Exceptions\Handler;
 use Illuminate\Container\Container;
-use App\Models\AnagraficaUgov;
+use App\Models\AnagraficaGDA;
 use Carbon\Carbon;
 
 class SearchData extends Command

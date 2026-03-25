@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Ugov;
+namespace App\Models\GDA;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Ugov\RelazioniDgUgov;
+use App\Models\Ugov\RelazioniDgGDA;
 
-class PagamentoUgov extends DGUgov
+class PagamentoGDA extends DGGDA
 {
     protected $connection = 'oracle';
 

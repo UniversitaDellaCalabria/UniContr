@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Personale;
 use App\MappingRuolo;
-use App\Models\AnagraficaUgov;
+use App\Models\AnagraficaGDA;
 use Illuminate\Support\Facades\Log;
 
 class LoginService implements ApplicationService
@@ -18,7 +18,7 @@ class LoginService implements ApplicationService
 
     public function findDocenteData($email){
         Log::info('findDocenteData [ '. $email .']');
-        $pers = AnagraficaUgov::FindByEmail($email);
+        $pers = AnagraficaGDA::FindByEmail($email);
         $data = [
             'id_ab' => $pers->id_ab,
             'ruoli' => ['op_docente'],

@@ -9,7 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Observers\UserActionsObserver;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-use App\Models\AnagraficaUgov;
+use App\Models\AnagraficaGDA;
 use App\UnitaOrganizzativa;
 use Auth;
 use App;
@@ -174,9 +174,9 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Personale::class, 'id_ab', 'v_ie_ru_personale_id_ab');
     }
 
-    public function anagraficaugov()
+    public function anagraficagda()
     {
-        return $this->hasOne(AnagraficaUgov::class, 'id_ab', 'v_ie_ru_personale_id_ab');
+        return $this->hasOne(AnagraficaGDA::class, 'id_ab', 'v_ie_ru_personale_id_ab');
     }
 
     public function codice_unitaorganizzativa()

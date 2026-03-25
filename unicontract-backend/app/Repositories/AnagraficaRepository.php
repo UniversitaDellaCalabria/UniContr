@@ -44,7 +44,7 @@ class AnagraficaRepository extends BaseRepository {
                 throw new Exception("Nessun file in allegato", 1);                
             }  
 
-            //capire la variazione di modello rispetto a ugov o 
+            //capire la variazione di modello rispetto a GDA o 
             //rispetto al dato in anagrafica precedentemente inserito            
             $newValue = array_only($entity->toArray(),Audit::$toTrace);
             $originalValue = array_only($data['originalValue'],Audit::$toTrace);

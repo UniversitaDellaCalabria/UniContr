@@ -6,13 +6,12 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//~ use App\Models\InsegnamUgov;
-use App\Models\Ugov\ContrUgov;
+use App\Models\GDA\ContrGDA;
 use App\Precontrattuale;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use App\Exports\ContrUgovExport;
-class ContrUgovController extends Controller
+use App\Exports\ContrGDAExport;
+class ContrGDAController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +33,7 @@ class ContrUgovController extends Controller
         $findparam = $response["findparam"];
         $precontrs = $response["precontrs"];
                 
-        return (new ContrUgovExport($request,$findparam, $precontrs))->download('daticontabili.csv', \Maatwebsite\Excel\Excel::CSV,  [
+        return (new ContrGDAExport($request,$findparam, $precontrs))->download('daticontabili.csv', \Maatwebsite\Excel\Excel::CSV,  [
             'Content-Type' => 'text/csv',
         ]);        
     }
@@ -45,7 +44,7 @@ class ContrUgovController extends Controller
         $findparam = $response["findparam"];
         $precontrs = $response["precontrs"];
                 
-        return (new ContrUgovExport($request,$findparam, $precontrs))->download('daticontabili.xlsx');
+        return (new ContrGDAExport($request,$findparam, $precontrs))->download('daticontabili.xlsx');
     }
 
 
@@ -59,7 +58,7 @@ class ContrUgovController extends Controller
         $parameters['includes'] = 'insegnamento,user,validazioni,p2naturarapporto'; 
         //distinguere i parametri di ricerca
         //per precontrattuale
-        //per contrUgov            
+        //per contrGDA         
         
         //parametri di ricerca per precontrattuale
         $keytoremove = null;
@@ -90,30 +89,30 @@ class ContrUgovController extends Controller
         $queryBuilder = new QueryBuilder(new Precontrattuale, $request, $findparam);                        
         $precontrs = $queryBuilder->build()->noPagination();  
         
-        $parametersUgov['rules'] = $collection->filter(function ($value, $key) use (&$keytoremove){
+        $parametersGDA['rules'] = $collection->filter(function ($value, $key) use (&$keytoremove){
             return array_key_exists('type',$value) ? $value['type'] == 'selectrelation' : false;                                     
         })->all();
         
-        //creazione parametri di ricerca su ContrUGOV 
+        //creazione parametri di ricerca su ContrGDA
         //determinazione dei coper_id interessati
         $coper_ids = $precontrs ? $precontrs->pluck('insegnamento.coper_id')->toArray() : [];
-        array_push($parametersUgov['rules'],[
+        array_push($parametersGDA['rules'],[
             "operator" => "In",
             "field" => "ID_SIADI",                
             "value" => $coper_ids
         ]);           
 
-        $parametersUgov['includes'] = 'compensi,compensi.ordinativi';       
-        $parametersUgov['limit'] = $parameters['limit'];
+        $parametersGDA['includes'] = 'compensi,compensi.ordinativi';       
+        $parametersGDA['limit'] = $parameters['limit'];
         if (isset($parameters['page'])) {
-            $parametersUgov['page'] = $parameters['page'];
+            $parametersGDA['page'] = $parameters['page'];
         }else{
-            $parametersUgov['page'] = null;
+            $parametersGDA['page'] = null;
         }
         
-        $parametersUgov['order_by'] = 'id_dg,desc';
+        $parametersGDA['order_by'] = 'id_dg,desc';
        
-        $findparam =new \App\FindParameter($parametersUgov);    
+        $findparam =new \App\FindParameter($parametersGDA);    
         return compact('findparam', 'precontrs'); //$findparam;
      }
 
@@ -124,7 +123,7 @@ class ContrUgovController extends Controller
         $findparam = $response["findparam"];
         $precontrs = $response["precontrs"];
 
-        $queryBuilder = new QueryBuilderForceInsensitive(new ContrUgov, $request, $findparam);
+        $queryBuilder = new QueryBuilderForceInsensitive(new ContrGDA, $request, $findparam);
                 
         $results =  $queryBuilder->build()->paginate();               
         foreach ($results as $result) {

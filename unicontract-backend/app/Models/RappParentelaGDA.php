@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Banche;
+use App\Models\AnagraficaGDA;
 
-class ModalitaPagamentoUgov extends Model
+class RappParentelaGDA extends Model
 {
     protected $connection = 'oracle';
 
     public $table;
     public function __construct()
     {
-       $this->table = config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA';
+       $this->table = config('unical.db_oracle_siaru').'.FAM_ANAGRAFICA';
     }
 }

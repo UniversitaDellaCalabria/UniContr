@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ModalitaPagamentoUgov;
+use App\Models\ModalitaPagamentoGDA;
 use App\Models\A2ModalitaPagamento;
-use App\Models\AnagraficaUgov;
+use App\Models\AnagraficaGDA;
 use App\Models\P2rapporto;
 use App\Precontrattuale;
 use App\Repositories\A2ModalitaPagamentoRepository;
@@ -82,7 +82,7 @@ class A2ModalitaPagamentoController extends Controller
         $dati = [];
         $message = '';
 
-            $dati = AnagraficaUgov::leftJoin(config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA', function($join) {
+            $dati = AnagraficaGDA::leftJoin(config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA', function($join) {
                 $join->on(config('unical.db_oracle_siaru').'.VD_PAGAMENTI_CSA.MATRICOLA', '=', config('unical.db_oracle_siaru').'.VD_ANAGRAFICA.MATRICOLA');
             })
             ->leftJoin(config('unical.db_oracle_siaxm').'.V_IE_AC_BANCHE', function($join) {
@@ -107,7 +107,7 @@ class A2ModalitaPagamentoController extends Controller
             if ($copy){
                 $insegn = Insegnamenti::where('id', $insegn_id)->first();
                 if ($insegn && $copy->precontrattuale->insegnamento && $insegn->aa != $copy->precontrattuale->insegnamento->aa && $dati){
-                    //se il valore trovato non è dell'anno corrente utilizzare la lettura da ugov
+                    //se il valore trovato non è dell'anno corrente utilizzare la lettura da gda
                     $copy=null;
                 }
             }

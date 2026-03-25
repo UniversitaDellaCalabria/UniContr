@@ -29,19 +29,19 @@ class SoapControllerWSACPersonaFisica
   public function __construct(SoapWrapper $soapWrapper)
   {
     $this->soapWrapper = $soapWrapper;
-    $this->initUgov();    
+    $this->initGDA();    
   }
 
-  private function initUgov() 
+  private function initGDA() 
   {
-    $this->soapWrapper->add('ugov', function ($service) {
+    $this->soapWrapper->add('gda', function ($service) {
       $service
-        ->wsdl('https://'.config('ugov.host').'/ws-ac/ws/private/PersonaFisica?wsdl')
+        ->wsdl('https://'.config('gda.host').'/ws-ac/ws/private/PersonaFisica?wsdl')
         ->trace(true)       
         ->options([
           'soap_version' => 1,          
-          'login' => config('ugov.username'),
-          'password' => config('ugov.password'),     
+          'login' => config('gda.username'),
+          'password' => config('gda.password'),     
           'features' => SOAP_SINGLE_ELEMENT_ARRAYS,
           'cache_wsdl'   => WSDL_CACHE_NONE     
           //'maintain'=>true, //SESSION_MAINTAIN_PROPERTY
@@ -92,7 +92,7 @@ class SoapControllerWSACPersonaFisica
 
   public function elencaPersone($wsdtoPersonaFisicaSearch) {        
 
-    $response = $this->retry('ugov.elencaPersone', array(
+    $response = $this->retry('gda.elencaPersone', array(
       'dtoRicerca' => $wsdtoPersonaFisicaSearch
     ));            
     
@@ -109,7 +109,7 @@ class SoapControllerWSACPersonaFisica
    */
   public function elencaCoordPagamento($wsdtoPersonaFisicaSearch, $matricola) {
 
-    $response = $this->retry('ugov.elencaCoordPagamento', array(
+    $response = $this->retry('gda.elencaCoordPagamento', array(
       'dtoRicerca' => $wsdtoPersonaFisicaSearch,
       'matricola' => $matricola
     ));
@@ -124,7 +124,7 @@ class SoapControllerWSACPersonaFisica
    */
   public function inserisciCoordPagamento($idInternoPersona, $matricola, $codiceFiscale, $coordPagamento) {
 
-    $response = $this->retry('ugov.inserisciCoordPagamento', array(
+    $response = $this->retry('gda.inserisciCoordPagamento', array(
       'idInternoPersona' => $idInternoPersona,
       'matricola' => $matricola,
       'codiceFiscale' => $codiceFiscale,
@@ -140,7 +140,7 @@ class SoapControllerWSACPersonaFisica
    */
   public function eliminaCoordPagamento($idInternoCoordPag, $idInternoPersona) {
 
-    $response = $this->retry('ugov.eliminaCoordPagamento', array(
+    $response = $this->retry('gda.eliminaCoordPagamento', array(
       'idInternoPersona' => $idInternoPersona,
       'idInternoCoordPag' => $idInternoCoordPag,
     ));      

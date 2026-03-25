@@ -16,7 +16,7 @@ use App\Precontrattuale;
 use App\PrecontrattualePerGenerazione;
 use App\Exceptions\Handler;
 use Illuminate\Container\Container;
-use App\Models\AnagraficaUgov;
+use App\Models\AnagraficaGDA;
 use Carbon\Carbon;
 use App\Service\PrecontrattualeService;
 use Storage;
