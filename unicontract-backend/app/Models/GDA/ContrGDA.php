@@ -5,7 +5,7 @@ namespace App\Models\GDA;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class ContrUgov extends DGGDA
+class ContrGDA extends DGGDA
 {
     protected $connection = 'oracle';
 
