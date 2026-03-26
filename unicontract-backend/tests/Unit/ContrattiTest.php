@@ -16,7 +16,7 @@ use Storage;
 use App\AttachmentType;
 use App\Attachment;
 use App\User;
-use App\Models\InsegnamUgov;
+use App\Models\InsegnamGDA;
 use App\Models\Anagrafica;
 use PDF;
 use App\Repositories\PrecontrattualeRepository;
@@ -29,13 +29,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Service\PrecontrattualeService;
 use App\Service\UtilService;
 use App\Exports\PrecontrattualeExport;
-use App\Exports\ContrUgovExport;
+use App\Exports\ContrGDAExport;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Api\V1\InsegnamUgovController;
-use App\Http\Controllers\Api\V1\ContrUgovController;
+use App\Http\Controllers\Api\V1\InsegnamGDAController;
+use App\Http\Controllers\Api\V1\ContrGDAController;
 use App;
-use App\Models\Ugov\ContrUgov;
-use App\Models\Ugov\RelazioniDgUgov;
+use App\Models\GDA\ContrGDA;
+use App\Models\GDA\RelazioniDgGDA;
 
 
 class ContrattiTest extends TestCase
@@ -444,48 +444,50 @@ class ContrattiTest extends TestCase
     //./vendor/bin/phpunit  --testsuite Unit --filter test1CalcoloNumeroRinnovi
     public function test1CalcoloNumeroRinnovi() {
         //alta qualificazione
-        $this->assertEquals(1, InsegnamUgovController::contatoreInsegnamenti(72204));
+        $this->assertEquals(1, InsegnamGDAController::contatoreInsegnamenti(72204));
         //caso con contratti uguali stesso anno
-        $this->assertEquals(3, InsegnamUgovController::contatoreInsegnamenti(67114));
-        $this->assertEquals(3, InsegnamUgovController::contatoreInsegnamenti(66994));
+        $this->assertEquals(3, InsegnamGDAController::contatoreInsegnamenti(67114));
+        $this->assertEquals(3, InsegnamGDAController::contatoreInsegnamenti(66994));
     }
 
     //./vendor/bin/phpunit  --testsuite Unit --filter testCalcoloNumeroRinnovi
     public function testCalcoloNumeroRinnovi() {
 
-        $datiUgov = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V1')->join(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V2', function($join) {
-            $join->on('V2.AF_GEN_COD', '=', 'V1.AF_GEN_COD')
-                 ->on('V2.cod_fis','=','V1.cod_fis')
+        $datiGDA = DB::connection('oracle')
+            ->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) {
+            $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
+                 ->on('V2.DOC_ID_AB','=','V1.DOC_ID_AB')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID,-1)"), '=', DB::raw("COALESCE(V1.SEDE_ID,-1)"))
                  ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
-                 ->on('V2.data_ini_contratto','<','V1.data_ini_contratto')
-                 ->where('V2.motivo_atto_cod','=','BAN_INC')
+                 ->on('V2.DATA_INIZIO_CONTRATTO','<','V1.DATA_INIZIO_CONTRATTO')
+                 ->where('V2.MOTIVO_ATTO_COD','=','BAN_INC')
                  ->where('V1.COPER_ID','=',25244);
         })
-        ->select('V2.data_ini_contratto as ultima_nuova_attribuzione','V1.data_ini_contratto as data_contratto_corrente')
-        ->orderBy('V2.data_ini_contratto', 'DESC')->first();
+        ->select('V2.DATA_INIZIO_CONTRATTO as ultima_nuova_attribuzione','V1.DATA_INIZIO_CONTRATTO as data_contratto_corrente')
+        ->orderBy('V2.DATA_INIZIO_CONTRATTO', 'DESC')->first();
 
-        $count = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V1')->join(config('unical.db_oracle_siaxm').'.V_IE_DI_COPER V2', function($join) {
-            $join->on('V2.AF_GEN_COD', '=', 'V1.AF_GEN_COD')
+        $count = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) {
+            $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID,-1)"), '=', DB::raw("COALESCE(V1.SEDE_ID,-1)"))
                  ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
-                 ->on('V2.cod_fis','=','V1.cod_fis')
+                 ->on('V2.DOC_ID_AB','=','V1.DOC_ID_AB')
                  ->where('V1.COPER_ID','=',25244);
-        })->where('V2.data_ini_contratto','<',$datiUgov->data_contratto_corrente)
-        ->where('V2.data_ini_contratto','>=',$datiUgov->ultima_nuova_attribuzione)->count();
+        })->where('V2.DATA_INIZIO_CONTRATTO','<',$datiGDA->data_contratto_corrente)
+        ->where('V2.DATA_INIZIO_CONTRATTO','>=',$datiGDA->ultima_nuova_attribuzione)->count();
 
-        $this->assertNotNull($datiUgov);
+        $this->assertNotNull($datiGDA);
         $this->assertEquals(2,$count);
         //caso con due sedi
-        $this->assertEquals(1, InsegnamUgovController::contatoreInsegnamenti(35590));
-        $this->assertEquals(2, InsegnamUgovController::contatoreInsegnamenti(32710));
+        $this->assertEquals(1, InsegnamGDAController::contatoreInsegnamenti(35590));
+        $this->assertEquals(2, InsegnamGDAController::contatoreInsegnamenti(32710));
 
-        $this->assertEquals(0, InsegnamUgovController::contatoreInsegnamenti(17418));
+        $this->assertEquals(0, InsegnamGDAController::contatoreInsegnamenti(17418));
 
-        $this->assertEquals(2, InsegnamUgovController::contatoreInsegnamenti(25244));
-        $this->assertEquals(1, InsegnamUgovController::contatoreInsegnamenti(25236));
-        $this->assertEquals(0, InsegnamUgovController::contatoreInsegnamenti(23690));
-        $this->assertEquals(4, InsegnamUgovController::contatoreInsegnamenti(33488));
+        $this->assertEquals(2, InsegnamGDAController::contatoreInsegnamenti(25244));
+        $this->assertEquals(1, InsegnamGDAController::contatoreInsegnamenti(25236));
+        $this->assertEquals(0, InsegnamGDAController::contatoreInsegnamenti(23690));
+        $this->assertEquals(4, InsegnamGDAController::contatoreInsegnamenti(33488));
     }
 
 
@@ -531,13 +533,13 @@ class ContrattiTest extends TestCase
     Precontrattuale::find($response->id)->delete();
   }
 
-   //./vendor/bin/phpunit  --testsuite Unit --filter testUgovCompensi
-   public function testUgovCompensi() {
+   //./vendor/bin/phpunit  --testsuite Unit --filter testGDACompensi
+   public function testGDACompensi() {
 
         $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
-        $contr = ContrUgov::where('ID_DG', 2045192)->first();
+        $contr = ContrGDA::where('ID_DG', 2045192)->first();
         $this->assertNotNull($contr);
 
         $rel = $contr->relazioni()->get();
@@ -568,18 +570,18 @@ class ContrattiTest extends TestCase
         $totImporto = $contr->rate()->get()->sum('importo');
         $this->assertEquals(2500, $totImporto);
 
-        $contr = ContrUgov::with(['compensi','rate','compensi.ordinativi'])->where('id_siadi', 21354)->first(['id_x_contr','id_dg','id_siadi','num_rate','fl_gratuito','costo_totale']);
+        $contr = ContrGDA::with(['compensi','rate','compensi.ordinativi'])->where('id_siadi', 21354)->first(['id_x_contr','id_dg','id_siadi','num_rate','fl_gratuito','costo_totale']);
         $this->assertNotNull($contr);
         $this->assertEquals(2, $contr->rate->count());
         $this->assertEquals(2, $contr->compensi->count());
    }
 
-    //./vendor/bin/phpunit  --testsuite Unit --filter testUgovPagamentoCompensi
-    public function testUgovPagamentoCompensi() {
+    //./vendor/bin/phpunit  --testsuite Unit --filter testGDAPagamentoCompensi
+    public function testGDAPagamentoCompensi() {
         $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
-        $contrs = ContrUgov::with(['compensi','compensi.ordinativi'])
+        $contrs = ContrGDA::with(['compensi','compensi.ordinativi'])
             ->has('relazioniratecompensoordinativo',DB::raw('num_rate'))
             ->whereIn('id_siadi', [21354, 22368, 25815, 24550])->get();
 
@@ -591,13 +593,13 @@ class ContrattiTest extends TestCase
 
     }
 
-     //vuole la connessione ugov
-     // ./vendor/bin/phpunit  --testsuite Unit --filter test_ContrUgovExportCSV
-     public function test_ContrUgovExportCSV(){
+     //vuole la connessione GDA
+     // ./vendor/bin/phpunit  --testsuite Unit --filter test_ContrGDAExportCSV
+     public function test_ContrGDAExportCSV(){
         $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
-        $controller  = new ContrUgovController();
+        $controller  = new ContrGDAController();
 
         //costruzione query
         $request = new \Illuminate\Http\Request();
@@ -623,7 +625,7 @@ class ContrattiTest extends TestCase
 
         //prendi i parametri
         $response = $controller->queryparameter($request);
-        (new ContrUgovExport($request,$response["findparam"],$response["precontrs"]))->store('daticontabili.csv');
+        (new ContrGDAExport($request,$response["findparam"],$response["precontrs"]))->store('daticontabili.csv');
 
         //esportazione csv
         $response = $controller->export($request);
@@ -631,39 +633,103 @@ class ContrattiTest extends TestCase
 
     }
 
-     //vuole la connessione ugov
-     // ./vendor/bin/phpunit  --testsuite Unit --filter test_InseganmentiConSegmentiUgov
-    public function test_InseganmentiConSegmentiUgov(){
+     //vuole la connessione GDA
+     // ./vendor/bin/phpunit  --testsuite Unit --filter test_InseganmentiConSegmentiGDA
+    public function test_InseganmentiConSegmentiGDA(){
         $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 
-        $insegnamentoUgov = InsegnamUgov::with(['segmenti'])->where('COPER_ID', 28128)
-            ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
-                'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
-                'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id']);
+        $insegnamentoGDA = InsegnamGDA::with(['segmenti'])->where(config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', 28128)
 
-        $this->assertNotNull($insegnamentoUgov);
-        $this->assertNotNull($insegnamentoUgov->segmenti);
-        $this->assertEquals($insegnamentoUgov->segmenti->count(), 2);
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.COPER_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.MODULI_PDS_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.MODULI_PDS_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.ANA_MOD_SETT_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.ANA_MOD_SETT_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_COD')
+                   
+            ->first([
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_COPER_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_INIZIO_CONTRATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_FINE_CONTRATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.CFU',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.ORE',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COMPENSO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.MOTIVO_ATTO_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_ATTO_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_EMITTENTE_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.NUMERO_ATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_ATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_PERIODO_DID_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.AF_OFF_ID'
+            ]);
 
-        $this->assertNotNull($insegnamentoUgov->sett_des);
-        $this->assertNotNull($insegnamentoUgov->sett_cod);
+        $this->assertNotNull($insegnamentoGDA);
+        $this->assertNotNull($insegnamentoGDA->segmenti);
+        $this->assertEquals($insegnamentoGDA->segmenti->count(), 2);
 
-        $insegnamentoUgov1 = InsegnamUgov::where('COPER_ID', 28128)
+        $this->assertNotNull($insegnamentoGDA->sett_desc_ita);
+        $this->assertNotNull($insegnamentoGDA->sett_cod);
+
+        $insegnamentoGDA1 = InsegnamGDA::where('COPER_ID', 28128)
             ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
                 'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
                 'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id',
                 'tipo_corso_des', 'anno_corso']);
 
-        //$this->assertNull($insegnamentoUgov1->segmenti);
-        $this->assertNotNull($insegnamentoUgov1->sett_des);
-        $this->assertNotNull($insegnamentoUgov1->sett_cod);
+        $insegnamentoGDA = InsegnamGDA::with(['segmenti'])->where(config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', 28128)
+
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.COPER_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.MODULI_PDS_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.MODULI_PDS_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.ANA_MOD_SETT_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.ANA_MOD_SETT_ID')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_SETT',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_COD')
+
+            ->first([
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_COPER_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_INIZIO_CONTRATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_FINE_CONTRATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.CFU',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.ORE',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COMPENSO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.MOTIVO_ATTO_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_ATTO_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_EMITTENTE_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.NUMERO_ATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_ATTO',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_PERIODO_DID_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.AF_OFF_ID',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_CORSO_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.AF_OFF_ID',
+                config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.ANNO_CORSO',
+            ]);
+                   
+        //$this->assertNull($insegnamentoGDA1->segmenti);
+        $this->assertNotNull($insegnamentoGDA1->sett_desc_ita);
+        $this->assertNotNull($insegnamentoGDA1->sett_cod);
 
     }
 
 
-    //./vendor/bin/phpunit  --testsuite Unit --filter testPrecontrattualeIbanUgovValidazione
-    public function testPrecontrattualeIbanUgovValidazione() {
+    //./vendor/bin/phpunit  --testsuite Unit --filter testPrecontrattualeIbanGDAValidazione
+    public function testPrecontrattualeIbanGDAValidazione() {
         $user = User::where('email','francesco.filicetti@unical.it')->first();
         $this->actingAs($user);
 

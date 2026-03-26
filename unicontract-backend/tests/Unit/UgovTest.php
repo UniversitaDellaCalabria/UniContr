@@ -32,7 +32,7 @@ use PHP_IBAN\IBAN;
 use Carbon\Carbon;
 
 
-class UgovTest extends TestCase
+class GDATest extends TestCase
 {
 
     use WithoutMiddleware;
