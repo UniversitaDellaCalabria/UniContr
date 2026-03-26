@@ -17,7 +17,7 @@ export class InsegnGDA implements InsegnGDAInterface {
     gender_cod: string;
     cod_fisc: string;
     doc_ruolo: string;
-    coper_peso: string;
+    cfu: string;
     ore: number;
     ore_desc: string;
     data_inizio_contratto: string;
@@ -52,7 +52,7 @@ export class InsegnGDA implements InsegnGDAInterface {
         this.gender_cod = '';
         this.cod_fisc = '';
         this.doc_ruolo = '';
-        this.coper_peso = '';
+        this.cfu = '';
         this.ore = 0;
         this.ore_desc = '';
         this.data_inizio_contratto = '';

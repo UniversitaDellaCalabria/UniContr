@@ -15,7 +15,7 @@ export interface InsegnGDAInterface {
     gender_cod: string; // GDA todo
     cod_fisc: string; // GDA todo
     doc_ruolo: string;
-    coper_peso: string; // GDA todo
+    cfu: string; // GDA todo
     ore: number;
     ore_desc: string; // GDA todo
     data_inizio_contratto: string;

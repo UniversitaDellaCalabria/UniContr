@@ -143,7 +143,7 @@ class InsegnamGDAController extends Controller
         $datiGDA['data'] = $data_string;
         // end atti
 
-        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER V1')
+        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
                     ->where('coper_id','=',$coper_id)
                     ->select('tipo_att_did_cod','ore','compenso_calcolato')
                     ->get();

@@ -241,7 +241,7 @@ class PrecontrattualeController extends Controller
         $datiGDA['data'] = $data_string;
         // fine atti
 
-        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER V1')
+        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
                     ->where('coper_id','=',$precontr->insegnamento->coper_id)
                     ->select('tipo_att_did_cod','ore','compenso_calcolato')
                     ->get();
@@ -522,7 +522,7 @@ class PrecontrattualeController extends Controller
                 }
             }
 
-            $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER V1')
+            $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
                     ->where('coper_id','=',$request->insegnamento['coper_id'])
                     ->select('tipo_att_did_cod','ore','compenso_calcolato')
                     ->get();
