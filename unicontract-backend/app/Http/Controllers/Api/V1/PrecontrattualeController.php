@@ -292,11 +292,11 @@ class PrecontrattualeController extends Controller
         }
 
         //verificare la data di conferimento
-        if (!$insegnamentoGDA->data_conferimento_incarico){
-            $message = 'Insegnamento non aggiornabile: data conferimento non inserita';
-            $success = false;
-            return compact('data', 'message', 'success');
-        }
+        //if (!$insegnamentoGDA->data_conferimento_incarico){
+        //    $message = 'Insegnamento non aggiornabile: data conferimento non inserita';
+        //    $success = false;
+        //    return compact('data', 'message', 'success');
+        //}
 
         if ($insegnamentoGDA->data_inizio_contratto > $insegnamentoGDA->data_fine_contratto){
             $message = 'Insegnamento non aggiornabile: data di fine insegnamento antecedente alla data di inizio';
