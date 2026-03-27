@@ -122,56 +122,42 @@ class PrecontrattualeController extends Controller
         }
 
         //leggere da GDA insegnamento ...
-        $insegnamentoGDA = InsegnamGDA::where(config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', $precontr->insegnamento->coper_id)
+        $dbGdaie = config('unical.db_oracle_gdaie');
 
-            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF',
-                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.COPER_ID')
-                   
-            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS',
-                   config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.MODULI_PDS_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.MODULI_PDS_ID')
-                   
-            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT',
-                   config('unical.db_oracle_gdaie').'.ODS_L1_MODULI_PDS.ANA_MOD_SETT_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.ANA_MOD_SETT_ID')
-                   
-            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_SETT',
-                   config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_COD')
-
-            ->join(config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI',
-                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_MATRICOLA', '=', config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.MATRICOLA')
-
-            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI',
-                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.COPER_ID')
-
-            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO',
-                   config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO.TIPO_ATTO_COD')
-                   
-            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE',
-               config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_EMITTENTE_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_COD')
-               
+        $insegnamentoGDA = InsegnamGDA::from($dbGdaie . '.ODS_L2_COPER coper')
+            ->join($dbGdaie . '.ODS_L1_MOD_PDS_OFF off', 'coper.COPER_ID', '=', 'off.COPER_ID')
+            ->join($dbGdaie . '.ODS_L1_MODULI_PDS pds', 'off.MODULI_PDS_ID', '=', 'pds.MODULI_PDS_ID')
+            ->join($dbGdaie . '.ODS_L1_ANA_MOD_SETT ana_sett', 'pds.ANA_MOD_SETT_ID', '=', 'ana_sett.ANA_MOD_SETT_ID')
+            ->join($dbGdaie . '.ODS_L1_SETT sett', 'ana_sett.SETT_COD', '=', 'sett.SETT_COD')
+            ->join($dbGdaie . '.ODS_L2_UP2_DOCENTI doc', 'coper.DOC_MATRICOLA', '=', 'doc.MATRICOLA')
+            ->join($dbGdaie . '.ODS_L1_PROVVEDIMENTI prov', 'coper.COPER_ID', '=', 'prov.COPER_ID')
+            ->join($dbGdaie . '.ODS_L1_TIPI_ATTO t_atto', 'prov.TIPO_ATTO_COD', '=', 't_atto.TIPO_ATTO_COD')
+            ->join($dbGdaie . '.ODS_L1_TIPI_EMITTENTE t_emitt', 'prov.TIPO_EMITTENTE_COD', '=', 't_emitt.TIPO_EMITTENTE_COD')
+            ->where('coper.COPER_ID', $precontr->insegnamento->coper_id)
             ->first([
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_COPER_COD',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_INIZIO_CONTRATTO',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_FINE_CONTRATTO',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.CFU', // GDA todo // COPER_PESO non c'è su gda MA DOVREBBE ESSERE CFU
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.ORE',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COMPENSO',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.MOTIVO_ATTO_COD',
-                config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO.TIPO_ATTO_DESC_ITA',
-                config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_DESC_ITA',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.NUMERO_ATTO',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_ATTO',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_PERIODO_DID_DESC_ITA',
-                config('unical.db_oracle_gdaie').'.ODS_L1_SETT.SETT_DESC_ITA',// GDA todo
-                config('unical.db_oracle_gdaie').'.ODS_L1_ANA_MOD_SETT.SETT_COD', // GDA todo
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.AF_OFF_ID', // GDA todo // AF_RADICE_ID boh? // AF_OFF_ID??
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_CORSO_DESC_ITA',
-                config('unical.db_oracle_gdaie').'.ODS_L1_MOD_PDS_OFF.ANNO_CORSO',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_AFF_ORG',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_AFF_ORG_ITA',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_RINUNCIA',
-                config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.COD_FISC',
-                config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.GENDER_COD'
+                'coper.COPER_ID',
+                'coper.TIPO_COPER_COD',
+                'coper.DATA_INIZIO_CONTRATTO',
+                'coper.DATA_FINE_CONTRATTO',
+                'coper.CFU', // GDA todo // COPER_PESO non c'è su gda MA DOVREBBE ESSERE CFU
+                'coper.ORE',
+                'coper.COMPENSO',
+                'coper.MOTIVO_ATTO_COD',
+                't_atto.TIPO_ATTO_DESC_ITA',
+                't_emitt.TIPO_EMITTENTE_DESC_ITA',
+                'coper.NUMERO_ATTO',
+                'coper.DATA_ATTO',
+                'coper.TIPO_PERIODO_DID_DESC_ITA',
+                'sett.SETT_DESC_ITA', // GDA todo
+                'ana_sett.SETT_COD',  // GDA todo
+                'coper.AF_OFF_ID',    // GDA todo // AF_RADICE_ID boh? // AF_OFF_ID??
+                'coper.TIPO_CORSO_DESC_ITA',
+                'off.ANNO_CORSO',
+                'coper.DOC_AFF_ORG',
+                'coper.DOC_AFF_ORG_ITA',
+                'coper.DATA_RINUNCIA',
+                'doc.COD_FISC',
+                'doc.GENDER_COD'
             ]);
             
 
@@ -181,35 +167,34 @@ class PrecontrattualeController extends Controller
         }
 
         // GDA
-        $atti = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI')
-
-                ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO',
-                   config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO.TIPO_ATTO_COD')
-                   
-                ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE',
-                   config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_EMITTENTE_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_COD')
-                   
-                ->where(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.COPER_ID','=',$precontr->insegnamento->coper_id)
-                ->where(function($query) {
-                    //~ $query->where('tipo_atto_des','=','Delibera')
-                          //~ ->orWhere('tipo_atto_des','=','Disposizione Direttore')
-                          //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
-                    $query->where(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD','=','DEL')
-                          ->orWhere(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD','=','DD');
-                          //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
-                })
-                //~ ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
-                ->select(
-                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD',
-                    config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO.TIPO_ATTO_DESC_ITA',
-                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_EMITTENTE_COD',
-                    config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_DESC_ITA',
-                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.MOTIVO_ATTO_COD',
-                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.NUMERO_PROVVEDIMENTO',
-                    config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.DATA_PROVVEDIMENTO'
-                )
-                ->orderBy(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.DATA_PROVVEDIMENTO', 'asc')
-                ->get();
+        $atti = DB::connection('oracle')
+            ->table($dbGdaie . '.ODS_L1_PROVVEDIMENTI prov')
+            ->join($dbGdaie . '.ODS_L1_TIPI_ATTO t_atto', 'prov.TIPO_ATTO_COD', '=', 't_atto.TIPO_ATTO_COD')
+            ->join($dbGdaie . '.ODS_L1_TIPI_EMITTENTE t_emitt', 'prov.TIPO_EMITTENTE_COD', '=', 't_emitt.TIPO_EMITTENTE_COD')
+            
+            ->where('prov.COPER_ID', '=', $precontr->insegnamento->coper_id)
+            ->where(function($query) {
+                //~ $query->where('tipo_atto_des','=','Delibera')
+                //~ ->orWhere('tipo_atto_des','=','Disposizione Direttore')
+                //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
+                
+                $query->where('prov.TIPO_ATTO_COD', '=', 'DEL')
+                      ->orWhere('prov.TIPO_ATTO_COD', '=', 'DD');
+                //~ ->orWhere('tipo_atto_des','=','Decreto Direttore');
+            })
+            
+            //~ ->select('tipo_atto_des','tipo_emitt_des','motivo_atto_cod','numero','data')
+            ->select(
+                'prov.TIPO_ATTO_COD',
+                't_atto.TIPO_ATTO_DESC_ITA',
+                'prov.TIPO_EMITTENTE_COD',
+                't_emitt.TIPO_EMITTENTE_DESC_ITA',
+                'prov.MOTIVO_ATTO_COD',
+                'prov.NUMERO_PROVVEDIMENTO',
+                'prov.DATA_PROVVEDIMENTO'
+            )
+            ->orderBy('prov.DATA_PROVVEDIMENTO', 'asc')
+            ->get();
 
         $tipo_atto_des_string = "";
         $tipo_emitt_des_string = "";
