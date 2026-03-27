@@ -214,7 +214,16 @@ class InsegnamGDAController extends Controller
 
             ->join(config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI',
                    config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DOC_MATRICOLA', '=', config('unical.db_oracle_gdaie').'.ODS_L2_UP2_DOCENTI.MATRICOLA')
-                     
+
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI',
+                   config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID', '=', config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.COPER_ID')
+
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO',
+                   config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_ATTO_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO.TIPO_ATTO_COD')
+                   
+            ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE',
+               config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_EMITTENTE_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_COD')
+                   
             ->first([
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID',
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_COPER_COD',
@@ -224,8 +233,8 @@ class InsegnamGDAController extends Controller
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.ORE',
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COMPENSO',
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.MOTIVO_ATTO_COD',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_ATTO_DESC_ITA',
-                config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_EMITTENTE_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_ATTO.TIPO_ATTO_DESC_ITA',
+                config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_DESC_ITA',
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.NUMERO_ATTO',
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.DATA_ATTO',
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_PERIODO_DID_DESC_ITA',
