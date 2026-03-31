@@ -350,9 +350,9 @@ class InsegnamGDAController extends Controller
             "value" => ['PA','PO','RU']
         ]);
         array_push($parameters['rules'],[
-            "operator" => "!=",
+            "operator" => "NotIn",
             "field" => "DOC_MATRICOLA",
-            "value" => '[null]'
+            "value" => ['[null]', '#NULL#', '-999999999', -999999999]
         ]);
 
         array_push($parameters['rules'],[
