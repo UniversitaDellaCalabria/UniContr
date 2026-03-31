@@ -134,6 +134,7 @@ class PrecontrattualeController extends Controller
             ->join($dbGdaie . '.ODS_L1_TIPI_ATTO t_atto', 'prov.TIPO_ATTO_COD', '=', 't_atto.TIPO_ATTO_COD')
             ->join($dbGdaie . '.ODS_L1_TIPI_EMITTENTE t_emitt', 'prov.TIPO_EMITTENTE_COD', '=', 't_emitt.TIPO_EMITTENTE_COD')
             ->where('coper.COPER_ID', $precontr->insegnamento->coper_id)
+            ->cleanGda()
             ->first([
                 'coper.COPER_ID',
                 'coper.TIPO_COPER_COD',
@@ -194,7 +195,7 @@ class PrecontrattualeController extends Controller
                 'prov.DATA_PROVVEDIMENTO'
             )
             ->orderBy('prov.DATA_PROVVEDIMENTO', 'asc')
-            ->get();
+            ->cleanGda();
 
         $tipo_atto_des_string = "";
         $tipo_emitt_des_string = "";

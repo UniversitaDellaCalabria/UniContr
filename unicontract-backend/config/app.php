@@ -195,7 +195,10 @@ return [
         App\Providers\RouteServiceProvider::class,
                 
         Aacotroneo\Saml2\Saml2ServiceProvider::class,
-        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,      
+        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
+
+        // GDA Nullable fields
+        App\Providers\GDANullableProvider::class,
                 
     ],
 

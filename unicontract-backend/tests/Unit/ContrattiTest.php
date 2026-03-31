@@ -465,7 +465,7 @@ class ContrattiTest extends TestCase
                  ->where('V1.COPER_ID','=',25244);
         })
         ->select('V2.DATA_INIZIO_CONTRATTO as ultima_nuova_attribuzione','V1.DATA_INIZIO_CONTRATTO as data_contratto_corrente')
-        ->orderBy('V2.DATA_INIZIO_CONTRATTO', 'DESC')->first();
+        ->orderBy('V2.DATA_INIZIO_CONTRATTO', 'DESC')->cleanGda()->first();
 
         $count = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) {
             $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
@@ -661,7 +661,9 @@ class ContrattiTest extends TestCase
                    
             ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE',
                config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_EMITTENTE_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_COD')
-               
+
+            ->cleanGda()
+            
             ->first([
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID',
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_COPER_COD',
@@ -689,6 +691,7 @@ class ContrattiTest extends TestCase
         $this->assertNotNull($insegnamentoGDA->sett_cod);
 
         $insegnamentoGDA1 = InsegnamGDA::where('COPER_ID', 28128)
+            ->cleanGda()
             ->first(['coper_id', 'tipo_coper_cod', 'data_ini_contratto', 'data_fine_contratto',
                 'coper_peso', 'ore', 'compenso', 'motivo_atto_cod', 'tipo_atto_des', 'tipo_emitt_des',
                 'numero', 'data', 'des_tipo_ciclo', 'sett_des', 'sett_cod','af_radice_id',
@@ -716,7 +719,9 @@ class ContrattiTest extends TestCase
                    
             ->join(config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE',
                config('unical.db_oracle_gdaie').'.ODS_L1_PROVVEDIMENTI.TIPO_EMITTENTE_COD', '=', config('unical.db_oracle_gdaie').'.ODS_L1_TIPI_EMITTENTE.TIPO_EMITTENTE_COD')
-               
+
+            ->cleanGda()
+            
             ->first([
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.COPER_ID',
                 config('unical.db_oracle_gdaie').'.ODS_L2_COPER.TIPO_COPER_COD',

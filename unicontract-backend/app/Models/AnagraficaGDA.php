@@ -33,4 +33,5 @@ class AnagraficaGDA extends Model
     {
         return $query->where('email',$email)->first();
     }
+
 }

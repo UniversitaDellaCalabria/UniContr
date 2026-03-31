@@ -8,9 +8,10 @@ use Illuminate\Notifications\Notifiable;
 
 // GDA è importante replicare questa classe? i suoi metodi non sono mai usati (vedi sotto)
 //~ use App\Models\InsegnamSegmentiUgov;
-use App\Models\InsegnamSegmentiUgov;
+use App\Models\GDANullable;
 
-class InsegnamGDA extends Model
+
+class InsegnamGDA extends GDANullable
 {
     protected $connection = 'oracle';
 

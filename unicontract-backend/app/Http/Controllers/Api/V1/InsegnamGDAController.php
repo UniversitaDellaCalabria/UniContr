@@ -52,6 +52,7 @@ class InsegnamGDAController extends Controller
             ->join($dbGdaie . '.ODS_L1_SETT sett', 'mod_sett.SETT_COD', '=', 'sett.SETT_COD')
             ->join($dbGdaie . '.ODS_L2_UP2_DOCENTI doc', 'coper.DOC_MATRICOLA', '=', 'doc.MATRICOLA')
             ->where('coper.COPER_ID', $coper_id)
+            ->cleanGda()
             ->first([
                 'ana.ID_AB',
                 'ana.EMAIL',
@@ -93,7 +94,7 @@ class InsegnamGDAController extends Controller
                 'prov.DATA_PROVVEDIMENTO'
             )
             ->orderBy('prov.DATA_PROVVEDIMENTO', 'asc')
-            ->get();
+            ->cleanGda();
 
         $tipo_atto_des_string = "";
         $tipo_emitt_des_string = "";
@@ -137,7 +138,7 @@ class InsegnamGDAController extends Controller
         $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
                     ->where('coper_id','=',$coper_id)
                     ->select('tipo_att_did_cod','ore','compenso_calcolato')
-                    ->get();
+                    ->cleanGda();
         $ore_desc_string = "";
         $compenso_calcolato = 0;
         foreach ($ore_desc as $single_desc) {
@@ -164,7 +165,7 @@ class InsegnamGDAController extends Controller
                     ->where('ID_AB','=',$datiGDA['id_ab'])
                     ->where('CD_TIPO_CONT','=','EMAIL')
                     ->orderBy('PRG_PRIORITA', 'desc')
-                    ->get();
+                    ->cleanGda();
             if(isset($email[0]) && $email[0]->contatto){
                 Log::info("Email istituzionale recuperata: ".$email[0]->contatto);
                 $datiGDA['email'] = $email[0]->contatto;
@@ -201,6 +202,7 @@ class InsegnamGDAController extends Controller
             ->join($dbGdaie . '.ODS_L1_TIPI_ATTO t_atto', 'prov.TIPO_ATTO_COD', '=', 't_atto.TIPO_ATTO_COD')
             ->join($dbGdaie . '.ODS_L1_TIPI_EMITTENTE t_emitt', 'prov.TIPO_EMITTENTE_COD', '=', 't_emitt.TIPO_EMITTENTE_COD')
             ->where('coper.COPER_ID', $coper_id)
+            ->cleanGda()
             ->first([
                 'coper.COPER_ID',
                 'coper.TIPO_COPER_COD',
@@ -280,7 +282,7 @@ class InsegnamGDAController extends Controller
                     'V2.DATA_INIZIO_CONTRATTO',
                     'V2.DATA_FINE_CONTRATTO'
                 ])
-                ->get();
+                ->cleanGda();
             $count = $result->count();
         }else{
             Log::info('Conferimento incarico [ cod_coper_id: '.$coper_id.' ] senza BAN_INC o APPR_INC o PROP_INC');
@@ -331,6 +333,7 @@ class InsegnamGDAController extends Controller
                 'V2.MOTIVO_ATTO_COD AS motivo_atto_cod_inizio'
             ])
             ->orderBy('V2.DATA_INIZIO_CONTRATTO', 'DESC')
+            ->cleanGda()
             ->first();
 
         return $datiGDA;
