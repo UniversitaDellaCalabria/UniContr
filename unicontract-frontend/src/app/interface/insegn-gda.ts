@@ -3,8 +3,8 @@ export interface InsegnGDAInterface {
     dip_desc_ita: string;
     cds_desc_ita: string;
     aa_off_id: string;
-    ana_af_cod: string;
-    ana_af_desc_ita: string;
+    ana_mod_cod: string;
+    ana_mod_desc_ita: string;
     sett_cod: string; // GDA todo
     sett_desc_ita: string; // GDA todo
     peso: string;

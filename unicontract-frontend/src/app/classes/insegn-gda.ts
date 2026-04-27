@@ -5,8 +5,8 @@ export class InsegnGDA implements InsegnGDAInterface {
     dip_desc_ita: string;
     cds_desc_ita: string;
     aa_off_id: string;
-    ana_af_cod: string;
-    ana_af_desc_ita: string;
+    ana_mod_cod: string;
+    ana_mod_desc_ita: string;
     sett_cod: string;
     sett_desc_ita: string;
     peso: string;
@@ -40,8 +40,8 @@ export class InsegnGDA implements InsegnGDAInterface {
         this.dip_desc_ita = '';
         this.cds_desc_ita = '';
         this.aa_off_id = '';
-        this.ana_af_cod = '';
-        this.ana_af_desc_ita = '';
+        this.ana_mod_cod = '';
+        this.ana_mod_desc_ita = '';
         this.sett_cod = '';
         this.sett_desc_ita = '';
         this.peso = '';

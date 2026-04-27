@@ -6,7 +6,7 @@
     <h5>{{ 'p1_title1' | translate }}</h5>
     <app-list-item label="{{ '00_int1' | translate }}"><span style="font-weight: bold;">{{ item.doc_nome | uppercase }} {{ item.doc_cognome | uppercase }}</span></app-list-item>
 
-    <app-list-item label="{{ '00_int2' | translate }}" value="{{ item.ana_af_desc_ita }}"></app-list-item>
+    <app-list-item label="{{ '00_int2' | translate }}" value="{{ item.ana_mod_desc_ita }}"></app-list-item>
     <app-list-item label="{{ '00_int7' | translate }}" value="{{ item.sett_desc_ita | replace:';':',' | uppercase }} ({{ item.sett_cod | replace:';':','}})"></app-list-item>
     <app-list-item label="{{ '00_int8' | translate }}" value="{{ item.cfu }} CFU / {{ item.ore }} ore"></app-list-item>
     <app-list-item label="{{ '00_int8_extra' | translate }}" value="{{ item.ore_desc }}"></app-list-item>
@@ -74,7 +74,7 @@
   <form class="form" #f="ngForm" >
     <input type="hidden" name="coper_id" [(ngModel)]="item.coper_id" >
     <input type="hidden" name="ruolo" [(ngModel)]="item.doc_ruolo">
-    <input type="hidden" name="insegnamento" [(ngModel)]="item.ana_af_desc_ita">
+    <input type="hidden" name="insegnamento" [(ngModel)]="item.ana_mod_desc_ita">
     <input type="hidden" name="settore" [(ngModel)]="item.sett_desc_ita">
     <input type="hidden" name="cod_settore" [(ngModel)]="item.sett_cod">
     <input type="hidden" name="cfu" [(ngModel)]="item.cfu">
@@ -92,7 +92,7 @@
     <input type="hidden" name="motivo_atto" [(ngModel)]="item.motivo_atto_cod">
     <input type="hidden" name="num_delibera" [(ngModel)]="item.numero_atto">
     <input type="hidden" name="data_delibera" [(ngModel)]="item.data_atto">
-    <input type="hidden" name="cod_insegnamento" [(ngModel)]="item.ana_af_cod">
+    <input type="hidden" name="cod_insegnamento" [(ngModel)]="item.ana_mod_cod">
     <input type="hidden" name="dip_cod" [(ngModel)]="item.dip_cod">
     <input type="hidden" name="tipo_corso_des" [(ngModel)]="item.tipo_corso_desc_ita">
     <input type="hidden" name="anno_corso" [(ngModel)]="item.anno_corso">

@@ -260,7 +260,7 @@ class InsegnamGDAController extends Controller
             $result = DB::connection('oracle')
                 ->table($dbGdaie . '.ODS_L2_COPER V1')
                 ->join($dbGdaie . '.ODS_L2_COPER V2', function($join) {
-                    $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
+                    $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
                          ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                          ->on(DB::raw("COALESCE(V2.PART_STU_ID, -1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID, -1)"))
                          ->on('V2.DOC_ID_AB', '=', 'V1.DOC_ID_AB'); // GDA todo // manca il "cod_fis"
@@ -274,7 +274,7 @@ class InsegnamGDAController extends Controller
                     'V2.MOTIVO_ATTO_COD',
                     'V2.AA_OFF_ID', // GDA todo // boh?
                     'V2.DATA_INIZIO_ATT_DIDA',
-                    'V2.ANA_AF_COD',
+                    'V2.ANA_MOD_COD',
                     'V1.SEDE_ID AS V1_SEDE_ID',
                     'V2.SEDE_ID AS V2_SEDE_ID',
                     'V1.PART_STU_ID AS V1_PART_STU_ID',
@@ -295,7 +295,7 @@ class InsegnamGDAController extends Controller
                 $count = DB::connection('oracle')
                     ->table($dbGdaie . '.ODS_L2_COPER V1')
                     ->join($dbGdaie . '.ODS_L2_COPER V2', function($join) {
-                        $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
+                        $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
                              ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                              ->on(DB::raw("COALESCE(V2.PART_STU_ID, -1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID, -1)"))
                              ->on('V2.DOC_ID_AB', '=', 'V1.DOC_ID_AB') // GDA todo // manca il "cod_fis"
@@ -318,7 +318,7 @@ class InsegnamGDAController extends Controller
         $datiGDA = DB::connection('oracle')
             ->table($dbGdaie . '.ODS_L2_COPER V1')
             ->join($dbGdaie . '.ODS_L2_COPER V2', function($join) {
-                $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
+                $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
                      ->on(DB::raw("COALESCE(V2.SEDE_ID, 1)"), '=', DB::raw("COALESCE(V1.SEDE_ID, 1)"))
                      ->on(DB::raw("COALESCE(V2.PART_STU_ID, -1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID, -1)"))
                      ->on('V2.DOC_ID_AB', '=', 'V1.DOC_ID_AB') // GDA todo // manca il "cod_fis"

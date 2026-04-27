@@ -88,7 +88,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
       }
     },
     {
-      key: 'ana_af_desc_ita',
+      key: 'ana_mod_desc_ita',
       type: 'string',
       templateOptions: {
         label: 'Insegnamento',
@@ -241,7 +241,7 @@ export class ListaInsegnQueryComponent extends BaseResearchComponent {
           { name: 'Nome', prop: 'doc_nome', pipe: new TitleCasePipe(), width: 100, maxWidth: 100 },
           { name: 'Inizio', prop: 'data_inizio_contratto',  wrapper: 'value', width: 80, maxWidth: 150, type: 'date'},
           { name: 'Fine', prop: 'data_fine_contratto', wrapper: 'value',  width: 80, maxWidth: 150, type: 'date'},
-          { name: 'Insegnamento', prop: 'ana_af_desc_ita', wrapper: 'value', minWidth:400, width: 400},
+          { name: 'Insegnamento', prop: 'ana_mod_desc_ita', wrapper: 'value', minWidth:400, width: 400},
           { name: 'Motivo Atto', prop: 'motivo_atto_cod', wrapper: 'value', pipe: this.translate, minWidth: 100, maxWidth: 150},
           { name: '', prop: 'coper_id',  minWidth: 120, cellTemplate: this.seleziona },
         ]

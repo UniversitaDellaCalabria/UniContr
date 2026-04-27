@@ -456,7 +456,7 @@ class ContrattiTest extends TestCase
         $datiGDA = DB::connection('oracle')
             ->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')
             ->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) {
-            $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
+            $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
                  ->on('V2.DOC_ID_AB','=','V1.DOC_ID_AB')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID,-1)"), '=', DB::raw("COALESCE(V1.SEDE_ID,-1)"))
                  ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
@@ -468,7 +468,7 @@ class ContrattiTest extends TestCase
         ->orderBy('V2.DATA_INIZIO_CONTRATTO', 'DESC')->cleanGda()->first();
 
         $count = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) {
-            $join->on('V2.ANA_AF_COD', '=', 'V1.ANA_AF_COD')
+            $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID,-1)"), '=', DB::raw("COALESCE(V1.SEDE_ID,-1)"))
                  ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))
                  ->on('V2.DOC_ID_AB','=','V1.DOC_ID_AB')

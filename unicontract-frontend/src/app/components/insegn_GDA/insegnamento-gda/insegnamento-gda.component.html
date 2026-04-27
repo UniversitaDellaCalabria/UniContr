@@ -1,6 +1,6 @@
 <td class="align-middle p-1">{{ gda.coper_id }}</td>
 <td class="align-middle p-1">{{ gda.data_inizio_contratto }} - {{ gda.data_fine_contratto }}</td>
-<td class="align-middle p-1">{{ (gda.ana_af_desc_ita.length > 70) ? (gda.ana_af_desc_ita | slice:0:70) + ' . . .' : gda.ana_af_desc_ita  }}</td>
+<td class="align-middle p-1">{{ (gda.ana_mod_desc_ita.length > 70) ? (gda.ana_mod_desc_ita | slice:0:70) + ' . . .' : gda.ana_mod_desc_ita  }}</td>
 <td class="align-middle p-1">{{ tools.tipoConferimento(gda.motivo_atto_cod) }}</td>
 <td class="align-middle text-right p-1" >
     <button type="button" class="btn btn-outline-primary" (click)="showInsegnGDADetail()" >SELEZIONA</button>
