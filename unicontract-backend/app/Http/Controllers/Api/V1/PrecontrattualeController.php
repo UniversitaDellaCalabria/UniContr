@@ -136,6 +136,8 @@ class PrecontrattualeController extends Controller
             ->where('coper.COPER_ID', $precontr->insegnamento->coper_id)
             ->cleanGda()
             ->first([
+                'coper.ANA_MOD_COD',
+                'coper.ANA_MOD_DESC_ITA',
                 'coper.COPER_ID',
                 'coper.TIPO_COPER_COD',
                 'coper.DATA_INIZIO_CONTRATTO',

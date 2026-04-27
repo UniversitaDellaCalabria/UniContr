@@ -157,6 +157,8 @@ class Insegnamenti extends Model {
 
     public function setDataFromGDA(InsegnamGDA $insegnamentoGDA){
 
+        $this->insegnamento = $insegnamentoGDA->ana_mod_desc_ita;
+        $this->cod_insegnamento = $insegnamentoGDA->ana_mod_cod;
         $this->compenso = $insegnamentoGDA->compenso;
         $this->data_delibera =$insegnamentoGDA->data_atto;
         $this->cfu = $insegnamentoGDA->cfu; // GDA todo // cfu?
