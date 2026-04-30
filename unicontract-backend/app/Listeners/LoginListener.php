@@ -81,8 +81,10 @@ class LoginListener
             $userData->name = $user->displayName[0];
             $userData->email = $user->email[0];
             Log::info('email [' . $userData->email . ']');
-            $userData->spidCode = @$userData->attributes['spidCode'][0];
-            Log::info('spidCode [' . @$userData->attributes['spidCode'][0] . ']');
+            //~ $userData->spidCode = @$userData->attributes['spidCode'][0];
+            //~ Log::info('spidCode [' . @$userData->attributes['spidCode'][0] . ']');
+            $userData->fiscalNumber = @$userData->attributes['fiscalNumber'][0];
+            Log::info('fiscalNumber [' . @$userData->attributes['fiscalNumber'][0] . ']');
             $userData->ruolo = @$user->ruolo[0];
             Log::info('ruolo [' . @$userData->ruolo . ']');
             $userData->eduPersonScopedAffiliation = $user->eduPersonScopedAffiliation;
@@ -153,11 +155,12 @@ class LoginListener
             abort(401, trans('global.utente_non_autorizzato'));
         }
 
-        if ($userData->spidCode != null) {
-            // assegno ruolo SPID
+        //~ if ($userData->spidCode != null) {
+        if ($userData->fiscalNumber != null) {
+            // assegno ruolo SPID/CIE
             $laravelUser->assignRole('spid-code');
         } else {
-            // elimina ruolo SPID
+            // elimina ruolo SPID/CIE
             if ($laravelUser->hasRole('spid-code')) {
                 $laravelUser->removeRole('spid-code');
             }

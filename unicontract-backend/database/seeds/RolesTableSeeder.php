@@ -64,7 +64,7 @@ class RolesTableSeeder extends Seeder
 
         Permission::create(['name' => 'view spid']);
 
-        // SPID
+        // SPID/CIE
         $role = Role::create(['name' => 'spid-code']);
         $role->givePermissionTo(['view spid']);
 
@@ -144,8 +144,6 @@ class RolesTableSeeder extends Seeder
         $role->revokePermissionTo('rinuncia precontrattuale');
         $role->revokePermissionTo('view spid');
 
-
         $this->command->info('created roles');
-
     }
 }

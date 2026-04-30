@@ -23,8 +23,8 @@ troverà le informazioni da Lei già inserite in passato,<br>
 che dovrà pertanto solo verificare e aggiornare ove necessario.<br>
 <br>
 La informiamo che per la successiva accettazione del contratto<br>
-dovrà accedere al sistema con le credenziali SPID
-<href="https://www.spid.gov.it/cos-e-spid/come-attivare-spid">qui come ottenere SPID</a>
+dovrà accedere al sistema con SPID (<a href="https://www.spid.gov.it/">scopri di più</a>)
+o CIE (<a href="https://www.cartaidentita.interno.gov.it/">scopri di più</a>).
 <br>
 <br>
 Per eventuali informazioni o richieste di chiarimento,<br>
