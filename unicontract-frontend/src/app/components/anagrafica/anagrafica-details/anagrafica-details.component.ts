@@ -712,7 +712,7 @@ export class AnagraficaDetailsComponent extends BaseComponent {
                     type: 'input',
                     readonly: true,
                     placeholder: 'Carica il documento . . . ',
-                    description: 'N.B. Il CV da caricare dovrà essere in formato europeo, privo di dati sensibili e in formato PDF, possibilmente lo stesso o con gli stessi contenuti utilizzati per la fase concorsuale. Dimensione massima 2MB.',
+                    description: 'N.B. Il Curriculum vitae da caricare deve essere lo stesso utilizzato per la fase concorsuale, in formato PDF e PRIVO DI DATI SENSIBILI. A titolo esemplificativo, il CV non deve contenere: luogo e data di nascita, residenza/domicilio, recapiti telefonici, fotografie, firme autografe. Gli unici dati personali presenti devono essere il nome e il cognome.  Il mancato rispetto di tale prescrizione comporterà la non validazione della modulistica precontrattuale ai fini della stipula del contratto stesso, fin quando il docente non avrà sostituito il CV. Dimensione massima 2MB.',
                     accept: 'application/pdf',
                     maxLength: 255,
                     required: true,
