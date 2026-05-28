@@ -1,7 +1,7 @@
-<h4>Piano Integrato delle Attività e Organizzazione PIAO 2025-2027</h4>
+<h4>Piano Integrato delle Attività e Organizzazione PIAO 2026-2028</h4>
 
 <p class="normal">
-<a href="https://www.unical.it/media/medias/2025/piao_2025_2027.pdf">download PIAO 2025-2027</a>
+<a href="https://www.unical.it/media/medias/2026/PIAO_2026_2028.pdf">download PIAO 2026-2028</a>
 </p>
 
 <p class="normal">
@@ -48,7 +48,7 @@ Di seguito si riporta il <b>sommario</b> del documento
 2.3 Rischi corruttivi e trasparenza
 <p>
 <p class="normal">
-2.3.1 Stato di attuazione delle previsioni di cui alla Sezione anticorruzione e trasparenza - PIAO 23-25
+2.3.1 Stato di attuazione delle previsioni di cui alla Sezione anticorruzione e trasparenza - PIAO 26-28
 <p>
 <p class="normal">
 2.3.2 Considerazioni sul contesto esterno
