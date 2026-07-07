@@ -81,11 +81,11 @@ Si dichiara altresì di: <br>
 @endif
 
 @if($pre->b4rapportopa->rilascio_autorizzazione == 1)
-    - che l’incarico conferito rientra nei casi previsti dall’art. 53, comma 6, lettera f-bis) del Decreto Legislativo n. 165/2001 e, pertanto, non è soggetto al rilascio di autorizzazione" <br>
+    - che l’incarico conferito rientra nei casi previsti dall’art. 53, comma 6, lettera f-bis) del Decreto Legislativo n. 165/2001 e, pertanto, non è soggetto al rilascio di autorizzazione <br>
 @endif
 
 @if($pre->b4rapportopa->no_conflitto_interessi == 1)
-    - di adempiere, comunque, gli obblighi di comunicazione richiesti dall’Amministrazione di appartenenza, in relazione allo svolgimento dell’incarico (valutazione in merito all’insussistenza di situazioni di incompatibilità/inconferibilità/conflitto di interessi)" <br>
+    - di adempiere, comunque, agli obblighi di comunicazione nei confronti della propria Amministrazione di appartenenza in relazione allo svolgimento dell’incarico (valutazione in merito all’insussistenza di situazioni di incompatibilità/inconferibilità/conflitto di interessi), anche ove un rapporto di lavoro intervenga successivamente alla firma del contratto ed entro il termine di validità dello stesso. In tal caso, sarà cura del/della sottoscritto/a informare tempestivamente il Dipartimento che ha conferito l’incarico dell’avvenuta modifica dello status lavorativo <br>
 @endif
 <br>
 
