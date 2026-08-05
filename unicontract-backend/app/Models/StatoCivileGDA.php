@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class StatoCivileGDA extends Model
 {
-    protected $connection = 'oracle';    
+    protected $connection = 'oracle_ugov';    
     protected $table = 'STATO_CIVILE';
 }

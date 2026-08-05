@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class DGGDA extends Model
 {
-    protected $connection = 'oracle';        
+    protected $connection = 'oracle_ugov';        
 
     protected $nome_tipo_dg = null;
 

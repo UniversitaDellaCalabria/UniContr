@@ -96,15 +96,15 @@ return [
      */
     'ins_iban_ugov' => env('INS_IBAN_UGOV',false),
 
-    'db_oracle_siaru' => env('DB_ORACLE_SIARU',''),
-    'db_oracle_siaxm' => env('DB_ORACLE_SIAXM',''),
-    'db_oracle_siadg' => env('DB_ORACLE_SIADG',''),
+    'db_oracle_siaru' => env('DB_UGOV_ORACLE_SIARU',''),
+    'db_oracle_siaxm' => env('DB_UGOV_ORACLE_SIAXM',''),
+    'db_oracle_siadg' => env('DB_UGOV_ORACLE_SIADG',''),
 
     'valid_email_domains' => explode(',', env('VALID_EMAIL_DOMAINS', '@unical.it,@mat.unical.it,@dimes.unical.it,@deis.unical.it,@fis.unical.it')),
 
     /** GDA upgrade */
     
-    'db_oracle_gdaie' => env('DB_ORACLE_GDAIE', ''),
+    'db_oracle_gdaie' => env('DB_GDA_ORACLE_GDAIE', ''),
     
     'cineca_gda_api_base' => env('CINECA_GDA_API_BASE', 'https://bff.gda.cineca.it/api/'),
     'cineca_gda_api_programmazione' => env('CINECA_GDA_API_PROGRAMMAZIONE', 'programmazione/v1/unical/'),

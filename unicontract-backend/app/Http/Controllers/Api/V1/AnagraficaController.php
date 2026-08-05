@@ -69,7 +69,7 @@ class AnagraficaController extends Controller
             $dati['metadata'] = ['stato_civile' =>Anagrafica::statoCivileLista($dati->sesso)];
 
             if($dati['id_ab']) {
-                $email = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
+                $email = DB::connection('oracle_ugov')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
                         ->where('ID_AB','=',$dati['id_ab'])
                         ->where('CD_TIPO_CONT','=','EMAIL')
                         ->orderBy('PRG_PRIORITA', 'desc')

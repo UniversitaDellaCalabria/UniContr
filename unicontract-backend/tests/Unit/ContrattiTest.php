@@ -453,7 +453,7 @@ class ContrattiTest extends TestCase
     //./vendor/bin/phpunit  --testsuite Unit --filter testCalcoloNumeroRinnovi
     public function testCalcoloNumeroRinnovi() {
 
-        $datiGDA = DB::connection('oracle')
+        $datiGDA = DB::connection('oracle_gda')
             ->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')
             ->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) {
             $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
@@ -467,7 +467,7 @@ class ContrattiTest extends TestCase
         ->select('V2.DATA_INIZIO_CONTRATTO as ultima_nuova_attribuzione','V1.DATA_INIZIO_CONTRATTO as data_contratto_corrente')
         ->orderBy('V2.DATA_INIZIO_CONTRATTO', 'DESC')->cleanGda()->first();
 
-        $count = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) {
+        $count = DB::connection('oracle_gda')->table(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V1')->join(config('unical.db_oracle_gdaie').'.ODS_L2_COPER V2', function($join) {
             $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
                  ->on(DB::raw("COALESCE(V2.SEDE_ID,-1)"), '=', DB::raw("COALESCE(V1.SEDE_ID,-1)"))
                  ->on(DB::raw("COALESCE(V2.PART_STU_ID,-1)"), '=', DB::raw("COALESCE(V1.PART_STU_ID,-1)"))

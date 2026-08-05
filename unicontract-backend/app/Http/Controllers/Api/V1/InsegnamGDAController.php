@@ -67,7 +67,7 @@ class InsegnamGDAController extends Controller
             ]);
 
         // GDA
-        $atti = DB::connection('oracle')
+        $atti = DB::connection('oracle_gda')
             ->table($dbGdaie . '.ODS_L1_PROVVEDIMENTI prov')
             ->join($dbGdaie . '.ODS_L1_TIPI_ATTO t_atto', 'prov.TIPO_ATTO_COD', '=', 't_atto.TIPO_ATTO_COD')
             ->join($dbGdaie . '.ODS_L1_TIPI_EMITTENTE t_emitt', 'prov.TIPO_EMITTENTE_COD', '=', 't_emitt.TIPO_EMITTENTE_COD')
@@ -135,7 +135,7 @@ class InsegnamGDAController extends Controller
         $datiGDA['data'] = $data_string;
         // end atti
 
-        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
+        $ore_desc = DB::connection('oracle_gda')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
                     ->where('coper_id','=',$coper_id)
                     ->select('tipo_att_did_cod','ore','compenso_calcolato')
                     ->cleanGda();
@@ -161,7 +161,7 @@ class InsegnamGDAController extends Controller
 
         // PATCH per email istituzionale
         if($datiGDA['id_ab']) {
-            $email = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
+            $email = DB::connection('oracle_ugov')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
                     ->where('ID_AB','=',$datiGDA['id_ab'])
                     ->where('CD_TIPO_CONT','=','EMAIL')
                     ->orderBy('PRG_PRIORITA', 'desc')
@@ -257,7 +257,7 @@ class InsegnamGDAController extends Controller
 
         // GDA todo
         if ($datiGDA){
-            $result = DB::connection('oracle')
+            $result = DB::connection('oracle_gda')
                 ->table($dbGdaie . '.ODS_L2_COPER V1')
                 ->join($dbGdaie . '.ODS_L2_COPER V2', function($join) {
                     $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
@@ -292,7 +292,7 @@ class InsegnamGDAController extends Controller
                 //è impostato un rinnovo ma non vengono trovati i dati per il rinnovo
                 $dbGdaie = config('unical.db_oracle_gdaie');
 
-                $count = DB::connection('oracle')
+                $count = DB::connection('oracle_gda')
                     ->table($dbGdaie . '.ODS_L2_COPER V1')
                     ->join($dbGdaie . '.ODS_L2_COPER V2', function($join) {
                         $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')
@@ -315,7 +315,7 @@ class InsegnamGDAController extends Controller
     {
         $dbGdaie = config('unical.db_oracle_gdaie');
 
-        $datiGDA = DB::connection('oracle')
+        $datiGDA = DB::connection('oracle_gda')
             ->table($dbGdaie . '.ODS_L2_COPER V1')
             ->join($dbGdaie . '.ODS_L2_COPER V2', function($join) {
                 $join->on('V2.ANA_MOD_COD', '=', 'V1.ANA_MOD_COD')

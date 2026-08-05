@@ -170,7 +170,7 @@ class PrecontrattualeController extends Controller
         }
 
         // GDA
-        $atti = DB::connection('oracle')
+        $atti = DB::connection('oracle_gda')
             ->table($dbGdaie . '.ODS_L1_PROVVEDIMENTI prov')
             ->join($dbGdaie . '.ODS_L1_TIPI_ATTO t_atto', 'prov.TIPO_ATTO_COD', '=', 't_atto.TIPO_ATTO_COD')
             ->join($dbGdaie . '.ODS_L1_TIPI_EMITTENTE t_emitt', 'prov.TIPO_EMITTENTE_COD', '=', 't_emitt.TIPO_EMITTENTE_COD')
@@ -238,7 +238,7 @@ class PrecontrattualeController extends Controller
         $datiGDA['data'] = $data_string;
         // fine atti
 
-        $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
+        $ore_desc = DB::connection('oracle_gda')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
                     ->where('coper_id','=',$precontr->insegnamento->coper_id)
                     ->select('tipo_att_did_cod','ore','compenso_calcolato')
                     ->get();
@@ -263,7 +263,7 @@ class PrecontrattualeController extends Controller
 
         // PATCH per email istituzionale
         if($insegnamentoGDA['id_ab']) {
-            $email = DB::connection('oracle')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
+            $email = DB::connection('oracle_ugov')->table(config('unical.db_oracle_siaxm').'.V_IE_AC_PF_CONTATTI_ALL')
                     ->where('ID_AB','=',$insegnamentoGDA['id_ab'])
                     ->where('CD_TIPO_CONT','=','EMAIL')
                     ->orderBy('PRG_PRIORITA', 'desc')
@@ -519,7 +519,7 @@ class PrecontrattualeController extends Controller
                 }
             }
 
-            $ore_desc = DB::connection('oracle')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
+            $ore_desc = DB::connection('oracle_gda')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
                     ->where('coper_id','=',$request->insegnamento['coper_id'])
                     ->select('tipo_att_did_cod','ore','compenso_calcolato')
                     ->get();

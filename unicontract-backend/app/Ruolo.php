@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\V1\QueryBuilder;
 
 class Ruolo extends Model
 {
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_ugov';
 
     //public $table = 'V_RUOLI';
     public $table;

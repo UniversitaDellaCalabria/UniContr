@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 
 class InsegnamSegmentiGDA extends Model
 {
-    protected $connection = 'oracle';        
+    protected $connection = 'oracle_ugov';        
     protected $table = 'v_ie_di_af';     
 
     public static function boot()

@@ -16,7 +16,7 @@ class Dipartimento extends Model
      *
      * @var string
      */
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_ugov';
 
     public $table;
     public function __construct()

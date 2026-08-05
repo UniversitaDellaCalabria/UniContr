@@ -7,7 +7,7 @@ use App\Models\AnagraficaGDA;
 
 class RappParentelaGDA extends Model
 {
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_ugov';
 
     public $table;
     public function __construct()

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organico extends Model
 {
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_ugov';
 
     public $table;
     public function __construct()

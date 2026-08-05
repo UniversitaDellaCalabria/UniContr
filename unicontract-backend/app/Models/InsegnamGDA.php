@@ -13,7 +13,7 @@ use App\Models\GDANullable;
 
 class InsegnamGDA extends GDANullable
 {
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_gda';
 
     public $table;
     public function __construct()

@@ -7,7 +7,7 @@ use App\Models\Ugov\RelazioniDgGDA;
 
 class PagamentoGDA extends DGGDA
 {
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_ugov';
 
     public $table;
     public function __construct()

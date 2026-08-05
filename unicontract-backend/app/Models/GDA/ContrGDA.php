@@ -7,7 +7,7 @@ use DB;
 
 class ContrGDA extends DGGDA
 {
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_ugov';
 
 
     public $table;

@@ -17,7 +17,7 @@ class PersonaleResponsOrg extends Model
     const COOR_PRO_D = 'COOR_PRO_D';
     const RESP_PLESSO = 'RESP_PLESSO';
 
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_ugov';
 
     public $table;
     public function __construct()

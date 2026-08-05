@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Cache;
 class Personale extends Model
 {
 
-    protected $connection = 'oracle';
+    protected $connection = 'oracle_ugov';
 
     public $table;
     public function __construct()
