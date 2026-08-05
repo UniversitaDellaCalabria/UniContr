@@ -44,8 +44,31 @@ class InsegnamGDAController extends Controller
         $dbSiaru = config('unical.db_oracle_siaru');
         $dbGdaie = config('unical.db_oracle_gdaie');
 
+        //~ $datiGDA = InsegnamGDA::from($dbGdaie . '.ODS_L2_COPER coper')
+            //~ ->join($dbSiaru . '.VD_ANAGRAFICA ana', 'coper.DOC_MATRICOLA', '=', 'ana.MATRICOLA')
+            //~ ->join($dbGdaie . '.ODS_L1_MOD_PDS_OFF off', 'coper.COPER_ID', '=', 'off.COPER_ID')
+            //~ ->join($dbGdaie . '.ODS_L1_MODULI_PDS pds', 'off.MODULI_PDS_ID', '=', 'pds.MODULI_PDS_ID')
+            //~ ->join($dbGdaie . '.ODS_L1_ANA_MOD_SETT mod_sett', 'pds.ANA_MOD_SETT_ID', '=', 'mod_sett.ANA_MOD_SETT_ID')
+            //~ ->join($dbGdaie . '.ODS_L1_SETT sett', 'mod_sett.SETT_COD', '=', 'sett.SETT_COD')
+            //~ ->join($dbGdaie . '.ODS_L2_UP2_DOCENTI doc', 'coper.DOC_MATRICOLA', '=', 'doc.MATRICOLA')
+            //~ ->where('coper.COPER_ID', $coper_id)
+            //~ ->cleanGda()
+            //~ ->first([
+                //~ 'ana.ID_AB',
+                //~ 'ana.EMAIL',
+                //~ 'ana.E_MAIL',
+                //~ 'ana.E_MAIL_PRIVATA',
+                //~ 'coper.*',
+                //~ 'off.ANNO_CORSO',
+                //~ 'sett.SETT_COD',
+                //~ 'sett.SETT_DESC_ITA',
+                //~ 'doc.COD_FISC',
+                //~ 'doc.GENDER_COD'
+            //~ ]);
+
+        // join su DB diversi
+        // 1. Esegui la query principale su GDAIE (senza la join a VD_ANAGRAFICA)
         $datiGDA = InsegnamGDA::from($dbGdaie . '.ODS_L2_COPER coper')
-            ->join($dbSiaru . '.VD_ANAGRAFICA ana', 'coper.DOC_MATRICOLA', '=', 'ana.MATRICOLA')
             ->join($dbGdaie . '.ODS_L1_MOD_PDS_OFF off', 'coper.COPER_ID', '=', 'off.COPER_ID')
             ->join($dbGdaie . '.ODS_L1_MODULI_PDS pds', 'off.MODULI_PDS_ID', '=', 'pds.MODULI_PDS_ID')
             ->join($dbGdaie . '.ODS_L1_ANA_MOD_SETT mod_sett', 'pds.ANA_MOD_SETT_ID', '=', 'mod_sett.ANA_MOD_SETT_ID')
@@ -54,10 +77,6 @@ class InsegnamGDAController extends Controller
             ->where('coper.COPER_ID', $coper_id)
             ->cleanGda()
             ->first([
-                'ana.ID_AB',
-                'ana.EMAIL',
-                'ana.E_MAIL',
-                'ana.E_MAIL_PRIVATA',
                 'coper.*',
                 'off.ANNO_CORSO',
                 'sett.SETT_COD',
@@ -66,6 +85,21 @@ class InsegnamGDAController extends Controller
                 'doc.GENDER_COD'
             ]);
 
+        // 2. Se viene trovato il record, recupera le informazioni anagrafiche dal DB SIARU
+        if ($datiGDA && $datiGDA->doc_matricola) {
+            $anagrafica = DB::connection('oracle_ugov')
+                ->table(config('unical.db_oracle_siaru').'.VD_ANAGRAFICA')
+                ->where('MATRICOLA', $datiGDA->doc_matricola)
+                ->first(['ID_AB','EMAIL','E_MAIL','E_MAIL_PRIVATA']);
+
+            // 3. Unisci i dati anagrafici nell'oggetto risultante
+            $datiGDA->id_ab          = $anagrafica->id_ab ?? null;
+            $datiGDA->email          = $anagrafica->email ?? null;
+            $datiGDA->e_mail         = $anagrafica->e_mail ?? null;
+            $datiGDA->e_mail_privata = $anagrafica->e_mail_privata ?? null;
+        }
+        // end join su db diversi
+        
         // GDA
         $atti = DB::connection('oracle_gda')
             ->table($dbGdaie . '.ODS_L1_PROVVEDIMENTI prov')
