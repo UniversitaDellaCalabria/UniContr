@@ -88,7 +88,7 @@ export class InsegnGDADetailComponent extends BaseComponent {
           response => {
               this.item = response['datiGDA'];
               this.tipo_atto_des_list = response['datiGDA']['tipo_atto_des'] ? response['datiGDA']['tipo_atto_des'].split('#') : "";
-              this.tipo_emitt_des_list = response['datiGDA']['tipo_atto_des'] ? response['datiGDA']['tipo_atto_des'].split('#') : "";
+              this.tipo_emitt_des_list = response['datiGDA']['tipo_emitt_des'] ? response['datiGDA']['tipo_emitt_des'].split('#') : "";
               this.motivo_atto_cod_list = response['datiGDA']['motivo_atto_cod'] ? response['datiGDA']['motivo_atto_cod'].split('#') : "";
               this.numero_list = response['datiGDA']['numero'] ? response['datiGDA']['numero'].split('#') : "";
               this.data_list = response['datiGDA']['data'] ? response['datiGDA']['data'].split('#') : "";
