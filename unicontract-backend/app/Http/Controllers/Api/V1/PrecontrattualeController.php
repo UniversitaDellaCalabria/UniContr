@@ -231,11 +231,11 @@ class PrecontrattualeController extends Controller
             $counter = $counter + 1;
         }
 
-        $datiGDA['tipo_atto_des'] = $tipo_atto_des_string;
-        $datiGDA['tipo_emitt_des'] = $tipo_emitt_des_string;
-        $datiGDA['motivo_atto_cod'] = $motivo_atto_cod_string;
-        $datiGDA['numero'] = $numero_string;
-        $datiGDA['data'] = $data_string;
+        $insegnamentoGDA['tipo_atto_des'] = $tipo_atto_des_string;
+        $insegnamentoGDA['tipo_emitt_des'] = $tipo_emitt_des_string;
+        $insegnamentoGDA['motivo_atto_cod'] = $motivo_atto_cod_string;
+        $insegnamentoGDA['numero'] = $numero_string;
+        $insegnamentoGDA['data'] = $data_string;
         // fine atti
 
         $ore_desc = DB::connection('oracle_gda')->table(config('unical.db_oracle_gdaie').'.ODS_L1_ORE_COPER')
