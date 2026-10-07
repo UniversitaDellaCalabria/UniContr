@@ -182,15 +182,14 @@ export class InsegnGDADetailComponent extends BaseComponent {
   checkAttoData(data_gda){
         if(!this.data_list) return false;
         if(!data_gda) return false;
-        let atto_precedente = false;
         let data_gda_array = data_gda.split("-");
         let new_data_gda = data_gda_array[2] + "-" + data_gda_array[1] + "-" + data_gda_array[0];
         this.data_list.forEach(function (data) {
             let d1 = new Date(data);
             let d2 = new Date(new_data_gda);
-            if(d1<=d2) atto_precedente = true;
+            if(d1<=d2) return true;
         });
-        return atto_precedente;
+        return false;
     }
 
   checkAttoTipo(){

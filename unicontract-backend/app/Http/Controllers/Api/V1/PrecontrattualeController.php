@@ -414,12 +414,13 @@ class PrecontrattualeController extends Controller
                     //return compact('data', 'message', 'success');
                 //}
                 $datetimeIni = Carbon::createFromFormat('d-m-Y', $request->insegnamento['data_ini_contr']);
-                $data_atto_date = Carbon::createFromFormat('Y-m-d H:i:s', $data_atto)->format('Y-m-d');
+                $data_atto_date = Carbon::createFromFormat('Y-m-d H:i:s', $data_atto);
                 if($data_atto_date <= $datetimeIni){
                     $atto_precedente = true;
                     break;
                 }
             }
+
             if(!$atto_precedente){
                 $message = "Insegnamento non importabile: nessun atto di conferimento prodotto prima della data di inizio del contratto.";
                 $success = false;
