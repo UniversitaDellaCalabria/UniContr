@@ -41,16 +41,27 @@
 
     negli atti
 
-    @foreach(explode('#', $pre->dataDelibera) as $data)
-        @if(!$loop->first)
-            e
-        @endif
-        del {{explode('#', $pre->emittente)[$loop->index]}}
-        @if(explode('#', $pre->numDelibera)[$loop->index] != '' && strtolower(explode('#', $pre->numDelibera)[$loop->index]) != 'null')
-        n. {{explode('#', $pre->numDelibera)[$loop->index]}}
-        @endif
-        del {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y')}}
-    @endforeach
+    @php
+		$dateDelibera = explode('#', $pre->dataDelibera);
+		$emittenti    = explode('#', $pre->emittente);
+		$numDelibere  = explode('#', $pre->numDelibera);
+	@endphp
+
+	@foreach($dateDelibera as $data)
+		@php
+			$emittente = $emittenti[$loop->index] ?? '';
+			$num       = $numDelibere[$loop->index] ?? '';
+		@endphp
+
+		@if(!$loop->first)
+			e
+		@endif
+		del {{ $emittente }}
+		@if($num != '' && strtolower($num) != 'null')
+		n. {{ $num }}
+		@endif
+		del {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y')}}
+	@endforeach
 
     del {{$pre->dipDocDes}}.
 
@@ -79,16 +90,27 @@
 
     negli atti
 
-    @foreach(explode('#', $pre->dataDelibera) as $data)
-        @if(!$loop->first)
-            e
-        @endif
-        del {{explode('#', $pre->emittente)[$loop->index]}}
-        @if(explode('#', $pre->numDelibera)[$loop->index] != '' && strtolower(explode('#', $pre->numDelibera)[$loop->index]) != 'null')
-        n. {{explode('#', $pre->numDelibera)[$loop->index]}}
-        @endif
-        del {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y')}}
-    @endforeach
+	@php
+		$dateDelibera = explode('#', $pre->dataDelibera);
+		$emittenti    = explode('#', $pre->emittente);
+		$numDelibere  = explode('#', $pre->numDelibera);
+	@endphp
+
+	@foreach($dateDelibera as $data)
+		@php
+			$emittente = $emittenti[$loop->index] ?? '';
+			$num       = $numDelibere[$loop->index] ?? '';
+		@endphp
+
+		@if(!$loop->first)
+			e
+		@endif
+		del {{ $emittente }}
+		@if($num != '' && strtolower($num) != 'null')
+		n. {{ $num }}
+		@endif
+		del {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y')}}
+	@endforeach
 
     del {{$pre->dipDocDes}}.
 
