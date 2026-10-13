@@ -18,24 +18,13 @@ La prestazione d’opera intellettuale, stabilita
 
 negli atti
 
-@php
-    $dateDelibera = explode('#', $pre->dataDelibera);
-    $emittenti    = explode('#', $pre->emittente);
-    $numDelibere  = explode('#', $pre->numDelibera);
-@endphp
-
-@foreach($dateDelibera as $data)
-    @php
-        $emittente = $emittenti[$loop->index] ?? '';
-        $num       = $numDelibere[$loop->index] ?? '';
-    @endphp
-
+@foreach(explode('#', $pre->dataDelibera) as $data)
     @if(!$loop->first)
         e
     @endif
-    del {{ $emittente }}
-    @if($num != '' && strtolower($num) != 'null')
-    n. {{ $num }}
+    del {{explode('#', $pre->emittente)[$loop->index]}}
+    @if(explode('#', $pre->numDelibera)[$loop->index] != '' && strtolower(explode('#', $pre->numDelibera)[$loop->index]) != 'null')
+    n. {{explode('#', $pre->numDelibera)[$loop->index]}}
     @endif
     del {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data)->format('d/m/Y')}}
 @endforeach
