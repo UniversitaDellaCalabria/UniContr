@@ -512,7 +512,7 @@
 
 
   <div *ngIf="items.flag_submit === 1 && !isValidatoEconomica() && !isAnnullato()">
-    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneInformazioni()" *ngxPermissionsOnly="['OP_APPROVAZIONE_AMM', 'OP_APPROVAZIONE_ECONOMICA', 'SUPER-ADMIN']" title="{{ 'summary_infoemail' | translate }}">
+    <button type="button" class="btn btn-outline-secondary rounded mr-1" (click)="toggleGestioneInformazioni()" *ngxPermissionsOnly="['OP_DIPARTIMENTALE', 'OP_APPROVAZIONE_AMM', 'OP_APPROVAZIONE_ECONOMICA', 'SUPER-ADMIN']" title="{{ 'summary_infoemail' | translate }}">
       <span class="oi oi-chat iconic"></span>
       <span class="ml-2">Richiesta informazioni</span>
     </button>

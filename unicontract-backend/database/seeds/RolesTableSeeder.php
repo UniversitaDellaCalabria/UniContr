@@ -130,7 +130,7 @@ class RolesTableSeeder extends Seeder
         $role->givePermissionTo(['search orgunit contratti']);
         $role->givePermissionTo(['search orgunit insegnamenti']);
 
-         //dipartimenti valutare creazione unico ruolo
+        //dipartimenti valutare creazione unico ruolo
         $role = Role::create(['name' => 'op_dipartimentale']);
         $role->givePermissionTo(Permission::all());
         $role->revokePermissionTo('validazioneeconomica precontrattuale');
